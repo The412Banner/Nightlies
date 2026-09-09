@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-09-09T14:55:54Z",
+  "triggered_at": "2026-09-09T18:13:19Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "e2219d8",
-      "new": "92f5a7f",
-      "full": "92f5a7fe5f6b4b1566a1c106ac818446447f8576",
-      "msg": "[ELFLOADER] Initialize the x86-64 PLT resolver before relocation (#4373)",
-      "date": "2026-09-09T14:27:10Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "736a756",
-      "new": "ff262cf",
-      "full": "ff262cf1dd2da04553d639e5bd824763e04bd177",
-      "msg": "tests: Add SDiv/SRem by zero test.",
-      "date": "2026-09-09T12:55:35Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "cab1821",
-      "new": "0d607b7",
-      "full": "0d607b78da454d7702cdda074df95a635c694b72",
-      "msg": "freedreno: don't spin forever when an RD dump cannot be opened",
-      "date": "2026-09-09T14:06:42.000+00:00"
+      "old": "0d607b7",
+      "new": "189ee82",
+      "full": "189ee82449fdce83a0dc79cd80f201c51c29e2d0",
+      "msg": "ir3: add quirk for prefetch sam.s2en needing helpers",
+      "date": "2026-09-09T17:27:19.000+00:00"
     }
   ]
 }
