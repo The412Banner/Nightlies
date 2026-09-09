@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-09T18:13:19Z",
+  "triggered_at": "2026-09-09T21:24:10Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "0d607b7",
-      "new": "189ee82",
-      "full": "189ee82449fdce83a0dc79cd80f201c51c29e2d0",
-      "msg": "ir3: add quirk for prefetch sam.s2en needing helpers",
-      "date": "2026-09-09T17:27:19.000+00:00"
+      "old": "189ee82",
+      "new": "0ba4b08",
+      "full": "0ba4b08edc65075e9346d20d5310261939aaaf48",
+      "msg": "anv: Fix barrier after anv_init_update_scratch",
+      "date": "2026-09-09T20:35:04.000+00:00"
     }
   ]
 }
