@@ -1,14 +1,32 @@
 {
-  "triggered_at": "2026-09-10T02:16:57Z",
+  "triggered_at": "2026-09-10T07:40:24Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "92f5a7f",
+      "new": "a99eed9",
+      "full": "a99eed9a382d484ef43967519e303e57f2828576",
+      "msg": "[ELFLOADER] Suppport R_386_IRELATIVE (#4375)",
+      "date": "2026-09-10T07:27:39Z"
+    },
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "86f363d",
+      "new": "e431bfe",
+      "full": "e431bfe0fa80d44207eafc6c2c798cda70d41266",
+      "msg": "Merge pull request #5941 from Plagman/plagman/relaxrelocfilter_mr",
+      "date": "2026-09-10T06:49:57Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "0ba4b08",
-      "new": "0126f43",
-      "full": "0126f4388a5e60e6e733ea937b2f9254980bfa9c",
-      "msg": "kk: One MTL4CommandBuffer per VkCommandBuffer",
-      "date": "2026-09-10T10:42:20.000+09:00"
+      "old": "0126f43",
+      "new": "1775b1f",
+      "full": "1775b1fffa90ab04219cac48a5b0a6c0c6d7b45b",
+      "msg": "docs/amd/hw: document all image 2D tiling layouts in terms of X/Y bit swizzle",
+      "date": "2026-09-10T04:59:38.000+00:00"
     }
   ]
 }
