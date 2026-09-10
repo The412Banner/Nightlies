@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-09T23:41:44Z",
+  "triggered_at": "2026-09-10T02:16:57Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "208e9c3",
-      "new": "86f363d",
-      "full": "86f363d20259ba1223c704de6b5e6fb419feb964",
-      "msg": "Merge pull request #5939 from javelina-pkwy/fix/vulkan-bump-descriptor-heap",
-      "date": "2026-09-09T21:28:20Z"
+      "repo": "mesa/mesa",
+      "name": "Mesa (Turnip)",
+      "old": "0ba4b08",
+      "new": "0126f43",
+      "full": "0126f4388a5e60e6e733ea937b2f9254980bfa9c",
+      "msg": "kk: One MTL4CommandBuffer per VkCommandBuffer",
+      "date": "2026-09-10T10:42:20.000+09:00"
     }
   ]
 }
