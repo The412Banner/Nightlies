@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-09-10T07:40:24Z",
+  "triggered_at": "2026-09-10T12:31:50Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "92f5a7f",
-      "new": "a99eed9",
-      "full": "a99eed9a382d484ef43967519e303e57f2828576",
-      "msg": "[ELFLOADER] Suppport R_386_IRELATIVE (#4375)",
-      "date": "2026-09-10T07:27:39Z"
+      "old": "a99eed9",
+      "new": "5524b62",
+      "full": "5524b6203372600f30cb2ab71f84b1e5c553fb1f",
+      "msg": "[WRAPPER] Check the validity of the path before my_execve (#4371)",
+      "date": "2026-09-10T07:57:05Z"
     },
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "86f363d",
-      "new": "e431bfe",
-      "full": "e431bfe0fa80d44207eafc6c2c798cda70d41266",
-      "msg": "Merge pull request #5941 from Plagman/plagman/relaxrelocfilter_mr",
-      "date": "2026-09-10T06:49:57Z"
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "ff262cf",
+      "new": "0bd1035",
+      "full": "0bd10357df3f6b65e0a7c4d272acdd6c46249ff8",
+      "msg": "docs: Add docs for how to get Aftermath dumps in vkd3d-proton.",
+      "date": "2026-09-10T09:42:07Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "0126f43",
-      "new": "1775b1f",
-      "full": "1775b1fffa90ab04219cac48a5b0a6c0c6d7b45b",
-      "msg": "docs/amd/hw: document all image 2D tiling layouts in terms of X/Y bit swizzle",
-      "date": "2026-09-10T04:59:38.000+00:00"
+      "old": "1775b1f",
+      "new": "9c95a74",
+      "full": "9c95a742b585d59360e391edcef88e52fb619f9e",
+      "msg": "zink: put the buffer view cache key first",
+      "date": "2026-09-10T11:52:24.000+00:00"
     }
   ]
 }
