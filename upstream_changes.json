@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-09-10T16:46:53Z",
+  "triggered_at": "2026-09-10T19:22:31Z",
   "changed": [
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "e431bfe",
+      "new": "794a118",
+      "full": "794a11833d8f7e02087e4c9cdb0875c6812fd777",
+      "msg": "Merge pull request #5944 from Sonicadvance1/239",
+      "date": "2026-09-10T17:47:55Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "9c95a74",
-      "new": "e948e66",
-      "full": "e948e66d24e1137e829ab6f61b9adadf1e025acd",
-      "msg": "jay: port over brw_opt_txf_combiner",
-      "date": "2026-09-10T15:52:48.000+00:00"
+      "old": "e948e66",
+      "new": "72ebd91",
+      "full": "72ebd91e19f885f95de030bcedd4f12e614dbbbf",
+      "msg": "magma-gpu-rs: sync the tube implementation",
+      "date": "2026-09-10T10:14:06.000-07:00"
     }
   ]
 }
