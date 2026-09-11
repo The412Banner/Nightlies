@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-09-11T14:43:35Z",
+  "triggered_at": "2026-09-11T18:01:58Z",
   "changed": [
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "0bd1035",
-      "new": "967e7af",
-      "full": "967e7af38d889b2141ddeac4a18c506c0bbaf8b2",
-      "msg": "vkd3d: Fix MSVC build with internal NT API.",
-      "date": "2026-09-11T14:06:22Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "aed26d2",
-      "new": "a2315d7",
-      "full": "a2315d7c81d7dd215a28c8abd18d1c63aeaced0f",
-      "msg": "gallivm: bypass vector reduction intrinsic for f16 fmin/fmax on x86",
-      "date": "2026-09-11T13:41:54.000+00:00"
+      "old": "a2315d7",
+      "new": "d1682b4",
+      "full": "d1682b46cd0761278ac2600bd719a977a9edaff9",
+      "msg": "radv/video: Implement cu_qp_delta workaround for old FW",
+      "date": "2026-09-11T17:13:33.000+00:00"
     }
   ]
 }
