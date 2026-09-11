@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-09-11T05:27:24Z",
+  "triggered_at": "2026-09-11T10:17:34Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "5524b62",
+      "new": "c79152c",
+      "full": "c79152cb46a6fb4c03cc642075e5341ee95c50aa",
+      "msg": "[CORE] Fix some logic errors reported in #4214 (#4271)",
+      "date": "2026-09-11T09:11:55Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "b730349",
-      "new": "befa5b0",
-      "full": "befa5b04c93fcc6296594e82f4c4def609082990",
-      "msg": "aco/sched_vopd: initialize num_operands in VOPDInfo constructor",
-      "date": "2026-09-10T21:09:40.000-07:00"
+      "old": "befa5b0",
+      "new": "aed26d2",
+      "full": "aed26d2b59e730e1d2e00829f07160b7d06762c3",
+      "msg": "pipe/video: Remove HDR metadata",
+      "date": "2026-09-11T07:54:15.000+00:00"
     }
   ]
 }
