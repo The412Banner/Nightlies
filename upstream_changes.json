@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-11T18:01:58Z",
+  "triggered_at": "2026-09-11T21:27:43Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "a2315d7",
-      "new": "d1682b4",
-      "full": "d1682b46cd0761278ac2600bd719a977a9edaff9",
-      "msg": "radv/video: Implement cu_qp_delta workaround for old FW",
-      "date": "2026-09-11T17:13:33.000+00:00"
+      "old": "d1682b4",
+      "new": "ef18fe0",
+      "full": "ef18fe0b975f0616bbdb4d296fbe68caf49043c0",
+      "msg": "d3d12: Never claim residency we did not get",
+      "date": "2026-09-11T19:56:33.000+00:00"
     }
   ]
 }
