@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-11T21:27:43Z",
+  "triggered_at": "2026-09-11T23:42:58Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "d1682b4",
-      "new": "ef18fe0",
-      "full": "ef18fe0b975f0616bbdb4d296fbe68caf49043c0",
-      "msg": "d3d12: Never claim residency we did not get",
-      "date": "2026-09-11T19:56:33.000+00:00"
+      "old": "ef18fe0",
+      "new": "fa9938a",
+      "full": "fa9938acf2d513fa102102ec313a98106f1c84b1",
+      "msg": "nv30: add missed fdot_replicates flag",
+      "date": "2026-09-11T22:44:01.000+00:00"
     }
   ]
 }
