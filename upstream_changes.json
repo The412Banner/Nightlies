@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-12T07:29:01Z",
+  "triggered_at": "2026-09-12T14:41:33Z",
   "changed": [
     {
-      "repo": "mesa/mesa",
-      "name": "Mesa (Turnip)",
-      "old": "fa9938a",
-      "new": "7cda785",
-      "full": "7cda7850edd103ace21aac37d416d2fdf7a282e1",
-      "msg": "panvk/ci: Route FS shaders through Kraid in Kraid job",
-      "date": "2026-09-11T23:33:29.000-04:00"
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "967e7af",
+      "new": "2a38e79",
+      "full": "2a38e7991f851e85151c104504d5e343530d1523",
+      "msg": "vkd3d: Use correct per-plane byte size for emulated copies.",
+      "date": "2026-09-12T12:04:01Z"
     }
   ]
 }
