@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-12T02:19:14Z",
+  "triggered_at": "2026-09-12T07:29:01Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "f18599d",
-      "new": "4b652eb",
-      "full": "4b652eb91b9535370794cf30248acbcffd733e3e",
-      "msg": "Merge pull request #5947 from javelina-pkwy/feature/vnni",
-      "date": "2026-09-12T00:41:32Z"
+      "repo": "mesa/mesa",
+      "name": "Mesa (Turnip)",
+      "old": "fa9938a",
+      "new": "7cda785",
+      "full": "7cda7850edd103ace21aac37d416d2fdf7a282e1",
+      "msg": "panvk/ci: Route FS shaders through Kraid in Kraid job",
+      "date": "2026-09-11T23:33:29.000-04:00"
     }
   ]
 }
