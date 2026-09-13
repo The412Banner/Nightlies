@@ -2815,13 +2815,28 @@ jobs:
             exit 1
           fi
 
+      # The catalog refresh must not depend on the chat notification below: a dropped
+      # Discord webhook once failed this job AFTER the release was published, and this
+      # step (then last, `if: success()`) was skipped. It also cannot rely on the
+      # components workflow's own `workflow_run` trigger, which GitHub never fires for
+      # runs dispatched with GITHUB_TOKEN (the Upstream Commit Watcher does exactly that).
+      - name: Trigger nightlies_components.json update
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run nightlies-components-json.yml --repo "$GITHUB_REPOSITORY"
+
       # ----------------------------------------------------------------
       # Discord notification — success
       # Requires DISCORD_WEBHOOK_URL to be set in repo secrets:
       #   Settings → Secrets and variables → Actions → New repository secret
       # ----------------------------------------------------------------
+      # Chat is best-effort: a webhook hiccup (curl 56 = connection dropped mid-reply,
+      # seen 2026-09-13) must never turn a published nightly red or fire the failure alert.
       - name: Notify Discord (success)
         if: success()
+        continue-on-error: true
         run: |
           RELEASE_NAME="${{ env.RELEASE_NAME }}"
           TAG_NAME="${{ env.TAG_NAME }}"
@@ -2850,13 +2865,13 @@ jobs:
 
           DESC="${RELEASE_NAME}"$'\n\n'"[📦 Download from GitHub Releases](https://github.com/${REPO}/releases/tag/${TAG_NAME})"
 
-          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
+          curl -sS -f --retry 3 --retry-all-errors --retry-delay 2 --max-time 30 -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
             -H "Content-Type: application/json" \
             -d "$(jq -n \
               --arg desc "$DESC" \
               --arg trigger "$DISCORD_TRIGGER" \
               --arg footer "GitHub Actions · ${REPO}" \
-              --arg ts "${{ github.event.repository.updated_at }}" \
+              --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
               '{embeds: [{
                 title: "🚀 New Nightly Build Released",
                 description: $desc,
@@ -2868,8 +2883,9 @@ jobs:
 
       - name: Notify Discord (failure)
         if: failure()
+        continue-on-error: true
         run: |
-          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
+          curl -sS -f --retry 3 --retry-all-errors --retry-delay 2 --max-time 30 -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
             -H "Content-Type: application/json" \
             -d '{
               "embeds": [{
@@ -2877,13 +2893,7 @@ jobs:
                 "description": "One or more jobs failed during the nightly run.\n\n[🔍 View Actions Log](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})",
                 "color": 15548997,
                 "footer": { "text": "GitHub Actions · ${{ github.repository }}" },
-                "timestamp": "${{ github.event.repository.updated_at }}"
+                "timestamp": "'"$(date -u +%Y-%m-%dT%H:%M:%SZ)"'"
               }]
             }'
 
-      - name: Trigger nightlies_components.json update
-        if: success()
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run nightlies-components-json.yml --repo "$GITHUB_REPOSITORY"
