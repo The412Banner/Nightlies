@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-12T14:41:33Z",
+  "triggered_at": "2026-09-13T07:49:42Z",
   "changed": [
     {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "967e7af",
-      "new": "2a38e79",
-      "full": "2a38e7991f851e85151c104504d5e343530d1523",
-      "msg": "vkd3d: Use correct per-plane byte size for emulated copies.",
-      "date": "2026-09-12T12:04:01Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "4b652eb",
+      "new": "5d6609a",
+      "full": "5d6609a6b1182b8d972005befda8b7e338fd3644",
+      "msg": "Merge pull request #5950 from Sonicadvance1/240",
+      "date": "2026-09-13T02:42:11Z"
     }
   ]
 }
