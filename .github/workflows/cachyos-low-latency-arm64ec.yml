@@ -1,0 +1,196 @@
+name: Low-latency DXVK / VKD3D (ARM64EC test build)
+
+# ARM64EC builds of netborg-afps' low-latency frame pacing forks (the DXVK and
+# VKD3D-Proton extras Proton-CachyOS ships), pinned to their release commits.
+#
+#   dxvk-low-latency  low-latency-framepacing-3.0.2        ccc8cc8219b9
+#   dxvk-low-latency  low-latency-framepacing-2.7.1-3-521  0ccdd368e911
+#   vkd3d-low-latency initial-release (3.0.1-1)            cca2be97e5db
+#
+# Upstream only publishes x64/x86 binaries, so ARM64EC (system32) + i386
+# (syswow64) are compiled here. The x86 flavor of each wcp is a repack of the
+# upstream release tarball and is not built by this workflow.
+#
+# Recipe = the ARM64EC DXVK vanilla / VKD3D-Proton ARM64EC jobs of the
+# all-in-one nightly (mstorsjo llvm-mingw 20251104, meson release + strip).
+#
+# TEST BUILD: artifact-only. No release step, no catalog entry. Runs on push to
+# its own branch (workflow_dispatch only works from the default branch).
+
+on:
+  push:
+    branches:
+      - ci/cachyos-low-latency-components
+    paths:
+      - .github/workflows/cachyos-low-latency-arm64ec.yml
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: ${{ matrix.name }} (ARM64EC)
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: dxvk-low-latency 3.0.2
+            kind: dxvk
+            repo: netborg-afps/dxvk-low-latency
+            tag: low-latency-framepacing-3.0.2
+            sha: ccc8cc8219b97088a7450ae9872d202acac294cc
+            ver: 3.0.2
+            desc: "Built on the Winlator WCP Hub (Upstream: Philip Rebohle, Patch: netborg-afps low-latency frame pacing). Pacing is on by default; DXVK_FRAME_PACE=max-frame-latency restores stock DXVK, DXVK_FRAME_RATE caps fps. DXVK 3.x: needs a Vulkan 1.4-class driver."
+          - name: dxvk-low-latency 2.7.1-3-521
+            kind: dxvk
+            repo: netborg-afps/dxvk-low-latency
+            tag: low-latency-framepacing-2.7.1-3-521
+            sha: 0ccdd368e9117fa6c67d4d6edc5319573c84ddd9
+            ver: 2.7.1-3-521
+            desc: "Built on the Winlator WCP Hub (Upstream: Philip Rebohle, Patch: netborg-afps low-latency frame pacing). Pacing is on by default; DXVK_FRAME_PACE=max-frame-latency restores stock DXVK, DXVK_FRAME_RATE caps fps. For Vulkan 1.3 drivers."
+          - name: vkd3d-low-latency 3.0.1-1
+            kind: vkd3d
+            repo: netborg-afps/vkd3d-low-latency
+            tag: initial-release
+            sha: cca2be97e5db20b228659c114153d05af626fcd9
+            ver: 3.0.1-1
+            desc: "Built on the Winlator WCP Hub (Upstream: Hans-Kristian Arntzen, Patch: netborg-afps low-latency frame pacing). Only paces games that use Reflex or waitable DXGI swapchains; VKD3D_FRAME_RATE caps fps. Driver must expose VK_KHR_calibrated_timestamps."
+
+    steps:
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            ca-certificates curl xz-utils jq git build-essential \
+            python3 pkg-config zstd meson ninja-build wget unzip zip
+
+      - name: Setup glslang
+        run: |
+          wget -q https://github.com/KhronosGroup/glslang/releases/download/master-tot/glslang-master-linux-Release.zip
+          unzip -qo glslang-master-linux-Release.zip -d glslang
+          echo "$PWD/glslang/bin" >> $GITHUB_PATH
+
+      - name: Setup LLVM-MinGW
+        run: |
+          LLVM_MINGW_TAG="20251104"
+          wget -q "https://github.com/mstorsjo/llvm-mingw/releases/download/$LLVM_MINGW_TAG/llvm-mingw-$LLVM_MINGW_TAG-ucrt-ubuntu-22.04-x86_64.tar.xz" -O llvm.tar.xz
+          sudo mkdir -p /opt/llvm-mingw
+          sudo tar -C /opt/llvm-mingw --strip-components=1 -xJf llvm.tar.xz
+          echo "/opt/llvm-mingw/bin" >> $GITHUB_PATH
+
+      - name: Clone ${{ matrix.tag }} (pinned)
+        run: |
+          git clone --branch "${{ matrix.tag }}" --recurse-submodules \
+            "https://github.com/${{ matrix.repo }}.git" src
+          cd src
+          HEAD_SHA=$(git rev-parse HEAD)
+          echo "tag ${{ matrix.tag }} -> $HEAD_SHA"
+          if [ "$HEAD_SHA" != "${{ matrix.sha }}" ]; then
+            echo "::error::tag moved: expected ${{ matrix.sha }}, got $HEAD_SHA"
+            exit 1
+          fi
+          git submodule status
+
+      - name: Configure Cross-Files
+        run: |
+          cat <<EOF > arm64ec.txt
+          [binaries]
+          c = 'arm64ec-w64-mingw32-clang'
+          cpp = 'arm64ec-w64-mingw32-clang++'
+          ar = 'llvm-ar'
+          strip = 'llvm-strip'
+          windres = 'arm64ec-w64-mingw32-windres'
+          widl = 'arm64ec-w64-mingw32-widl'
+          pkg-config = 'pkg-config'
+          [host_machine]
+          system = 'windows'
+          cpu_family = 'aarch64'
+          cpu = 'aarch64'
+          endian = 'little'
+          EOF
+
+          cat <<EOF > x86.txt
+          [binaries]
+          c = 'i686-w64-mingw32-clang'
+          cpp = 'i686-w64-mingw32-clang++'
+          ar = 'llvm-ar'
+          strip = 'llvm-strip'
+          windres = 'i686-w64-mingw32-windres'
+          widl = 'i686-w64-mingw32-widl'
+          pkg-config = 'pkg-config'
+          [host_machine]
+          system = 'windows'
+          cpu_family = 'x86'
+          cpu = 'i686'
+          endian = 'little'
+          EOF
+
+      - name: Build
+        run: |
+          cd src
+          meson setup build-ec --cross-file ../arm64ec.txt -Dbuildtype=release -Dstrip=true
+          meson setup build-x86 --cross-file ../x86.txt -Dbuildtype=release -Dstrip=true
+          ninja -C build-ec -j$(nproc)
+          ninja -C build-x86 -j$(nproc)
+
+      - name: Package
+        env:
+          KIND: ${{ matrix.kind }}
+          VER: ${{ matrix.ver }}
+          DESC: ${{ matrix.desc }}
+        run: |
+          rm -rf packaging && mkdir -p packaging/system32 packaging/syswow64
+          if [ "$KIND" = "dxvk" ]; then
+            DLLS="d3d10core d3d11 d3d8 d3d9 dxgi"
+            for d in $DLLS; do
+              case $d in
+                d3d10core) sub=d3d10 ;;
+                *) sub=$d ;;
+              esac
+              cp "src/build-ec/src/$sub/$d.dll"  packaging/system32/
+              cp "src/build-x86/src/$sub/$d.dll" packaging/syswow64/
+            done
+            TYPE=DXVK
+          else
+            DLLS="d3d12 d3d12core"
+            for d in $DLLS; do
+              cp -L "src/build-ec/libs/$d/$d.dll"  packaging/system32/
+              cp -L "src/build-x86/libs/$d/$d.dll" packaging/syswow64/
+            done
+            TYPE=VKD3D
+          fi
+          llvm-strip --strip-all packaging/system32/*.dll packaging/syswow64/*.dll
+
+          python3 - "$TYPE" "${VER}-low-latency-arm64ec" "$DESC" $DLLS > packaging/profile.json <<'PY'
+          import json, sys
+          typ, vname, desc, dlls = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4:]
+          files = [{"source": f"{d}/{n}.dll", "target": "${" + d + "}/" + n + ".dll"}
+                   for d in ("system32", "syswow64") for n in dlls]
+          print(json.dumps({"type": typ, "versionName": vname, "versionCode": 0,
+                            "description": desc, "files": files}, indent=2))
+          PY
+          cat packaging/profile.json
+
+          OUT="${KIND}-low-latency-arm64ec-${VER}.wcp"
+          ( cd packaging && ZSTD_CLEVEL=19 tar --zstd --owner=0 --group=0 --numeric-owner \
+              -cf "../$OUT" profile.json system32 syswow64 )
+          echo "OUT=$OUT" >> $GITHUB_ENV
+
+      - name: Verify
+        run: |
+          head -c4 "$OUT" | od -An -tx1
+          tar --zstd -tvf "$OUT"
+          for f in packaging/system32/*.dll packaging/syswow64/*.dll; do
+            echo "$f: $(llvm-objdump -f "$f" | grep 'file format' | sed 's/.*file format //')"
+          done
+          if llvm-objdump -f packaging/system32/*.dll | grep 'file format' | grep -v arm64ec; then
+            echo "::error::non-ARM64EC DLL in system32"; exit 1
+          fi
+          if llvm-objdump -f packaging/syswow64/*.dll | grep 'file format' | grep -v i386; then
+            echo "::error::non-i386 DLL in syswow64"; exit 1
+          fi
+          sha256sum "$OUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.kind }}-low-latency-arm64ec-${{ matrix.ver }}
+          path: ${{ env.OUT }}
