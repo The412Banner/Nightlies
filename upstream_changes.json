@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-20T20:01:51Z",
+  "triggered_at": "2026-09-20T22:48:37Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "a834a23",
-      "new": "e46ee71",
-      "full": "e46ee71b43b1693a2baf22740b0157e7d31b79cc",
-      "msg": "mesa/eval: Fix wrong auto-normal direction with reversed parameter ranges",
-      "date": "2026-09-20T16:57:10.000+00:00"
+      "old": "e46ee71",
+      "new": "366b006",
+      "full": "366b006cfdb5aee1093271f4e58564f7394569ad",
+      "msg": "etnaviv: Move magnification switch-over for shader LODs",
+      "date": "2026-09-20T23:02:55.000+02:00"
     }
   ]
 }
