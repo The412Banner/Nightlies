@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-09-20T17:10:13Z",
+  "triggered_at": "2026-09-20T20:01:51Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "a92a026",
-      "new": "002d108",
-      "full": "002d10833da9712b66afd58294921757fd78a756",
-      "msg": "[DOC] Added 1 more hardware contributor, thanks!",
-      "date": "2026-09-20T14:28:54Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "e1f3f37",
-      "new": "a834a23",
-      "full": "a834a237c5d991416884700b66f2fd5442d458f7",
-      "msg": "glx: Fix leak of current context in glXDestroyContext",
-      "date": "2026-09-20T16:14:42.000+00:00"
+      "old": "a834a23",
+      "new": "e46ee71",
+      "full": "e46ee71b43b1693a2baf22740b0157e7d31b79cc",
+      "msg": "mesa/eval: Fix wrong auto-normal direction with reversed parameter ranges",
+      "date": "2026-09-20T16:57:10.000+00:00"
     }
   ]
 }
