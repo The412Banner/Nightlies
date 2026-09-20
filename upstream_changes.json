@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-19T23:54:06Z",
+  "triggered_at": "2026-09-20T02:34:09Z",
   "changed": [
     {
-      "repo": "mesa/mesa",
-      "name": "Mesa (Turnip)",
-      "old": "590bf21",
-      "new": "e1f3f37",
-      "full": "e1f3f372c4a661cd0e71a0cdafc4d469d56ecf35",
-      "msg": "nv30: port fix from nv30_validate_fb to nv40 blit copy",
-      "date": "2026-09-19T22:03:06.000+00:00"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "555e8bd",
+      "new": "48d7175",
+      "full": "48d71752e2a363d5535181f803b0b0e9666c1825",
+      "msg": "Merge pull request #5973 from Sonicadvance1/95",
+      "date": "2026-09-20T00:24:34Z"
     }
   ]
 }
