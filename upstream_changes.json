@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-20T08:06:43Z",
+  "triggered_at": "2026-09-20T13:20:59Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "38f4831",
-      "new": "454d538",
-      "full": "454d5387571bb5223fe8b43a4624debde8b74647",
-      "msg": "[WINE] Add LLVM-mingw ARM64EC toolchain support (#4432)",
-      "date": "2026-09-20T03:13:17Z"
+      "old": "454d538",
+      "new": "a92a026",
+      "full": "a92a0263eb7bc8b6905231ee21033baa5d853a7b",
+      "msg": "[BOX32][X11] Fixed refreshDisplay() on an unregistered Display (#4431)",
+      "date": "2026-09-20T08:20:09Z"
     }
   ]
 }
