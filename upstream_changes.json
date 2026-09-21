@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-20T22:48:37Z",
+  "triggered_at": "2026-09-21T05:42:08Z",
   "changed": [
     {
-      "repo": "mesa/mesa",
-      "name": "Mesa (Turnip)",
-      "old": "e46ee71",
-      "new": "366b006",
-      "full": "366b006cfdb5aee1093271f4e58564f7394569ad",
-      "msg": "etnaviv: Move magnification switch-over for shader LODs",
-      "date": "2026-09-20T23:02:55.000+02:00"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "002d108",
+      "new": "a0017ea",
+      "full": "a0017eac98da4376a513ea9c067c07a9707a9dca",
+      "msg": "[RV64_DYNAREC] Add MXCSR rounding translation in VCVTPD2PS (#4435)",
+      "date": "2026-09-21T02:21:13Z"
     }
   ]
 }
