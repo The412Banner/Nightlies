@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-09-21T17:30:18Z",
+  "triggered_at": "2026-09-21T21:27:47Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "cd3cea4",
-      "new": "fbbb054",
-      "full": "fbbb0544f770de73d04598079dec43644df3d462",
-      "msg": "[WRAPPER] Fixed a few wrapping issues (#4442)",
-      "date": "2026-09-21T12:36:39Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "4559a01",
-      "new": "3400291",
-      "full": "340029110ec2a4439c3444cbd5a883645b8f4cf4",
-      "msg": "vkd3d: Enable KHR_untyped_pointers.",
-      "date": "2026-09-21T12:22:01Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "177542e",
+      "new": "c747be4",
+      "full": "c747be4d8be74d90be3d2fdbd402c9f3d206d763",
+      "msg": "Merge pull request #5977 from Sonicadvance1/256",
+      "date": "2026-09-21T20:17:54Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "f063bff",
-      "new": "a9a56f5",
-      "full": "a9a56f5af3f58ffd63a58fc84856913ab2e885e4",
-      "msg": "broadcom/ci: update RPi 3's skip list",
-      "date": "2026-09-21T16:45:41.000+00:00"
+      "old": "a9a56f5",
+      "new": "dc5546d",
+      "full": "dc5546d21225f3ed83a8d4f6ff0e2428ec016601",
+      "msg": "gfxstream: make generate-gfxstream-vulkan.sh standalone-safe",
+      "date": "2026-09-21T20:52:41.000+00:00"
     }
   ]
 }
