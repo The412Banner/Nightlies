@@ -9,4 +9,4 @@ https://github.com/K11MCH1/AdrenoToolsDrivers@latest-release: v840
 https://github.com/StevenMXZ/Adreno-Tools-Drivers@latest-release: v36
 https://github.com/whitebelyash/freedreno_turnip-CI@latest-release: stu_v2
 https://github.com/maxjivi05/Components@main: a5d5aedf00a22bf9c211f218a9afb3413cc1f803
-https://github.com/The412Banner/Banners-Turnip@latest-release: v26.3.0-20260920-r2
+https://github.com/The412Banner/Banners-Turnip@latest-release: v26.3.0-20260920-r3
