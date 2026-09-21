@@ -1,14 +1,41 @@
 {
-  "triggered_at": "2026-09-21T05:42:08Z",
+  "triggered_at": "2026-09-21T11:32:27Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "002d108",
-      "new": "a0017ea",
-      "full": "a0017eac98da4376a513ea9c067c07a9707a9dca",
-      "msg": "[RV64_DYNAREC] Add MXCSR rounding translation in VCVTPD2PS (#4435)",
-      "date": "2026-09-21T02:21:13Z"
+      "old": "a0017ea",
+      "new": "cd3cea4",
+      "full": "cd3cea460c8f9d0bd5ba2757a1b99c460b8c0b53",
+      "msg": "[RV64_DYNAREC] Fix aliased operands for scalar-version VPACKUSDW (#4434)",
+      "date": "2026-09-21T10:31:04Z"
+    },
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "48d7175",
+      "new": "177542e",
+      "full": "177542e673b1f7d2179307c176ac8dd696784bed",
+      "msg": "Merge pull request #5974 from Sonicadvance1/253",
+      "date": "2026-09-21T06:18:22Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "5d0db74",
+      "new": "4559a01",
+      "full": "4559a01d0cc4976caa0c01949eedf119f041a6e5",
+      "msg": "vkd3d: Update tight alignment against Agility SDK 619.5 behaviour.",
+      "date": "2026-09-21T10:07:29Z"
+    },
+    {
+      "repo": "mesa/mesa",
+      "name": "Mesa (Turnip)",
+      "old": "366b006",
+      "new": "f063bff",
+      "full": "f063bff3fe53247e09ff0f0ac4138d449b514fcc",
+      "msg": "etnaviv: Do not compose a swizzle onto an inline immediate",
+      "date": "2026-09-21T11:06:08.000+00:00"
     }
   ]
 }
