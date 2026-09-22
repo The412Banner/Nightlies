@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-09-21T21:27:47Z",
+  "triggered_at": "2026-09-22T00:25:40Z",
   "changed": [
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "177542e",
-      "new": "c747be4",
-      "full": "c747be4d8be74d90be3d2fdbd402c9f3d206d763",
-      "msg": "Merge pull request #5977 from Sonicadvance1/256",
-      "date": "2026-09-21T20:17:54Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "a9a56f5",
-      "new": "dc5546d",
-      "full": "dc5546d21225f3ed83a8d4f6ff0e2428ec016601",
-      "msg": "gfxstream: make generate-gfxstream-vulkan.sh standalone-safe",
-      "date": "2026-09-21T20:52:41.000+00:00"
+      "old": "dc5546d",
+      "new": "5ff61a7",
+      "full": "5ff61a7646d29b54c324af0a60aa3bfb5cdd24d1",
+      "msg": "gfxstream: format with clang-format and enable enforcement",
+      "date": "2026-09-21T21:45:54.000+00:00"
     }
   ]
 }
