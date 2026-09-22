@@ -1,32 +1,41 @@
 {
-  "triggered_at": "2026-09-22T05:39:18Z",
+  "triggered_at": "2026-09-22T10:38:35Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "fbbb054",
-      "new": "9c5c904",
-      "full": "9c5c904adfaf9cb40e21d822c87c4855590edeb0",
-      "msg": "[CI] Add Box64EC build workflow (#4443)",
-      "date": "2026-09-22T02:09:53Z"
+      "old": "9c5c904",
+      "new": "9e6cf49",
+      "full": "9e6cf49acf2c090b79a40dc672ab4d4cd3f6e7e7",
+      "msg": "[WRAPPER] Fix fts_children signature error (#4452)",
+      "date": "2026-09-22T10:30:23Z"
     },
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "c747be4",
-      "new": "64a6da9",
-      "full": "64a6da9aee4608eb4b1a1bb5d23d71a01b8fac30",
-      "msg": "Merge pull request #5978 from Sonicadvance1/257",
-      "date": "2026-09-22T03:07:24Z"
+      "old": "64a6da9",
+      "new": "37d83d9",
+      "full": "37d83d937586f342ca3e9131270f8ef23b61adc4",
+      "msg": "Merge pull request #5979 from Sonicadvance1/258",
+      "date": "2026-09-22T05:46:23Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "3400291",
+      "new": "42a17cf",
+      "full": "42a17cf1799dc131385ff307d68a8e945e6380ec",
+      "msg": "dxil-spirv: Update submodule",
+      "date": "2026-09-22T10:08:27Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "5ff61a7",
-      "new": "6351df2",
-      "full": "6351df29e2d99a982dbfed931b23a76defca0132",
-      "msg": "nir: temporarily disable floating point exception flags",
-      "date": "2026-09-22T02:08:52.000+00:00"
+      "old": "6351df2",
+      "new": "2802fa1",
+      "full": "2802fa1c2be2f821afabd82cc48d559b99dcc414",
+      "msg": "ir3/lower_copies: prevent splitting when handling cycles",
+      "date": "2026-09-22T09:21:15.000+00:00"
     }
   ]
 }
