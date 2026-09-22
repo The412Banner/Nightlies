@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-09-22T19:25:09Z",
+  "triggered_at": "2026-09-22T22:33:39Z",
   "changed": [
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "08f451d",
+      "new": "e2f973f",
+      "full": "e2f973fe931e6dc2ce523795e51ca1ac3ca85816",
+      "msg": "Merge pull request #5981 from javelina-pkwy/opt/faster-pcmp",
+      "date": "2026-09-22T21:17:18Z"
+    },
     {
       "repo": "WinterSnowfall/d7vk",
       "name": "D7VK (DDraw/D3D7)",
-      "old": "ef38cf4",
-      "new": "eee586c",
-      "full": "eee586ca739783b0c23e4e4f2fa12dd240fa6eba",
-      "msg": "[d3d6/5/3] Implement all viewport interfaces with a single common object",
-      "date": "2026-09-22T18:59:05Z"
+      "old": "eee586c",
+      "new": "3d27e28",
+      "full": "3d27e285ad0480d7fbfefc43f7fbe1fb9112a94e",
+      "msg": "[d3d3] Remove D3DEXECUTEBUFFERDESC size validations to match native",
+      "date": "2026-09-22T20:57:20Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "6ac7466",
-      "new": "44cc4ca",
-      "full": "44cc4ca677a4752a10c14194289bde5a6468675e",
-      "msg": "anv: disable DRM_XE_DEVICE_QUERY_ENGINE_CYCLES with UnrealEngine 5.8",
-      "date": "2026-09-22T17:39:13.000+00:00"
+      "old": "44cc4ca",
+      "new": "a5fa0a3",
+      "full": "a5fa0a364e30d89344e341b3f792be305fcd4e9b",
+      "msg": "anv: Fix descriptor_heap non-sparse image capture/replay.",
+      "date": "2026-09-22T21:39:20.000+00:00"
     }
   ]
 }
