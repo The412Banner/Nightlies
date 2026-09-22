@@ -1,50 +1,23 @@
 {
-  "triggered_at": "2026-09-22T15:17:13Z",
+  "triggered_at": "2026-09-22T19:25:09Z",
   "changed": [
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "37d83d9",
-      "new": "08f451d",
-      "full": "08f451d3bce62a68aa6307dced5a8eaeb85c39bc",
-      "msg": "Merge pull request #5980 from Plagman/plagman/maxrwsize_mr",
-      "date": "2026-09-22T15:10:40Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "42a17cf",
-      "new": "7f0c30a",
-      "full": "7f0c30ad3c8f28dfe47c34bb897b972e2d1ca724",
-      "msg": "ci: Build ARM64X artifacts.",
-      "date": "2026-09-22T14:36:00Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "40e0164",
-      "new": "ba62c42",
-      "full": "ba62c4270969b9db525311d53ee2b9a60ea4b860",
-      "msg": "[d3d11] Write back composition to back buffer for incremental present",
-      "date": "2026-09-22T12:20:32Z"
-    },
     {
       "repo": "WinterSnowfall/d7vk",
       "name": "D7VK (DDraw/D3D7)",
-      "old": "6faf335",
-      "new": "ef38cf4",
-      "full": "ef38cf4fb07d3faaf0e7d6fbd4719a3dc7b515f9",
-      "msg": "[d3d6/5/3] Move handle retrieval code within common texture object",
-      "date": "2026-09-22T13:51:49Z"
+      "old": "ef38cf4",
+      "new": "eee586c",
+      "full": "eee586ca739783b0c23e4e4f2fa12dd240fa6eba",
+      "msg": "[d3d6/5/3] Implement all viewport interfaces with a single common object",
+      "date": "2026-09-22T18:59:05Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "2802fa1",
-      "new": "6ac7466",
-      "full": "6ac7466d40be92bfec4fe3dfe21376a6af45a8e0",
-      "msg": "vulkan/wsi: support allocating more memory for buffers",
-      "date": "2026-09-22T14:00:41.000+00:00"
+      "old": "6ac7466",
+      "new": "44cc4ca",
+      "full": "44cc4ca677a4752a10c14194289bde5a6468675e",
+      "msg": "anv: disable DRM_XE_DEVICE_QUERY_ENGINE_CYCLES with UnrealEngine 5.8",
+      "date": "2026-09-22T17:39:13.000+00:00"
     }
   ]
 }
