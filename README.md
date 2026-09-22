@@ -50,18 +50,18 @@ A single JSON index of every component published here — point any compatible W
 <!-- NIGHTLY-LATEST-START -->
 | | |
 | :--- | :--- |
-| **Release** | [🔗 nightly-20260922-104452](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20260922-104452) |
+| **Release** | [🔗 nightly-20260922-134250](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20260922-134250) |
 | **FEXCore** | [`37d83d937`](https://github.com/FEX-Emu/FEX/commit/37d83d937) — FEX-2609+111-Nightly-37d83d937 |
 | **VKD3D-Proton (Std)** | [`42a17cf1`](https://github.com/HansKristian-Work/vkd3d-proton/commit/42a17cf1) |
 | **VKD3D-Proton (ARM64EC)** | [`42a17cf1`](https://github.com/HansKristian-Work/vkd3d-proton/commit/42a17cf1) |
-| **DXVK (GPLAsync)** | [`40e01640`](https://github.com/doitsujin/dxvk/commit/40e01640) |
-| **DXVK (ARM64EC)** | [`40e01640`](https://github.com/doitsujin/dxvk/commit/40e01640) |
-| **DXVK BinSem (GPLAsync)** | [`40e01640`](https://github.com/doitsujin/dxvk/commit/40e01640) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |
-| **DXVK BinSem (ARM64EC)** | [`40e01640`](https://github.com/doitsujin/dxvk/commit/40e01640) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |
-| **D7VK (DDraw/D3D7)** | [`6faf33593`](https://github.com/WinterSnowfall/d7vk/commit/6faf33593) — DDraw Wrapper slot; `.tzst` = bundled-asset refresh |
+| **DXVK (GPLAsync)** | [`ba62c427`](https://github.com/doitsujin/dxvk/commit/ba62c427) |
+| **DXVK (ARM64EC)** | [`ba62c427`](https://github.com/doitsujin/dxvk/commit/ba62c427) |
+| **DXVK BinSem (GPLAsync)** | [`ba62c427`](https://github.com/doitsujin/dxvk/commit/ba62c427) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |
+| **DXVK BinSem (ARM64EC)** | [`ba62c427`](https://github.com/doitsujin/dxvk/commit/ba62c427) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |
+| **D7VK (DDraw/D3D7)** | [`cb4e84789`](https://github.com/WinterSnowfall/d7vk/commit/cb4e84789) — DDraw Wrapper slot; `.tzst` = bundled-asset refresh |
 | **Box64** | [ptitSeb/box64](https://github.com/ptitSeb/box64/commits/main) + [Pipetto/box64](https://github.com/Pipetto-crypto/box64/commits/main) |
-| **Turnip** | [v26.3.0-20260922-r2](https://github.com/The412Banner/Banners-Turnip/releases/tag/v26.3.0-20260922-r2) — Turnip v26.3.0-20260922-r2 |
-| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20260922-104452) |
+| **Turnip** | [v26.3.0-20260922-r3](https://github.com/The412Banner/Banners-Turnip/releases/tag/v26.3.0-20260922-r3) — Turnip v26.3.0-20260922-r3 |
+| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20260922-134250) |
 <!-- NIGHTLY-LATEST-END -->
 
 </details>
