@@ -1,14 +1,32 @@
 {
-  "triggered_at": "2026-09-23T01:05:04Z",
+  "triggered_at": "2026-09-23T07:02:03Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "9e6cf49",
+      "new": "34f858f",
+      "full": "34f858f1bd3d83c3514faf2045a32aafaa4762cf",
+      "msg": "[WRAPPER] Share special-file handling across open/open64/fopen64 (#4453)",
+      "date": "2026-09-23T06:58:44Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "ba62c42",
+      "new": "25ca63f",
+      "full": "25ca63f17f34bdc05a39873ee63907d3cbbfa030",
+      "msg": "[dxvk] Ignore invalid shader stages when setting up push data for pipelines",
+      "date": "2026-09-23T01:52:09Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "a5fa0a3",
-      "new": "ec3959b",
-      "full": "ec3959b912153bd2bc2c1f4913e357aeb3c5a428",
-      "msg": "freedreno/ci: Update trace checksums for all of these ir3 changes.",
-      "date": "2026-09-23T00:15:16.000+00:00"
+      "old": "ec3959b",
+      "new": "516c078",
+      "full": "516c078b1d90de7de14e75e4475dac72b1c2b472",
+      "msg": "ir3/cp: Search existing consts to reuse them with different src mods.",
+      "date": "2026-09-23T03:40:29.000+00:00"
     }
   ]
 }
