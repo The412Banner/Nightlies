@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-09-23T13:09:01Z",
+  "triggered_at": "2026-09-23T18:04:57Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "34f858f",
-      "new": "729c25d",
-      "full": "729c25da67f520bf2a5957d66f5015e34391b86b",
-      "msg": "[DYNAREC] Fixed a regression introduced by 92527ded3 (#4460)",
-      "date": "2026-09-23T09:42:53Z"
+      "old": "729c25d",
+      "new": "c3b5282",
+      "full": "c3b52820500c28e0dbae5b357f271c2a34d6a116",
+      "msg": "[BOX64EC] Add support for loading .box64rc file (#4459)",
+      "date": "2026-09-23T13:45:33Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "516c078",
-      "new": "fa67974",
-      "full": "fa679747ace8d47d72a3886a54307ac9ee7c3b20",
-      "msg": "pan/kmod: Make sure all executables live in the same 4G VA range",
-      "date": "2026-09-23T14:25:06.000+02:00"
+      "old": "fa67974",
+      "new": "ab6ec72",
+      "full": "ab6ec72fb528759c4c0aee515f380029cef9484f",
+      "msg": "meson: list MIPS(64) in llvm_has_mcjit list",
+      "date": "2026-09-23T16:56:46.000+00:00"
     }
   ]
 }
