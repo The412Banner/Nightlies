@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-09-23T07:02:03Z",
+  "triggered_at": "2026-09-23T13:09:01Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "9e6cf49",
-      "new": "34f858f",
-      "full": "34f858f1bd3d83c3514faf2045a32aafaa4762cf",
-      "msg": "[WRAPPER] Share special-file handling across open/open64/fopen64 (#4453)",
-      "date": "2026-09-23T06:58:44Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "ba62c42",
-      "new": "25ca63f",
-      "full": "25ca63f17f34bdc05a39873ee63907d3cbbfa030",
-      "msg": "[dxvk] Ignore invalid shader stages when setting up push data for pipelines",
-      "date": "2026-09-23T01:52:09Z"
+      "old": "34f858f",
+      "new": "729c25d",
+      "full": "729c25da67f520bf2a5957d66f5015e34391b86b",
+      "msg": "[DYNAREC] Fixed a regression introduced by 92527ded3 (#4460)",
+      "date": "2026-09-23T09:42:53Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ec3959b",
-      "new": "516c078",
-      "full": "516c078b1d90de7de14e75e4475dac72b1c2b472",
-      "msg": "ir3/cp: Search existing consts to reuse them with different src mods.",
-      "date": "2026-09-23T03:40:29.000+00:00"
+      "old": "516c078",
+      "new": "fa67974",
+      "full": "fa679747ace8d47d72a3886a54307ac9ee7c3b20",
+      "msg": "pan/kmod: Make sure all executables live in the same 4G VA range",
+      "date": "2026-09-23T14:25:06.000+02:00"
     }
   ]
 }
