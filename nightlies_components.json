@@ -1063,39 +1063,39 @@
   },
   {
     "type": "FEXCore",
-    "verName": "FEX-2609+120-Nightly-e2f973fe9-PPA-unix",
+    "verName": "FEX-2609+122-Nightly-4e5c18113-PPA-unix",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/FEX-2609+120-Nightly-e2f973fe9-PPA-unix.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/FEX-2609+122-Nightly-4e5c18113-PPA-unix.wcp"
   },
   {
     "type": "FEXCore",
-    "verName": "FEX-2609+120-Nightly-e2f973fe9-PPA",
+    "verName": "FEX-2609+122-Nightly-4e5c18113-PPA",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/FEX-2609+120-Nightly-e2f973fe9-PPA.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/FEX-2609+122-Nightly-4e5c18113-PPA.wcp"
   },
   {
     "type": "FEXCore",
-    "verName": "FEX-2609+120-Nightly-e2f973fe9-PPA",
+    "verName": "FEX-2609+122-Nightly-4e5c18113-PPA",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/FEX-2609+120-Nightly-e2f973fe9-PPA.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/FEX-2609+122-Nightly-4e5c18113-PPA.zip"
   },
   {
     "type": "FEXCore",
-    "verName": "FEX-2609+120-Nightly-e2f973fe9-unix",
+    "verName": "FEX-2609+122-Nightly-4e5c18113-unix",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/FEX-2609+120-Nightly-e2f973fe9-unix.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/FEX-2609+122-Nightly-4e5c18113-unix.wcp"
   },
   {
     "type": "FEXCore",
-    "verName": "FEX-2609+120-Nightly-e2f973fe9",
+    "verName": "FEX-2609+122-Nightly-4e5c18113",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/FEX-2609+120-Nightly-e2f973fe9.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/FEX-2609+122-Nightly-4e5c18113.wcp"
   },
   {
     "type": "FEXCore",
-    "verName": "FEX-2609+120-Nightly-e2f973fe9",
+    "verName": "FEX-2609+122-Nightly-4e5c18113",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/FEX-2609+120-Nightly-e2f973fe9.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/FEX-2609+122-Nightly-4e5c18113.zip"
   },
   {
     "type": "FEXCore",
@@ -1324,6 +1324,30 @@
     "verName": "proton-11.0-arm64ec-20260422.1559",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/Proton-11/proton-11.0-arm64ec-20260422.1559.wcp"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v26.3.0-20260924-r2-710-720-Test-Linux",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20260924-r2/Turnip-v26.3.0-20260924-r2-710-720-Test-Linux.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v26.3.0-20260924-r2-710-720-Test",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20260924-r2/Turnip-v26.3.0-20260924-r2-710-720-Test.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v26.3.0-20260924-r2-Linux",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20260924-r2/Turnip-v26.3.0-20260924-r2-Linux.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v26.3.0-20260924-r2",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20260924-r2/Turnip-v26.3.0-20260924-r2.zip"
   },
   {
     "type": "GpuDriver",
@@ -3376,23 +3400,5 @@
     "verName": "Turnip-v26.3.0-20260902-r2",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20260902-r2/Turnip-v26.3.0-20260902-r2.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "Turnip-v26.3.0-20260902-710-720-Test",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20260902/Turnip-v26.3.0-20260902-710-720-Test.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "Turnip-v26.3.0-20260902-A8xx",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20260902/Turnip-v26.3.0-20260902-A8xx.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "Turnip-v26.3.0-20260902",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20260902/Turnip-v26.3.0-20260902.zip"
   }
 ]
