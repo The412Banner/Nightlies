@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-09-24T00:07:58Z",
+  "triggered_at": "2026-09-24T05:40:37Z",
   "changed": [
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "e2f973f",
+      "new": "4e5c181",
+      "full": "4e5c18113a1044937a24f211f6aff21a4f6bf40f",
+      "msg": "Merge pull request #5986 from Sonicadvance1/259",
+      "date": "2026-09-24T03:36:12Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "7b5888e",
-      "new": "ec1cc05",
-      "full": "ec1cc058add15f0f163f2866b33c68d9d782efcf",
-      "msg": "gfxstream: consolidate declare macro",
-      "date": "2026-09-23T23:40:31.000+00:00"
+      "old": "ec1cc05",
+      "new": "ecf5201",
+      "full": "ecf5201fb90412dbfa2f0886597e849bcf703005",
+      "msg": "meson: readd ignore of unsafe_op_in_unsafe_fn warnings",
+      "date": "2026-09-24T02:09:37.000+00:00"
     }
   ]
 }
