@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-23T21:54:22Z",
+  "triggered_at": "2026-09-24T00:07:58Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ab6ec72",
-      "new": "7b5888e",
-      "full": "7b5888e8ca77cc0b407c7fb113df85764b561a86",
-      "msg": "radv: fix immutable samplers lifetime with descriptor update templates",
-      "date": "2026-09-23T20:50:39.000+00:00"
+      "old": "7b5888e",
+      "new": "ec1cc05",
+      "full": "ec1cc058add15f0f163f2866b33c68d9d782efcf",
+      "msg": "gfxstream: consolidate declare macro",
+      "date": "2026-09-23T23:40:31.000+00:00"
     }
   ]
 }

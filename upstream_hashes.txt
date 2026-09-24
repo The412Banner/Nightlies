@@ -4,9 +4,9 @@ https://github.com/FEX-Emu/FEX: e2f973fe931e6dc2ce523795e51ca1ac3ca85816
 https://github.com/HansKristian-Work/vkd3d-proton: 7f0c30ad3c8f28dfe47c34bb897b972e2d1ca724
 https://github.com/doitsujin/dxvk: 25ca63f17f34bdc05a39873ee63907d3cbbfa030
 https://github.com/WinterSnowfall/d7vk: 3d27e285ad0480d7fbfefc43f7fbe1fb9112a94e
-https://gitlab.freedesktop.org/mesa/mesa@main: 7b5888e8ca77cc0b407c7fb113df85764b561a86
+https://gitlab.freedesktop.org/mesa/mesa@main: ec1cc058add15f0f163f2866b33c68d9d782efcf
 https://github.com/K11MCH1/AdrenoToolsDrivers@latest-release: v840
 https://github.com/StevenMXZ/Adreno-Tools-Drivers@latest-release: v36
 https://github.com/whitebelyash/freedreno_turnip-CI@latest-release: stu_v2
 https://github.com/maxjivi05/Components@main: a5d5aedf00a22bf9c211f218a9afb3413cc1f803
-https://github.com/The412Banner/Banners-Turnip@latest-release: v26.3.0-20260923-r4
+https://github.com/The412Banner/Banners-Turnip@latest-release: v26.3.0-20260923-r5
