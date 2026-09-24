@@ -1,41 +1,14 @@
 {
-  "triggered_at": "2026-09-24T19:38:20Z",
+  "triggered_at": "2026-09-24T22:51:25Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "e4dc7b5",
-      "new": "494430c",
-      "full": "494430c6ff5c5cf7413a2521ccbf7464041ece2a",
-      "msg": "Revert \"[SIGNAL] Fixed the x86_64 signal frame layout (#4462)\" (#4468)",
-      "date": "2026-09-24T16:41:32Z"
-    },
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "4e5c181",
-      "new": "72b2ff8",
-      "full": "72b2ff88aec844dbff88a87ab16ae6324b09cb6a",
-      "msg": "Merge pull request #5987 from Plagman/plagman/re-key_mr",
-      "date": "2026-09-24T18:55:40Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "6fe81b6",
-      "new": "dc7f97d",
-      "full": "dc7f97df8a52656d24e286fe3ccde3049445a5bb",
-      "msg": "[d3d9] Return -1 from D3DPERF_BeginEvent/EndEvent when not annotating",
-      "date": "2026-09-24T19:35:27Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "3e15a53",
-      "new": "5498422",
-      "full": "54984226000f5c56b6bc2d43199ba91938ed29d5",
-      "msg": "pan/ci: Use a new kernel to fix the G925 flakes",
-      "date": "2026-09-24T18:56:36.000+00:00"
+      "old": "5498422",
+      "new": "6e397df",
+      "full": "6e397df8201604381808c648af565e0a7305389e",
+      "msg": "util/format: make the FXT1 codec independent of host byte order",
+      "date": "2026-09-24T21:46:59.000+00:00"
     }
   ]
 }
