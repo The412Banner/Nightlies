@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-09-24T05:40:37Z",
+  "triggered_at": "2026-09-24T10:48:28Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "e2f973f",
-      "new": "4e5c181",
-      "full": "4e5c18113a1044937a24f211f6aff21a4f6bf40f",
-      "msg": "Merge pull request #5986 from Sonicadvance1/259",
-      "date": "2026-09-24T03:36:12Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "c3b5282",
+      "new": "e4dc7b5",
+      "full": "e4dc7b5e3c6cdd82272fff612c004da189c79d74",
+      "msg": "[WRAPPER] Unwrapped GObject classes in g_object_new (#4463)",
+      "date": "2026-09-24T10:10:33Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "25ca63f",
+      "new": "6fe81b6",
+      "full": "6fe81b674314b3ecde31cc7e0c828577b2703a89",
+      "msg": "[meta] Update dxbc-spirv",
+      "date": "2026-09-24T08:46:51Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ec1cc05",
-      "new": "ecf5201",
-      "full": "ecf5201fb90412dbfa2f0886597e849bcf703005",
-      "msg": "meson: readd ignore of unsafe_op_in_unsafe_fn warnings",
-      "date": "2026-09-24T02:09:37.000+00:00"
+      "old": "ecf5201",
+      "new": "f9a2d34",
+      "full": "f9a2d34a19c496e552b6cd603e7807f1025a2e98",
+      "msg": "aco/ra: check next register against bounds in subdword get_reg_simple path",
+      "date": "2026-09-24T10:30:37.000+00:00"
     }
   ]
 }
