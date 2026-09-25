@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-24T22:51:25Z",
+  "triggered_at": "2026-09-25T01:02:05Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "5498422",
-      "new": "6e397df",
-      "full": "6e397df8201604381808c648af565e0a7305389e",
-      "msg": "util/format: make the FXT1 codec independent of host byte order",
-      "date": "2026-09-24T21:46:59.000+00:00"
+      "old": "6e397df",
+      "new": "006ac53",
+      "full": "006ac533562c163b54e9f28ca1d6a33511688afb",
+      "msg": "gallivm: reinterpret image texels using the shader's format qualifier",
+      "date": "2026-09-25T00:09:03.000+00:00"
     }
   ]
 }
