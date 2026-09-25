@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-09-25T20:54:27Z",
+  "triggered_at": "2026-09-25T23:42:58Z",
   "changed": [
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "72b2ff8",
+      "new": "d3dcc74",
+      "full": "d3dcc740b80824f7c883bb61dc668e9370bb26ba",
+      "msg": "Merge pull request #5989 from Sonicadvance1/260",
+      "date": "2026-09-25T22:18:34Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "925136c",
-      "new": "4c18636",
-      "full": "4c18636110f0ef2e1d4cecdbfbf4b7126c1d22cc",
-      "msg": "d3d12/video: reuse decoder heap on mid-stream resolution decrease",
-      "date": "2026-09-25T20:28:18.000+00:00"
+      "old": "4c18636",
+      "new": "ce23b4a",
+      "full": "ce23b4a7f502cacfd1941e67a0725c6301f229f8",
+      "msg": "svga: Implement GL_ARB_shader_texture_image_samples",
+      "date": "2026-09-25T22:08:03.000+00:00"
     }
   ]
 }
