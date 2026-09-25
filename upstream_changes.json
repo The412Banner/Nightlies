@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-09-25T01:02:05Z",
+  "triggered_at": "2026-09-25T06:53:06Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "494430c",
+      "new": "58c9082",
+      "full": "58c9082b10502d42ba8c80e373d7161e5fb87a88",
+      "msg": "Revert \"[WRAPPER] Unwrapped GObject classes in g_object_new (#4463)\" (#4470)",
+      "date": "2026-09-25T06:31:39Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "6e397df",
-      "new": "006ac53",
-      "full": "006ac533562c163b54e9f28ca1d6a33511688afb",
-      "msg": "gallivm: reinterpret image texels using the shader's format qualifier",
-      "date": "2026-09-25T00:09:03.000+00:00"
+      "old": "006ac53",
+      "new": "b739817",
+      "full": "b739817b7e816d9728be1aad9616127c2c84e926",
+      "msg": "ir3: don't use MGEN.B for nir_op_bfm on a3xx",
+      "date": "2026-09-25T12:59:00.000+10:00"
     }
   ]
 }
