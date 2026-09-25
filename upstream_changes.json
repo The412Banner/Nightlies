@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-09-25T17:38:48Z",
+  "triggered_at": "2026-09-25T20:54:27Z",
   "changed": [
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "dc7f97d",
-      "new": "52fe923",
-      "full": "52fe923ca1496c8e44789b613fab8611dfcb5c4a",
-      "msg": "[dxvk] Properly destroy input attachment copy pipelines",
-      "date": "2026-09-25T14:17:19Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "3d27e28",
-      "new": "0b842d6",
-      "full": "0b842d6c4f99d17d04480342e1e65dc9e5ec6ab4",
-      "msg": "[meta] Clean up imports and the common viewport object",
-      "date": "2026-09-25T16:02:39Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "05e6c96",
-      "new": "925136c",
-      "full": "925136c0e2a5abf039c49463c175cc0cfffc1be3",
-      "msg": "kraid: Add pass to translate MUX into CSEL",
-      "date": "2026-09-25T17:14:03.000+00:00"
+      "old": "925136c",
+      "new": "4c18636",
+      "full": "4c18636110f0ef2e1d4cecdbfbf4b7126c1d22cc",
+      "msg": "d3d12/video: reuse decoder heap on mid-stream resolution decrease",
+      "date": "2026-09-25T20:28:18.000+00:00"
     }
   ]
 }
