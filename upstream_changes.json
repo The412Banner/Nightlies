@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-09-25T06:53:06Z",
+  "triggered_at": "2026-09-25T12:27:03Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "494430c",
-      "new": "58c9082",
-      "full": "58c9082b10502d42ba8c80e373d7161e5fb87a88",
-      "msg": "Revert \"[WRAPPER] Unwrapped GObject classes in g_object_new (#4463)\" (#4470)",
-      "date": "2026-09-25T06:31:39Z"
+      "old": "58c9082",
+      "new": "e3ab37b",
+      "full": "e3ab37bd058e70d90877fc66f85221cfee946a26",
+      "msg": "[WRAPPER] Unwrapped GObject classes in g_object_new (#4471)",
+      "date": "2026-09-25T10:07:33Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "7f0c30a",
+      "new": "472989a",
+      "full": "472989aabdcf3e343e16d13c402feae3815008aa",
+      "msg": "vkd3d: Add MSAA workaround for World of Warcraft Forever beta.",
+      "date": "2026-09-25T08:13:14Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "006ac53",
-      "new": "b739817",
-      "full": "b739817b7e816d9728be1aad9616127c2c84e926",
-      "msg": "ir3: don't use MGEN.B for nir_op_bfm on a3xx",
-      "date": "2026-09-25T12:59:00.000+10:00"
+      "old": "b739817",
+      "new": "05e6c96",
+      "full": "05e6c9622e135ac2aeaf56ec70222642627e2162",
+      "msg": "etnaviv: Derive the HALTI5 vertex shader cache state from core info",
+      "date": "2026-09-25T10:24:53.000+00:00"
     }
   ]
 }
