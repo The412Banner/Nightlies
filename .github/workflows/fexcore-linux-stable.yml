@@ -10,7 +10,8 @@ name: FEXCore Linux Stable
 # BIONIC ones (NDK), which a glibc Proton cannot load. These are built with the aarch64 glibc
 # cross compiler instead. Releases before 2607 have no unixlib, so their package is the two DLLs.
 #
-# Package layout mirrors a Proton tree, so a package unpacks straight into the Proton's folder:
+# Each package is a .wcp (tar + zstd, profile.json type FEXCore-Linux) laid out as a Proton tree, so
+# a components manager (or a hand copy) drops it straight into the Proton's folder:
 #   files/lib/wine/aarch64-windows/libarm64ecfex.dll, libwow64fex.dll
 #   files/lib/wine/aarch64-unix/libarm64ecfex.so, libwow64fex.so   (2607 and newer)
 
@@ -61,7 +62,7 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install -y --no-install-recommends \
-            ca-certificates curl xz-utils jq git zip file \
+            ca-certificates curl xz-utils zstd jq git zip file \
             build-essential python3 pkg-config cmake ninja-build wget \
             g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
 
@@ -85,17 +86,22 @@ jobs:
         run: |
           set -euo pipefail
           cd source
+          # The toolchain file moved into Data/CMake after FEX-2505.
+          TOOLCHAIN="$PWD/Data/CMake/toolchain_mingw.cmake"
+          [ -f "$TOOLCHAIN" ] || TOOLCHAIN="$PWD/toolchain_mingw.cmake"
+          [ -f "$TOOLCHAIN" ] || { echo "::error::no toolchain_mingw.cmake in FEX-${{ matrix.version }}"; exit 1; }
           build_arch() {
             local triple="$1" dest="$2" dir="build-$1"
             rm -rf "$dir" && mkdir "$dir" && cd "$dir"
             cmake -G Ninja -Wno-dev \
               -DCMAKE_BUILD_TYPE=Release \
-              -DCMAKE_TOOLCHAIN_FILE=../Data/CMake/toolchain_mingw.cmake \
+              -DCMAKE_TOOLCHAIN_FILE="$TOOLCHAIN" \
               -DMINGW_TRIPLE="${triple}-w64-mingw32" \
               -DCMAKE_INSTALL_PREFIX=/usr \
               -DCMAKE_INSTALL_LIBDIR=/usr/lib/wine/aarch64-windows \
               -DENABLE_JEMALLOC_GLIBC_ALLOC=False \
               -DENABLE_LTO=False -DENABLE_ASSERTIONS=False -DBUILD_TESTING=False \
+              -DBUILD_TESTS=False \
               ..
             ninja -j 4
             DESTDIR="$dest" ninja install
@@ -127,7 +133,7 @@ jobs:
         run: |
           set -euo pipefail
           V="${{ matrix.version }}"
-          NAME="FEXCore-${V}-linux-arm64"
+          NAME="FEXCore-${V}-linux"
           PKG="$GITHUB_WORKSPACE/pkg/$NAME"
           WIN="$PKG/files/lib/wine/aarch64-windows"
           UNIX="$PKG/files/lib/wine/aarch64-unix"
@@ -161,8 +167,15 @@ jobs:
           } > "$PKG/FEX-VERSION.txt"
           ( cd "$PKG" && find files -type f | sort | xargs sha256sum ) > "$PKG/SHA256SUMS.txt"
 
+          files_json=$( cd "$PKG" && find files -type f | sort | jq -R '{source: ., target: ("${proton}/" + .)}' | jq -cs . )
+          if [ "$HAS_UNIXLIB" = "1" ]; then desc="FEX-${V} (${COMMIT:0:9}) for Linux glibc Proton, ARM64: 2 DLLs + 2 glibc unixlibs, one matched build"
+          else desc="FEX-${V} (${COMMIT:0:9}) for Linux glibc Proton, ARM64: 2 DLLs (FEX before 2607 has no unixlib)"; fi
+          jq -n --arg v "${V}-linux" --arg d "$desc" --argjson files "$files_json" \
+            '{type: "FEXCore-Linux", versionName: $v, versionCode: 0, description: $d, author: "FEX-Emu", files: $files}' \
+            > "$PKG/profile.json"
+
           mkdir -p out
-          tar -C "$GITHUB_WORKSPACE/pkg" -cJf "out/$NAME.tar.xz" "$NAME"
+          ( cd "$PKG" && tar -cf - . | zstd -19 -q -o "$GITHUB_WORKSPACE/out/$NAME.wcp" )
           echo "PKG=$PKG" >> "$GITHUB_ENV"
 
       - name: Verify
@@ -170,11 +183,14 @@ jobs:
           set -euo pipefail
           WIN="$PKG/files/lib/wine/aarch64-windows"
           UNIX="$PKG/files/lib/wine/aarch64-unix"
-          for f in "$WIN"/*.dll; do
-            file "$f"
-            file "$f" | grep -q 'PE32+ executable.*Aarch64\|PE32+ executable.*ARM64' \
-              || { echo "::error::$f is not an ARM64 PE DLL"; exit 1; }
-          done
+          # libwow64fex.dll is plain ARM64. libarm64ecfex.dll is ARM64EC, whose header carries the
+          # x86-64 machine type by design; what makes it ARM64EC is the CHPE metadata in its load config.
+          file "$WIN/libwow64fex.dll"
+          file "$WIN/libwow64fex.dll" | grep -q 'PE32+ executable.*Aarch64' \
+            || { echo "::error::libwow64fex.dll is not an ARM64 PE DLL"; exit 1; }
+          file "$WIN/libarm64ecfex.dll"
+          llvm-readobj --coff-load-config "$WIN/libarm64ecfex.dll" | grep -q 'CHPEMetadata' \
+            || { echo "::error::libarm64ecfex.dll has no ARM64EC (CHPE) metadata"; exit 1; }
           if [ "$HAS_UNIXLIB" = "1" ]; then
             for f in "$UNIX"/*.so; do
               file "$f"
@@ -191,12 +207,13 @@ jobs:
                 || { echo "::error::$f does not export __wine_unix_call_funcs"; exit 1; }
             done
           fi
-          tar -tJf out/*.tar.xz
+          zstd -dc out/*.wcp | tar -t
+          zstd -dc out/*.wcp | tar -xO ./profile.json
 
       - uses: actions/upload-artifact@v4
         with:
-          name: FEXCore-${{ matrix.version }}-linux-arm64
-          path: out/*.tar.xz
+          name: FEXCore-${{ matrix.version }}-linux
+          path: out/*.wcp
 
   release:
     name: Publish
@@ -216,7 +233,7 @@ jobs:
         run: |
           set -euo pipefail
           shopt -s nullglob
-          files=(artifacts/*.tar.xz)
+          files=(artifacts/*.wcp)
           if [ ${#files[@]} -eq 0 ]; then echo "::error::no packages were built"; exit 1; fi
           ls -la artifacts
 
@@ -227,7 +244,7 @@ jobs:
           gh release upload "$TAG" -R "$GITHUB_REPOSITORY" --clobber "${files[@]}"
 
           # Notes list what the release holds now, so a partial re-run never drops older rows.
-          assets=$(gh release view "$TAG" -R "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -E '^FEXCore-.*-linux-arm64\.tar\.xz$' | sort -V)
+          assets=$(gh release view "$TAG" -R "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -E '^FEXCore-.*-linux\.wcp$' | sort -V)
           {
             echo "Stable FEX releases rebuilt for the **Linux Steam client** (Bannerlator, WinNative, DroidDeck), where games run on glibc Protons: **Valve's Proton ARM64**, **GE-Proton aarch64** and **proton-cachyos arm64**."
             echo
@@ -236,7 +253,7 @@ jobs:
             echo "| Package | Contents |"
             echo "| :--- | :--- |"
             for a in $assets; do
-              v=${a#FEXCore-}; v=${v%-linux-arm64.tar.xz}
+              v=${a#FEXCore-}; v=${v%-linux.wcp}
               if [ "$(printf '%s\n' "$v" 2607 | sort -V | head -1)" = "2607" ]; then
                 c="2 DLLs + 2 glibc unixlibs (one matched build)"
               else
@@ -246,9 +263,9 @@ jobs:
             done
             echo
             echo "### Installing"
-            echo "Each package mirrors a Proton tree (\`files/lib/wine/aarch64-windows\` + \`aarch64-unix\`)."
+            echo "Each package is a \`.wcp\` (tar + zstd, \`profile.json\` type \`FEXCore-Linux\`) laid out as a Proton tree (\`files/lib/wine/aarch64-windows\` + \`aarch64-unix\`). Not for Android containers."
             echo "1. Back up the Proton's \`files/lib/wine/aarch64-windows/lib*fex.dll\` and \`files/lib/wine/aarch64-unix/lib*fex.so\`."
-            echo "2. Unpack the package and copy its \`files/\` over the Proton's \`files/\`."
+            echo "2. Unpack the .wcp and copy its \`files/\` over the Proton's \`files/\`."
             echo "3. Use GE-Proton or proton-cachyos for this: Steam restores Valve's own Proton on its next update."
             echo
             echo "Keep the DLLs and unixlibs of one package together: FEX-2609 and newer need the matching unixlib for some features."
