@@ -85,6 +85,12 @@ jobs:
           set -euo pipefail
           git clone --depth 1 --branch "FEX-${{ matrix.version }}" --recurse-submodules --shallow-submodules \
             https://github.com/FEX-Emu/FEX.git source
+          # FEX names itself from `git describe` at configure time; a shallow clone can leave the
+          # tag out, and the binaries then say FEX-Unknown. Fetch the tag and insist on it.
+          git -C source fetch --depth 1 origin "refs/tags/FEX-${{ matrix.version }}:refs/tags/FEX-${{ matrix.version }}"
+          described=$(git -C source describe --abbrev=7)
+          echo "git describe: $described"
+          [ "$described" = "FEX-${{ matrix.version }}" ] || { echo "::error::git describe gives '$described', not FEX-${{ matrix.version }}"; exit 1; }
           echo "COMMIT=$(git -C source rev-parse HEAD)" >> "$GITHUB_ENV"
 
       - name: Build the DLLs (arm64ec + wow64)
@@ -201,6 +207,8 @@ jobs:
           file "$WIN/libwow64fex.dll" | grep -q 'PE32+ executable.*Aarch64' \
             || { echo "::error::libwow64fex.dll is not an ARM64 PE DLL"; exit 1; }
           file "$WIN/libarm64ecfex.dll"
+          grep -a -q "FEX-${{ matrix.version }}" "$WIN/libarm64ecfex.dll" \
+            || { echo "::error::libarm64ecfex.dll does not carry the version FEX-${{ matrix.version }}"; exit 1; }
           # Output is captured first: under pipefail, grep -q closing the pipe early fails the reader.
           loadcfg=$(llvm-readobj --coff-load-config "$WIN/libarm64ecfex.dll")
           grep -q 'CHPEMetadata' <<<"$loadcfg" \
