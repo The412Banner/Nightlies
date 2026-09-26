@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-09-26T02:43:36Z",
+  "triggered_at": "2026-09-26T08:08:54Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "d3dcc74",
-      "new": "59f85d6",
-      "full": "59f85d6b7df4eb053d2cc1b9d33411b4f31bfbaa",
-      "msg": "Merge pull request #5992 from Sonicadvance1/261",
-      "date": "2026-09-26T01:54:39Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "e3ab37b",
+      "new": "ac9b13a",
+      "full": "ac9b13a54f59ddfa94a93d595720d0e9dc9a9b75",
+      "msg": "Fixed D2LD subnormal handling",
+      "date": "2026-09-26T07:32:56Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ce23b4a",
-      "new": "261d29f",
-      "full": "261d29f247c0571ccd8fe2906a358884f4337390",
-      "msg": "lavapipe: Expose two queues per family",
-      "date": "2026-09-26T02:09:20.000+00:00"
+      "old": "261d29f",
+      "new": "10ccd3c",
+      "full": "10ccd3cf6e5b245319e22eda1efd17d710650960",
+      "msg": "update my email address etc",
+      "date": "2026-09-26T08:00:46.000+00:00"
     }
   ]
 }
