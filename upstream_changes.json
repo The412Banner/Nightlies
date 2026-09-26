@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-09-25T23:42:58Z",
+  "triggered_at": "2026-09-26T02:43:36Z",
   "changed": [
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "72b2ff8",
-      "new": "d3dcc74",
-      "full": "d3dcc740b80824f7c883bb61dc668e9370bb26ba",
-      "msg": "Merge pull request #5989 from Sonicadvance1/260",
-      "date": "2026-09-25T22:18:34Z"
+      "old": "d3dcc74",
+      "new": "59f85d6",
+      "full": "59f85d6b7df4eb053d2cc1b9d33411b4f31bfbaa",
+      "msg": "Merge pull request #5992 from Sonicadvance1/261",
+      "date": "2026-09-26T01:54:39Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "4c18636",
-      "new": "ce23b4a",
-      "full": "ce23b4a7f502cacfd1941e67a0725c6301f229f8",
-      "msg": "svga: Implement GL_ARB_shader_texture_image_samples",
-      "date": "2026-09-25T22:08:03.000+00:00"
+      "old": "ce23b4a",
+      "new": "261d29f",
+      "full": "261d29f247c0571ccd8fe2906a358884f4337390",
+      "msg": "lavapipe: Expose two queues per family",
+      "date": "2026-09-26T02:09:20.000+00:00"
     }
   ]
 }
