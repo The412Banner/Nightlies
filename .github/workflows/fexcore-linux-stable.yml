@@ -90,6 +90,12 @@ jobs:
           TOOLCHAIN="$PWD/Data/CMake/toolchain_mingw.cmake"
           [ -f "$TOOLCHAIN" ] || TOOLCHAIN="$PWD/toolchain_mingw.cmake"
           [ -f "$TOOLCHAIN" ] || { echo "::error::no toolchain_mingw.cmake in FEX-${{ matrix.version }}"; exit 1; }
+          # FEX-2507 and older bundle an fmt whose format.h uses malloc/free without <cstdlib>,
+          # which today's llvm-mingw no longer pulls in indirectly.
+          EXTRA_CXX=""
+          if [ "$(printf '%s\n' "${{ matrix.version }}" 2508 | sort -V | head -1)" != 2508 ]; then
+            EXTRA_CXX="-include cstdlib"
+          fi
           build_arch() {
             local triple="$1" dest="$2" dir="build-$1"
             rm -rf "$dir" && mkdir "$dir" && cd "$dir"
@@ -102,6 +108,7 @@ jobs:
               -DENABLE_JEMALLOC_GLIBC_ALLOC=False \
               -DENABLE_LTO=False -DENABLE_ASSERTIONS=False -DBUILD_TESTING=False \
               -DBUILD_TESTS=False \
+              ${EXTRA_CXX:+-DCMAKE_CXX_FLAGS="$EXTRA_CXX"} \
               ..
             ninja -j 4
             DESTDIR="$dest" ninja install
@@ -189,7 +196,9 @@ jobs:
           file "$WIN/libwow64fex.dll" | grep -q 'PE32+ executable.*Aarch64' \
             || { echo "::error::libwow64fex.dll is not an ARM64 PE DLL"; exit 1; }
           file "$WIN/libarm64ecfex.dll"
-          llvm-readobj --coff-load-config "$WIN/libarm64ecfex.dll" | grep -q 'CHPEMetadata' \
+          # Output is captured first: under pipefail, grep -q closing the pipe early fails the reader.
+          loadcfg=$(llvm-readobj --coff-load-config "$WIN/libarm64ecfex.dll")
+          grep -q 'CHPEMetadata' <<<"$loadcfg" \
             || { echo "::error::libarm64ecfex.dll has no ARM64EC (CHPE) metadata"; exit 1; }
           if [ "$HAS_UNIXLIB" = "1" ]; then
             for f in "$UNIX"/*.so; do
@@ -203,7 +212,8 @@ jobs:
               if echo "$needed" | grep -q '\[libc\.so\]'; then echo "::error::$f links bionic libc"; exit 1; fi
               max=$(aarch64-linux-gnu-readelf -V "$f" | grep -o 'GLIBC_[0-9.]*' | sort -uV | tail -1)
               echo "highest glibc symbol version: $max"
-              aarch64-linux-gnu-readelf --dyn-syms "$f" | grep -q '__wine_unix_call_funcs' \
+              syms=$(aarch64-linux-gnu-readelf --dyn-syms -W "$f")
+              grep -q '__wine_unix_call_funcs' <<<"$syms" \
                 || { echo "::error::$f does not export __wine_unix_call_funcs"; exit 1; }
             done
           fi
