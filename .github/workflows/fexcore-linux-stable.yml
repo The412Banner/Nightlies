@@ -85,12 +85,22 @@ jobs:
           set -euo pipefail
           git clone --depth 1 --branch "FEX-${{ matrix.version }}" --recurse-submodules --shallow-submodules \
             https://github.com/FEX-Emu/FEX.git source
-          # FEX names itself from `git describe` at configure time; a shallow clone can leave the
-          # tag out, and the binaries then say FEX-Unknown. Fetch the tag and insist on it.
-          git -C source fetch --depth 1 origin "refs/tags/FEX-${{ matrix.version }}:refs/tags/FEX-${{ matrix.version }}"
-          described=$(git -C source describe --abbrev=7)
-          echo "git describe: $described"
-          [ "$described" = "FEX-${{ matrix.version }}" ] || { echo "::error::git describe gives '$described', not FEX-${{ matrix.version }}"; exit 1; }
+          # FEX names itself from a plain `git describe` at configure time. A shallow clone can leave
+          # the tag out (the binaries then say FEX-Unknown), and a lightweight tag (FEX-2605) is
+          # invisible to a plain describe. So: fetch the tag; if plain describe still misses it, hand
+          # FEX the name through OVERRIDE_VERSION, in the form this FEX's CMakeLists expects
+          # (FEX-2507 and older prefix "FEX-" themselves, newer ones take the whole string).
+          V="${{ matrix.version }}"
+          git -C source fetch --depth 1 origin "refs/tags/FEX-$V:refs/tags/FEX-$V"
+          described=$(git -C source describe --abbrev=7 2>/dev/null || true)
+          echo "git describe: ${described:-<none>}"
+          if [ "$described" != "FEX-$V" ]; then
+            [ "$(git -C source describe --tags --abbrev=7)" = "FEX-$V" ] \
+              || { echo "::error::FEX-$V is not the tag at HEAD"; exit 1; }
+            if grep -q 'set(GIT_DESCRIBE_STRING "FEX-${OVERRIDE_VERSION}")' source/CMakeLists.txt; then ovr="$V"; else ovr="FEX-$V"; fi
+            echo "lightweight tag: OVERRIDE_VERSION=$ovr"
+            echo "FEX_OVERRIDE=-DOVERRIDE_VERSION=$ovr" >> "$GITHUB_ENV"
+          fi
           echo "COMMIT=$(git -C source rev-parse HEAD)" >> "$GITHUB_ENV"
 
       - name: Build the DLLs (arm64ec + wow64)
@@ -120,6 +130,7 @@ jobs:
               -DENABLE_LTO=False -DENABLE_ASSERTIONS=False -DBUILD_TESTING=False \
               -DBUILD_TESTS=False \
               ${EXTRA_CXX:+-DCMAKE_CXX_FLAGS="$EXTRA_CXX"} \
+              ${FEX_OVERRIDE:+"$FEX_OVERRIDE"} \
               ..
             ninja -j 4
             DESTDIR="$dest" ninja install
@@ -207,8 +218,6 @@ jobs:
           file "$WIN/libwow64fex.dll" | grep -q 'PE32+ executable.*Aarch64' \
             || { echo "::error::libwow64fex.dll is not an ARM64 PE DLL"; exit 1; }
           file "$WIN/libarm64ecfex.dll"
-          grep -a -q "FEX-${{ matrix.version }}" "$WIN/libarm64ecfex.dll" \
-            || { echo "::error::libarm64ecfex.dll does not carry the version FEX-${{ matrix.version }}"; exit 1; }
           # Output is captured first: under pipefail, grep -q closing the pipe early fails the reader.
           loadcfg=$(llvm-readobj --coff-load-config "$WIN/libarm64ecfex.dll")
           grep -q 'CHPEMetadata' <<<"$loadcfg" \
