@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-26T17:30:05Z",
+  "triggered_at": "2026-09-26T20:24:59Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "82d4f86",
-      "new": "e7b92c5",
-      "full": "e7b92c57262fb0518cbfce035d043f800d7aef66",
-      "msg": "kraid/foldable: Use Src::resolve_imm instead of duplicating",
-      "date": "2026-09-26T12:23:17.000-04:00"
+      "old": "e7b92c5",
+      "new": "7a3b27b",
+      "full": "7a3b27b87ca3b7316cf279badbd694f8d5d0801f",
+      "msg": "nak: Only use copy for cbuf loads of >= 32 bits",
+      "date": "2026-09-26T19:04:09.000+00:00"
     }
   ]
 }
