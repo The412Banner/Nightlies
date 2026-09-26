@@ -1,0 +1,142 @@
+name: DXVK / VKD3D Linux Repack
+
+# Repacks the DXVK and VKD3D-Proton .wcp packages of the given releases for the LINUX Steam client
+# (Bannerlator / WinNative / DroidDeck linuxfs), whose games run on glibc Protons.
+#
+# Nothing is rebuilt: DXVK and VKD3D-Proton are Windows DLLs only, with no unix side, so the very
+# same files work under a glibc Proton. Only the layout changes. An Android .wcp installs its
+# system32/ and syswow64/ DLLs straight into a container; a Proton keeps them in its own tree and
+# copies them into each game's prefix. Proton's own script decides where from: on ARM64 the
+# host PE arch is aarch64-windows (-> the prefix's system32) and wow64 is i386-windows
+# (-> syswow64); x86_64-windows is not read there. So:
+#   system32/<dll>  ->  files/lib/wine/<dxvk|vkd3d-proton>/aarch64-windows/<dll>
+#   syswow64/<dll>  ->  files/lib/wine/<dxvk|vkd3d-proton>/i386-windows/<dll>
+# which puts every DLL in exactly the prefix slot the Android package puts it in.
+#
+# Output goes to a SEPARATE release per source, <tag>-Linux. It must never land in the source
+# releases: nightlies-components-json lists every .wcp of those as an installable component for
+# Android containers. The profile type is DXVK-Linux / VKD3D-Linux so no Android app installs one.
+
+on:
+  workflow_dispatch:
+    inputs:
+      releases:
+        description: 'Source releases to repack, space separated'
+        required: false
+        default: 'Dxvk Dxvk-arm64ec Dxvk-gplasync Vkd3d-proton'
+
+permissions:
+  contents: write
+
+jobs:
+  repack:
+    name: Repack
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Install tools
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y --no-install-recommends zstd xz-utils jq file
+
+      - name: Repack every release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASES: ${{ github.event.inputs.releases }}
+        run: |
+          set -euo pipefail
+          R="$GITHUB_REPOSITORY"
+          FAILED=""
+          for SRC in $RELEASES; do
+            DEST="${SRC}-Linux"
+            echo "::group::$SRC -> $DEST"
+            work="$RUNNER_TEMP/$SRC"; rm -rf "$work"; mkdir -p "$work/in" "$work/out"
+            gh release download "$SRC" -R "$R" -p '*.wcp' -D "$work/in"
+
+            for wcp in "$work/in"/*.wcp; do
+              base=$(basename "$wcp" .wcp)
+              x="$work/x/$base"; rm -rf "$x"; mkdir -p "$x"
+              if ! tar -xf "$wcp" -C "$x" 2>/dev/null; then
+                # older packages may be zstd without tar's auto-detection
+                if ! zstd -dc "$wcp" 2>/dev/null | tar -x -C "$x" 2>/dev/null \
+                   && ! xz -dc "$wcp" 2>/dev/null | tar -x -C "$x" 2>/dev/null; then
+                  echo "::warning::$SRC/$base.wcp: cannot unpack"; FAILED="$FAILED $SRC/$base.wcp"; continue
+                fi
+              fi
+              if [ ! -f "$x/profile.json" ]; then
+                echo "::warning::$SRC/$base.wcp: no profile.json"; FAILED="$FAILED $SRC/$base.wcp"; continue
+              fi
+              type=$(jq -r '.type' "$x/profile.json")
+              case "$type" in
+                DXVK)  comp=dxvk ;;
+                VKD3D) comp=vkd3d-proton ;;
+                *) echo "::warning::$SRC/$base.wcp: type '$type' is not DXVK/VKD3D"; FAILED="$FAILED $SRC/$base.wcp"; continue ;;
+              esac
+              if [ ! -d "$x/system32" ] && [ ! -d "$x/syswow64" ]; then
+                echo "::warning::$SRC/$base.wcp: no system32/ or syswow64/"; FAILED="$FAILED $SRC/$base.wcp"; continue
+              fi
+
+              p="$work/p/$base"; rm -rf "$p"
+              files_json="[]"
+              for pair in "system32:aarch64-windows" "syswow64:i386-windows"; do
+                from=${pair%%:*}; to=${pair#*:}
+                [ -d "$x/$from" ] || continue
+                d="$p/files/lib/wine/$comp/$to"; mkdir -p "$d"
+                for dll in "$x/$from"/*.dll; do
+                  [ -f "$dll" ] || continue
+                  n=$(basename "$dll")
+                  file -b "$dll" | grep -q '^PE32' || { echo "::error::$SRC/$base.wcp: $from/$n is not a PE file"; exit 1; }
+                  cp "$dll" "$d/$n"
+                  files_json=$(jq -c --arg s "files/lib/wine/$comp/$to/$n" --arg t "\${proton}/files/lib/wine/$comp/$to/$n" \
+                    '. + [{source: $s, target: $t}]' <<<"$files_json")
+                done
+              done
+
+              jq --arg type "${type}-Linux" --argjson files "$files_json" --arg from "$SRC/$base.wcp" \
+                 '.type = $type
+                  | .versionName = (.versionName + "-linux")
+                  | .description = ((.description // "") + " · Repacked for Linux (glibc) Proton from " + $from + ": system32 -> aarch64-windows, syswow64 -> i386-windows.")
+                  | .files = $files' \
+                 "$x/profile.json" > "$p/profile.json"
+
+              { echo "Repacked from $SRC/$base.wcp for Linux (glibc) Proton, ARM64."
+                echo "Proton copies files/lib/wine/$comp/aarch64-windows into a game's system32 and i386-windows into its syswow64."
+                echo "Install: back up the Proton's files/lib/wine/$comp/, then copy this package's files/ over the Proton's files/."
+                echo "Use it with GE-Proton or proton-cachyos: Steam restores Valve's own Proton on its next update."
+                echo; echo "Files:"; ( cd "$p" && find files -type f | sort | while read -r f; do echo "  $f  ($(file -b "$f" | cut -d, -f1-2))"; done )
+              } > "$p/README-LINUX.txt"
+
+              ( cd "$p" && tar -cf - . | zstd -19 -q -o "$work/out/${base}-linux.wcp" )
+              echo "ok  $base.wcp -> ${base}-linux.wcp"
+            done
+            echo "::endgroup::"
+
+            outs=("$work/out"/*.wcp)
+            [ -e "${outs[0]}" ] || { echo "::error::$SRC: nothing repacked"; exit 1; }
+
+            if ! gh release view "$DEST" -R "$R" >/dev/null 2>&1; then
+              gh release create "$DEST" -R "$R" --target "$GITHUB_SHA" --latest=false \
+                --title "$SRC for Linux (glibc Proton, ARM64)" --notes "Being repacked."
+            fi
+            gh release upload "$DEST" -R "$R" --clobber "${outs[@]}"
+
+            list=$(gh release view "$DEST" -R "$R" --json assets --jq '.assets[].name' | grep -- '-linux\.wcp$' | sort -V)
+            { echo "The **$SRC** packages repacked for the **Linux Steam client** (Bannerlator, WinNative, DroidDeck), whose games run on glibc Protons (Valve's Proton ARM64, GE-Proton aarch64, proton-cachyos arm64)."
+              echo
+              echo "Same DLLs as [$SRC](https://github.com/$R/releases/tag/$SRC), nothing rebuilt: DXVK and VKD3D-Proton are Windows DLLs with no Linux side. Only the layout changes, to a Proton tree:"
+              echo "- \`system32/\` → \`files/lib/wine/<dxvk|vkd3d-proton>/aarch64-windows/\` (Proton copies it to the game's system32 on ARM64)"
+              echo "- \`syswow64/\` → \`files/lib/wine/<dxvk|vkd3d-proton>/i386-windows/\` (→ syswow64)"
+              echo
+              echo "These are **not** for Android containers; their profile type is \`DXVK-Linux\` / \`VKD3D-Linux\` so the app won't install them there."
+              echo
+              echo "**Install:** back up the Proton's \`files/lib/wine/dxvk/\` (or \`vkd3d-proton/\`), unpack the .wcp (tar + zstd) and copy its \`files/\` over the Proton's \`files/\`. Use GE-Proton or proton-cachyos; Steam restores Valve's own Proton when it updates."
+              echo
+              echo "| Package |"; echo "| :--- |"
+              for a in $list; do echo "| \`$a\` |"; done
+            } > "$work/notes.md"
+            gh release edit "$DEST" -R "$R" --notes-file "$work/notes.md" --latest=false
+          done
+
+          if [ -n "$FAILED" ]; then
+            echo "::warning::not repacked:$FAILED"
+            echo "Not repacked:$FAILED" >> "$GITHUB_STEP_SUMMARY"
+          fi
