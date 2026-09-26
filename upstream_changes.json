@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-09-26T08:08:54Z",
+  "triggered_at": "2026-09-26T13:30:08Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "e3ab37b",
-      "new": "ac9b13a",
-      "full": "ac9b13a54f59ddfa94a93d595720d0e9dc9a9b75",
-      "msg": "Fixed D2LD subnormal handling",
-      "date": "2026-09-26T07:32:56Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "261d29f",
-      "new": "10ccd3c",
-      "full": "10ccd3cf6e5b245319e22eda1efd17d710650960",
-      "msg": "update my email address etc",
-      "date": "2026-09-26T08:00:46.000+00:00"
+      "old": "10ccd3c",
+      "new": "82d4f86",
+      "full": "82d4f86a0a1e9f76b2de4fa77c6c8e6acaf06aa9",
+      "msg": "jay/nir_lower_fsign: use u2u instead of i2i for downcasts",
+      "date": "2026-09-26T12:19:52.000+02:00"
     }
   ]
 }
