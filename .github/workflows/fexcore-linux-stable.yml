@@ -1,0 +1,257 @@
+name: FEXCore Linux Stable
+
+# Stable FEX releases rebuilt for the LINUX Steam client (Bannerlator / WinNative / DroidDeck
+# linuxfs), where games run on glibc Protons: Valve's Proton ARM64, GE-Proton aarch64,
+# proton-cachyos arm64. Published to its own release, FexCore-Linux, beside the Android FexCore one.
+#
+# What differs from the Android builds is only the unix side. The two DLLs are Windows PE files
+# and are the same kind everywhere. From FEX-2607 on, FEX also ships two unixlib .so files that Wine
+# loads next to them, and those have to match the Wine they run in: the Android packages carry
+# BIONIC ones (NDK), which a glibc Proton cannot load. These are built with the aarch64 glibc
+# cross compiler instead. Releases before 2607 have no unixlib, so their package is the two DLLs.
+#
+# Package layout mirrors a Proton tree, so a package unpacks straight into the Proton's folder:
+#   files/lib/wine/aarch64-windows/libarm64ecfex.dll, libwow64fex.dll
+#   files/lib/wine/aarch64-unix/libarm64ecfex.so, libwow64fex.so   (2607 and newer)
+
+on:
+  workflow_dispatch:
+    inputs:
+      versions:
+        description: 'FEX release versions to build, space separated (the tags without "FEX-")'
+        required: false
+        default: '2505 2507 2508 2508.1 2509 2509.1 2510 2511 2512 2601 2603 2604 2605 2607 2609'
+      release_tag:
+        description: 'Release to publish to'
+        required: false
+        default: 'FexCore-Linux'
+
+permissions:
+  contents: write
+
+jobs:
+  plan:
+    name: Plan
+    runs-on: ubuntu-22.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - id: plan
+        env:
+          VERSIONS: ${{ github.event.inputs.versions }}
+        run: |
+          set -euo pipefail
+          list=$(printf '%s\n' $VERSIONS | jq -R . | jq -cs .)
+          echo "matrix=$list" >> "$GITHUB_OUTPUT"
+          echo "Building: $list"
+
+  build:
+    name: FEX-${{ matrix.version }}
+    needs: plan
+    # 22.04 = glibc 2.35 for the cross toolchain, so the .so files need nothing newer than the
+    # glibc every current Linux rootfs has (Valve's own FEX unixlib asks for 2.34).
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        version: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y --no-install-recommends \
+            ca-certificates curl xz-utils jq git zip file \
+            build-essential python3 pkg-config cmake ninja-build wget \
+            g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
+
+      - name: Setup llvm-mingw
+        run: |
+          LLVM_MINGW_TAG="20251104"
+          TOOLCHAIN_DIR="/opt/llvm-mingw"
+          wget -q "https://github.com/mstorsjo/llvm-mingw/releases/download/$LLVM_MINGW_TAG/llvm-mingw-$LLVM_MINGW_TAG-ucrt-ubuntu-22.04-x86_64.tar.xz" -O llvm.tar.xz
+          sudo rm -rf "$TOOLCHAIN_DIR" && sudo mkdir -p "$TOOLCHAIN_DIR"
+          sudo tar -C "$TOOLCHAIN_DIR" --strip-components=1 -xJf llvm.tar.xz
+          echo "$TOOLCHAIN_DIR/bin" >> "$GITHUB_PATH"
+
+      - name: Clone FEX-${{ matrix.version }}
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --branch "FEX-${{ matrix.version }}" --recurse-submodules --shallow-submodules \
+            https://github.com/FEX-Emu/FEX.git source
+          echo "COMMIT=$(git -C source rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - name: Build the DLLs (arm64ec + wow64)
+        run: |
+          set -euo pipefail
+          cd source
+          build_arch() {
+            local triple="$1" dest="$2" dir="build-$1"
+            rm -rf "$dir" && mkdir "$dir" && cd "$dir"
+            cmake -G Ninja -Wno-dev \
+              -DCMAKE_BUILD_TYPE=Release \
+              -DCMAKE_TOOLCHAIN_FILE=../Data/CMake/toolchain_mingw.cmake \
+              -DMINGW_TRIPLE="${triple}-w64-mingw32" \
+              -DCMAKE_INSTALL_PREFIX=/usr \
+              -DCMAKE_INSTALL_LIBDIR=/usr/lib/wine/aarch64-windows \
+              -DENABLE_JEMALLOC_GLIBC_ALLOC=False \
+              -DENABLE_LTO=False -DENABLE_ASSERTIONS=False -DBUILD_TESTING=False \
+              ..
+            ninja -j 4
+            DESTDIR="$dest" ninja install
+            cd ..
+          }
+          build_arch arm64ec "$GITHUB_WORKSPACE/stage-ec"
+          build_arch aarch64 "$GITHUB_WORKSPACE/stage-wow"
+
+      - name: Build the unixlibs (aarch64 glibc)
+        run: |
+          set -euo pipefail
+          if [ ! -f source/Source/Windows/UnixLib/FEXUnixLib.cpp ]; then
+            echo "FEX-${{ matrix.version }} predates the unixlib (added in 2607): DLL-only package."
+            echo "HAS_UNIXLIB=0" >> "$GITHUB_ENV"
+            exit 0
+          fi
+          # FEX's own CMake project for the two targets (same source, links librt), configured
+          # standalone for aarch64 Linux.
+          cmake -S source/Source/Windows/UnixLib -B build-unix -G Ninja -Wno-dev \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+            -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
+            -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib/wine/aarch64-unix
+          ninja -C build-unix
+          DESTDIR="$GITHUB_WORKSPACE/stage-unix" ninja -C build-unix install
+          echo "HAS_UNIXLIB=1" >> "$GITHUB_ENV"
+
+      - name: Package
+        run: |
+          set -euo pipefail
+          V="${{ matrix.version }}"
+          NAME="FEXCore-${V}-linux-arm64"
+          PKG="$GITHUB_WORKSPACE/pkg/$NAME"
+          WIN="$PKG/files/lib/wine/aarch64-windows"
+          UNIX="$PKG/files/lib/wine/aarch64-unix"
+          mkdir -p "$WIN"
+
+          cp "$(find stage-ec -type f -name '*.dll' | head -n1)" "$WIN/libarm64ecfex.dll"
+          cp "$(find stage-wow -type f -name '*.dll' | head -n1)" "$WIN/libwow64fex.dll"
+          llvm-strip --strip-all "$WIN"/*.dll
+
+          if [ "$HAS_UNIXLIB" = "1" ]; then
+            mkdir -p "$UNIX"
+            for n in libarm64ecfex libwow64fex; do
+              cp "$(find stage-unix -type f -name "$n.so" | head -n1)" "$UNIX/$n.so"
+            done
+            aarch64-linux-gnu-strip --strip-unneeded "$UNIX"/*.so
+            chmod 0755 "$UNIX"/*.so
+          fi
+
+          {
+            echo "FEX-${V} for Linux (glibc) Proton, ARM64"
+            echo "source: https://github.com/FEX-Emu/FEX/tree/FEX-${V} (${COMMIT})"
+            echo "built:  $(date -u +%Y-%m-%dT%H:%M:%SZ) by ${GITHUB_REPOSITORY} run ${GITHUB_RUN_ID}"
+            if [ "$HAS_UNIXLIB" = "1" ]; then
+              echo "files:  2 DLLs (aarch64-windows) + 2 glibc unixlibs (aarch64-unix), one matched build"
+            else
+              echo "files:  2 DLLs (aarch64-windows); this FEX predates the unixlib"
+            fi
+            echo
+            echo "Install: unpack into the Proton's folder (the one holding 'proton' and 'files/'),"
+            echo "after backing up its files/lib/wine/aarch64-windows/lib*fex.dll and aarch64-unix/lib*fex.so."
+          } > "$PKG/FEX-VERSION.txt"
+          ( cd "$PKG" && find files -type f | sort | xargs sha256sum ) > "$PKG/SHA256SUMS.txt"
+
+          mkdir -p out
+          tar -C "$GITHUB_WORKSPACE/pkg" -cJf "out/$NAME.tar.xz" "$NAME"
+          echo "PKG=$PKG" >> "$GITHUB_ENV"
+
+      - name: Verify
+        run: |
+          set -euo pipefail
+          WIN="$PKG/files/lib/wine/aarch64-windows"
+          UNIX="$PKG/files/lib/wine/aarch64-unix"
+          for f in "$WIN"/*.dll; do
+            file "$f"
+            file "$f" | grep -q 'PE32+ executable.*Aarch64\|PE32+ executable.*ARM64' \
+              || { echo "::error::$f is not an ARM64 PE DLL"; exit 1; }
+          done
+          if [ "$HAS_UNIXLIB" = "1" ]; then
+            for f in "$UNIX"/*.so; do
+              file "$f"
+              file "$f" | grep -q 'ELF 64-bit LSB shared object, ARM aarch64' \
+                || { echo "::error::$f is not an aarch64 ELF shared object"; exit 1; }
+              needed=$(aarch64-linux-gnu-readelf -d "$f" | grep NEEDED || true)
+              echo "$needed"
+              # glibc, never bionic: libc.so.6 must be there, a bare libc.so must not.
+              echo "$needed" | grep -q '\[libc\.so\.6\]' || { echo "::error::$f does not link glibc"; exit 1; }
+              if echo "$needed" | grep -q '\[libc\.so\]'; then echo "::error::$f links bionic libc"; exit 1; fi
+              max=$(aarch64-linux-gnu-readelf -V "$f" | grep -o 'GLIBC_[0-9.]*' | sort -uV | tail -1)
+              echo "highest glibc symbol version: $max"
+              aarch64-linux-gnu-readelf --dyn-syms "$f" | grep -q '__wine_unix_call_funcs' \
+                || { echo "::error::$f does not export __wine_unix_call_funcs"; exit 1; }
+            done
+          fi
+          tar -tJf out/*.tar.xz
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FEXCore-${{ matrix.version }}-linux-arm64
+          path: out/*.tar.xz
+
+  release:
+    name: Publish
+    needs: build
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Publish to the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.event.inputs.release_tag }}
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          files=(artifacts/*.tar.xz)
+          if [ ${#files[@]} -eq 0 ]; then echo "::error::no packages were built"; exit 1; fi
+          ls -la artifacts
+
+          if ! gh release view "$TAG" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$TAG" -R "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+              --title "FEXCore for Linux (glibc Proton, ARM64)" --notes "Being built." --latest=false
+          fi
+          gh release upload "$TAG" -R "$GITHUB_REPOSITORY" --clobber "${files[@]}"
+
+          # Notes list what the release holds now, so a partial re-run never drops older rows.
+          assets=$(gh release view "$TAG" -R "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -E '^FEXCore-.*-linux-arm64\.tar\.xz$' | sort -V)
+          {
+            echo "Stable FEX releases rebuilt for the **Linux Steam client** (Bannerlator, WinNative, DroidDeck), where games run on glibc Protons: **Valve's Proton ARM64**, **GE-Proton aarch64** and **proton-cachyos arm64**."
+            echo
+            echo "The Android builds in [FexCore](https://github.com/$GITHUB_REPOSITORY/releases/tag/FexCore) carry Android (bionic) unixlibs, which a Linux Proton cannot load. These carry **glibc** ones."
+            echo
+            echo "| Package | Contents |"
+            echo "| :--- | :--- |"
+            for a in $assets; do
+              v=${a#FEXCore-}; v=${v%-linux-arm64.tar.xz}
+              if [ "$(printf '%s\n' "$v" 2607 | sort -V | head -1)" = "2607" ]; then
+                c="2 DLLs + 2 glibc unixlibs (one matched build)"
+              else
+                c="2 DLLs (FEX before 2607 has no unixlib)"
+              fi
+              echo "| \`$a\` | FEX-$v · $c |"
+            done
+            echo
+            echo "### Installing"
+            echo "Each package mirrors a Proton tree (\`files/lib/wine/aarch64-windows\` + \`aarch64-unix\`)."
+            echo "1. Back up the Proton's \`files/lib/wine/aarch64-windows/lib*fex.dll\` and \`files/lib/wine/aarch64-unix/lib*fex.so\`."
+            echo "2. Unpack the package and copy its \`files/\` over the Proton's \`files/\`."
+            echo "3. Use GE-Proton or proton-cachyos for this: Steam restores Valve's own Proton on its next update."
+            echo
+            echo "Keep the DLLs and unixlibs of one package together: FEX-2609 and newer need the matching unixlib for some features."
+            echo "Built from the upstream \`FEX-<version>\` tags; each package has \`FEX-VERSION.txt\` (source commit) and \`SHA256SUMS.txt\`."
+          } > notes.md
+          gh release edit "$TAG" -R "$GITHUB_REPOSITORY" --notes-file notes.md --latest=false
