@@ -69,6 +69,11 @@ jobs:
       - name: Setup llvm-mingw
         run: |
           LLVM_MINGW_TAG="20251104"
+          # FEX-2505 links clang_rt.builtins-arm64ec by its old name; build it with the llvm-mingw of its day.
+          if [ "$(printf '%s\n' "${{ matrix.version }}" 2507 | sort -V | head -1)" != 2507 ]; then
+            LLVM_MINGW_TAG="20250430"
+          fi
+          echo "llvm-mingw $LLVM_MINGW_TAG"
           TOOLCHAIN_DIR="/opt/llvm-mingw"
           wget -q "https://github.com/mstorsjo/llvm-mingw/releases/download/$LLVM_MINGW_TAG/llvm-mingw-$LLVM_MINGW_TAG-ucrt-ubuntu-22.04-x86_64.tar.xz" -O llvm.tar.xz
           sudo rm -rf "$TOOLCHAIN_DIR" && sudo mkdir -p "$TOOLCHAIN_DIR"
