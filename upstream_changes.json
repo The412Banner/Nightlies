@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-09-27T08:45:09Z",
+  "triggered_at": "2026-09-27T14:26:15Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "ac9b13a",
-      "new": "9f285ea",
-      "full": "9f285eab00ebee49e034914436d0bd37c335c9e7",
-      "msg": "Added a hint to enable box32 on non-box32 enabled build when trying to run a 32b",
-      "date": "2026-09-27T08:33:48Z"
+      "old": "9f285ea",
+      "new": "906dc96",
+      "full": "906dc9636d95df0be311bedcde632f2d3a1fdcf9",
+      "msg": "[BOX64EC] Add guest context handling (#4472)",
+      "date": "2026-09-27T13:40:00Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "35088b9",
-      "new": "9315107",
-      "full": "9315107fc90dfcc3d79e408964054b6042e442a3",
-      "msg": "freedreno/ci: a306: reenable fixed tests",
-      "date": "2026-09-27T02:25:34.000+00:00"
+      "old": "9315107",
+      "new": "90fae16",
+      "full": "90fae16e42e3f33043f1111b9a69a728241ba0b8",
+      "msg": "isl: Drop a standard tiling assertion",
+      "date": "2026-09-27T13:03:30.000+00:00"
     }
   ]
 }
