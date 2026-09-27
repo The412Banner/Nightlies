@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-09-27T14:26:15Z",
+  "triggered_at": "2026-09-27T18:47:17Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "9f285ea",
-      "new": "906dc96",
-      "full": "906dc9636d95df0be311bedcde632f2d3a1fdcf9",
-      "msg": "[BOX64EC] Add guest context handling (#4472)",
-      "date": "2026-09-27T13:40:00Z"
+      "old": "906dc96",
+      "new": "c61543e",
+      "full": "c61543e47b8a9d1720742186bfea205ad8a7ed35",
+      "msg": "[DYNAREC] Removed the secondary entry points (#4464)",
+      "date": "2026-09-27T15:51:14Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "9315107",
-      "new": "90fae16",
-      "full": "90fae16e42e3f33043f1111b9a69a728241ba0b8",
-      "msg": "isl: Drop a standard tiling assertion",
-      "date": "2026-09-27T13:03:30.000+00:00"
+      "old": "90fae16",
+      "new": "63bb18a",
+      "full": "63bb18ab73a19ec8125f51515b16b3f40ce6ca04",
+      "msg": "pan: fix missing access tracking in batch read/write helpers",
+      "date": "2026-09-27T17:06:52.000+00:00"
     }
   ]
 }
