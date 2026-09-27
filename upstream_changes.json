@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-09-27T02:43:14Z",
+  "triggered_at": "2026-09-27T08:45:09Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "ac9b13a",
+      "new": "9f285ea",
+      "full": "9f285eab00ebee49e034914436d0bd37c335c9e7",
+      "msg": "Added a hint to enable box32 on non-box32 enabled build when trying to run a 32b",
+      "date": "2026-09-27T08:33:48Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "61f2590",
-      "new": "35088b9",
-      "full": "35088b9d118bcadf5a66c0643e676cde136a40b7",
-      "msg": "freedreno/drm: limit BO dumping on failed submits",
-      "date": "2026-09-27T10:35:24.000+10:00"
+      "old": "35088b9",
+      "new": "9315107",
+      "full": "9315107fc90dfcc3d79e408964054b6042e442a3",
+      "msg": "freedreno/ci: a306: reenable fixed tests",
+      "date": "2026-09-27T02:25:34.000+00:00"
     }
   ]
 }
