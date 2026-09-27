@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-09-27T18:47:17Z",
+  "triggered_at": "2026-09-27T21:44:25Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "906dc96",
-      "new": "c61543e",
-      "full": "c61543e47b8a9d1720742186bfea205ad8a7ed35",
-      "msg": "[DYNAREC] Removed the secondary entry points (#4464)",
-      "date": "2026-09-27T15:51:14Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "90fae16",
-      "new": "63bb18a",
-      "full": "63bb18ab73a19ec8125f51515b16b3f40ce6ca04",
-      "msg": "pan: fix missing access tracking in batch read/write helpers",
-      "date": "2026-09-27T17:06:52.000+00:00"
+      "old": "63bb18a",
+      "new": "c37a554",
+      "full": "c37a554641aca5333529758d19425c8d1c657408",
+      "msg": "kraid: Optimize texture projectors on v11+",
+      "date": "2026-09-27T20:39:48.000+00:00"
     }
   ]
 }
