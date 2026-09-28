@@ -1,41 +1,32 @@
 {
-  "triggered_at": "2026-09-28T14:44:56Z",
+  "triggered_at": "2026-09-28T20:57:00Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "c61543e",
-      "new": "7b23f2b",
-      "full": "7b23f2b5a7913ce930e45ab6d491e85ac8beee16",
-      "msg": "[RV64_DYNAREC] Optimized VPERMPD/VPERMQ opcodes (#4491)",
-      "date": "2026-09-28T12:10:00Z"
-    },
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "59f85d6",
-      "new": "0df84d3",
-      "full": "0df84d3844bcdb87bb7d3f5b8fb0959cd009c038",
-      "msg": "Merge pull request #5995 from Sonicadvance1/262",
-      "date": "2026-09-28T14:12:17Z"
+      "old": "7b23f2b",
+      "new": "e1eee08",
+      "full": "e1eee0855a8670a19dda3a586a8098231b2502bd",
+      "msg": "[RV64_DYNAREC] Fixed SS/SD size change (#4495)",
+      "date": "2026-09-28T16:35:35Z"
     },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "52fe923",
-      "new": "3c40ca1",
-      "full": "3c40ca1b946b293078f55dcd780100073f7ab75c",
-      "msg": "[dxvk] Move EXT_swapchain_colorspace to instance extensions",
-      "date": "2026-09-28T10:15:45Z"
+      "old": "3c40ca1",
+      "new": "5cbf108",
+      "full": "5cbf10835ec21e23d6aaeccfa4cffc5630276dc4",
+      "msg": "[dxvk] Disable dual-source blending if fragment shader only has one export",
+      "date": "2026-09-28T15:16:46Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "eda9ace",
-      "new": "9f1e484",
-      "full": "9f1e484e2e96759b1b45e7247c0bf34d52fc71b6",
-      "msg": "etnaviv: Use single buffer mode 3 with stencil-only surfaces",
-      "date": "2026-09-28T13:16:02.000+02:00"
+      "old": "9f1e484",
+      "new": "ae66688",
+      "full": "ae6668842624250a45413e4ceeac0b3b1da0a060",
+      "msg": "meson/gfxstream: drop leftover vars",
+      "date": "2026-09-28T20:30:42.000+00:00"
     }
   ]
 }
