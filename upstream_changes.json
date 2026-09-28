@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-27T21:44:25Z",
+  "triggered_at": "2026-09-28T00:09:00Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "63bb18a",
-      "new": "c37a554",
-      "full": "c37a554641aca5333529758d19425c8d1c657408",
-      "msg": "kraid: Optimize texture projectors on v11+",
-      "date": "2026-09-27T20:39:48.000+00:00"
+      "old": "c37a554",
+      "new": "eda9ace",
+      "full": "eda9aceb39d5ff169b096444abe366bdf2269e24",
+      "msg": "pan/nir: Stop lowering inot for Kraid",
+      "date": "2026-09-27T22:54:05.000+00:00"
     }
   ]
 }
