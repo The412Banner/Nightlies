@@ -1,14 +1,41 @@
 {
-  "triggered_at": "2026-09-28T00:09:00Z",
+  "triggered_at": "2026-09-28T14:44:56Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "c61543e",
+      "new": "7b23f2b",
+      "full": "7b23f2b5a7913ce930e45ab6d491e85ac8beee16",
+      "msg": "[RV64_DYNAREC] Optimized VPERMPD/VPERMQ opcodes (#4491)",
+      "date": "2026-09-28T12:10:00Z"
+    },
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "59f85d6",
+      "new": "0df84d3",
+      "full": "0df84d3844bcdb87bb7d3f5b8fb0959cd009c038",
+      "msg": "Merge pull request #5995 from Sonicadvance1/262",
+      "date": "2026-09-28T14:12:17Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "52fe923",
+      "new": "3c40ca1",
+      "full": "3c40ca1b946b293078f55dcd780100073f7ab75c",
+      "msg": "[dxvk] Move EXT_swapchain_colorspace to instance extensions",
+      "date": "2026-09-28T10:15:45Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "c37a554",
-      "new": "eda9ace",
-      "full": "eda9aceb39d5ff169b096444abe366bdf2269e24",
-      "msg": "pan/nir: Stop lowering inot for Kraid",
-      "date": "2026-09-27T22:54:05.000+00:00"
+      "old": "eda9ace",
+      "new": "9f1e484",
+      "full": "9f1e484e2e96759b1b45e7247c0bf34d52fc71b6",
+      "msg": "etnaviv: Use single buffer mode 3 with stencil-only surfaces",
+      "date": "2026-09-28T13:16:02.000+02:00"
     }
   ]
 }
