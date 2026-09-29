@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-09-29T00:47:38Z",
+  "triggered_at": "2026-09-29T06:25:50Z",
   "changed": [
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "0b842d6",
-      "new": "ff123cb",
-      "full": "ff123cb08ff1fcf6575a6ef8fb79d824a84e56c4",
-      "msg": "[d3d6/5] Add an option to invert the lod bias scale",
-      "date": "2026-09-28T21:37:31Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ae66688",
-      "new": "4cf0989",
-      "full": "4cf0989083d25b92d02c6fef2bed934ad77b4ecd",
-      "msg": "venus: honor the virtio-gpu blob alignment",
-      "date": "2026-09-28T22:05:29.000+00:00"
+      "old": "4cf0989",
+      "new": "fe55488",
+      "full": "fe554882e4f06cdd2579a77b37b04de605111a28",
+      "msg": "radv: reduce cache flushing in radv_query_shader",
+      "date": "2026-09-29T01:59:25.000+00:00"
     }
   ]
 }
