@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-29T19:00:10Z",
+  "triggered_at": "2026-09-29T22:52:52Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "db56a7d",
-      "new": "9af228c",
-      "full": "9af228cdabeb6fc8626866a12b4dd5a033b61c8a",
-      "msg": "nv30: advertise blend_equation_separate and npot_textures on nv30 to get",
-      "date": "2026-09-29T18:10:31.000+00:00"
+      "old": "9af228c",
+      "new": "a995eae",
+      "full": "a995eaeda4339adb0278b06dcc98136011feac36",
+      "msg": "tu: Make CmdClearAttachments record TU_ACCESS_BLIT_WRITE_GMEM access",
+      "date": "2026-09-29T21:56:43.000+00:00"
     }
   ]
 }
