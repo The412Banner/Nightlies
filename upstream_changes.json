@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-09-29T13:34:43Z",
+  "triggered_at": "2026-09-29T19:00:10Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "e1eee08",
-      "new": "50069bc",
-      "full": "50069bcf69f62a780074cf8458c5339f00579a5a",
-      "msg": "[RV64_DYNAREC] Added more opcodes (#4496)",
-      "date": "2026-09-29T07:12:29Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "472989a",
-      "new": "4d06d74",
-      "full": "4d06d745d59490e178492d3242bf98da3dd1f1c2",
-      "msg": "vkd3d: Add descriptor heap robustness for Dragon's Dogma 2.",
-      "date": "2026-09-29T12:37:03Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "fe55488",
-      "new": "db56a7d",
-      "full": "db56a7deb377d8e88a4da321a6baa0b042c7508e",
-      "msg": "anti-lag: convert GPU timestamps to ns in double precision",
-      "date": "2026-09-29T13:08:45.000+00:00"
+      "old": "db56a7d",
+      "new": "9af228c",
+      "full": "9af228cdabeb6fc8626866a12b4dd5a033b61c8a",
+      "msg": "nv30: advertise blend_equation_separate and npot_textures on nv30 to get",
+      "date": "2026-09-29T18:10:31.000+00:00"
     }
   ]
 }
