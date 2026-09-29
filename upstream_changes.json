@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-09-28T20:57:00Z",
+  "triggered_at": "2026-09-29T00:47:38Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "7b23f2b",
-      "new": "e1eee08",
-      "full": "e1eee0855a8670a19dda3a586a8098231b2502bd",
-      "msg": "[RV64_DYNAREC] Fixed SS/SD size change (#4495)",
-      "date": "2026-09-28T16:35:35Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "3c40ca1",
-      "new": "5cbf108",
-      "full": "5cbf10835ec21e23d6aaeccfa4cffc5630276dc4",
-      "msg": "[dxvk] Disable dual-source blending if fragment shader only has one export",
-      "date": "2026-09-28T15:16:46Z"
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "0b842d6",
+      "new": "ff123cb",
+      "full": "ff123cb08ff1fcf6575a6ef8fb79d824a84e56c4",
+      "msg": "[d3d6/5] Add an option to invert the lod bias scale",
+      "date": "2026-09-28T21:37:31Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "9f1e484",
-      "new": "ae66688",
-      "full": "ae6668842624250a45413e4ceeac0b3b1da0a060",
-      "msg": "meson/gfxstream: drop leftover vars",
-      "date": "2026-09-28T20:30:42.000+00:00"
+      "old": "ae66688",
+      "new": "4cf0989",
+      "full": "4cf0989083d25b92d02c6fef2bed934ad77b4ecd",
+      "msg": "venus: honor the virtio-gpu blob alignment",
+      "date": "2026-09-28T22:05:29.000+00:00"
     }
   ]
 }
