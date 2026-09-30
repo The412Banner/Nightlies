@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-09-30T19:44:54Z",
+  "triggered_at": "2026-09-30T23:20:32Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "e6f795e",
-      "new": "2558cfa",
-      "full": "2558cfa20b76b4b54630643b66df5aa7cfc13300",
-      "msg": "[INTERP] More accurate way to check if execution flag is set or not",
-      "date": "2026-09-30T17:59:44Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "084c2b8",
-      "new": "44cf7c2",
-      "full": "44cf7c2042168f3b8ee37249f0a53ac091e48fd9",
-      "msg": "vkd3d: Don't double check RTAS sizes when we already specify the flag.",
-      "date": "2026-09-30T14:38:32Z"
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "5cbf108",
+      "new": "6853015",
+      "full": "685301564ea3486a7098bd37194020da84299617",
+      "msg": "[d3d9] Check the correct surface for multisampling in GetRTData",
+      "date": "2026-09-30T21:49:51Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "cec59b2",
-      "new": "4da08cb",
-      "full": "4da08cb8adfbdc103bc517b45040a19957b7404d",
-      "msg": "llvmpipe: remove defunct null-gs-tokens support",
-      "date": "2026-09-30T17:55:31.000+00:00"
+      "old": "4da08cb",
+      "new": "9ac80d5",
+      "full": "9ac80d5c43c46e85700a75ca34bd1036ee15467e",
+      "msg": "ir3: Unify disk shader cache serialization/deserialization",
+      "date": "2026-09-30T21:48:02.000+00:00"
     }
   ]
 }
