@@ -7,6 +7,30 @@
   },
   {
     "type": "GpuDriver",
+    "verName": "v37 \u2014 Turnip_Gen8_V37.zip",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v37_Turnip_Gen8_V37.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "v37 \u2014 Turnip_Gen8_V37_patch.zip",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v37_Turnip_Gen8_V37_patch.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "v37 \u2014 Turnip_v26.3.0-R6-Oneui.zip",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v37_Turnip_v26.3.0-R6-Oneui.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "v37 \u2014 Turnip_v26.3.0-R6.zip",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v37_Turnip_v26.3.0-R6.zip"
+  },
+  {
+    "type": "GpuDriver",
     "verName": "v36 \u2014 Turnip_Gen8_V36.zip",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v36_Turnip_Gen8_V36.zip"
