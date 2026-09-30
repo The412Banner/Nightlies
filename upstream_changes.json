@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-09-30T14:26:52Z",
+  "triggered_at": "2026-09-30T19:44:54Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "c463230",
-      "new": "e6f795e",
-      "full": "e6f795ed9ca9ff0adea544f326fe033e350a40bf",
-      "msg": "[ARM64_DYNAREC] Fixed BEXTR OF/SF flags (#4523)",
-      "date": "2026-09-30T13:48:35Z"
+      "old": "e6f795e",
+      "new": "2558cfa",
+      "full": "2558cfa20b76b4b54630643b66df5aa7cfc13300",
+      "msg": "[INTERP] More accurate way to check if execution flag is set or not",
+      "date": "2026-09-30T17:59:44Z"
     },
     {
       "repo": "HansKristian-Work/vkd3d-proton",
       "name": "VKD3D-Proton",
-      "old": "4d06d74",
-      "new": "084c2b8",
-      "full": "084c2b83bd2bbcaf50b40983bf28d8e335390a31",
-      "msg": "dxil-spirv: Update submodule",
-      "date": "2026-09-30T10:02:12Z"
+      "old": "084c2b8",
+      "new": "44cf7c2",
+      "full": "44cf7c2042168f3b8ee37249f0a53ac091e48fd9",
+      "msg": "vkd3d: Don't double check RTAS sizes when we already specify the flag.",
+      "date": "2026-09-30T14:38:32Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "49162a0",
-      "new": "cec59b2",
-      "full": "cec59b299704edc442d930ea9e06ab2edcf5ad7b",
-      "msg": "mesa/st: use nir_trim_vector",
-      "date": "2026-09-30T11:04:43.000+00:00"
+      "old": "cec59b2",
+      "new": "4da08cb",
+      "full": "4da08cb8adfbdc103bc517b45040a19957b7404d",
+      "msg": "llvmpipe: remove defunct null-gs-tokens support",
+      "date": "2026-09-30T17:55:31.000+00:00"
     }
   ]
 }
