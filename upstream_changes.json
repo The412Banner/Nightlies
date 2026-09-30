@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-09-29T22:52:52Z",
+  "triggered_at": "2026-09-30T01:45:47Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "9af228c",
-      "new": "a995eae",
-      "full": "a995eaeda4339adb0278b06dcc98136011feac36",
-      "msg": "tu: Make CmdClearAttachments record TU_ACCESS_BLIT_WRITE_GMEM access",
-      "date": "2026-09-29T21:56:43.000+00:00"
+      "old": "a995eae",
+      "new": "0866ae7",
+      "full": "0866ae7085c1c873b7fecdf4df9207cf5e16b93f",
+      "msg": "freedreno/qrisc: handle Adreno X1-45 and 722",
+      "date": "2026-09-30T00:40:26.000+00:00"
     }
   ]
 }
