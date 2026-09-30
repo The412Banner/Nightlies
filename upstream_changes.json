@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-09-30T01:45:47Z",
+  "triggered_at": "2026-09-30T07:44:54Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "50069bc",
+      "new": "c463230",
+      "full": "c4632305ca4a5da452ec9f41d5e5148b54726a71",
+      "msg": "[RV64_DYNAREC] Fixed more opcodes (#4506)",
+      "date": "2026-09-30T06:50:39Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "a995eae",
-      "new": "0866ae7",
-      "full": "0866ae7085c1c873b7fecdf4df9207cf5e16b93f",
-      "msg": "freedreno/qrisc: handle Adreno X1-45 and 722",
-      "date": "2026-09-30T00:40:26.000+00:00"
+      "old": "0866ae7",
+      "new": "49162a0",
+      "full": "49162a0ba8f3647917bc4c94d13eea6b51a1e49f",
+      "msg": "radv/video: Only report BT709/Limited support for RGB conversion on VCN5",
+      "date": "2026-09-30T07:10:58.000+00:00"
     }
   ]
 }
