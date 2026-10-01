@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-10-01T03:17:16Z",
+  "triggered_at": "2026-10-01T10:35:53Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "2558cfa",
-      "new": "a342e5c",
-      "full": "a342e5c9ee65573f10233f7391b54eefb6b3e1d2",
-      "msg": "[WRAPPER] Fixed CREATE_VALIST_FROM_VAARG macro (#4524)",
-      "date": "2026-10-01T01:23:51Z"
+      "old": "a342e5c",
+      "new": "77117b8",
+      "full": "77117b80ae500553e6662084d032eee19e798033",
+      "msg": "Revert \"[ARM64_DYNAREC] Fixed pending YMM upper-lane zeroing dropped by cache…",
+      "date": "2026-10-01T08:39:11Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "9ac80d5",
-      "new": "4aebc22",
-      "full": "4aebc2237c302ace754b4842cb0e37185b99efa4",
-      "msg": "venus: skip virtio-gpu devices without 3D",
-      "date": "2026-10-01T02:49:29.000+00:00"
+      "old": "4aebc22",
+      "new": "5d9cde0",
+      "full": "5d9cde042b0c11e67fbfa444ac1e7ef489f45dce",
+      "msg": "tu: implement VK_QCOM_rotated_copy_commands",
+      "date": "2026-10-01T09:58:02.000+00:00"
     }
   ]
 }
