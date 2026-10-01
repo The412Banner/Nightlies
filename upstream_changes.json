@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-10-01T17:12:08Z",
+  "triggered_at": "2026-10-01T22:09:54Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "77117b8",
-      "new": "f5ffcd0",
-      "full": "f5ffcd0a048f3c3cf031a8f29690c59f83334686",
-      "msg": "[ARM64_DYNARED] Fixed potential issue where pending ymm0 is forgotten (linked to",
-      "date": "2026-10-01T12:20:39Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "6853015",
-      "new": "d6e0e94",
-      "full": "d6e0e94742c53715c076dd08dba3f7d0ed09db05",
-      "msg": "[d3d11] Serialize staging buffer allocation requests in initializer",
-      "date": "2026-10-01T16:19:51Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "5d9cde0",
-      "new": "8ea6e9d",
-      "full": "8ea6e9dd417b99ef2e368436bfd567c81f23b0b2",
-      "msg": "docs: add sha sum for 26.2.4",
-      "date": "2026-10-01T16:03:55.000+00:00"
+      "old": "8ea6e9d",
+      "new": "022b8b1",
+      "full": "022b8b1871d3049a4bb9032cb3e294095f52a2f3",
+      "msg": "radv/meta: Remove old fill and copy meta shaders and implementation",
+      "date": "2026-10-01T19:53:26.000+00:00"
     }
   ]
 }
