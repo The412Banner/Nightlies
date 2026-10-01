@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-09-30T23:20:32Z",
+  "triggered_at": "2026-10-01T03:17:16Z",
   "changed": [
     {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "5cbf108",
-      "new": "6853015",
-      "full": "685301564ea3486a7098bd37194020da84299617",
-      "msg": "[d3d9] Check the correct surface for multisampling in GetRTData",
-      "date": "2026-09-30T21:49:51Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "2558cfa",
+      "new": "a342e5c",
+      "full": "a342e5c9ee65573f10233f7391b54eefb6b3e1d2",
+      "msg": "[WRAPPER] Fixed CREATE_VALIST_FROM_VAARG macro (#4524)",
+      "date": "2026-10-01T01:23:51Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "4da08cb",
-      "new": "9ac80d5",
-      "full": "9ac80d5c43c46e85700a75ca34bd1036ee15467e",
-      "msg": "ir3: Unify disk shader cache serialization/deserialization",
-      "date": "2026-09-30T21:48:02.000+00:00"
+      "old": "9ac80d5",
+      "new": "4aebc22",
+      "full": "4aebc2237c302ace754b4842cb0e37185b99efa4",
+      "msg": "venus: skip virtio-gpu devices without 3D",
+      "date": "2026-10-01T02:49:29.000+00:00"
     }
   ]
 }
