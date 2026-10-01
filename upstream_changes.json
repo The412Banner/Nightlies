@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-10-01T10:35:53Z",
+  "triggered_at": "2026-10-01T17:12:08Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "a342e5c",
-      "new": "77117b8",
-      "full": "77117b80ae500553e6662084d032eee19e798033",
-      "msg": "Revert \"[ARM64_DYNAREC] Fixed pending YMM upper-lane zeroing dropped by cache…",
-      "date": "2026-10-01T08:39:11Z"
+      "old": "77117b8",
+      "new": "f5ffcd0",
+      "full": "f5ffcd0a048f3c3cf031a8f29690c59f83334686",
+      "msg": "[ARM64_DYNARED] Fixed potential issue where pending ymm0 is forgotten (linked to",
+      "date": "2026-10-01T12:20:39Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "6853015",
+      "new": "d6e0e94",
+      "full": "d6e0e94742c53715c076dd08dba3f7d0ed09db05",
+      "msg": "[d3d11] Serialize staging buffer allocation requests in initializer",
+      "date": "2026-10-01T16:19:51Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "4aebc22",
-      "new": "5d9cde0",
-      "full": "5d9cde042b0c11e67fbfa444ac1e7ef489f45dce",
-      "msg": "tu: implement VK_QCOM_rotated_copy_commands",
-      "date": "2026-10-01T09:58:02.000+00:00"
+      "old": "5d9cde0",
+      "new": "8ea6e9d",
+      "full": "8ea6e9dd417b99ef2e368436bfd567c81f23b0b2",
+      "msg": "docs: add sha sum for 26.2.4",
+      "date": "2026-10-01T16:03:55.000+00:00"
     }
   ]
 }
