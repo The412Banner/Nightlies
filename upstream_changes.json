@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-10-02T19:41:12Z",
+  "triggered_at": "2026-10-02T23:26:54Z",
   "changed": [
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "e9dfbdc",
-      "new": "31d1f89",
-      "full": "31d1f89ca5b3f2fd3b6f025c8e6f73ed3eaa852b",
-      "msg": "vkd3d: Add nodxr-on-integrated workaround for Tracing Decay.",
-      "date": "2026-10-02T14:40:09Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "ff123cb",
-      "new": "e77b7d9",
-      "full": "e77b7d9748ba0ed847f8a2f8b125f0d1374edfff",
-      "msg": "[meta] Perform aspect ratio correction while stretching",
-      "date": "2026-10-02T15:41:03Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "3952297",
-      "new": "63086e0",
-      "full": "63086e0469177bcf5a6bb62220c03d35da9fdde7",
-      "msg": "gallivm: truncate before zext",
-      "date": "2026-10-02T19:00:38.000+00:00"
+      "old": "63086e0",
+      "new": "4f554da",
+      "full": "4f554dafa8dcd81048916f1382f561ed134db8ec",
+      "msg": "anv: Fix parent child count map size",
+      "date": "2026-10-02T22:43:35.000+00:00"
     }
   ]
 }
