@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-02T01:54:06Z",
+  "triggered_at": "2026-10-02T07:46:37Z",
   "changed": [
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "d6e0e94",
-      "new": "d30be2b",
-      "full": "d30be2baea02a67b9502bffda0ec8b0d915bb3d2",
-      "msg": "[dxvk] Do not explicitly compile null pipeline library",
-      "date": "2026-10-01T22:35:00Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "022b8b1",
-      "new": "69745e7",
-      "full": "69745e7e0544d1c2d7cd095909c1d414f6f3fd2b",
-      "msg": "radeonsi: widen bind_history bitfield",
-      "date": "2026-10-02T01:28:01.000+00:00"
+      "old": "69745e7",
+      "new": "a3c22fa",
+      "full": "a3c22fa45bb12003b4e0648090a23d6e5755be6a",
+      "msg": "etnaviv: Program native advanced blend modes",
+      "date": "2026-10-02T05:48:51.000+00:00"
     }
   ]
 }
