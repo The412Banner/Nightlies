@@ -1,6 +1,54 @@
 [
   {
     "type": "GpuDriver",
+    "verName": "Turnip-v26.3.0-20261002-r3-710-720-Test-Linux",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261002-r3/Turnip-v26.3.0-20261002-r3-710-720-Test-Linux.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v26.3.0-20261002-r3-710-720-Test",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261002-r3/Turnip-v26.3.0-20261002-r3-710-720-Test.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v26.3.0-20261002-r3-8G2-OneUI-Linux",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261002-r3/Turnip-v26.3.0-20261002-r3-8G2-OneUI-Linux.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v26.3.0-20261002-r3-8G2-OneUI",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261002-r3/Turnip-v26.3.0-20261002-r3-8G2-OneUI.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v26.3.0-20261002-r3-A8xx-Linux",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261002-r3/Turnip-v26.3.0-20261002-r3-A8xx-Linux.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v26.3.0-20261002-r3-A8xx",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261002-r3/Turnip-v26.3.0-20261002-r3-A8xx.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v26.3.0-20261002-r3-Linux",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261002-r3/Turnip-v26.3.0-20261002-r3-Linux.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v26.3.0-20261002-r3",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261002-r3/Turnip-v26.3.0-20261002-r3.zip"
+  },
+  {
+    "type": "GpuDriver",
     "verName": "Turnip-v26.3.0-20261002-r2-710-720-Test-Linux",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261002-r2/Turnip-v26.3.0-20261002-r2-710-720-Test-Linux.zip"
@@ -2752,23 +2800,5 @@
     "verName": "Turnip-v26.3.0-20260911-r6",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20260911-r6/Turnip-v26.3.0-20260911-r6.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "Turnip-v26.3.0-20260911-r5-710-720-Test",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20260911-r5/Turnip-v26.3.0-20260911-r5-710-720-Test.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "Turnip-v26.3.0-20260911-r5-A8xx",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20260911-r5/Turnip-v26.3.0-20260911-r5-A8xx.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "Turnip-v26.3.0-20260911-r5",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20260911-r5/Turnip-v26.3.0-20260911-r5.zip"
   }
 ]
