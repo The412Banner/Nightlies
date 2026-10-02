@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-02T07:46:37Z",
+  "triggered_at": "2026-10-02T14:20:15Z",
   "changed": [
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "44cf7c2",
+      "new": "e9dfbdc",
+      "full": "e9dfbdcb6f8ba1f50ab30e0e44d1871703e931da",
+      "msg": "tests: Add test for various constellations of hoisting edge cases.",
+      "date": "2026-10-02T11:20:55Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "69745e7",
-      "new": "a3c22fa",
-      "full": "a3c22fa45bb12003b4e0648090a23d6e5755be6a",
-      "msg": "etnaviv: Program native advanced blend modes",
-      "date": "2026-10-02T05:48:51.000+00:00"
+      "old": "a3c22fa",
+      "new": "3952297",
+      "full": "39522975783687f374e17b5df051b5ff97428ec3",
+      "msg": "v3dv: Advertise VK_KHR_map_memory2",
+      "date": "2026-10-02T13:36:58.000+00:00"
     }
   ]
 }
