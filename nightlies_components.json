@@ -103,6 +103,12 @@
   },
   {
     "type": "Box64",
+    "verName": "Box64-0.4.5-415416f2b-Bionic",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/Box64-Bionic/Box64-0.4.5-415416f2b-Bionic.wcp"
+  },
+  {
+    "type": "Box64",
     "verName": "box64-bionic-0.3.8",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/Box64-Bionic/box64-bionic-0.3.8.wcp"
