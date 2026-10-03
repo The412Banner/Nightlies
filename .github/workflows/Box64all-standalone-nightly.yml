@@ -75,12 +75,22 @@ jobs:
         run: |
           git clone https://github.com/ptitSeb/box64 source
           cd source
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+
+          # Carried fix, pending upstream (ptitSeb/box64 PR from The412Banner/box64
+          # upstream/gstreamer-no-gtk3): the gstreamer wrapper listed libgtk-3.so.0 as a
+          # needed lib although it makes no GTK call, so on a rootfs without GTK (every
+          # Android Wine rootfs) GStreamer never loaded and winegstreamer could not decode
+          # video. Merging it is a no-op once upstream has it.
+          git remote add banner https://github.com/The412Banner/box64
+          git fetch banner upstream/gstreamer-no-gtk3
+          git merge banner/upstream/gstreamer-no-gtk3 --no-edit || {
+            echo "MERGE FAILED (gstreamer-no-gtk3) - unresolved conflicts:"; git diff --name-only --diff-filter=U; exit 1; }
           
           if [ "${{ matrix.source }}" == "Hybrid" ]; then
             git remote add pipetto https://github.com/Pipetto-crypto/box64
             git fetch pipetto
-            git config user.email "action@github.com"
-            git config user.name "GitHub Action"
             # src/emu/x64printer.c is debug-only call tracing (BOX64_LOG). ptitSeb and
             # Pipetto both keep appending adjacent "else if (w == iF...)" signature
             # branches, which collide textually but never semantically. Union-merge
