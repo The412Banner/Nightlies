@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-03T18:27:23Z",
+  "triggered_at": "2026-10-03T21:54:29Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "66e4daf",
-      "new": "e5afb47",
-      "full": "e5afb47da8b880e8cee73816ed51b0f811dc513b",
-      "msg": "[WRAPPER] Fixed SMC handling with host pages larger than 4k (#4527)",
-      "date": "2026-10-03T17:39:27Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "8fc4981",
-      "new": "a4a4700",
-      "full": "a4a47003a194effad8cabe727f74985e9417476f",
-      "msg": "radv: Document default kernel driver for GFX6-7",
-      "date": "2026-10-03T16:06:54.000+00:00"
+      "old": "a4a4700",
+      "new": "e5f0687",
+      "full": "e5f0687867f5c5e88619175d9b0442f8560e8d53",
+      "msg": "etnaviv: Implement invalidate_resource(..)",
+      "date": "2026-10-03T21:30:00.000+00:00"
     }
   ]
 }
