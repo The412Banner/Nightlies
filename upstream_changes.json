@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-02T23:26:54Z",
+  "triggered_at": "2026-10-03T03:03:44Z",
   "changed": [
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "0df84d3",
+      "new": "79a7afe",
+      "full": "79a7afe7e1424ef1e2b4e8ab66aaeb6dda76a059",
+      "msg": "Merge pull request #6003 from yassinsolim/portable-exec-fd",
+      "date": "2026-10-02T23:33:19Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "63086e0",
-      "new": "4f554da",
-      "full": "4f554dafa8dcd81048916f1382f561ed134db8ec",
-      "msg": "anv: Fix parent child count map size",
-      "date": "2026-10-02T22:43:35.000+00:00"
+      "old": "4f554da",
+      "new": "3821bf7",
+      "full": "3821bf78426f5515d26047e49164beedb8ecd18d",
+      "msg": "zink: fix rebinding support for mesh shaders",
+      "date": "2026-10-03T02:16:33.000+00:00"
     }
   ]
 }
