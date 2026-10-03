@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-03T09:33:11Z",
+  "triggered_at": "2026-10-03T14:28:40Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "79a7afe",
-      "new": "3648ee9",
-      "full": "3648ee97e8354bb2e6757da8bdb00c48439a561d",
-      "msg": "Merge pull request #6005 from Sonicadvance1/263",
-      "date": "2026-10-03T03:22:02Z"
-    },
-    {
-      "repo": "mesa/mesa",
-      "name": "Mesa (Turnip)",
-      "old": "3821bf7",
-      "new": "8fc4981",
-      "full": "8fc4981d2d25a32732296a90bf9eaa0371f8c715",
-      "msg": "util: Add p_atomic_dec_not_one helper",
-      "date": "2026-10-03T10:15:25.000+02:00"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "f5ffcd0",
+      "new": "66e4daf",
+      "full": "66e4dafa8ba91e007fd2aef11df5235eed69cbc1",
+      "msg": "[GDBJIT] Fixed generated temp files not being deleted (#4526)",
+      "date": "2026-10-03T11:19:05Z"
     }
   ]
 }
