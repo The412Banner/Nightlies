@@ -19,6 +19,10 @@ on:
         description: 'ptitSeb/box64 ref (branch, tag or sha)'
         default: 'main'
         required: true
+      box64_pr:
+        description: 'Optional ptitSeb/box64 pull request number; its head is built instead of the ref (blank = none)'
+        default: '4480'
+        required: false
       publish:
         description: 'Also publish a prerelease (never latest, not read by the catalog)'
         type: boolean
@@ -59,6 +63,14 @@ jobs:
           git clone https://github.com/ptitSeb/box64 source
           cd source
           git checkout "${{ inputs.box64_ref || 'main' }}"
+          # Push runs have no inputs: build PR #4480 (interpreter execution) by default.
+          PR="${{ github.event_name == 'push' && '4480' || inputs.box64_pr }}"
+          if [ -n "$PR" ]; then
+            git fetch origin "pull/${PR}/head:pr-${PR}"
+            git checkout "pr-${PR}"
+            echo "PR_SUFFIX=-pr${PR}" >> $GITHUB_ENV
+            echo "BOX64_PR=${PR}" >> $GITHUB_ENV
+          fi
           grep -q 'option(ARM64EC' CMakeLists.txt || { echo "This box64 ref has no ARM64EC option"; exit 1; }
 
       - name: Get Version Info
@@ -69,7 +81,7 @@ jobs:
           MINOR=$(grep '#define BOX64_MINOR' src/box64version.h | awk '{print $3}')
           REVISION=$(grep '#define BOX64_REVISION' src/box64version.h | awk '{print $3}')
           echo "BOX64_COMMIT=$(git rev-parse HEAD)" >> $GITHUB_ENV
-          echo "FULL_VERSION=Box64EC-${MAJOR}.${MINOR}.${REVISION}-${COMMIT}-experimental" >> $GITHUB_ENV
+          echo "FULL_VERSION=Box64EC-${MAJOR}.${MINOR}.${REVISION}-${COMMIT}${PR_SUFFIX}-experimental" >> $GITHUB_ENV
 
       - name: Configure and Build
         run: |
@@ -90,14 +102,14 @@ jobs:
           echo "Exports:"; cat exports.txt
           {
             echo "### Box64EC \`${FULL_VERSION}\`"
-            echo "box64 \`${BOX64_COMMIT}\`"
+            echo "box64 \`${BOX64_COMMIT}\`${BOX64_PR:+ (PR #${BOX64_PR})}"
             echo
             echo "Wine's ntdll (signal_arm64ec.c) looks up these from the translator DLL;"
             echo "BeginSimulation is the one that actually runs x64 code."
             echo
             echo "| entry point | exported |"
             echo "| :--- | :---: |"
-            for f in BTCpu64FlushInstructionCache BTCpu64IsProcessorFeaturePresent \
+            for f in ExitToX64 DispatchJump RetToEntryThunk BTCpu64FlushInstructionCache BTCpu64IsProcessorFeaturePresent \
                      BTCpu64NotifyMemoryDirty BTCpu64NotifyReadFile BeginSimulation \
                      FlushInstructionCacheHeavy NotifyMapViewOfSection NotifyMemoryAlloc \
                      NotifyMemoryFree NotifyMemoryProtect NotifyUnmapViewOfSection \
@@ -116,6 +128,9 @@ jobs:
           mkdir -p pkg/system32 dist
           cp "$DLL" pkg/system32/box64ec.dll
           cp summary.md pkg/README.md
+          # Wine picks the x86-64 translator from this key (dlls/ntdll/loader.c load_arm64ec_module).
+          printf 'REGEDIT4\r\n\r\n[HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Wow64\\amd64]\r\n@="box64ec.dll"\r\n' > pkg/use-box64ec.reg
+          printf 'REGEDIT4\r\n\r\n[HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Wow64\\amd64]\r\n@="libarm64ecfex.dll"\r\n' > pkg/use-fex.reg
           cd pkg && zip -r "../dist/${FULL_VERSION}.zip" . && cd ..
           cp summary.md dist/
 
