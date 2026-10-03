@@ -1,0 +1,133 @@
+name: Box64EC Standalone (experimental)
+
+# Box64EC = box64 built as an ARM64EC PE module for Wine, the box64 counterpart to FEX's
+# libarm64ecfex.dll (x86-64 translation inside arm64ec Wine). Upstream still labels it
+# "no emulation yet": the DLL builds and has process/thread/context plumbing, but it does not
+# export BeginSimulation, which Wine's ntdll calls to run x64 code. This workflow only builds it
+# and reports which of Wine's xtajit64 entry points it exports. It never touches nightly-latest
+# or the catalog: artifacts only, plus an optional prerelease that is never marked latest.
+
+on:
+  workflow_dispatch:
+    inputs:
+      box64_ref:
+        description: 'ptitSeb/box64 ref (branch, tag or sha)'
+        default: 'main'
+        required: true
+      publish:
+        description: 'Also publish a prerelease (never latest, not read by the catalog)'
+        type: boolean
+        default: false
+
+jobs:
+  build-box64ec:
+    name: Build Box64EC
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      LLVM_MINGW_VERSION: '20260616'
+    steps:
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git cmake make python3 gcc-aarch64-linux-gnu wget xz-utils zip
+
+      - name: Cache LLVM-MinGW
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/llvm-mingw-${{ env.LLVM_MINGW_VERSION }}-ucrt-ubuntu-22.04-x86_64
+          key: llvm-mingw-${{ env.LLVM_MINGW_VERSION }}-ucrt-x86_64
+
+      - name: Setup Toolchain (LLVM-MinGW, arm64ec)
+        run: |
+          DIR="llvm-mingw-${LLVM_MINGW_VERSION}-ucrt-ubuntu-22.04-x86_64"
+          if [ ! -d "$PWD/$DIR" ]; then
+            wget -q "https://github.com/mstorsjo/llvm-mingw/releases/download/${LLVM_MINGW_VERSION}/${DIR}.tar.xz"
+            tar -xf "${DIR}.tar.xz"
+          fi
+          echo "$PWD/$DIR/bin" >> $GITHUB_PATH
+          "$PWD/$DIR/bin/arm64ec-w64-mingw32-clang" --version | head -1
+
+      - name: Clone Source
+        run: |
+          git clone https://github.com/ptitSeb/box64 source
+          cd source
+          git checkout "${{ inputs.box64_ref }}"
+          grep -q 'option(ARM64EC' CMakeLists.txt || { echo "This box64 ref has no ARM64EC option"; exit 1; }
+
+      - name: Get Version Info
+        run: |
+          cd source
+          COMMIT=$(git rev-parse --short HEAD)
+          MAJOR=$(grep '#define BOX64_MAJOR' src/box64version.h | awk '{print $3}')
+          MINOR=$(grep '#define BOX64_MINOR' src/box64version.h | awk '{print $3}')
+          REVISION=$(grep '#define BOX64_REVISION' src/box64version.h | awk '{print $3}')
+          echo "BOX64_COMMIT=$(git rev-parse HEAD)" >> $GITHUB_ENV
+          echo "FULL_VERSION=Box64EC-${MAJOR}.${MINOR}.${REVISION}-${COMMIT}-experimental" >> $GITHUB_ENV
+
+      - name: Configure and Build
+        run: |
+          mkdir build && cd build
+          # Same flags as upstream's own ARM64EC CI job (release.yml).
+          cmake ../source \
+            -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
+            -DARM64EC=1 -DARM_DYNAREC=1 -DNOBOX64=1 -DCMAKE_BUILD_TYPE=Release
+          make -j$(nproc) box64ec
+          DLL=box64ec-prefix/src/box64ec-build/box64ec.dll
+          test -f "$DLL" || { echo "box64ec.dll not produced"; exit 1; }
+          echo "DLL=$PWD/$DLL" >> $GITHUB_ENV
+
+      - name: Inspect DLL (machine + Wine xtajit64 entry points)
+        run: |
+          llvm-readobj --file-headers "$DLL" | grep -E 'Machine|Characteristics' | head -3
+          llvm-readobj --coff-exports "$DLL" | awk '/Name:/{print $2}' | sort > exports.txt
+          echo "Exports:"; cat exports.txt
+          {
+            echo "### Box64EC \`${FULL_VERSION}\`"
+            echo "box64 \`${BOX64_COMMIT}\`"
+            echo
+            echo "Wine's ntdll (signal_arm64ec.c) looks up these from the translator DLL;"
+            echo "BeginSimulation is the one that actually runs x64 code."
+            echo
+            echo "| entry point | exported |"
+            echo "| :--- | :---: |"
+            for f in BTCpu64FlushInstructionCache BTCpu64IsProcessorFeaturePresent \
+                     BTCpu64NotifyMemoryDirty BTCpu64NotifyReadFile BeginSimulation \
+                     FlushInstructionCacheHeavy NotifyMapViewOfSection NotifyMemoryAlloc \
+                     NotifyMemoryFree NotifyMemoryProtect NotifyUnmapViewOfSection \
+                     ProcessInit ProcessTerm ResetToConsistentState ThreadInit ThreadTerm \
+                     UpdateProcessorInformation; do
+              if grep -qx "$f" exports.txt; then echo "| $f | yes |"; else echo "| $f | **no** |"; fi
+            done
+          } > summary.md
+          cat summary.md >> $GITHUB_STEP_SUMMARY
+          grep -qx BeginSimulation exports.txt \
+            && echo "::notice::BeginSimulation is exported - this build may actually emulate" \
+            || echo "::warning::No BeginSimulation export - not usable as a translator yet"
+
+      - name: Package
+        run: |
+          mkdir -p pkg/system32 dist
+          cp "$DLL" pkg/system32/box64ec.dll
+          cp summary.md pkg/README.md
+          cd pkg && zip -r "../dist/${FULL_VERSION}.zip" . && cd ..
+          cp summary.md dist/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.FULL_VERSION }}
+          path: dist/*
+
+      - name: Publish Prerelease
+        if: inputs.publish
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: box64ec-test-${{ github.run_number }}
+          name: Box64EC experimental ${{ env.FULL_VERSION }}
+          prerelease: true
+          make_latest: false
+          body_path: summary.md
+          files: dist/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
