@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-04T17:18:18Z",
+  "triggered_at": "2026-10-04T20:41:13Z",
   "changed": [
     {
       "repo": "WinterSnowfall/d7vk",
       "name": "D7VK (DDraw/D3D7)",
-      "old": "6aef29b",
-      "new": "f1364a7",
-      "full": "f1364a7fedc7ccbcd72f53630b12bb5b8fdbc673",
-      "msg": "[meta] Enhance stretch-to-fit present logic",
-      "date": "2026-10-04T17:08:21Z"
-    },
-    {
-      "repo": "mesa/mesa",
-      "name": "Mesa (Turnip)",
-      "old": "127b431",
-      "new": "c126acd",
-      "full": "c126acd85a645728bcecaa164d7d7c928438e842",
-      "msg": "people: sync Alyssa with .mailmap",
-      "date": "2026-10-04T09:23:45.000-04:00"
+      "old": "f1364a7",
+      "new": "e5d6be9",
+      "full": "e5d6be90838681190306959ebf5e7d30bd2badea",
+      "msg": "[d3d7] Optimize cube texture per-face uploads",
+      "date": "2026-10-04T20:31:55Z"
     }
   ]
 }

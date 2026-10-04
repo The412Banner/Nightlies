@@ -3,7 +3,7 @@ https://github.com/Pipetto-crypto/box64: eb6fb21f8e3f93cecd7214227c07757f6236b7b
 https://github.com/FEX-Emu/FEX: 3648ee97e8354bb2e6757da8bdb00c48439a561d
 https://github.com/HansKristian-Work/vkd3d-proton: 31d1f89ca5b3f2fd3b6f025c8e6f73ed3eaa852b
 https://github.com/doitsujin/dxvk: d30be2baea02a67b9502bffda0ec8b0d915bb3d2
-https://github.com/WinterSnowfall/d7vk: f1364a7fedc7ccbcd72f53630b12bb5b8fdbc673
+https://github.com/WinterSnowfall/d7vk: e5d6be90838681190306959ebf5e7d30bd2badea
 https://gitlab.freedesktop.org/mesa/mesa@main: c126acd85a645728bcecaa164d7d7c928438e842
 https://github.com/K11MCH1/AdrenoToolsDrivers@latest-release: v840
 https://github.com/StevenMXZ/Adreno-Tools-Drivers@latest-release: v37
