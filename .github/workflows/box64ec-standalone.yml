@@ -12,7 +12,6 @@ on:
   # this branch that touches the workflow runs it (inputs fall back to the defaults below).
   push:
     branches: [feat/box64ec-standalone]
-    paths: ['.github/workflows/box64ec-standalone.yml']
   workflow_dispatch:
     inputs:
       box64_repo:
