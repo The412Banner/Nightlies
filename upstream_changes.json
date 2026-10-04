@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-04T00:15:41Z",
+  "triggered_at": "2026-10-04T12:58:10Z",
   "changed": [
     {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "e77b7d9",
-      "new": "6aef29b",
-      "full": "6aef29b02709902e8d057f9d7eebd4a7a1a8a46d",
-      "msg": "[d3d7] Correctly handle LOD and priority levels for MANAGED textures",
-      "date": "2026-10-03T22:19:16Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "e5afb47",
+      "new": "abfb8c3",
+      "full": "abfb8c3b2faddf2273d8ebe532c362d86bfa0356",
+      "msg": "[WRAPPER] gstreamer: need GLib's object system, not libgtk-3 (#4528)",
+      "date": "2026-10-04T07:50:38Z"
+    },
+    {
+      "repo": "mesa/mesa",
+      "name": "Mesa (Turnip)",
+      "old": "e5f0687",
+      "new": "127b431",
+      "full": "127b431b9453728c9b29fd2953e0d93b8d5e3a79",
+      "msg": "anv: align shader heap size allocation to alignment",
+      "date": "2026-10-04T10:05:26.000+00:00"
     }
   ]
 }
