@@ -15,8 +15,12 @@ on:
     paths: ['.github/workflows/box64ec-standalone.yml']
   workflow_dispatch:
     inputs:
+      box64_repo:
+        description: 'box64 GitHub repo to build (owner/name)'
+        default: 'ptitSeb/box64'
+        required: true
       box64_ref:
-        description: 'ptitSeb/box64 ref (branch, tag or sha)'
+        description: 'box64 ref (branch, tag or sha)'
         default: 'main'
         required: true
       box64_pr:
@@ -60,16 +64,22 @@ jobs:
 
       - name: Clone Source
         run: |
-          git clone https://github.com/ptitSeb/box64 source
+          # Push runs have no inputs: they build our experimental dynarec branch
+          # (The412Banner/box64 exp/box64ec-dynarec, on top of upstream PR #4480).
+          REPO="${{ github.event_name == 'push' && 'The412Banner/box64' || inputs.box64_repo }}"
+          REF="${{ github.event_name == 'push' && 'exp/box64ec-dynarec' || inputs.box64_ref }}"
+          PR="${{ github.event_name == 'push' && '' || inputs.box64_pr }}"
+          echo "BOX64_REPO=$REPO" >> $GITHUB_ENV
+          git clone "https://github.com/$REPO" source
           cd source
-          git checkout "${{ inputs.box64_ref || 'main' }}"
-          # Push runs have no inputs: build PR #4480 (interpreter execution) by default.
-          PR="${{ github.event_name == 'push' && '4480' || inputs.box64_pr }}"
+          git checkout "$REF"
           if [ -n "$PR" ]; then
             git fetch origin "pull/${PR}/head:pr-${PR}"
             git checkout "pr-${PR}"
             echo "PR_SUFFIX=-pr${PR}" >> $GITHUB_ENV
             echo "BOX64_PR=${PR}" >> $GITHUB_ENV
+          elif [ "$REPO" != "ptitSeb/box64" ]; then
+            echo "PR_SUFFIX=-$(echo "$REF" | tr '/' '-')" >> $GITHUB_ENV
           fi
           grep -q 'option(ARM64EC' CMakeLists.txt || { echo "This box64 ref has no ARM64EC option"; exit 1; }
 
@@ -102,7 +112,7 @@ jobs:
           echo "Exports:"; cat exports.txt
           {
             echo "### Box64EC \`${FULL_VERSION}\`"
-            echo "box64 \`${BOX64_COMMIT}\`${BOX64_PR:+ (PR #${BOX64_PR})}"
+            echo "${BOX64_REPO} \`${BOX64_COMMIT}\`${BOX64_PR:+ (PR #${BOX64_PR})}"
             echo
             echo "Wine's ntdll (signal_arm64ec.c) looks up these from the translator DLL;"
             echo "BeginSimulation is the one that actually runs x64 code."
