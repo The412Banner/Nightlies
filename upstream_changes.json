@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-10-04T12:58:10Z",
+  "triggered_at": "2026-10-04T17:18:18Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "e5afb47",
-      "new": "abfb8c3",
-      "full": "abfb8c3b2faddf2273d8ebe532c362d86bfa0356",
-      "msg": "[WRAPPER] gstreamer: need GLib's object system, not libgtk-3 (#4528)",
-      "date": "2026-10-04T07:50:38Z"
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "6aef29b",
+      "new": "f1364a7",
+      "full": "f1364a7fedc7ccbcd72f53630b12bb5b8fdbc673",
+      "msg": "[meta] Enhance stretch-to-fit present logic",
+      "date": "2026-10-04T17:08:21Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "e5f0687",
-      "new": "127b431",
-      "full": "127b431b9453728c9b29fd2953e0d93b8d5e3a79",
-      "msg": "anv: align shader heap size allocation to alignment",
-      "date": "2026-10-04T10:05:26.000+00:00"
+      "old": "127b431",
+      "new": "c126acd",
+      "full": "c126acd85a645728bcecaa164d7d7c928438e842",
+      "msg": "people: sync Alyssa with .mailmap",
+      "date": "2026-10-04T09:23:45.000-04:00"
     }
   ]
 }
