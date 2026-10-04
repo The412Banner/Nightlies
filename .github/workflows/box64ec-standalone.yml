@@ -111,6 +111,11 @@ jobs:
           echo "Exports:"; cat exports.txt
           {
             echo "### Box64EC \`${FULL_VERSION}\`"
+            echo
+            echo "**Experimental, not an official box64 release.** This package is an experimental build by The412Banner,"
+            echo "based on the box64 project (https://github.com/ptitSeb/box64) and its developer airidosas252's pull request"
+            echo "https://github.com/ptitSeb/box64/pull/4480. Report problems with this package here, not to the box64 project."
+            echo
             echo "${BOX64_REPO} \`${BOX64_COMMIT}\`${BOX64_PR:+ (PR #${BOX64_PR})}"
             echo
             echo "Wine's ntdll (signal_arm64ec.c) looks up these from the translator DLL;"
@@ -161,7 +166,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: box64ec-test-${{ github.run_number }}
-          name: Box64EC experimental ${{ env.FULL_VERSION }}
+          name: Box64EC experimental (unofficial) ${{ env.FULL_VERSION }}
           prerelease: true
           make_latest: false
           body_path: summary.md
