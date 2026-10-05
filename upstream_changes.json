@@ -1,23 +1,59 @@
 {
-  "triggered_at": "2026-10-05T11:00:53Z",
+  "triggered_at": "2026-10-05T20:03:50Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "abfb8c3",
+      "new": "d58d619",
+      "full": "d58d619e84e03282326e8a26c2cbfe749931b5f8",
+      "msg": "[BOX64EC] Enable Interpreter execution (#4480)",
+      "date": "2026-10-05T13:14:58Z"
+    },
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "3648ee9",
+      "new": "d2b6e37",
+      "full": "d2b6e371e22a4fd29e0540fc52f57ecb563e2f31",
+      "msg": "Merge pull request #6008 from Sonicadvance1/265",
+      "date": "2026-10-05T18:26:53Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "31d1f89",
+      "new": "b206eb6",
+      "full": "b206eb6680fb92a64ae57bfccc7454a138f76887",
+      "msg": "tests: Add some test coverage for uninitialized stage output.",
+      "date": "2026-10-05T19:16:45Z"
+    },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "d30be2b",
-      "new": "e5ffd0f",
-      "full": "e5ffd0fe5e5d62e68b2831d1285b51e61bb454d8",
-      "msg": "[dxvk] Disable present timing by default",
-      "date": "2026-10-05T10:53:08Z"
+      "old": "e5ffd0f",
+      "new": "8d252af",
+      "full": "8d252af1defb9d45bf1c4d225a1b2ba86042c30d",
+      "msg": "[d3d9] Preserve color inputs for D3DTOP_DOTPRODUCT3",
+      "date": "2026-10-05T19:30:31Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "e5d6be9",
+      "new": "987ba5b",
+      "full": "987ba5b30fc67b7808ef683553c8ba2a968bd9be",
+      "msg": "[meta] Disable back buffer resizing by default",
+      "date": "2026-10-05T12:18:16Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "c126acd",
-      "new": "b39d173",
-      "full": "b39d173ca9369c19fda2635be6655d308067e52d",
-      "msg": "ci: disable Igalia's farm due to maintenance",
-      "date": "2026-10-05T09:42:38.000+00:00"
+      "old": "b39d173",
+      "new": "3ec8c5f",
+      "full": "3ec8c5f86f3aaa5fd25666aec0ac873efec0fe85",
+      "msg": "nir, glsl, gallium: keep the halves of lowered 64-bit IO in memory order",
+      "date": "2026-10-05T18:58:43.000+00:00"
     }
   ]
 }
