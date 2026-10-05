@@ -1,10 +1,25 @@
 {
-  "updated_at": "2026-10-05T15:22:45Z",
+  "updated_at": "2026-10-05T20:14:31Z",
   "source": "https://github.com/StevenMXZ/Adreno-Tools-Drivers",
   "mirror_release": "https://github.com/The412Banner/Nightlies/releases/tag/stevenmxz-drivers",
-  "total_releases": 76,
-  "total_assets": 104,
+  "total_releases": 77,
+  "total_assets": 105,
   "releases": [
+    {
+      "tag": "v891.7",
+      "name": "Qualcomm Driver v891.7",
+      "published_at": "2026-10-05T19:49:49Z",
+      "assets": [
+        {
+          "name": "v891.7.zip",
+          "mirror_name": "v891.7_v891.7.zip",
+          "size": 6995203,
+          "original_url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/v891.7/v891.7.zip",
+          "mirror_url": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v891.7_v891.7.zip",
+          "published_at": "2026-10-05T19:49:14Z"
+        }
+      ]
+    },
     {
       "tag": "v863.1_a7xx",
       "name": "Qualcomm Driver v863.1",
