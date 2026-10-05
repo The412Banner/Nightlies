@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-04T20:41:13Z",
+  "triggered_at": "2026-10-05T11:00:53Z",
   "changed": [
     {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "f1364a7",
-      "new": "e5d6be9",
-      "full": "e5d6be90838681190306959ebf5e7d30bd2badea",
-      "msg": "[d3d7] Optimize cube texture per-face uploads",
-      "date": "2026-10-04T20:31:55Z"
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "d30be2b",
+      "new": "e5ffd0f",
+      "full": "e5ffd0fe5e5d62e68b2831d1285b51e61bb454d8",
+      "msg": "[dxvk] Disable present timing by default",
+      "date": "2026-10-05T10:53:08Z"
+    },
+    {
+      "repo": "mesa/mesa",
+      "name": "Mesa (Turnip)",
+      "old": "c126acd",
+      "new": "b39d173",
+      "full": "b39d173ca9369c19fda2635be6655d308067e52d",
+      "msg": "ci: disable Igalia's farm due to maintenance",
+      "date": "2026-10-05T09:42:38.000+00:00"
     }
   ]
 }
