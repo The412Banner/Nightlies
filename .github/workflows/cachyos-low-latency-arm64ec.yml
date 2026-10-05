@@ -3,15 +3,18 @@ name: Low-latency DXVK / VKD3D (ARM64EC test build)
 # ARM64EC builds of netborg-afps' low-latency frame pacing forks (the DXVK and
 # VKD3D-Proton extras Proton-CachyOS ships), pinned to their release commits.
 #
-#   dxvk-low-latency  low-latency-framepacing-3.0.2        ccc8cc8219b9
-#   dxvk-low-latency  low-latency-framepacing-2.7.1-3-521  0ccdd368e911
-#   vkd3d-low-latency initial-release (3.0.1-1)            cca2be97e5db
+# Round 2 = the pins shipped in Proton-CachyOS 11.0-20261005:
+#   dxvk-low-latency  low-latency-framepacing-3.1.1-2  d533db09df35
+#   vkd3d-low-latency low-latency-3.0.1-2              f4e0518cdd35
 #
-# Upstream only publishes x64/x86 binaries, so ARM64EC (system32) + i386
-# (syswow64) are compiled here. The x86 flavor of each wcp is a repack of the
-# upstream release tarball and is not built by this workflow.
+# Round 1 (3.0.2 / 2.7.1-3-521 / 3.0.1-1) was built from 7ec756ae.
 #
-# Recipe = the ARM64EC DXVK vanilla / VKD3D-Proton ARM64EC jobs of the
+# Upstream only publishes x64/x86 binaries for DXVK, so ARM64EC (system32) +
+# i386 (syswow64) are compiled here and the x86 DXVK wcp is a repack of the
+# upstream tarball. vkd3d-low-latency 3.0.1-2 has no upstream binaries, so its
+# x86 flavor (x86_64 system32 + i386 syswow64) is compiled here as well.
+#
+# Recipe = the ARM64EC DXVK vanilla / VKD3D-Proton ARM64EC + x64 jobs of the
 # all-in-one nightly (mstorsjo llvm-mingw 20251104, meson release + strip).
 #
 # TEST BUILD: artifact-only. No release step, no catalog entry. Runs on push to
@@ -27,32 +30,35 @@ on:
 
 jobs:
   build:
-    name: ${{ matrix.name }} (ARM64EC)
+    name: ${{ matrix.name }} (${{ matrix.arch }})
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
         include:
-          - name: dxvk-low-latency 3.0.2
+          - name: dxvk-low-latency 3.1.1-2
             kind: dxvk
+            arch: arm64ec
             repo: netborg-afps/dxvk-low-latency
-            tag: low-latency-framepacing-3.0.2
-            sha: ccc8cc8219b97088a7450ae9872d202acac294cc
-            ver: 3.0.2
+            tag: low-latency-framepacing-3.1.1-2
+            sha: d533db09df35453ed1baa1b0c7d86de2b67bf504
+            ver: 3.1.1-2
             desc: "Built on the Winlator WCP Hub (Upstream: Philip Rebohle, Patch: netborg-afps low-latency frame pacing). Pacing is on by default; DXVK_FRAME_PACE=max-frame-latency restores stock DXVK, DXVK_FRAME_RATE caps fps. DXVK 3.x: needs a Vulkan 1.4-class driver."
-          - name: dxvk-low-latency 2.7.1-3-521
-            kind: dxvk
-            repo: netborg-afps/dxvk-low-latency
-            tag: low-latency-framepacing-2.7.1-3-521
-            sha: 0ccdd368e9117fa6c67d4d6edc5319573c84ddd9
-            ver: 2.7.1-3-521
-            desc: "Built on the Winlator WCP Hub (Upstream: Philip Rebohle, Patch: netborg-afps low-latency frame pacing). Pacing is on by default; DXVK_FRAME_PACE=max-frame-latency restores stock DXVK, DXVK_FRAME_RATE caps fps. For Vulkan 1.3 drivers."
-          - name: vkd3d-low-latency 3.0.1-1
+          - name: vkd3d-low-latency 3.0.1-2
             kind: vkd3d
+            arch: arm64ec
             repo: netborg-afps/vkd3d-low-latency
-            tag: initial-release
-            sha: cca2be97e5db20b228659c114153d05af626fcd9
-            ver: 3.0.1-1
+            tag: low-latency-3.0.1-2
+            sha: f4e0518cdd35fee0629e25367422bcbc17cbc122
+            ver: 3.0.1-2
+            desc: "Built on the Winlator WCP Hub (Upstream: Hans-Kristian Arntzen, Patch: netborg-afps low-latency frame pacing). Only paces games that use Reflex or waitable DXGI swapchains; VKD3D_FRAME_RATE caps fps. Driver must expose VK_KHR_calibrated_timestamps."
+          - name: vkd3d-low-latency 3.0.1-2
+            kind: vkd3d
+            arch: x86
+            repo: netborg-afps/vkd3d-low-latency
+            tag: low-latency-3.0.1-2
+            sha: f4e0518cdd35fee0629e25367422bcbc17cbc122
+            ver: 3.0.1-2
             desc: "Built on the Winlator WCP Hub (Upstream: Hans-Kristian Arntzen, Patch: netborg-afps low-latency frame pacing). Only paces games that use Reflex or waitable DXGI swapchains; VKD3D_FRAME_RATE caps fps. Driver must expose VK_KHR_calibrated_timestamps."
 
     steps:
@@ -108,6 +114,22 @@ jobs:
           endian = 'little'
           EOF
 
+          cat <<EOF > x64.txt
+          [binaries]
+          c = 'x86_64-w64-mingw32-clang'
+          cpp = 'x86_64-w64-mingw32-clang++'
+          ar = 'llvm-ar'
+          strip = 'llvm-strip'
+          windres = 'x86_64-w64-mingw32-windres'
+          widl = 'x86_64-w64-mingw32-widl'
+          pkg-config = 'pkg-config'
+          [host_machine]
+          system = 'windows'
+          cpu_family = 'x86_64'
+          cpu = 'x86_64'
+          endian = 'little'
+          EOF
+
           cat <<EOF > x86.txt
           [binaries]
           c = 'i686-w64-mingw32-clang'
@@ -125,9 +147,13 @@ jobs:
           EOF
 
       - name: Build
+        env:
+          ARCH: ${{ matrix.arch }}
         run: |
           cd src
-          meson setup build-ec --cross-file ../arm64ec.txt -Dbuildtype=release -Dstrip=true
+          # build-ec holds the system32 flavor: ARM64EC, or x86_64 for the x86 wcp.
+          if [ "$ARCH" = "x86" ]; then MAIN_CROSS=../x64.txt; else MAIN_CROSS=../arm64ec.txt; fi
+          meson setup build-ec --cross-file "$MAIN_CROSS" -Dbuildtype=release -Dstrip=true
           meson setup build-x86 --cross-file ../x86.txt -Dbuildtype=release -Dstrip=true
           ninja -C build-ec -j$(nproc)
           ninja -C build-x86 -j$(nproc)
@@ -137,6 +163,7 @@ jobs:
           KIND: ${{ matrix.kind }}
           VER: ${{ matrix.ver }}
           DESC: ${{ matrix.desc }}
+          ARCH: ${{ matrix.arch }}
         run: |
           rm -rf packaging && mkdir -p packaging/system32 packaging/syswow64
           if [ "$KIND" = "dxvk" ]; then
@@ -160,7 +187,8 @@ jobs:
           fi
           llvm-strip --strip-all packaging/system32/*.dll packaging/syswow64/*.dll
 
-          python3 - "$TYPE" "${VER}-low-latency-arm64ec" "$DESC" $DLLS > packaging/profile.json <<'PY'
+          if [ "$ARCH" = "x86" ]; then SUFFIX=""; else SUFFIX="-arm64ec"; fi
+          python3 - "$TYPE" "${VER}-low-latency${SUFFIX}" "$DESC" $DLLS > packaging/profile.json <<'PY'
           import json, sys
           typ, vname, desc, dlls = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4:]
           files = [{"source": f"{d}/{n}.dll", "target": "${" + d + "}/" + n + ".dll"}
@@ -170,20 +198,23 @@ jobs:
           PY
           cat packaging/profile.json
 
-          OUT="${KIND}-low-latency-arm64ec-${VER}.wcp"
+          OUT="${KIND}-low-latency${SUFFIX}-${VER}.wcp"
           ( cd packaging && ZSTD_CLEVEL=19 tar --zstd --owner=0 --group=0 --numeric-owner \
               -cf "../$OUT" profile.json system32 syswow64 )
           echo "OUT=$OUT" >> $GITHUB_ENV
 
       - name: Verify
+        env:
+          ARCH: ${{ matrix.arch }}
         run: |
+          if [ "$ARCH" = "x86" ]; then MAIN_FMT=x86-64; else MAIN_FMT=arm64ec; fi
           head -c4 "$OUT" | od -An -tx1
           tar --zstd -tvf "$OUT"
           for f in packaging/system32/*.dll packaging/syswow64/*.dll; do
             echo "$f: $(llvm-objdump -f "$f" | grep 'file format' | sed 's/.*file format //')"
           done
-          if llvm-objdump -f packaging/system32/*.dll | grep 'file format' | grep -v arm64ec; then
-            echo "::error::non-ARM64EC DLL in system32"; exit 1
+          if llvm-objdump -f packaging/system32/*.dll | grep 'file format' | grep -v -- "$MAIN_FMT"; then
+            echo "::error::system32 DLL is not $MAIN_FMT"; exit 1
           fi
           if llvm-objdump -f packaging/syswow64/*.dll | grep 'file format' | grep -v i386; then
             echo "::error::non-i386 DLL in syswow64"; exit 1
@@ -192,5 +223,5 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.kind }}-low-latency-arm64ec-${{ matrix.ver }}
+          name: ${{ env.OUT }}
           path: ${{ env.OUT }}
