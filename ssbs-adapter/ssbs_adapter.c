@@ -139,7 +139,7 @@ sighandler_t signal(int sig, sighandler_t handler)
     sa.sa_flags = SA_RESTART;
     sigemptyset(&sa.sa_mask);
     if (sigaction(sig, &sa, &old) != 0) return SIG_ERR;
-    return (old.sa_flags & SA_SIGINFO) ? (sighandler_t)old.sa_sigaction : old.sa_handler;
+    return (old.sa_flags & SA_SIGINFO) ? (sighandler_t)(void *)old.sa_sigaction : old.sa_handler;
 }
 
 sighandler_t bsd_signal(int sig, sighandler_t handler) { return signal(sig, handler); }

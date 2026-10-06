@@ -31,10 +31,10 @@ jobs:
         run: |
           set -euo pipefail
           TC="$ANDROID_NDK_LATEST_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin"
-          "$TC/llvm-readelf" -h out/libssbs.so | grep -q AArch64
+          "$TC/llvm-readelf" -h out/libssbs.so | grep AArch64 >/dev/null
           "$TC/llvm-readelf" -lW out/libssbs.so | awk '/LOAD/ {print $NF}' | sort -u
           for s in sigaction signal bsd_signal; do
-            "$TC/llvm-nm" -D --defined-only out/libssbs.so | grep -qw "$s" || { echo "missing export $s"; exit 1; }
+            "$TC/llvm-nm" -D --defined-only out/libssbs.so | grep -w "$s" >/dev/null || { echo "missing export $s"; exit 1; }
           done
           ls -l out/libssbs.so; sha256sum out/libssbs.so
 
