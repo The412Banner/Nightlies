@@ -1,23 +1,41 @@
 {
-  "triggered_at": "2026-10-06T08:21:05Z",
+  "triggered_at": "2026-10-06T15:34:46Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "d58d619",
-      "new": "b1fc073",
-      "full": "b1fc0735bb6c631b97fac628f7ead9f2fbf30771",
-      "msg": "[LA64_DYNAREC] Fixed masked memory access and operand width (#4530)",
-      "date": "2026-10-06T06:19:50Z"
+      "old": "b1fc073",
+      "new": "8f6ab59",
+      "full": "8f6ab59fc6f98aa2f9a9360e28eed2acd3291350",
+      "msg": "[INTERP][DYNAREC] Fixed PCMP opcodes REX.W/VEX.W handling (#4533)",
+      "date": "2026-10-06T11:40:09Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "b206eb6",
+      "new": "2230755",
+      "full": "2230755878b01993b4b82d0ac0c0624f3ab4d333",
+      "msg": "tests: Add test for conservative SSBO vectorization.",
+      "date": "2026-10-06T10:40:08Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "f20f363",
+      "new": "5b94142",
+      "full": "5b94142f68c775fab1e35c45154aac91ceaa2b06",
+      "msg": "[dxvk] Handle TRIGGER_FLASH reflex marker",
+      "date": "2026-10-06T10:13:43Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "755de2b",
-      "new": "d3023c8",
-      "full": "d3023c86bc56162b83c50e6ea0cdde35bd3cdfc9",
-      "msg": "virtio/vdrm: Enable -Werror=gnu-pointer-arith",
-      "date": "2026-10-06T07:03:27.000+00:00"
+      "old": "d3023c8",
+      "new": "df6b354",
+      "full": "df6b354ce033c7aa69c363481a65dbfdcdb7b93b",
+      "msg": "panfrost: fix UB in pan_csf pointer based type-punning",
+      "date": "2026-10-06T13:49:31.000+00:00"
     }
   ]
 }
