@@ -1,0 +1,44 @@
+name: SSBS adapter (libssbs.so)
+run-name: "SSBS adapter — ${{ github.ref_name }} (${{ github.event_name }})"
+
+# LD_PRELOAD library that keeps PSTATE.SSBS set across Wine's signal returns, so prebuilt
+# arm64ec Proton/Wine layers get the force_ssbs fix without a rebuild. See ssbs-adapter/.
+on:
+  # workflow_dispatch only works once this file is on the default branch; until then a push builds it.
+  push:
+    branches: [feat/ssbs-adapter]
+    paths: ['ssbs-adapter/**', '.github/workflows/ssbs-adapter.yml']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build libssbs.so (aarch64, android api 28, 16 KB pages)
+        run: |
+          set -euo pipefail
+          NDK="${ANDROID_NDK_LATEST_HOME:?no NDK on runner}"
+          TC="$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          mkdir -p out
+          "$TC/aarch64-linux-android28-clang" -O2 -Wall -Wextra -fPIC -shared \
+            -Wl,-z,max-page-size=16384 -Wl,--no-undefined \
+            -o out/libssbs.so ssbs-adapter/ssbs_adapter.c -ldl
+          "$TC/llvm-strip" --strip-unneeded out/libssbs.so
+
+      - name: Verify exports and target
+        run: |
+          set -euo pipefail
+          TC="$ANDROID_NDK_LATEST_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          "$TC/llvm-readelf" -h out/libssbs.so | grep -q AArch64
+          "$TC/llvm-readelf" -lW out/libssbs.so | awk '/LOAD/ {print $NF}' | sort -u
+          for s in sigaction signal bsd_signal; do
+            "$TC/llvm-nm" -D --defined-only out/libssbs.so | grep -qw "$s" || { echo "missing export $s"; exit 1; }
+          done
+          ls -l out/libssbs.so; sha256sum out/libssbs.so
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: libssbs
+          path: out/libssbs.so
