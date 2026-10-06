@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-10-06T01:08:33Z",
+  "triggered_at": "2026-10-06T08:21:05Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "d2b6e37",
-      "new": "7d3090f",
-      "full": "7d3090f78237267b2adf2d32116f0105b8d665cb",
-      "msg": "Merge pull request #6010 from Sonicadvance1/266",
-      "date": "2026-10-05T22:50:28Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "8d252af",
-      "new": "f20f363",
-      "full": "f20f363191c019cbf0d792e4e8f660d46ebecb6c",
-      "msg": "[dxvk] Avoid recreating resolve image on first use",
-      "date": "2026-10-05T20:51:28Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "d58d619",
+      "new": "b1fc073",
+      "full": "b1fc0735bb6c631b97fac628f7ead9f2fbf30771",
+      "msg": "[LA64_DYNAREC] Fixed masked memory access and operand width (#4530)",
+      "date": "2026-10-06T06:19:50Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "3ec8c5f",
-      "new": "755de2b",
-      "full": "755de2b7768f702d7e867656cc15359e4f8b26f9",
-      "msg": "kraid: Set lower_hadd64",
-      "date": "2026-10-06T00:27:25.000+00:00"
+      "old": "755de2b",
+      "new": "d3023c8",
+      "full": "d3023c86bc56162b83c50e6ea0cdde35bd3cdfc9",
+      "msg": "virtio/vdrm: Enable -Werror=gnu-pointer-arith",
+      "date": "2026-10-06T07:03:27.000+00:00"
     }
   ]
 }

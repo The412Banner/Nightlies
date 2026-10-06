@@ -1,12 +1,12 @@
-https://github.com/ptitSeb/box64: d58d619e84e03282326e8a26c2cbfe749931b5f8
+https://github.com/ptitSeb/box64: b1fc0735bb6c631b97fac628f7ead9f2fbf30771
 https://github.com/Pipetto-crypto/box64: eb6fb21f8e3f93cecd7214227c07757f6236b7b1
 https://github.com/FEX-Emu/FEX: 7d3090f78237267b2adf2d32116f0105b8d665cb
 https://github.com/HansKristian-Work/vkd3d-proton: b206eb6680fb92a64ae57bfccc7454a138f76887
 https://github.com/doitsujin/dxvk: f20f363191c019cbf0d792e4e8f660d46ebecb6c
 https://github.com/WinterSnowfall/d7vk: 987ba5b30fc67b7808ef683553c8ba2a968bd9be
-https://gitlab.freedesktop.org/mesa/mesa@main: 755de2b7768f702d7e867656cc15359e4f8b26f9
+https://gitlab.freedesktop.org/mesa/mesa@main: d3023c86bc56162b83c50e6ea0cdde35bd3cdfc9
 https://github.com/K11MCH1/AdrenoToolsDrivers@latest-release: v840
 https://github.com/StevenMXZ/Adreno-Tools-Drivers@latest-release: v891.7
 https://github.com/whitebelyash/freedreno_turnip-CI@latest-release: stu_v2
 https://github.com/maxjivi05/Components@main: a5d5aedf00a22bf9c211f218a9afb3413cc1f803
-https://github.com/The412Banner/Banners-Turnip@latest-release: v26.3.0-20261006
+https://github.com/The412Banner/Banners-Turnip@latest-release: v26.3.0-20261006-r2
