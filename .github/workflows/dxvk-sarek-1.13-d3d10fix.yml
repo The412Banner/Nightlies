@@ -86,7 +86,8 @@ jobs:
           docker pull "$SDK_IMAGE"
           docker run --rm -v "$PWD:/src:z" -w /src --user "$(id -u):$(id -g)" -e HOME=/tmp "$SDK_IMAGE" \
             bash -euxc 'x86_64-w64-mingw32-g++ --version | head -1; i686-w64-mingw32-g++ --version | head -1;
-                        make OUT=build/container CROSSFILE_DIR=.github/crossfiles CROSSFILE_64=steamrt-x86_64.txt CROSSFILE_32=steamrt-i386.txt'
+                        printf ".SECONDARY:\n" > /tmp/keep.mk;
+                        make -f Makefile -f /tmp/keep.mk OUT=build/container CROSSFILE_DIR=.github/crossfiles CROSSFILE_64=steamrt-x86_64.txt CROSSFILE_32=steamrt-i386.txt'
           mkdir -p ../ref
           cp -a build/container/x64 build/container/x32 ../ref/
           ls -la ../ref/x64 ../ref/x32
@@ -101,7 +102,8 @@ jobs:
           ! grep -q "D3D11_SDK_VERSION" src/d3d10/d3d10_core.cpp
 
       # Incremental: ninja straight on the control build dirs (the Makefile
-      # would wipe and reconfigure them). Only d3d10core is rebuilt/relinked,
+      # would wipe and reconfigure them; the control make keeps build.ninja,
+      # which make otherwise deletes as an intermediate file, via .SECONDARY). Only d3d10core is rebuilt/relinked,
       # so every other DLL must come out byte-identical to the control.
       - name: Build patched (incremental)
         working-directory: sarek
