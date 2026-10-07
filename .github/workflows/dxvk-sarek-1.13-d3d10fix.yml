@@ -1,0 +1,227 @@
+name: DXVK-Sarek 1.13.0 — D3D10 fix build
+
+# ==================================================================
+# Rebuilds pythonlover02/DXVK-Sarek v1.13.0 with ONE source fix and
+# packages it as a .wcp with the same layout and profile.json as the
+# DXVK-SAREK release asset dxvk-sarek-v1.13.0.wcp.
+#
+# The bug: upstream commit 192b28c279 changed src/d3d10/d3d10_core.cpp
+# to call D3D11CoreCreateDevice with a 10-argument signature, but
+# Sarek's d3d11.dll still exports the 6-argument one. d3d11 then reads
+# ppDevice from the wrong slot, D3D10CoreCreateDevice gets S_OK with a
+# NULL device and crashes on the next line (every D3D10 app, any GPU).
+# The patch restores the v1.12.0 call.
+#
+# Build = upstream's own release recipe (`make release-container`):
+# the Steam Runtime sniper SDK container with .github/crossfiles/
+# steamrt-*.txt. The tree is built twice in the same container:
+#   1. unpatched  -> ref/   (control)
+#   2. patched    -> out/   (incremental: only d3d10core recompiles)
+# Then CI asserts: d3d10core changed and its call is now the 6-arg
+# form (x64 + x86), every other DLL is byte-identical to the control.
+#
+# ARTIFACTS ONLY — no release, no tag, no catalog change.
+# ==================================================================
+
+on:
+  push:
+    branches: [fix/sarek-1.13-d3d10core]
+    paths:
+      - '.github/workflows/dxvk-sarek-1.13-d3d10fix.yml'
+      - 'patches/dxvk-sarek/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  SAREK_REPO: pythonlover02/DXVK-Sarek
+  SAREK_TAG: v1.13.0
+  SDK_IMAGE: registry.gitlab.steamos.cloud/proton/sniper/sdk:latest
+  ORIG_WCP_URL: https://github.com/The412Banner/Nightlies/releases/download/DXVK-SAREK/dxvk-sarek-v1.13.0.wcp
+  PATCH_FILE: patches/dxvk-sarek/1.13.0-d3d10core-abi-fix.patch
+  WCP_NAME: dxvk-sarek-v1.13.0-d3d10fix
+
+jobs:
+  build:
+    name: Build + verify + package
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout (patch file)
+        uses: actions/checkout@v4
+        with:
+          path: nightlies
+
+      - name: Checkout DXVK-Sarek ${{ env.SAREK_TAG }}
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.SAREK_REPO }}
+          ref: ${{ env.SAREK_TAG }}
+          path: sarek
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y llvm zstd jq python3-pip
+          pip3 install --user pefile
+          llvm-objdump --version | head -2
+
+      - name: Record source
+        working-directory: sarek
+        run: |
+          echo "## Source" >> $GITHUB_STEP_SUMMARY
+          echo "- ${SAREK_REPO} \`${SAREK_TAG}\` = \`$(git rev-parse HEAD)\`" >> $GITHUB_STEP_SUMMARY
+          echo "- RELEASE file: \`$(cat RELEASE)\`" >> $GITHUB_STEP_SUMMARY
+          grep -n "D3D11_SDK_VERSION" src/d3d10/d3d10_core.cpp
+
+      - name: Build unpatched (control)
+        working-directory: sarek
+        run: |
+          set -euxo pipefail
+          docker pull "$SDK_IMAGE"
+          docker run --rm -v "$PWD:/src:z" -w /src --user "$(id -u):$(id -g)" -e HOME=/tmp "$SDK_IMAGE" \
+            bash -euxc 'x86_64-w64-mingw32-g++ --version | head -1; i686-w64-mingw32-g++ --version | head -1;
+                        make OUT=build/container CROSSFILE_DIR=.github/crossfiles CROSSFILE_64=steamrt-x86_64.txt CROSSFILE_32=steamrt-i386.txt'
+          mkdir -p ../ref
+          cp -a build/container/x64 build/container/x32 ../ref/
+          ls -la ../ref/x64 ../ref/x32
+
+      - name: Apply patch
+        working-directory: sarek
+        run: |
+          set -euxo pipefail
+          git apply --check "../nightlies/$PATCH_FILE"
+          git apply "../nightlies/$PATCH_FILE"
+          git diff --stat
+          ! grep -q "D3D11_SDK_VERSION" src/d3d10/d3d10_core.cpp
+
+      - name: Build patched (incremental)
+        working-directory: sarek
+        run: |
+          set -euxo pipefail
+          docker run --rm -v "$PWD:/src:z" -w /src --user "$(id -u):$(id -g)" -e HOME=/tmp "$SDK_IMAGE" \
+            bash -euxc 'make OUT=build/container CROSSFILE_DIR=.github/crossfiles CROSSFILE_64=steamrt-x86_64.txt CROSSFILE_32=steamrt-i386.txt'
+          mkdir -p ../out
+          cp -a build/container/x64 build/container/x32 ../out/
+          ls -la ../out/x64 ../out/x32
+
+      - name: Verify
+        run: |
+          set -euo pipefail
+          cat > exprange.py <<'EOF'
+          import sys, pefile
+          pe = pefile.PE(sys.argv[1], fast_load=True)
+          pe.parse_data_directories(directories=[pefile.DIRECTORY_ENTRY['IMAGE_DIRECTORY_ENTRY_EXPORT']])
+          base = pe.OPTIONAL_HEADER.ImageBase
+          rvas = sorted(e.address for e in pe.DIRECTORY_ENTRY_EXPORT.symbols)
+          start = next(e.address for e in pe.DIRECTORY_ENTRY_EXPORT.symbols if e.name == b'D3D10CoreCreateDevice')
+          stop = min([r for r in rvas if r > start] or [start + 0x200])
+          print(hex(base + start), hex(base + stop))
+          EOF
+          fn() { local r; r=$(python3 exprange.py "$1"); set -- "$1" $r; llvm-objdump -d --no-show-raw-insn --start-address=$2 --stop-address=$3 "$1"; }
+          fail=0
+          echo "## Verify" >> $GITHUB_STEP_SUMMARY
+
+          # 1) every DLL other than d3d10core must be byte-identical to the control build
+          for a in x64 x32; do
+            for f in d3d11 d3d9 d3d8 dxgi; do
+              if cmp -s "ref/$a/$f.dll" "out/$a/$f.dll"; then
+                echo "- $a/$f.dll identical to unpatched build" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "::error::$a/$f.dll differs from the unpatched build"; fail=1
+              fi
+            done
+            if cmp -s "ref/$a/d3d10core.dll" "out/$a/d3d10core.dll"; then
+              echo "::error::$a/d3d10core.dll did not change"; fail=1
+            fi
+          done
+
+          # 2) x64: unpatched passes SDKVersion=7 as stack arg 8 (0x38(%rsp)); patched passes FeatureLevels=1 as arg 5 (0x20(%rsp))
+          fn ref/x64/d3d10core.dll > ref64.s; fn out/x64/d3d10core.dll > out64.s
+          wc -l ref64.s out64.s
+          grep -q -E 'movl[[:space:]]+\$0x7, 0x38\(%rsp\)' ref64.s || { echo "::error::control x64 does not show the 10-arg call (check is not meaningful)"; fail=1; }
+          if grep -q -E '\$0x7, 0x38\(%rsp\)' out64.s; then echo "::error::patched x64 still passes SDKVersion as arg 8"; fail=1; fi
+          grep -q -E 'movl[[:space:]]+\$0x1, 0x20\(%rsp\)' out64.s || { echo "::error::patched x64: FeatureLevels=1 not in arg 5"; fail=1; }
+
+          # 3) x86 stdcall: caller re-adjusts esp by the callee's pop size after the call: 0x28 (10 args) vs 0x18 (6 args)
+          fn ref/x32/d3d10core.dll > ref32.s; fn out/x32/d3d10core.dll > out32.s
+          wc -l ref32.s out32.s
+          grep -q -E 'movl[[:space:]]+\$0x7, 0x1c\(%esp\)' ref32.s || { echo "::error::control x86 does not show the 10-arg call"; fail=1; }
+          grep -q -E 'subl[[:space:]]+\$0x28, %esp' ref32.s || { echo "::error::control x86 lacks the 40-byte stdcall pop"; fail=1; }
+          if grep -q -E 'movl[[:space:]]+\$0x7, 0x1c\(%esp\)' out32.s; then echo "::error::patched x86 still passes SDKVersion"; fail=1; fi
+          if grep -q -E 'subl[[:space:]]+\$0x28, %esp' out32.s; then echo "::error::patched x86 still expects a 40-byte pop"; fail=1; fi
+          grep -q -E 'subl[[:space:]]+\$0x18, %esp' out32.s || { echo "::error::patched x86: no 24-byte (6-arg) stdcall pop"; fail=1; }
+
+          {
+            echo ""
+            echo "### x64 D3D10CoreCreateDevice call setup (patched)"
+            echo '```'
+            grep -n -E -B12 -m1 -A1 'call[lq]?[[:space:]]+0x' out64.s | sed -n '1,40p' || true
+            echo '```'
+          } >> $GITHUB_STEP_SUMMARY
+
+          # 4) info only: control build vs the original asset (different SDK image date => bytes may differ)
+          curl -fsSL -o orig.wcp "$ORIG_WCP_URL"
+          mkdir orig && tar --zstd -xf orig.wcp -C orig
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### control build vs original asset (info)" >> $GITHUB_STEP_SUMMARY
+          for p in "system32 x64" "syswow64 x32"; do set -- $p
+            for f in d3d10core d3d11 d3d9 d3d8 dxgi; do
+              if cmp -s "orig/$1/$f.dll" "ref/$2/$f.dll"; then r=identical; else r=differs; fi
+              echo "- $1/$f.dll: $r" >> $GITHUB_STEP_SUMMARY
+            done
+          done
+
+          [ $fail -eq 0 ] || exit 1
+          echo "ALL CHECKS PASSED" >> $GITHUB_STEP_SUMMARY
+
+      - name: Package .wcp
+        run: |
+          set -euxo pipefail
+          mkdir -p pkg/system32 pkg/syswow64
+          for f in d3d10core d3d11 d3d8 d3d9 dxgi; do
+            install -m755 "out/x64/$f.dll" "pkg/system32/$f.dll"
+            install -m755 "out/x32/$f.dll" "pkg/syswow64/$f.dll"
+          done
+          python3 - <<'EOF'
+          import json
+          p = json.load(open('orig/profile.json'))
+          assert p['type'] == 'DXVK' and p['versionName'] == 'dxvk-sarek-v1.13.0', p
+          p['versionName'] = 'dxvk-sarek-v1.13.0-d3d10fix'
+          p['versionCode'] = 1
+          p['description'] = (p['description'] +
+              ' | D3D10 fix: d3d10core rebuilt so D3D10CoreCreateDevice calls d3d11 with the matching'
+              ' 6-argument D3D11CoreCreateDevice (stock 1.13.0 crashes every D3D10 app with a NULL device).')
+          with open('pkg/profile.json', 'w') as f:
+              json.dump(p, f, indent=2)
+          EOF
+          # same file list as the original profile, same files present
+          diff <(jq -c '.files' orig/profile.json) <(jq -c '.files' pkg/profile.json)
+          (cd orig && find . -type f | sort) > orig.list
+          (cd pkg && find . -type f | sort) > pkg.list
+          diff orig.list pkg.list
+          cat pkg/profile.json
+          mkdir -p dist
+          tar -C pkg -cf - profile.json system32 syswow64 | zstd -19 -T0 -o "dist/${WCP_NAME}.wcp"
+          tar --zstd -tvf "dist/${WCP_NAME}.wcp"
+          (cd dist && sha256sum "${WCP_NAME}.wcp" | tee "${WCP_NAME}.wcp.sha256")
+          echo "### Package" >> $GITHUB_STEP_SUMMARY
+          echo "\`$(cat dist/${WCP_NAME}.wcp.sha256)\`" >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload .wcp
+        uses: actions/upload-artifact@v4
+        with:
+          name: dxvk-sarek-v1.13.0-d3d10fix
+          path: dist/*
+          if-no-files-found: error
+
+      - name: Upload raw DLLs (patched + control)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dxvk-sarek-v1.13.0-d3d10fix-dlls
+          path: |
+            out/
+            ref/
+          if-no-files-found: error

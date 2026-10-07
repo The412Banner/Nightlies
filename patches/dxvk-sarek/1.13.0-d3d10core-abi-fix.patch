@@ -1,0 +1,29 @@
+--- a/src/d3d10/d3d10_core.cpp
++++ b/src/d3d10/d3d10_core.cpp
+@@ -9,14 +9,10 @@
+   HRESULT __stdcall D3D11CoreCreateDevice(
+           IDXGIFactory*       pFactory,
+           IDXGIAdapter*       pAdapter,
+-          D3D_DRIVER_TYPE     DriverType,
+-          HMODULE             Software,
+           UINT                Flags,
+     const D3D_FEATURE_LEVEL*  pFeatureLevels,
+           UINT                FeatureLevels,
+-          UINT                SDKVersion,
+-          ID3D11Device**      ppDevice,
+-          D3D_FEATURE_LEVEL*  pFeatureLevel);
++          ID3D11Device**      ppDevice);
+ 
+ 
+   DLLEXPORT HRESULT __stdcall D3D10CoreCreateDevice(
+@@ -35,8 +31,8 @@
+     if (FAILED(hr))
+       return hr;
+ 
+-    hr = D3D11CoreCreateDevice(pFactory, pAdapter, D3D_DRIVER_TYPE_UNKNOWN,
+-      nullptr, Flags, &FeatureLevel, 1, D3D11_SDK_VERSION, &d3d11Device, nullptr);
++    hr = D3D11CoreCreateDevice(pFactory, pAdapter,
++      Flags, &FeatureLevel, 1, &d3d11Device);
+ 
+     if (FAILED(hr))
+       return hr;
