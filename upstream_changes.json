@@ -1,14 +1,32 @@
 {
-  "triggered_at": "2026-10-07T06:43:20Z",
+  "triggered_at": "2026-10-07T14:04:56Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "8f6ab59",
+      "new": "2f47bdf",
+      "full": "2f47bdff3ae9b3b7fb462fea0579cd3e87551e75",
+      "msg": "[INTERP] Fixed FIST/FISTP/FISTTP range check (#4534)",
+      "date": "2026-10-07T07:47:58Z"
+    },
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "7d3090f",
+      "new": "d58a4e0",
+      "full": "d58a4e0da26bde9b7bc3f2cb41ec588f4a6d6cb0",
+      "msg": "Merge pull request #6017 from javelina-pkwy/fix/avx-required-test-python",
+      "date": "2026-10-07T12:17:03Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "bfe063f",
-      "new": "0b2fa04",
-      "full": "0b2fa0445c2cdf6ab5e3a00214954670f0e0d2af",
-      "msg": "kraid/ra: Prefer not moving source registers for vectors",
-      "date": "2026-10-07T01:12:23.000+00:00"
+      "old": "0b2fa04",
+      "new": "ad885a8",
+      "full": "ad885a85bd34b9a8d9301e4d84c9a3117235920e",
+      "msg": "zink/kopper: fix invalid read during swapchain teardown",
+      "date": "2026-10-07T12:46:55.000+00:00"
     }
   ]
 }
