@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-06T20:41:03Z",
+  "triggered_at": "2026-10-07T00:15:34Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "df6b354",
-      "new": "b28ca99",
-      "full": "b28ca99142c7b2771a9bb48d4382d4d8516dd2db",
-      "msg": "etnaviv: Add some CPU tracepoints",
-      "date": "2026-10-06T20:08:29.000+00:00"
+      "old": "b28ca99",
+      "new": "bfe063f",
+      "full": "bfe063f723d436e5cdef8a98f058d4e44a64810c",
+      "msg": "pco: Enable IMAD32 fusion in NIR",
+      "date": "2026-10-06T23:44:36.000+00:00"
     }
   ]
 }
