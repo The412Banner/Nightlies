@@ -50,8 +50,8 @@ A single JSON index of every component published here — point any compatible W
 <!-- NIGHTLY-LATEST-START -->
 | | |
 | :--- | :--- |
-| **Release** | [🔗 nightly-20261007-064931](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261007-064931) |
-| **FEXCore** | [`7d3090f78`](https://github.com/FEX-Emu/FEX/commit/7d3090f78) — FEX-2609+158-Nightly-7d3090f78 |
+| **Release** | [🔗 nightly-20261007-141148](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261007-141148) |
+| **FEXCore** | [`d58a4e0da`](https://github.com/FEX-Emu/FEX/commit/d58a4e0da) — FEX-2609+160-Nightly-d58a4e0da |
 | **VKD3D-Proton (Std)** | [`22307558`](https://github.com/HansKristian-Work/vkd3d-proton/commit/22307558) |
 | **VKD3D-Proton (ARM64EC)** | [`22307558`](https://github.com/HansKristian-Work/vkd3d-proton/commit/22307558) |
 | **DXVK (GPLAsync)** | [`5b94142f`](https://github.com/doitsujin/dxvk/commit/5b94142f) |
@@ -60,8 +60,8 @@ A single JSON index of every component published here — point any compatible W
 | **DXVK BinSem (ARM64EC)** | [`5b94142f`](https://github.com/doitsujin/dxvk/commit/5b94142f) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |
 | **D7VK (DDraw/D3D7)** | [`987ba5b30`](https://github.com/WinterSnowfall/d7vk/commit/987ba5b30) — DDraw Wrapper slot; `.tzst` = bundled-asset refresh |
 | **Box64** | [ptitSeb/box64](https://github.com/ptitSeb/box64/commits/main) + [Pipetto/box64](https://github.com/Pipetto-crypto/box64/commits/main) |
-| **Turnip** | [v26.3.0-20261007](https://github.com/The412Banner/Banners-Turnip/releases/tag/v26.3.0-20261007) — Turnip v26.3.0-20261007 |
-| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261007-064931) |
+| **Turnip** | [v26.3.0-20261007-r2](https://github.com/The412Banner/Banners-Turnip/releases/tag/v26.3.0-20261007-r2) — Turnip v26.3.0-20261007-r2 |
+| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261007-141148) |
 <!-- NIGHTLY-LATEST-END -->
 
 </details>
