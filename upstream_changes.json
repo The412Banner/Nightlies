@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-07T00:15:34Z",
+  "triggered_at": "2026-10-07T06:43:20Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "b28ca99",
-      "new": "bfe063f",
-      "full": "bfe063f723d436e5cdef8a98f058d4e44a64810c",
-      "msg": "pco: Enable IMAD32 fusion in NIR",
-      "date": "2026-10-06T23:44:36.000+00:00"
+      "old": "bfe063f",
+      "new": "0b2fa04",
+      "full": "0b2fa0445c2cdf6ab5e3a00214954670f0e0d2af",
+      "msg": "kraid/ra: Prefer not moving source registers for vectors",
+      "date": "2026-10-07T01:12:23.000+00:00"
     }
   ]
 }
