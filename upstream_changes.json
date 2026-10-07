@@ -1,32 +1,41 @@
 {
-  "triggered_at": "2026-10-07T14:04:56Z",
+  "triggered_at": "2026-10-07T20:20:41Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "8f6ab59",
-      "new": "2f47bdf",
-      "full": "2f47bdff3ae9b3b7fb462fea0579cd3e87551e75",
-      "msg": "[INTERP] Fixed FIST/FISTP/FISTTP range check (#4534)",
-      "date": "2026-10-07T07:47:58Z"
-    },
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "7d3090f",
-      "new": "d58a4e0",
-      "full": "d58a4e0da26bde9b7bc3f2cb41ec588f4a6d6cb0",
-      "msg": "Merge pull request #6017 from javelina-pkwy/fix/avx-required-test-python",
-      "date": "2026-10-07T12:17:03Z"
+      "old": "d58a4e0",
+      "new": "14c9268",
+      "full": "14c92681f4d62cf84d901460e0358de09c8847a7",
+      "msg": "Docs: Update for release FEX-2610",
+      "date": "2026-10-07T18:42:33Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "5b94142",
+      "new": "56bac6b",
+      "full": "56bac6b1ba854e37e53fe32322a0dd6df8b9d38f",
+      "msg": "[dxvk] Restrict sin/cos workaround to pre-Xe3 Intel GPUs",
+      "date": "2026-10-07T14:24:34Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "987ba5b",
+      "new": "a228b9f",
+      "full": "a228b9f80a038a4b96ef0ba88d01385b50906712",
+      "msg": "[meta] Track GDI surfaces and rework D3D9 pool selection",
+      "date": "2026-10-07T18:30:33Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "0b2fa04",
-      "new": "ad885a8",
-      "full": "ad885a85bd34b9a8d9301e4d84c9a3117235920e",
-      "msg": "zink/kopper: fix invalid read during swapchain teardown",
-      "date": "2026-10-07T12:46:55.000+00:00"
+      "old": "ad885a8",
+      "new": "f1a6b0d",
+      "full": "f1a6b0d71ade2b1304cc9b466ae6d27402b7e7c8",
+      "msg": "intel/compiler: Remove uses_is_indexed_draw field from prog_data",
+      "date": "2026-10-07T19:51:02.000+00:00"
     }
   ]
 }
