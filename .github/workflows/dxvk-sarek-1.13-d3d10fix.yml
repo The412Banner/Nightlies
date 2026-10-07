@@ -10,7 +10,10 @@ name: DXVK-Sarek 1.13.0 — D3D10 fix build
 # Sarek's d3d11.dll still exports the 6-argument one. d3d11 then reads
 # ppDevice from the wrong slot, D3D10CoreCreateDevice gets S_OK with a
 # NULL device and crashes on the next line (every D3D10 app, any GPU).
-# The patch restores the v1.12.0 call.
+# The patch restores the v1.12.0 call and links d3d10core against
+# Sarek's own d3d11 again (d3d11_dep, as in v1.12.0) instead of the
+# toolchain's libd3d11.a, whose 10-arg stdcall D3D11CoreCreateDevice@40
+# is why the prototype was changed (32-bit link fails otherwise).
 #
 # Build = upstream's own release recipe (`make release-container`):
 # the Steam Runtime sniper SDK container with .github/crossfiles/
@@ -97,12 +100,16 @@ jobs:
           git diff --stat
           ! grep -q "D3D11_SDK_VERSION" src/d3d10/d3d10_core.cpp
 
+      # Incremental: ninja straight on the control build dirs (the Makefile
+      # would wipe and reconfigure them). Only d3d10core is rebuilt/relinked,
+      # so every other DLL must come out byte-identical to the control.
       - name: Build patched (incremental)
         working-directory: sarek
         run: |
           set -euxo pipefail
           docker run --rm -v "$PWD:/src:z" -w /src --user "$(id -u):$(id -g)" -e HOME=/tmp "$SDK_IMAGE" \
-            bash -euxc 'make OUT=build/container CROSSFILE_DIR=.github/crossfiles CROSSFILE_64=steamrt-x86_64.txt CROSSFILE_32=steamrt-i386.txt'
+            bash -euxc 'for a in 64 32; do ninja -C build/container/build.$a install; done;
+                        find build/container/x64 build/container/x32 -type f ! -name "*.dll" -delete'
           mkdir -p ../out
           cp -a build/container/x64 build/container/x32 ../out/
           ls -la ../out/x64 ../out/x32
