@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-10-08T14:14:54Z",
+  "triggered_at": "2026-10-08T20:23:35Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "c269865",
-      "new": "bffb9ee",
-      "full": "bffb9ee4d1072a0a038c69b8c439c7fdfbf5e955",
-      "msg": "[WRAPPER] Add missing parameters for openssl PKCS12_create (#4544)",
-      "date": "2026-10-08T10:36:51Z"
+      "old": "bffb9ee",
+      "new": "6ece2e8",
+      "full": "6ece2e87f2c4ef9bf2f759e255d36cf4730a06e3",
+      "msg": "[ARM64_DYNAREC] Fixed o64 PCMPESTRI fastpath (#4545)",
+      "date": "2026-10-08T15:15:52Z"
     },
     {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "0e10259",
-      "new": "852d454",
-      "full": "852d454f6a023f04453a164e0981785fd5802cc9",
-      "msg": "[dxvk] Improve hang detection",
-      "date": "2026-10-08T08:50:44Z"
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "a228b9f",
+      "new": "7849092",
+      "full": "78490927fba0ad4ac393caf7bc5f4871ccd30c36",
+      "msg": "[d3d6/5/3] Fix viewport device binding of released viewports",
+      "date": "2026-10-08T17:39:13Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "88d2d56",
-      "new": "798e284",
-      "full": "798e28497fa00ee62055cab213e6d4e5fdd10c77",
-      "msg": "panfrost: Flush AFBC-P compute jobs",
-      "date": "2026-10-08T15:22:42.000+02:00"
+      "old": "798e284",
+      "new": "5d4c4bd",
+      "full": "5d4c4bd553a4f0d0d2fe0c0f07f866803be44ecc",
+      "msg": "nir/algebraic: Don't generate 64-bit iadd3 when not supported",
+      "date": "2026-10-08T19:22:28.000+00:00"
     }
   ]
 }
