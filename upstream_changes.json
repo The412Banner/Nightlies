@@ -1,41 +1,23 @@
 {
-  "triggered_at": "2026-10-07T20:20:41Z",
+  "triggered_at": "2026-10-08T00:36:46Z",
   "changed": [
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "d58a4e0",
-      "new": "14c9268",
-      "full": "14c92681f4d62cf84d901460e0358de09c8847a7",
-      "msg": "Docs: Update for release FEX-2610",
-      "date": "2026-10-07T18:42:33Z"
-    },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "5b94142",
-      "new": "56bac6b",
-      "full": "56bac6b1ba854e37e53fe32322a0dd6df8b9d38f",
-      "msg": "[dxvk] Restrict sin/cos workaround to pre-Xe3 Intel GPUs",
-      "date": "2026-10-07T14:24:34Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "987ba5b",
-      "new": "a228b9f",
-      "full": "a228b9f80a038a4b96ef0ba88d01385b50906712",
-      "msg": "[meta] Track GDI surfaces and rework D3D9 pool selection",
-      "date": "2026-10-07T18:30:33Z"
+      "old": "56bac6b",
+      "new": "0e10259",
+      "full": "0e10259b225934aa7be6558adde718f7b0e2fdff",
+      "msg": "[d3d11] Support converting d3d12 texture info in D3D11Device::ConvertRuntimeDesc",
+      "date": "2026-10-07T20:45:13Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ad885a8",
-      "new": "f1a6b0d",
-      "full": "f1a6b0d71ade2b1304cc9b466ae6d27402b7e7c8",
-      "msg": "intel/compiler: Remove uses_is_indexed_draw field from prog_data",
-      "date": "2026-10-07T19:51:02.000+00:00"
+      "old": "f1a6b0d",
+      "new": "4e1e469",
+      "full": "4e1e46921e19f071437d67caaeaa0aa91da8a536",
+      "msg": "nir: Silence coverity warning about integer overflow",
+      "date": "2026-10-07T23:57:25.000+00:00"
     }
   ]
 }
