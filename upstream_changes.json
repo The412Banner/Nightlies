@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-10-08T00:36:46Z",
+  "triggered_at": "2026-10-08T06:51:52Z",
   "changed": [
     {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "56bac6b",
-      "new": "0e10259",
-      "full": "0e10259b225934aa7be6558adde718f7b0e2fdff",
-      "msg": "[d3d11] Support converting d3d12 texture info in D3D11Device::ConvertRuntimeDesc",
-      "date": "2026-10-07T20:45:13Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "2f47bdf",
+      "new": "c269865",
+      "full": "c269865bb20d62e0904d02a60a40e4bf78f9d9e2",
+      "msg": "[LA64_DYNAREC] Refined vector registers restore (#4536)",
+      "date": "2026-10-08T06:49:11Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "f1a6b0d",
-      "new": "4e1e469",
-      "full": "4e1e46921e19f071437d67caaeaa0aa91da8a536",
-      "msg": "nir: Silence coverity warning about integer overflow",
-      "date": "2026-10-07T23:57:25.000+00:00"
+      "old": "4e1e469",
+      "new": "88d2d56",
+      "full": "88d2d56a02f62edbab6cfd8be6b41e8728f24aa8",
+      "msg": "kraid: Fix sub-reg temporaries in legalize_src_swizzles()",
+      "date": "2026-10-08T06:17:29.000+00:00"
     }
   ]
 }
