@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-10-08T06:51:52Z",
+  "triggered_at": "2026-10-08T14:14:54Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "2f47bdf",
-      "new": "c269865",
-      "full": "c269865bb20d62e0904d02a60a40e4bf78f9d9e2",
-      "msg": "[LA64_DYNAREC] Refined vector registers restore (#4536)",
-      "date": "2026-10-08T06:49:11Z"
+      "old": "c269865",
+      "new": "bffb9ee",
+      "full": "bffb9ee4d1072a0a038c69b8c439c7fdfbf5e955",
+      "msg": "[WRAPPER] Add missing parameters for openssl PKCS12_create (#4544)",
+      "date": "2026-10-08T10:36:51Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "0e10259",
+      "new": "852d454",
+      "full": "852d454f6a023f04453a164e0981785fd5802cc9",
+      "msg": "[dxvk] Improve hang detection",
+      "date": "2026-10-08T08:50:44Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "4e1e469",
-      "new": "88d2d56",
-      "full": "88d2d56a02f62edbab6cfd8be6b41e8728f24aa8",
-      "msg": "kraid: Fix sub-reg temporaries in legalize_src_swizzles()",
-      "date": "2026-10-08T06:17:29.000+00:00"
+      "old": "88d2d56",
+      "new": "798e284",
+      "full": "798e28497fa00ee62055cab213e6d4e5fdd10c77",
+      "msg": "panfrost: Flush AFBC-P compute jobs",
+      "date": "2026-10-08T15:22:42.000+02:00"
     }
   ]
 }
