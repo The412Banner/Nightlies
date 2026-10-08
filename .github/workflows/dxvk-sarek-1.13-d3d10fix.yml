@@ -116,6 +116,16 @@ jobs:
           cp -a build/container/x64 build/container/x32 ../out/
           ls -la ../out/x64 ../out/x32
 
+      - name: Upload raw DLLs (patched + control)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dxvk-sarek-v1.13.0-d3d10fix-dlls
+          path: |
+            out/
+            ref/
+          if-no-files-found: error
+
       - name: Verify
         run: |
           set -euo pipefail
@@ -129,15 +139,31 @@ jobs:
           stop = min([r for r in rvas if r > start] or [start + 0x200])
           print(hex(base + start), hex(base + stop))
           EOF
-          fn() { local r; r=$(python3 exprange.py "$1"); set -- "$1" $r; llvm-objdump -d --no-show-raw-insn --start-address=$2 --stop-address=$3 "$1"; }
+          fn() { local r; r=$(python3 exprange.py "$1"); set -- "$1" $r; llvm-objdump -d --no-show-raw-insn --print-imm-hex --start-address=$2 --stop-address=$3 "$1"; }
           fail=0
           echo "## Verify" >> $GITHUB_STEP_SUMMARY
 
-          # 1) every DLL other than d3d10core must be byte-identical to the control build
+          # 1) every DLL other than d3d10core must be identical to the control build.
+          #    `meson install --strip` re-strips every DLL and binutils strip stamps the
+          #    PE header with the current time, so compare with the PE header
+          #    TimeDateStamp + CheckSum zeroed (and list every differing byte offset).
+          cat > pecmp.py <<'EOF'
+          import sys, pefile
+          def norm(path):
+              pe = pefile.PE(path)
+              pe.FILE_HEADER.TimeDateStamp = 0
+              pe.OPTIONAL_HEADER.CheckSum = 0
+              return bytes(pe.write()), pe
+          a, pa = norm(sys.argv[1]); b, pb = norm(sys.argv[2])
+          raw_a = open(sys.argv[1], 'rb').read(); raw_b = open(sys.argv[2], 'rb').read()
+          diffs = [i for i in range(min(len(raw_a), len(raw_b))) if raw_a[i] != raw_b[i]]
+          print(f"{sys.argv[2]}: raw sizes {len(raw_a)}/{len(raw_b)}, raw differing bytes {len(diffs)} at {[hex(x) for x in diffs[:16]]}")
+          sys.exit(0 if a == b else 1)
+          EOF
           for a in x64 x32; do
             for f in d3d11 d3d9 d3d8 dxgi; do
-              if cmp -s "ref/$a/$f.dll" "out/$a/$f.dll"; then
-                echo "- $a/$f.dll identical to unpatched build" >> $GITHUB_STEP_SUMMARY
+              if python3 pecmp.py "ref/$a/$f.dll" "out/$a/$f.dll"; then
+                echo "- $a/$f.dll identical to unpatched build (PE timestamp/checksum excluded)" >> $GITHUB_STEP_SUMMARY
               else
                 echo "::error::$a/$f.dll differs from the unpatched build"; fail=1
               fi
@@ -226,11 +252,3 @@ jobs:
           path: dist/*
           if-no-files-found: error
 
-      - name: Upload raw DLLs (patched + control)
-        uses: actions/upload-artifact@v4
-        with:
-          name: dxvk-sarek-v1.13.0-d3d10fix-dlls
-          path: |
-            out/
-            ref/
-          if-no-files-found: error
