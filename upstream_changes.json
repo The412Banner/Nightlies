@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-10-08T20:23:35Z",
+  "triggered_at": "2026-10-09T00:51:40Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "bffb9ee",
-      "new": "6ece2e8",
-      "full": "6ece2e87f2c4ef9bf2f759e255d36cf4730a06e3",
-      "msg": "[ARM64_DYNAREC] Fixed o64 PCMPESTRI fastpath (#4545)",
-      "date": "2026-10-08T15:15:52Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "a228b9f",
-      "new": "7849092",
-      "full": "78490927fba0ad4ac393caf7bc5f4871ccd30c36",
-      "msg": "[d3d6/5/3] Fix viewport device binding of released viewports",
-      "date": "2026-10-08T17:39:13Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "798e284",
-      "new": "5d4c4bd",
-      "full": "5d4c4bd553a4f0d0d2fe0c0f07f866803be44ecc",
-      "msg": "nir/algebraic: Don't generate 64-bit iadd3 when not supported",
-      "date": "2026-10-08T19:22:28.000+00:00"
+      "old": "5d4c4bd",
+      "new": "8b5f635",
+      "full": "8b5f63523670cf03fdc7f9e22be43429cc751062",
+      "msg": "intel/gen: Add sendg EOT handling to gen_find_shader_size_xe()",
+      "date": "2026-10-08T23:54:38.000+00:00"
     }
   ]
 }
