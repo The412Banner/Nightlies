@@ -1,14 +1,32 @@
 {
-  "triggered_at": "2026-10-09T07:00:40Z",
+  "triggered_at": "2026-10-09T14:48:29Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "6ece2e8",
+      "new": "937d39e",
+      "full": "937d39e71c3001db4a01f29bfd6de598706a86ec",
+      "msg": "[ARM64_DYNAREC] Fixed x87 !fastnan handling with both operands are NaN (#4546)",
+      "date": "2026-10-09T13:19:50Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "7849092",
+      "new": "f414c38",
+      "full": "f414c38d0589d66cd0b30ba478877bdb6147dff0",
+      "msg": "[meta] Handle clipper detachment and unsupported helper input values",
+      "date": "2026-10-09T11:25:17Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "8b5f635",
-      "new": "e2e6232",
-      "full": "e2e6232ee6619362626cd7addc0cbbb207702fc3",
-      "msg": "ac/sdma: emit the mall policy on SDMA 7.0",
-      "date": "2026-10-09T06:20:25.000+00:00"
+      "old": "e2e6232",
+      "new": "ed458ff",
+      "full": "ed458ffac6f410e6f03e54d17f47e8aeb55fe3a1",
+      "msg": "anv/video: Move common BRC tables to new C file.",
+      "date": "2026-10-09T13:39:09.000+00:00"
     }
   ]
 }
