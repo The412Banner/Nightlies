@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-10-09T19:55:54Z",
+  "triggered_at": "2026-10-09T23:45:11Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "937d39e",
-      "new": "a489cfe",
-      "full": "a489cfe7d03f6d57aa38580c157711fbfc69ed7a",
-      "msg": "[WOWBOX64] Fix exceptions in JIT code above 4GB and pass the fault state to the ",
-      "date": "2026-10-09T14:49:38Z"
-    },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "852d454",
-      "new": "1cad6cd",
-      "full": "1cad6cd11d8b0edf89113a0d8e4819ade33fbf9c",
-      "msg": "[dxvk] Rework submission synchronization",
-      "date": "2026-10-09T15:00:12Z"
+      "old": "1cad6cd",
+      "new": "74b557a",
+      "full": "74b557a1f2d88d53cca2aefa97096ee7a5e7001e",
+      "msg": "[dxvk] Re-enable present timing by default",
+      "date": "2026-10-09T23:42:47Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ed458ff",
-      "new": "3b10bd8",
-      "full": "3b10bd85729d12639a00216f386dfd8fa56039bb",
-      "msg": "spirv: fix MSVC Release unused locals used only in assert",
-      "date": "2026-10-09T18:40:22.000+00:00"
+      "old": "3b10bd8",
+      "new": "57fd112",
+      "full": "57fd11256bdf0ec1ff1908277e4963180252491f",
+      "msg": "radeonsi: invalidate I$/SMEM$/VMEM$ at IB start on all gfx levels",
+      "date": "2026-10-09T23:15:36.000+00:00"
     }
   ]
 }
