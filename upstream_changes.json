@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-10T03:32:10Z",
+  "triggered_at": "2026-10-10T10:17:36Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "a489cfe",
+      "new": "c5ddad2",
+      "full": "c5ddad2a1faec41d1904ce5ddca38557d57c56c6",
+      "msg": "[RV64_DYNAREC] Fix ADDI(x1, x1, 0xffff) and ANDI(x1, x1, 0xffff) (#4555)",
+      "date": "2026-10-10T08:23:55Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "57fd112",
-      "new": "35b085c",
-      "full": "35b085c4c067f198ce0b6437d94678e47b9c645f",
-      "msg": "iris: Free compute compilation context on failure",
-      "date": "2026-10-09T23:43:26.000+00:00"
+      "old": "35b085c",
+      "new": "cf0b979",
+      "full": "cf0b979229f3dc77eb28dd3b0a232ae37d787b1d",
+      "msg": "r300/ci: remove nonexistent tests",
+      "date": "2026-10-10T09:22:28.000+00:00"
     }
   ]
 }
