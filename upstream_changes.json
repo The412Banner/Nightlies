@@ -1,41 +1,32 @@
 {
-  "triggered_at": "2026-10-10T16:02:16Z",
+  "triggered_at": "2026-10-10T20:23:48Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "c5ddad2",
-      "new": "397f1f1",
-      "full": "397f1f1594158c6511f880b628e0972602f29f23",
-      "msg": "[RV64_DYNAREC] Optimize VMAXPS family opcodes (#4557)",
-      "date": "2026-10-10T14:58:23Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "74b557a",
-      "new": "71ec7b5",
-      "full": "71ec7b5be6c517db39bcca4d38f38a63f6ddbc56",
-      "msg": "[dxvk] Fix broken negative timeout for keyed mutex",
-      "date": "2026-10-10T14:51:52Z"
+      "old": "397f1f1",
+      "new": "c6a8c44",
+      "full": "c6a8c4472f74f9ad204d35195f084b5f996b12e3",
+      "msg": "[RV64_DYNAREC] Fixed a few lock opcodes (#4558)",
+      "date": "2026-10-10T16:08:03Z"
     },
     {
       "repo": "WinterSnowfall/d7vk",
       "name": "D7VK (DDraw/D3D7)",
-      "old": "f414c38",
-      "new": "9629542",
-      "full": "96295421c36e272a104601cdd5e4949e775bbcd1",
-      "msg": "[meta] Handle clipper detachment and unsupported helper input values",
-      "date": "2026-10-10T13:55:00Z"
+      "old": "9629542",
+      "new": "d8363d1",
+      "full": "d8363d1a690894dd01ca72da24d2f4c045a4f2b3",
+      "msg": "[meta] Minor styling and casting changes",
+      "date": "2026-10-10T17:21:19Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "cf0b979",
-      "new": "5c80eda",
-      "full": "5c80eda3f1c0ac7cb80b0597473ae83da4b97c08",
-      "msg": "spirv,panfrost: emit precise OpenCL log/log2/exp2 as hardware transcendentals",
-      "date": "2026-10-10T12:03:52.000+00:00"
+      "old": "5c80eda",
+      "new": "bffd919",
+      "full": "bffd91947efc1932da99aca69fc540d6d4201b0c",
+      "msg": "nvk: Use meta gfx for depth copies",
+      "date": "2026-10-10T19:09:06.000+00:00"
     }
   ]
 }
