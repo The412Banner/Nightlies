@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-09T23:45:11Z",
+  "triggered_at": "2026-10-10T03:32:10Z",
   "changed": [
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "1cad6cd",
-      "new": "74b557a",
-      "full": "74b557a1f2d88d53cca2aefa97096ee7a5e7001e",
-      "msg": "[dxvk] Re-enable present timing by default",
-      "date": "2026-10-09T23:42:47Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "3b10bd8",
-      "new": "57fd112",
-      "full": "57fd11256bdf0ec1ff1908277e4963180252491f",
-      "msg": "radeonsi: invalidate I$/SMEM$/VMEM$ at IB start on all gfx levels",
-      "date": "2026-10-09T23:15:36.000+00:00"
+      "old": "57fd112",
+      "new": "35b085c",
+      "full": "35b085c4c067f198ce0b6437d94678e47b9c645f",
+      "msg": "iris: Free compute compilation context on failure",
+      "date": "2026-10-09T23:43:26.000+00:00"
     }
   ]
 }
