@@ -1,0 +1,313 @@
+diff --git a/src/dxvk/dxvk_cmdlist.cpp b/src/dxvk/dxvk_cmdlist.cpp
+index 108ce64..2e24a24 100644
+--- a/src/dxvk/dxvk_cmdlist.cpp
++++ b/src/dxvk/dxvk_cmdlist.cpp
+@@ -2,6 +2,7 @@
+ 
+ #include "dxvk_cmdlist.h"
+ #include "dxvk_device.h"
++#include <vulkan/vulkan_core.h>
+ 
+ namespace dxvk {
+ 
+@@ -60,7 +61,8 @@ namespace dxvk {
+   VkResult DxvkCommandSubmission::submit(
+           DxvkDevice*           device,
+           VkQueue               queue,
+-          uint64_t              frameId) {
++          uint64_t              frameId,
++          VkFence               fence) {
+     auto vk = device->vkd();
+ 
+     VkLatencySubmissionPresentIdNV latencyInfo = { VK_STRUCTURE_TYPE_LATENCY_SUBMISSION_PRESENT_ID_NV };
+@@ -88,8 +90,8 @@ namespace dxvk {
+ 
+     VkResult vr = VK_SUCCESS;
+ 
+-    if (!this->isEmpty())
+-      vr = vk->vkQueueSubmit2(queue, 1, &submitInfo, VK_NULL_HANDLE);
++    if (!this->isEmpty() || fence)
++      vr = vk->vkQueueSubmit2(queue, 1, &submitInfo, fence);
+ 
+     this->reset();
+     return vr;
+@@ -269,6 +271,7 @@ namespace dxvk {
+     const auto& graphics = m_device->queues().graphics;
+     const auto& transfer = m_device->queues().transfer;
+     const auto& sparse = m_device->queues().sparse;
++    const bool use_timeline = semaphores.use_timeline;
+ 
+     m_commandSubmission.reset();
+ 
+@@ -293,16 +296,29 @@ namespace dxvk {
+       if (sparseBind) {
+         // Sparse binding needs to serialize command execution, so wait
+         // for any prior submissions, then block any subsequent ones
+-        sparseBind->waitSemaphore(semaphores.graphics, timelines.graphics);
+-        sparseBind->waitSemaphore(semaphores.transfer, timelines.transfer);
+-
+-        sparseBind->signalSemaphore(semaphores.graphics, ++timelines.graphics);
+-
+-        if ((status = sparseBind->submit(m_device, sparse.queueHandle)))
+-          return status;
+-
+-        m_commandSubmission.waitSemaphore(semaphores.graphics,
+-          timelines.graphics, VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT);
++        if (use_timeline) {
++          sparseBind->waitSemaphore(semaphores.graphics, timelines.graphics);
++          sparseBind->waitSemaphore(semaphores.transfer, timelines.transfer);
++  
++          sparseBind->signalSemaphore(semaphores.graphics, ++timelines.graphics);
++          
++          if ((status = sparseBind->submit(m_device, sparse.queueHandle)))
++            return status;
++
++          m_commandSubmission.waitSemaphore(semaphores.graphics,
++            timelines.graphics, VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT);
++        } else {
++          m_commandSubmission.signalSemaphore(semaphores.bind, 0, VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT);
++          if ((status = m_commandSubmission.submit(m_device, graphics.queueHandle, trackedId))) 
++            return status;
++          sparseBind->waitSemaphore(semaphores.bind, 0);
++          sparseBind->signalSemaphore(semaphores.post, 0);
++
++          if ((status = sparseBind->submit(m_device, sparse.queueHandle)))
++            return status;
++          
++          m_commandSubmission.waitSemaphore(semaphores.post, 0, VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT);
++        }
+       }
+ 
+       // Execute transfer command buffer, if any
+@@ -314,14 +330,23 @@ namespace dxvk {
+       // If we had either a transfer command or a semaphore wait, submit to the
+       // transfer queue so that all subsequent commands get stalled as necessary.
+       if (m_device->hasDedicatedTransferQueue() && !m_commandSubmission.isEmpty()) {
+-        m_commandSubmission.signalSemaphore(semaphores.transfer,
+-          ++timelines.transfer, VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT);
+-
+-        if ((status = m_commandSubmission.submit(m_device, transfer.queueHandle, trackedId)))
+-          return status;
+-
+-        m_commandSubmission.waitSemaphore(semaphores.transfer,
+-          timelines.transfer, VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT);
++        if (use_timeline) {
++          m_commandSubmission.signalSemaphore(semaphores.transfer,
++            ++timelines.transfer, VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT);
++  
++          if ((status = m_commandSubmission.submit(m_device, transfer.queueHandle, trackedId)))
++            return status;
++  
++          m_commandSubmission.waitSemaphore(semaphores.transfer,
++            timelines.transfer, VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT);
++        } else {
++          m_commandSubmission.signalSemaphore(semaphores.sdma, 0, VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT);
++          
++          if ((status = m_commandSubmission.submit(m_device, transfer.queueHandle, trackedId)))
++            return status;
++          
++          m_commandSubmission.waitSemaphore(semaphores.sdma, 0, VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT);
++        }
+       }
+ 
+       // We promise to never do weird stuff to WSI images on
+@@ -355,17 +380,19 @@ namespace dxvk {
+         }
+       }
+ 
+-      m_commandSubmission.signalSemaphore(semaphores.graphics,
+-        ++timelines.graphics, VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT);
++      if (use_timeline) {
++        m_commandSubmission.signalSemaphore(semaphores.graphics,
++          ++timelines.graphics, VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT);
++      }
+ 
+       // Finally, submit all graphics commands of the current submission
+-      if ((status = m_commandSubmission.submit(m_device, graphics.queueHandle, trackedId)))
++      if ((status = m_commandSubmission.submit(m_device, graphics.queueHandle, trackedId, semaphores.fence)))
+         return status;
+ 
+       // If there are WSI semaphores involved, do another submit only
+       // containing a timeline semaphore signal so that we can be sure
+       // that they are safe to use afterwards.
+-      if ((m_wsiSemaphores.present || m_wsiSemaphores.acquire) && isLast) {
++      if ((m_wsiSemaphores.present || m_wsiSemaphores.acquire) && isLast && use_timeline) {
+         m_commandSubmission.signalSemaphore(semaphores.graphics,
+           ++timelines.graphics, VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT);
+ 
+@@ -375,7 +402,7 @@ namespace dxvk {
+ 
+       // Finally, submit semaphore wait on the transfer queue. If this
+       // is not the final iteration, fold the wait into the next one.
+-      if (cmd.syncSdma) {
++      if (cmd.syncSdma && use_timeline) {
+         m_commandSubmission.waitSemaphore(semaphores.graphics,
+           timelines.graphics, VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT);
+ 
+diff --git a/src/dxvk/dxvk_cmdlist.h b/src/dxvk/dxvk_cmdlist.h
+index 38891eb..329fba5 100644
+--- a/src/dxvk/dxvk_cmdlist.h
++++ b/src/dxvk/dxvk_cmdlist.h
+@@ -48,8 +48,15 @@ namespace dxvk {
+    * One semaphore for each queue.
+    */
+   struct DxvkTimelineSemaphores {
++    bool use_timeline = true;
++    
+     VkSemaphore graphics = VK_NULL_HANDLE;
+     VkSemaphore transfer = VK_NULL_HANDLE;
++
++    VkSemaphore bind  = VK_NULL_HANDLE;
++    VkSemaphore post  = VK_NULL_HANDLE;
++    VkSemaphore sdma  = VK_NULL_HANDLE;
++    VkFence     fence = VK_NULL_HANDLE;
+   };
+ 
+ 
+@@ -133,7 +140,8 @@ namespace dxvk {
+     VkResult submit(
+             DxvkDevice*           device,
+             VkQueue               queue,
+-            uint64_t              frameId);
++            uint64_t              frameId,
++            VkFence               fence = VK_NULL_HANDLE);
+ 
+     /**
+      * \brief Resets object
+diff --git a/src/dxvk/dxvk_queue.cpp b/src/dxvk/dxvk_queue.cpp
+index 221f444..49d2546 100644
+--- a/src/dxvk/dxvk_queue.cpp
++++ b/src/dxvk/dxvk_queue.cpp
+@@ -11,6 +11,9 @@ namespace dxvk {
+     m_finishThread  ([this] () { finishCmdLists(); }) {
+     auto vk = m_device->vkd();
+ 
++    m_useTimeline = env::getEnvVar("DXVK_DISABLE_TIMELINE_SEMAPHORES") != "1";
++    Logger::info(str::format("Timeline semaphores: ", m_useTimeline ? "enabled" : "disabled"));
++
+     VkSemaphoreTypeCreateInfo semaphoreType = { VK_STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO };
+     semaphoreType.semaphoreType = VK_SEMAPHORE_TYPE_TIMELINE;
+ 
+@@ -42,7 +45,32 @@ namespace dxvk {
+     vk->vkDestroySemaphore(vk->device(), m_semaphores.graphics, nullptr);
+     vk->vkDestroySemaphore(vk->device(), m_semaphores.transfer, nullptr);
+   }
++
++  DxvkTimelineSemaphores DxvkSubmissionQueue::allocateBinarySync() {
++    std::unique_lock<dxvk::mutex> lock(m_binaryPoolMutex);
++    if (!m_binarySyncPool.empty()) {
++      auto sync = m_binarySyncPool.back();
++      m_binarySyncPool.pop_back();
++      return sync;
++    }
++    
++    auto vk = m_device->vkd();
++    DxvkTimelineSemaphores sync;
++    VkSemaphoreCreateInfo semInfo = { VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO };
++    VkFenceCreateInfo fenceInfo = { VK_STRUCTURE_TYPE_FENCE_CREATE_INFO };
++
++    sync.use_timeline = false;
++    vk->vkCreateSemaphore(vk->device(), &semInfo, nullptr, &sync.bind);
++    vk->vkCreateSemaphore(vk->device(), &semInfo, nullptr, &sync.post);
++    vk->vkCreateSemaphore(vk->device(), &semInfo, nullptr, &sync.sdma);
++    vk->vkCreateFence(vk->device(), &fenceInfo, nullptr, &sync.fence);
++    return sync;
++  }
+   
++  void DxvkSubmissionQueue::recycleBinarySync(const DxvkTimelineSemaphores& sync) {
++    std::unique_lock<dxvk::mutex> lock(m_binaryPoolMutex);
++    m_binarySyncPool.push_back(sync);
++  }
+   
+   void DxvkSubmissionQueue::submit(
+           DxvkSubmitInfo            submitInfo,
+@@ -162,9 +190,15 @@ namespace dxvk {
+               trackedSubmitId = entry.latency.frameId;
+           }
+ 
+-          status = entry.submit.cmdList->submit(
+-            m_semaphores, m_timelines, trackedSubmitId);
+-          entry.timelines = m_timelines;
++          if (m_useTimeline) {
++            status = entry.submit.cmdList->submit(
++              m_semaphores, m_timelines, trackedSubmitId);
++            entry.timelines = m_timelines;
++          } else {
++            entry.binarySync = allocateBinarySync();
++            status = entry.submit.cmdList->submit(
++              entry.binarySync, m_timelines, trackedSubmitId);
++          }
+         } else if (entry.present.presenter != nullptr) {
+           if (entry.latency.tracker)
+             entry.latency.tracker->notifyQueuePresentBegin(entry.latency.frameId);
+@@ -248,20 +282,28 @@ namespace dxvk {
+         VkResult status = m_lastError.load();
+ 
+         if (status != VK_ERROR_DEVICE_LOST) {
+-          std::array<VkSemaphore, 2> semaphores = { m_semaphores.graphics, m_semaphores.transfer };
+-          std::array<uint64_t, 2> timelines = { entry.timelines.graphics, entry.timelines.transfer };
+-
+           if (entry.latency.tracker)
+             entry.latency.tracker->notifyGpuExecutionBegin(entry.latency.frameId);
+ 
+-          VkSemaphoreWaitInfo waitInfo = { VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO };
+-          waitInfo.semaphoreCount = semaphores.size();
+-          waitInfo.pSemaphores = semaphores.data();
+-          waitInfo.pValues = timelines.data();
+-
+-          // Treat a timeout here as DEVICE_LOST. Sometimes we just don't get
+-          // DEVICE_LOST from the driver for some reason.
+-          status = vk->vkWaitSemaphores(vk->device(), &waitInfo, 5'000'000'000ull);
++          if (m_useTimeline) {
++            std::array<VkSemaphore, 2> semaphores = { m_semaphores.graphics, m_semaphores.transfer };
++            std::array<uint64_t, 2> timelines = { entry.timelines.graphics, entry.timelines.transfer };
++
++            VkSemaphoreWaitInfo waitInfo = { VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO };
++            waitInfo.semaphoreCount = semaphores.size();
++            waitInfo.pSemaphores = semaphores.data();
++            waitInfo.pValues = timelines.data();
++
++            // Treat a timeout here as DEVICE_LOST. Sometimes we just don't get
++            // DEVICE_LOST from the driver for some reason.
++            status = vk->vkWaitSemaphores(vk->device(), &waitInfo, 5'000'000'000ull);
++          } else {
++            // Binary-semaphore mode: the submission's own fence stands in for the
++            // timeline wait, with the same timeout-means-hung rule.
++            status = vk->vkWaitForFences(vk->device(), 1, &entry.binarySync.fence, VK_TRUE, 5'000'000'000ull);
++            vk->vkResetFences(vk->device(), 1, &entry.binarySync.fence);
++            recycleBinarySync(entry.binarySync);
++          }
+ 
+           if (status == VK_TIMEOUT) {
+             Logger::err("DxvkSubmissionQueue: Timeout occured, GPU likely hung.");
+diff --git a/src/dxvk/dxvk_queue.h b/src/dxvk/dxvk_queue.h
+index bd3ddf0..719bb76 100644
+--- a/src/dxvk/dxvk_queue.h
++++ b/src/dxvk/dxvk_queue.h
+@@ -62,6 +62,7 @@ namespace dxvk {
+     DxvkPresentInfo     present;
+     DxvkLatencyInfo     latency;
+     DxvkTimelineSemaphoreValues timelines;
++    DxvkTimelineSemaphores      binarySync;
+   };
+ 
+ 
+@@ -187,10 +188,17 @@ namespace dxvk {
+     DxvkDevice*                 m_device;
+     DxvkCheckpointBuffer*       m_checkpoints = nullptr;
+     DxvkQueueCallback           m_callback;
+-
++    
++    bool                        m_useTimeline = true;
+     DxvkTimelineSemaphores      m_semaphores;
+     DxvkTimelineSemaphoreValues m_timelines;
+ 
++    dxvk::mutex                         m_binaryPoolMutex;
++    std::vector<DxvkTimelineSemaphores> m_binarySyncPool;
++
++    DxvkTimelineSemaphores allocateBinarySync();
++    void recycleBinarySync(const DxvkTimelineSemaphores& sync);
++
+     std::atomic<VkResult>       m_lastError = { VK_SUCCESS };
+     
+     std::atomic<bool>           m_stopped = { false };

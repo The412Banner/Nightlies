@@ -1116,14 +1116,33 @@ jobs:
               && ./package-release.sh master ../dxvk-built --no-package
           }
 
+          # Git detaches an auto-gc after a fetch and keeps writing into the clone for a while;
+          # an rm -rf racing it fails with "Directory not empty" and, under the shell's -e,
+          # killed the fallback before it cloned anything. Move each tree aside first (a
+          # rename cannot race), then delete with retries; a leftover is only a warning.
+          discard_trees() {
+            local d n
+            for d in "$@"; do
+              [ -e "$d" ] || continue
+              mv "$d" "$d.discard.$RANDOM" 2>/dev/null || true
+            done
+            for n in 1 2 3 4 5; do
+              rm -rf ./*.discard.* 2>/dev/null || true
+              ls -d ./*.discard.* >/dev/null 2>&1 || return 0
+              sleep 3
+            done
+            echo "::warning::stale build trees could not be deleted; continuing"
+            return 0
+          }
+
           # Try upstream MASTER + master gplasync patch and PROVE IT COMPILES.
           # Returns non-zero if the patch fails to APPLY or the tree fails to COMPILE.
           attempt_master() {
-            cd "$GITHUB_WORKSPACE"; rm -rf dxvk dxvk-built build-ec build-x86
-            git clone --recurse-submodules --shallow-submodules \
+            cd "$GITHUB_WORKSPACE"; discard_trees dxvk dxvk-built build-ec build-x86
+            git clone -c gc.auto=0 --recurse-submodules --shallow-submodules \
               https://github.com/doitsujin/dxvk.git dxvk
             cd dxvk
-            git fetch --tags --force >/dev/null 2>&1 || true
+            git -c gc.auto=0 fetch --tags --force >/dev/null 2>&1 || true
             # patch --fuzz (not git apply): tolerates minor context drift vs a moving master.
             patch -p1 --fuzz=3 --dry-run < "$PATCHES/dxvk-gplasync-master.patch" >/dev/null 2>&1 || return 1
             patch -p1 --fuzz=3 < "$PATCHES/dxvk-gplasync-master.patch" || return 1
@@ -1132,8 +1151,8 @@ jobs:
 
           # Pinned known-good fallback: v3.0 + gplasync-3.0-1. Fatal if it fails.
           use_fallback() {
-            cd "$GITHUB_WORKSPACE"; rm -rf dxvk dxvk-built build-ec build-x86
-            git clone --recurse-submodules --shallow-submodules --branch v3.0 \
+            cd "$GITHUB_WORKSPACE"; discard_trees dxvk dxvk-built build-ec build-x86
+            git clone -c gc.auto=0 --recurse-submodules --shallow-submodules --branch v3.0 \
               https://github.com/doitsujin/dxvk.git dxvk
             cd dxvk
             patch -p1 --fuzz=3 < "$PATCHES/dxvk-gplasync-3.0-1.patch"
@@ -1460,14 +1479,33 @@ jobs:
               && ninja -C build-x86 -j$(nproc)
           }
 
+          # Git detaches an auto-gc after a fetch and keeps writing into the clone for a while;
+          # an rm -rf racing it fails with "Directory not empty" and, under the shell's -e,
+          # killed the fallback before it cloned anything. Move each tree aside first (a
+          # rename cannot race), then delete with retries; a leftover is only a warning.
+          discard_trees() {
+            local d n
+            for d in "$@"; do
+              [ -e "$d" ] || continue
+              mv "$d" "$d.discard.$RANDOM" 2>/dev/null || true
+            done
+            for n in 1 2 3 4 5; do
+              rm -rf ./*.discard.* 2>/dev/null || true
+              ls -d ./*.discard.* >/dev/null 2>&1 || return 0
+              sleep 3
+            done
+            echo "::warning::stale build trees could not be deleted; continuing"
+            return 0
+          }
+
           # Try upstream MASTER + master gplasync patch and PROVE IT COMPILES.
           # Returns non-zero if the patch fails to APPLY or the tree fails to COMPILE.
           attempt_master() {
-            cd "$GITHUB_WORKSPACE"; rm -rf dxvk dxvk-built build-ec build-x86
-            git clone --recurse-submodules --shallow-submodules \
+            cd "$GITHUB_WORKSPACE"; discard_trees dxvk dxvk-built build-ec build-x86
+            git clone -c gc.auto=0 --recurse-submodules --shallow-submodules \
               https://github.com/doitsujin/dxvk.git dxvk
             cd dxvk
-            git fetch --tags --force >/dev/null 2>&1 || true
+            git -c gc.auto=0 fetch --tags --force >/dev/null 2>&1 || true
             # patch --fuzz (not git apply): tolerates minor context drift vs a moving master.
             patch -p1 --fuzz=3 --dry-run < "$PATCHES/dxvk-gplasync-master.patch" >/dev/null 2>&1 || return 1
             patch -p1 --fuzz=3 < "$PATCHES/dxvk-gplasync-master.patch" || return 1
@@ -1476,8 +1514,8 @@ jobs:
 
           # Pinned known-good fallback: v3.0 + gplasync-3.0-1. Fatal if it fails.
           use_fallback() {
-            cd "$GITHUB_WORKSPACE"; rm -rf dxvk dxvk-built build-ec build-x86
-            git clone --recurse-submodules --shallow-submodules --branch v3.0 \
+            cd "$GITHUB_WORKSPACE"; discard_trees dxvk dxvk-built build-ec build-x86
+            git clone -c gc.auto=0 --recurse-submodules --shallow-submodules --branch v3.0 \
               https://github.com/doitsujin/dxvk.git dxvk
             cd dxvk
             patch -p1 --fuzz=3 < "$PATCHES/dxvk-gplasync-3.0-1.patch"
@@ -1561,7 +1599,8 @@ jobs:
   # ==================================================================
   # JOB 7: DXVK Binary-Semaphores (Standard, GPLAsync)
   # Same recipe as JOB 4 plus leegao's binary-semaphore queue fallback
-  # (patches/dxvk-binary-semaphores.patch). Adds DXVK_DISABLE_TIMELINE_SEMAPHORES=1
+  # (patches/dxvk-binary-semaphores-master.patch on master, dxvk-binary-semaphores.patch
+  # on the v3.0 fallback). Adds DXVK_DISABLE_TIMELINE_SEMAPHORES=1
   # runtime env to work around the Turnip-kgsl timeline-semaphore FPS regression
   # in DXVK 2.5+. The patch touches only dxvk_cmdlist/dxvk_queue, which do NOT
   # overlap the Ph42oN gplasync patch, so the two are layered together.
@@ -1648,26 +1687,46 @@ jobs:
               && ./package-release.sh master ../dxvk-built --no-package
           }
 
+          # Git detaches an auto-gc after a fetch and keeps writing into the clone for a while;
+          # an rm -rf racing it fails with "Directory not empty" and, under the shell's -e,
+          # killed the fallback before it cloned anything. Move each tree aside first (a
+          # rename cannot race), then delete with retries; a leftover is only a warning.
+          discard_trees() {
+            local d n
+            for d in "$@"; do
+              [ -e "$d" ] || continue
+              mv "$d" "$d.discard.$RANDOM" 2>/dev/null || true
+            done
+            for n in 1 2 3 4 5; do
+              rm -rf ./*.discard.* 2>/dev/null || true
+              ls -d ./*.discard.* >/dev/null 2>&1 || return 0
+              sleep 3
+            done
+            echo "::warning::stale build trees could not be deleted; continuing"
+            return 0
+          }
+
           # Try upstream MASTER + master gplasync + binsem patches and PROVE IT COMPILES.
           # Returns non-zero if any patch fails to APPLY or the tree fails to COMPILE.
           attempt_master() {
-            cd "$GITHUB_WORKSPACE"; rm -rf dxvk dxvk-built build-ec build-x86
-            git clone --recurse-submodules --shallow-submodules \
+            cd "$GITHUB_WORKSPACE"; discard_trees dxvk dxvk-built build-ec build-x86
+            git clone -c gc.auto=0 --recurse-submodules --shallow-submodules \
               https://github.com/doitsujin/dxvk.git dxvk
             cd dxvk
-            git fetch --tags --force >/dev/null 2>&1 || true
+            git -c gc.auto=0 fetch --tags --force >/dev/null 2>&1 || true
             # patch --fuzz (not git apply): tolerates minor context drift vs a moving master.
             patch -p1 --fuzz=3 --dry-run < "$PATCHES/dxvk-gplasync-master.patch" >/dev/null 2>&1 || return 1
             patch -p1 --fuzz=3 < "$PATCHES/dxvk-gplasync-master.patch" || return 1
-            # leegao binary-semaphore fallback (vendored) — layered on top of gplasync.
-            patch -p1 --fuzz=3 < "$PATCHES/dxvk-binary-semaphores.patch" || return 1
+            # leegao binary-semaphore fallback, re-ported onto the 2026-10-09 submission rework
+            # (dxvk-binary-semaphores-master.patch); the v3.0 fallback keeps the original patch.
+            patch -p1 --fuzz=3 < "$PATCHES/dxvk-binary-semaphores-master.patch" || return 1
             build_dxvk || return 1
           }
 
           # Pinned known-good fallback: v3.0 + gplasync-3.0-1 + binsem. Fatal if it fails.
           use_fallback() {
-            cd "$GITHUB_WORKSPACE"; rm -rf dxvk dxvk-built build-ec build-x86
-            git clone --recurse-submodules --shallow-submodules --branch v3.0 \
+            cd "$GITHUB_WORKSPACE"; discard_trees dxvk dxvk-built build-ec build-x86
+            git clone -c gc.auto=0 --recurse-submodules --shallow-submodules --branch v3.0 \
               https://github.com/doitsujin/dxvk.git dxvk
             cd dxvk
             patch -p1 --fuzz=3 < "$PATCHES/dxvk-gplasync-3.0-1.patch"
@@ -1872,26 +1931,46 @@ jobs:
               && ninja -C build-x86 -j$(nproc)
           }
 
+          # Git detaches an auto-gc after a fetch and keeps writing into the clone for a while;
+          # an rm -rf racing it fails with "Directory not empty" and, under the shell's -e,
+          # killed the fallback before it cloned anything. Move each tree aside first (a
+          # rename cannot race), then delete with retries; a leftover is only a warning.
+          discard_trees() {
+            local d n
+            for d in "$@"; do
+              [ -e "$d" ] || continue
+              mv "$d" "$d.discard.$RANDOM" 2>/dev/null || true
+            done
+            for n in 1 2 3 4 5; do
+              rm -rf ./*.discard.* 2>/dev/null || true
+              ls -d ./*.discard.* >/dev/null 2>&1 || return 0
+              sleep 3
+            done
+            echo "::warning::stale build trees could not be deleted; continuing"
+            return 0
+          }
+
           # Try upstream MASTER + master gplasync + binsem patches and PROVE IT COMPILES.
           # Returns non-zero if any patch fails to APPLY or the tree fails to COMPILE.
           attempt_master() {
-            cd "$GITHUB_WORKSPACE"; rm -rf dxvk dxvk-built build-ec build-x86
-            git clone --recurse-submodules --shallow-submodules \
+            cd "$GITHUB_WORKSPACE"; discard_trees dxvk dxvk-built build-ec build-x86
+            git clone -c gc.auto=0 --recurse-submodules --shallow-submodules \
               https://github.com/doitsujin/dxvk.git dxvk
             cd dxvk
-            git fetch --tags --force >/dev/null 2>&1 || true
+            git -c gc.auto=0 fetch --tags --force >/dev/null 2>&1 || true
             # patch --fuzz (not git apply): tolerates minor context drift vs a moving master.
             patch -p1 --fuzz=3 --dry-run < "$PATCHES/dxvk-gplasync-master.patch" >/dev/null 2>&1 || return 1
             patch -p1 --fuzz=3 < "$PATCHES/dxvk-gplasync-master.patch" || return 1
-            # leegao binary-semaphore fallback (vendored) — layered on top of gplasync.
-            patch -p1 --fuzz=3 < "$PATCHES/dxvk-binary-semaphores.patch" || return 1
+            # leegao binary-semaphore fallback, re-ported onto the 2026-10-09 submission rework
+            # (dxvk-binary-semaphores-master.patch); the v3.0 fallback keeps the original patch.
+            patch -p1 --fuzz=3 < "$PATCHES/dxvk-binary-semaphores-master.patch" || return 1
             build_dxvk || return 1
           }
 
           # Pinned known-good fallback: v3.0 + gplasync-3.0-1 + binsem. Fatal if it fails.
           use_fallback() {
-            cd "$GITHUB_WORKSPACE"; rm -rf dxvk dxvk-built build-ec build-x86
-            git clone --recurse-submodules --shallow-submodules --branch v3.0 \
+            cd "$GITHUB_WORKSPACE"; discard_trees dxvk dxvk-built build-ec build-x86
+            git clone -c gc.auto=0 --recurse-submodules --shallow-submodules --branch v3.0 \
               https://github.com/doitsujin/dxvk.git dxvk
             cd dxvk
             patch -p1 --fuzz=3 < "$PATCHES/dxvk-gplasync-3.0-1.patch"
