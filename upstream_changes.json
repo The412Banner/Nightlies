@@ -1,23 +1,41 @@
 {
-  "triggered_at": "2026-10-10T10:17:36Z",
+  "triggered_at": "2026-10-10T16:02:16Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "a489cfe",
-      "new": "c5ddad2",
-      "full": "c5ddad2a1faec41d1904ce5ddca38557d57c56c6",
-      "msg": "[RV64_DYNAREC] Fix ADDI(x1, x1, 0xffff) and ANDI(x1, x1, 0xffff) (#4555)",
-      "date": "2026-10-10T08:23:55Z"
+      "old": "c5ddad2",
+      "new": "397f1f1",
+      "full": "397f1f1594158c6511f880b628e0972602f29f23",
+      "msg": "[RV64_DYNAREC] Optimize VMAXPS family opcodes (#4557)",
+      "date": "2026-10-10T14:58:23Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "74b557a",
+      "new": "71ec7b5",
+      "full": "71ec7b5be6c517db39bcca4d38f38a63f6ddbc56",
+      "msg": "[dxvk] Fix broken negative timeout for keyed mutex",
+      "date": "2026-10-10T14:51:52Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "f414c38",
+      "new": "9629542",
+      "full": "96295421c36e272a104601cdd5e4949e775bbcd1",
+      "msg": "[meta] Handle clipper detachment and unsupported helper input values",
+      "date": "2026-10-10T13:55:00Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "35b085c",
-      "new": "cf0b979",
-      "full": "cf0b979229f3dc77eb28dd3b0a232ae37d787b1d",
-      "msg": "r300/ci: remove nonexistent tests",
-      "date": "2026-10-10T09:22:28.000+00:00"
+      "old": "cf0b979",
+      "new": "5c80eda",
+      "full": "5c80eda3f1c0ac7cb80b0597473ae83da4b97c08",
+      "msg": "spirv,panfrost: emit precise OpenCL log/log2/exp2 as hardware transcendentals",
+      "date": "2026-10-10T12:03:52.000+00:00"
     }
   ]
 }
