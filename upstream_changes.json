@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-10-10T20:23:48Z",
+  "triggered_at": "2026-10-11T00:00:38Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "397f1f1",
-      "new": "c6a8c44",
-      "full": "c6a8c4472f74f9ad204d35195f084b5f996b12e3",
-      "msg": "[RV64_DYNAREC] Fixed a few lock opcodes (#4558)",
-      "date": "2026-10-10T16:08:03Z"
-    },
     {
       "repo": "WinterSnowfall/d7vk",
       "name": "D7VK (DDraw/D3D7)",
-      "old": "9629542",
-      "new": "d8363d1",
-      "full": "d8363d1a690894dd01ca72da24d2f4c045a4f2b3",
+      "old": "d8363d1",
+      "new": "f7a6dfa",
+      "full": "f7a6dfa34fd050d13896ac30d8cb87d4a5b8b069",
       "msg": "[meta] Minor styling and casting changes",
-      "date": "2026-10-10T17:21:19Z"
-    },
-    {
-      "repo": "mesa/mesa",
-      "name": "Mesa (Turnip)",
-      "old": "5c80eda",
-      "new": "bffd919",
-      "full": "bffd91947efc1932da99aca69fc540d6d4201b0c",
-      "msg": "nvk: Use meta gfx for depth copies",
-      "date": "2026-10-10T19:09:06.000+00:00"
+      "date": "2026-10-10T22:45:47Z"
     }
   ]
 }
