@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-11T00:00:38Z",
+  "triggered_at": "2026-10-11T13:39:31Z",
   "changed": [
     {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "d8363d1",
-      "new": "f7a6dfa",
-      "full": "f7a6dfa34fd050d13896ac30d8cb87d4a5b8b069",
-      "msg": "[meta] Minor styling and casting changes",
-      "date": "2026-10-10T22:45:47Z"
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "71ec7b5",
+      "new": "2c94c5f",
+      "full": "2c94c5f25cf75c313ef2a55b2e0c9276d67c28d6",
+      "msg": "[util] Only spoof vendor id in New Vegas",
+      "date": "2026-10-11T11:36:14Z"
+    },
+    {
+      "repo": "mesa/mesa",
+      "name": "Mesa (Turnip)",
+      "old": "bffd919",
+      "new": "37bf953",
+      "full": "37bf953a58d8baa6c29142c714f46418d4d596a4",
+      "msg": "mesa: Do not update draw functions outside GL_RENDER",
+      "date": "2026-10-11T11:27:48.000+00:00"
     }
   ]
 }
