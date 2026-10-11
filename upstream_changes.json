@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-11T13:39:31Z",
+  "triggered_at": "2026-10-11T18:32:03Z",
   "changed": [
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "71ec7b5",
-      "new": "2c94c5f",
-      "full": "2c94c5f25cf75c313ef2a55b2e0c9276d67c28d6",
-      "msg": "[util] Only spoof vendor id in New Vegas",
-      "date": "2026-10-11T11:36:14Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "bffd919",
-      "new": "37bf953",
-      "full": "37bf953a58d8baa6c29142c714f46418d4d596a4",
-      "msg": "mesa: Do not update draw functions outside GL_RENDER",
-      "date": "2026-10-11T11:27:48.000+00:00"
+      "old": "37bf953",
+      "new": "745709a",
+      "full": "745709a000482a4a24c91faef5c5a40bd653a863",
+      "msg": "util/tc: reset end_call when rp info is reused after sync",
+      "date": "2026-10-11T15:03:22.000+00:00"
     }
   ]
 }
