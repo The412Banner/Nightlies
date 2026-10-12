@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-11T18:32:03Z",
+  "triggered_at": "2026-10-12T08:22:37Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "c6a8c44",
+      "new": "ee03a07",
+      "full": "ee03a07a17d79e0e3163b30f17eb47b531abe8d4",
+      "msg": "[RV64_DYNAREC] Fixed some recently introduced issues (#4560)",
+      "date": "2026-10-12T06:46:03Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "37bf953",
-      "new": "745709a",
-      "full": "745709a000482a4a24c91faef5c5a40bd653a863",
-      "msg": "util/tc: reset end_call when rp info is reused after sync",
-      "date": "2026-10-11T15:03:22.000+00:00"
+      "old": "745709a",
+      "new": "1f49528",
+      "full": "1f4952878d78caba95afcb4efa1a1dfaf4fbc692",
+      "msg": "ac/nir/meta: fix determining if sparse loads must be scalarized",
+      "date": "2026-10-12T07:33:52.000+00:00"
     }
   ]
 }
