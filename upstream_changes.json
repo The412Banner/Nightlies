@@ -1,23 +1,41 @@
 {
-  "triggered_at": "2026-10-12T08:22:37Z",
+  "triggered_at": "2026-10-12T18:23:27Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "c6a8c44",
-      "new": "ee03a07",
-      "full": "ee03a07a17d79e0e3163b30f17eb47b531abe8d4",
-      "msg": "[RV64_DYNAREC] Fixed some recently introduced issues (#4560)",
-      "date": "2026-10-12T06:46:03Z"
+      "old": "ee03a07",
+      "new": "0684e43",
+      "full": "0684e43871c642f218f20aa8df5816ca755e49aa",
+      "msg": "[RV64_DYNAREC] Fix PUSHAD and signal state recovery if rsp_merge is enabled (#45",
+      "date": "2026-10-12T10:47:29Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "2c94c5f",
+      "new": "649c4bc",
+      "full": "649c4bc0f0e303fcf9e21fad1c36e30ebce79b02",
+      "msg": "[meta] Workaround a crash in EA anti cheat code signing checks.",
+      "date": "2026-10-12T14:14:36Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "f7a6dfa",
+      "new": "d5388d4",
+      "full": "d5388d4b728d47c9164e59de147497bcc396e6a3",
+      "msg": "[meta] Only set the gamma ramp when conditions are proper",
+      "date": "2026-10-12T15:06:13Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "745709a",
-      "new": "1f49528",
-      "full": "1f4952878d78caba95afcb4efa1a1dfaf4fbc692",
-      "msg": "ac/nir/meta: fix determining if sparse loads must be scalarized",
-      "date": "2026-10-12T07:33:52.000+00:00"
+      "old": "1f49528",
+      "new": "26e6612",
+      "full": "26e66124a0b6bf214b2c027ffda184f46e8f90fe",
+      "msg": "kk: Fix storageInputOutput16",
+      "date": "2026-10-12T17:58:45.000+00:00"
     }
   ]
 }
