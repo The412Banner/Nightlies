@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-10-13T16:36:07Z",
+  "triggered_at": "2026-10-13T21:39:09Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "a95f10c",
-      "new": "986c69c",
-      "full": "986c69cc3eccaa5520c54da18f5b4fb8cee1f592",
-      "msg": "[RV64_DYNAREC] Fix MMX cache corruption in VPERMILPS (#4566)",
-      "date": "2026-10-13T11:59:00Z"
+      "old": "986c69c",
+      "new": "4437c9b",
+      "full": "4437c9b8b1307409261500915ada9012aa04def8",
+      "msg": "[ARM64_DYNAREC] Use LRCPC2 for the UnityHack if LRCPC2 and USCAT cpu extension a",
+      "date": "2026-10-13T17:01:55Z"
     },
     {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "2230755",
-      "new": "fdbaf51",
-      "full": "fdbaf51f8794e8d75ad8c43dc2d62fcc8a136af3",
-      "msg": "vkd3d: Fix synchronization around queued transfer ops.",
-      "date": "2026-10-13T13:33:42Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "e9c1034",
+      "new": "5285020",
+      "full": "5285020de0b30dbdae7b44d0d83541af2d13d002",
+      "msg": "Merge pull request #6037 from javelina-pkwy/fix/rpmalloc-vmdata",
+      "date": "2026-10-13T20:02:50Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "1dee441",
-      "new": "7b87f8a",
-      "full": "7b87f8ad226ecfa396fd336a1b0f96f7262e0da4",
-      "msg": "ci/panfrost: Add G610 and G925 traces",
-      "date": "2026-10-13T15:53:47.000+00:00"
+      "old": "7b87f8a",
+      "new": "5983a55",
+      "full": "5983a554616d0b2b324204d06ba55d227c726be6",
+      "msg": "util/tc: fix buffer over-read and thread race in staging texture_subdata",
+      "date": "2026-10-13T20:39:59.000+00:00"
     }
   ]
 }
