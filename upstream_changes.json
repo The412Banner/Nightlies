@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-10-13T01:02:04Z",
+  "triggered_at": "2026-10-13T08:44:25Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "0684e43",
+      "new": "a95f10c",
+      "full": "a95f10cb662dc522ea9adedd7d30bffef845646f",
+      "msg": "[RV64_DYNAREC] Fixed vector PINSRD opcode and added vector PINSRB opcode (#4564)",
+      "date": "2026-10-13T06:02:50Z"
+    },
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "14c9268",
-      "new": "eef303f",
-      "full": "eef303f69a829ca49349b8db2bb715597db01a37",
-      "msg": "Merge pull request #6033 from Sonicadvance1/271",
-      "date": "2026-10-13T00:38:34Z"
+      "old": "eef303f",
+      "new": "e9c1034",
+      "full": "e9c103412a616ef3f8e2dddb10a0c114d0f9d9e6",
+      "msg": "Merge pull request #6032 from javelina-pkwy/tests/slim-python-runners",
+      "date": "2026-10-13T01:52:39Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "26e6612",
-      "new": "ed2bbe0",
-      "full": "ed2bbe018514b032bc775ef8fce213de3c5b2f71",
-      "msg": "util/tests: add tests for multi-file disk cache size counter recovery",
-      "date": "2026-10-12T23:42:47.000+00:00"
+      "old": "ed2bbe0",
+      "new": "1dee441",
+      "full": "1dee441c7ff6bbccc4da5221ca7b146339f317dc",
+      "msg": "nvk: Drop the NOP from BeginCommandBuffer()",
+      "date": "2026-10-13T07:44:33.000+00:00"
     }
   ]
 }
