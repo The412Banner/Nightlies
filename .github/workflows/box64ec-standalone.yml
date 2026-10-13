@@ -23,8 +23,8 @@ on:
         default: 'main'
         required: true
       box64_pr:
-        description: 'Optional ptitSeb/box64 pull request number; its head is built instead of the ref (blank = none)'
-        default: '4480'
+        description: 'Optional ptitSeb/box64 pull request number; its head is built instead of the ref (none = build the ref)'
+        default: 'none'
         required: false
       publish:
         description: 'Also publish a prerelease (never latest, not read by the catalog)'
@@ -64,14 +64,16 @@ jobs:
       - name: Clone Source
         run: |
           # Push runs have no inputs: they build our experimental dynarec branch
-          # (The412Banner/box64 exp/box64ec-dynarec, on top of upstream PR #4480).
+          # (The412Banner/box64 exp/box64ec-dynarec-20261013, on top of upstream main).
           REPO="${{ github.event_name == 'push' && 'The412Banner/box64' || inputs.box64_repo }}"
-          REF="${{ github.event_name == 'push' && 'exp/box64ec-dynarec' || inputs.box64_ref }}"
+          REF="${{ github.event_name == 'push' && 'exp/box64ec-dynarec-20261013' || inputs.box64_ref }}"
           PR="${{ github.event_name == 'push' && '' || inputs.box64_pr }}"
           echo "BOX64_REPO=$REPO" >> $GITHUB_ENV
           git clone "https://github.com/$REPO" source
           cd source
           git checkout "$REF"
+          # A blank dispatch input falls back to the default, so "none" is the way to say no PR.
+          [ "$PR" = "none" ] && PR=""
           if [ -n "$PR" ]; then
             git fetch origin "pull/${PR}/head:pr-${PR}"
             git checkout "pr-${PR}"
