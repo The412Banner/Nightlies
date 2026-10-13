@@ -1,0 +1,20 @@
+[
+  {
+    "type": "GpuDriver",
+    "verName": "Rutabaga-26.10.10",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/rutabaga-drivers/Rutabaga-26.10.10.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Rutabaga-26.09.24",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/rutabaga-drivers/Rutabaga-26.09.24.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Rutabaga-26.08.28",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/rutabaga-drivers/Rutabaga-26.08.28.zip"
+  }
+]
