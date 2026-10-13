@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-10-13T08:44:25Z",
+  "triggered_at": "2026-10-13T16:36:07Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "0684e43",
-      "new": "a95f10c",
-      "full": "a95f10cb662dc522ea9adedd7d30bffef845646f",
-      "msg": "[RV64_DYNAREC] Fixed vector PINSRD opcode and added vector PINSRB opcode (#4564)",
-      "date": "2026-10-13T06:02:50Z"
+      "old": "a95f10c",
+      "new": "986c69c",
+      "full": "986c69cc3eccaa5520c54da18f5b4fb8cee1f592",
+      "msg": "[RV64_DYNAREC] Fix MMX cache corruption in VPERMILPS (#4566)",
+      "date": "2026-10-13T11:59:00Z"
     },
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "eef303f",
-      "new": "e9c1034",
-      "full": "e9c103412a616ef3f8e2dddb10a0c114d0f9d9e6",
-      "msg": "Merge pull request #6032 from javelina-pkwy/tests/slim-python-runners",
-      "date": "2026-10-13T01:52:39Z"
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "2230755",
+      "new": "fdbaf51",
+      "full": "fdbaf51f8794e8d75ad8c43dc2d62fcc8a136af3",
+      "msg": "vkd3d: Fix synchronization around queued transfer ops.",
+      "date": "2026-10-13T13:33:42Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ed2bbe0",
-      "new": "1dee441",
-      "full": "1dee441c7ff6bbccc4da5221ca7b146339f317dc",
-      "msg": "nvk: Drop the NOP from BeginCommandBuffer()",
-      "date": "2026-10-13T07:44:33.000+00:00"
+      "old": "1dee441",
+      "new": "7b87f8a",
+      "full": "7b87f8ad226ecfa396fd336a1b0f96f7262e0da4",
+      "msg": "ci/panfrost: Add G610 and G925 traces",
+      "date": "2026-10-13T15:53:47.000+00:00"
     }
   ]
 }
