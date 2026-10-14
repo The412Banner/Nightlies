@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-14T00:45:22Z",
+  "triggered_at": "2026-10-14T05:38:53Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "5983a55",
-      "new": "1df51f3",
-      "full": "1df51f350aefee6f4afa435cea8efd8ca53cb4ec",
-      "msg": "nv30/ci: update nv43 piglit results",
-      "date": "2026-10-14T00:24:38.000+00:00"
+      "old": "1df51f3",
+      "new": "c4e85fd",
+      "full": "c4e85fd2214572ff5dec4560da112b7f267cb069",
+      "msg": "meson: link in orcjit instead of mcjit when using OrcJIT",
+      "date": "2026-10-14T04:07:02.000+00:00"
     }
   ]
 }
