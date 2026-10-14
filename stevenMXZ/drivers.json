@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-10-13T14:39:50Z",
+  "updated_at": "2026-10-14T12:32:19Z",
   "source": "https://github.com/StevenMXZ/Adreno-Tools-Drivers",
   "mirror_release": "https://github.com/The412Banner/Nightlies/releases/tag/stevenmxz-drivers",
-  "total_releases": 77,
-  "total_assets": 105,
+  "total_releases": 78,
+  "total_assets": 108,
   "releases": [
     {
       "tag": "v891.7",
@@ -17,6 +17,37 @@
           "original_url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/v891.7/v891.7.zip",
           "mirror_url": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v891.7_v891.7.zip",
           "published_at": "2026-10-05T19:49:14Z"
+        }
+      ]
+    },
+    {
+      "tag": "gamesir",
+      "name": "Gamesir Turnip Drivers (Rutabaga) ",
+      "published_at": "2026-10-14T12:16:05Z",
+      "assets": [
+        {
+          "name": "Turnip-Rutabaga-v1.zip",
+          "mirror_name": "gamesir_Turnip-Rutabaga-v1.zip",
+          "size": 2733576,
+          "original_url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/gamesir/Turnip-Rutabaga-v1.zip",
+          "mirror_url": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/gamesir_Turnip-Rutabaga-v1.zip",
+          "published_at": "2026-10-14T12:23:43Z"
+        },
+        {
+          "name": "Turnip-Rutabaga-v2.zip",
+          "mirror_name": "gamesir_Turnip-Rutabaga-v2.zip",
+          "size": 3078142,
+          "original_url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/gamesir/Turnip-Rutabaga-v2.zip",
+          "mirror_url": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/gamesir_Turnip-Rutabaga-v2.zip",
+          "published_at": "2026-10-14T12:23:44Z"
+        },
+        {
+          "name": "Turnip-Rutabaga-v3.zip",
+          "mirror_name": "gamesir_Turnip-Rutabaga-v3.zip",
+          "size": 3471547,
+          "original_url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/gamesir/Turnip-Rutabaga-v3.zip",
+          "mirror_url": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/gamesir_Turnip-Rutabaga-v3.zip",
+          "published_at": "2026-10-14T12:23:46Z"
         }
       ]
     },
