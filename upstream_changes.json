@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-14T15:38:29Z",
+  "triggered_at": "2026-10-14T19:51:46Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "8834fe3",
-      "new": "378a5dc",
-      "full": "378a5dc61b982b7d36e744cf44407e6b55dc98b7",
-      "msg": "etnaviv: blt: Re-validate tile status on full color clears",
-      "date": "2026-10-14T15:02:20.000+00:00"
+      "old": "378a5dc",
+      "new": "a0e120b",
+      "full": "a0e120b4dbbc4f79efd439798593a75525b39d9f",
+      "msg": "lvp/ci: Skip timing out test",
+      "date": "2026-10-14T19:05:09.000+00:00"
     }
   ]
 }
