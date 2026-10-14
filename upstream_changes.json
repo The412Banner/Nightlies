@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-14T19:51:46Z",
+  "triggered_at": "2026-10-14T22:52:35Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "378a5dc",
-      "new": "a0e120b",
-      "full": "a0e120b4dbbc4f79efd439798593a75525b39d9f",
-      "msg": "lvp/ci: Skip timing out test",
-      "date": "2026-10-14T19:05:09.000+00:00"
+      "old": "a0e120b",
+      "new": "c1e9286",
+      "full": "c1e9286524140c53cad7c29c4b0dc6c80703de4c",
+      "msg": "gfxstream: populate VkAndroidHardwareBufferFormatProperties2ANDROID",
+      "date": "2026-10-14T22:26:53.000+00:00"
     }
   ]
 }
