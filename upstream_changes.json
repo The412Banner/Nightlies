@@ -1,41 +1,14 @@
 {
-  "triggered_at": "2026-10-14T10:53:42Z",
+  "triggered_at": "2026-10-14T15:38:29Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "4437c9b",
-      "new": "d653d0e",
-      "full": "d653d0ebefeba2c9abe13a5c4c13663bbd242549",
-      "msg": "[RV64_DYNAREC] Fix VMOVQ vl (#4569)",
-      "date": "2026-10-14T09:40:09Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "fdbaf51",
-      "new": "0bb64c5",
-      "full": "0bb64c56c8f0dcc11ecc0f6c56e00e4f7bd8d506",
-      "msg": "dxil-spirv: Update submodule.",
-      "date": "2026-10-14T09:30:55Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "649c4bc",
-      "new": "a78a467",
-      "full": "a78a467cadb22bee928904290cf8e7921b121851",
-      "msg": "[dxvk] Avoid requiring \"\" Vulkan extension in VR interop for empty extension str",
-      "date": "2026-10-14T08:23:18Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "c4e85fd",
-      "new": "8834fe3",
-      "full": "8834fe3b86943426762c28c96bf404ddf1a92b3b",
-      "msg": "pco: fix workgroup barrier race when reused across loop iterations",
-      "date": "2026-10-14T10:30:20.000+00:00"
+      "old": "8834fe3",
+      "new": "378a5dc",
+      "full": "378a5dc61b982b7d36e744cf44407e6b55dc98b7",
+      "msg": "etnaviv: blt: Re-validate tile status on full color clears",
+      "date": "2026-10-14T15:02:20.000+00:00"
     }
   ]
 }
