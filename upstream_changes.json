@@ -1,14 +1,41 @@
 {
-  "triggered_at": "2026-10-14T05:38:53Z",
+  "triggered_at": "2026-10-14T10:53:42Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "4437c9b",
+      "new": "d653d0e",
+      "full": "d653d0ebefeba2c9abe13a5c4c13663bbd242549",
+      "msg": "[RV64_DYNAREC] Fix VMOVQ vl (#4569)",
+      "date": "2026-10-14T09:40:09Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "fdbaf51",
+      "new": "0bb64c5",
+      "full": "0bb64c56c8f0dcc11ecc0f6c56e00e4f7bd8d506",
+      "msg": "dxil-spirv: Update submodule.",
+      "date": "2026-10-14T09:30:55Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "649c4bc",
+      "new": "a78a467",
+      "full": "a78a467cadb22bee928904290cf8e7921b121851",
+      "msg": "[dxvk] Avoid requiring \"\" Vulkan extension in VR interop for empty extension str",
+      "date": "2026-10-14T08:23:18Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "1df51f3",
-      "new": "c4e85fd",
-      "full": "c4e85fd2214572ff5dec4560da112b7f267cb069",
-      "msg": "meson: link in orcjit instead of mcjit when using OrcJIT",
-      "date": "2026-10-14T04:07:02.000+00:00"
+      "old": "c4e85fd",
+      "new": "8834fe3",
+      "full": "8834fe3b86943426762c28c96bf404ddf1a92b3b",
+      "msg": "pco: fix workgroup barrier race when reused across loop iterations",
+      "date": "2026-10-14T10:30:20.000+00:00"
     }
   ]
 }
