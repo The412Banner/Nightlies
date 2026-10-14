@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-10-13T21:39:09Z",
+  "triggered_at": "2026-10-14T00:45:22Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "986c69c",
-      "new": "4437c9b",
-      "full": "4437c9b8b1307409261500915ada9012aa04def8",
-      "msg": "[ARM64_DYNAREC] Use LRCPC2 for the UnityHack if LRCPC2 and USCAT cpu extension a",
-      "date": "2026-10-13T17:01:55Z"
-    },
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "e9c1034",
-      "new": "5285020",
-      "full": "5285020de0b30dbdae7b44d0d83541af2d13d002",
-      "msg": "Merge pull request #6037 from javelina-pkwy/fix/rpmalloc-vmdata",
-      "date": "2026-10-13T20:02:50Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "7b87f8a",
-      "new": "5983a55",
-      "full": "5983a554616d0b2b324204d06ba55d227c726be6",
-      "msg": "util/tc: fix buffer over-read and thread race in staging texture_subdata",
-      "date": "2026-10-13T20:39:59.000+00:00"
+      "old": "5983a55",
+      "new": "1df51f3",
+      "full": "1df51f350aefee6f4afa435cea8efd8ca53cb4ec",
+      "msg": "nv30/ci: update nv43 piglit results",
+      "date": "2026-10-14T00:24:38.000+00:00"
     }
   ]
 }
