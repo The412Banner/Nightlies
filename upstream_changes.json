@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-14T22:52:35Z",
+  "triggered_at": "2026-10-15T01:07:33Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "a0e120b",
-      "new": "c1e9286",
-      "full": "c1e9286524140c53cad7c29c4b0dc6c80703de4c",
-      "msg": "gfxstream: populate VkAndroidHardwareBufferFormatProperties2ANDROID",
-      "date": "2026-10-14T22:26:53.000+00:00"
+      "old": "c1e9286",
+      "new": "2521913",
+      "full": "25219134d356b2e2e0d408ab17b8a95a81a05623",
+      "msg": "util/u_queue: add a flag to wake blocked producers at half-empty",
+      "date": "2026-10-15T00:20:29.000+00:00"
     }
   ]
 }
