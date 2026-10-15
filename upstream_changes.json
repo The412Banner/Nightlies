@@ -1,59 +1,23 @@
 {
-  "triggered_at": "2026-10-15T06:45:48Z",
+  "triggered_at": "2026-10-15T12:19:17Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "2f47bdf",
-      "new": "d653d0e",
-      "full": "d653d0ebefeba2c9abe13a5c4c13663bbd242549",
-      "msg": "[RV64_DYNAREC] Fix VMOVQ vl (#4569)",
-      "date": "2026-10-14T09:40:09Z"
-    },
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "14c9268",
-      "new": "5285020",
-      "full": "5285020de0b30dbdae7b44d0d83541af2d13d002",
-      "msg": "Merge pull request #6037 from javelina-pkwy/fix/rpmalloc-vmdata",
-      "date": "2026-10-13T20:02:50Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "2230755",
-      "new": "0bb64c5",
-      "full": "0bb64c56c8f0dcc11ecc0f6c56e00e4f7bd8d506",
-      "msg": "dxil-spirv: Update submodule.",
-      "date": "2026-10-14T09:30:55Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "56bac6b",
-      "new": "a78a467",
-      "full": "a78a467cadb22bee928904290cf8e7921b121851",
-      "msg": "[dxvk] Avoid requiring \"\" Vulkan extension in VR interop for empty extension str",
-      "date": "2026-10-14T08:23:18Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "a228b9f",
-      "new": "d5388d4",
-      "full": "d5388d4b728d47c9164e59de147497bcc396e6a3",
-      "msg": "[meta] Only set the gamma ramp when conditions are proper",
-      "date": "2026-10-12T15:06:13Z"
+      "old": "d653d0e",
+      "new": "e296745",
+      "full": "e296745e8252520ad17708ccb13a6b6a42182719",
+      "msg": "[ARM64_DYNAREC] Fixes some opcode emitter and Special SIGBUS handler",
+      "date": "2026-10-15T11:06:52Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "f1a6b0d",
-      "new": "e793bd0",
-      "full": "e793bd0fa9580da35def95a47d265fee225c023d",
-      "msg": "llvmpipe: handle indirect geometry shader inputs",
-      "date": "2026-10-15T06:02:21.000+00:00"
+      "old": "e793bd0",
+      "new": "988a767",
+      "full": "988a767d797a0fb6876901491e45b896ab2745e1",
+      "msg": "radeonsi/sqtt: allow submit-based capture",
+      "date": "2026-10-15T11:49:53.000+00:00"
     }
   ]
 }
