@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-15T12:19:17Z",
+  "triggered_at": "2026-10-15T17:31:15Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "d653d0e",
-      "new": "e296745",
-      "full": "e296745e8252520ad17708ccb13a6b6a42182719",
-      "msg": "[ARM64_DYNAREC] Fixes some opcode emitter and Special SIGBUS handler",
-      "date": "2026-10-15T11:06:52Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "e793bd0",
-      "new": "988a767",
-      "full": "988a767d797a0fb6876901491e45b896ab2745e1",
-      "msg": "radeonsi/sqtt: allow submit-based capture",
-      "date": "2026-10-15T11:49:53.000+00:00"
+      "old": "988a767",
+      "new": "cf98950",
+      "full": "cf98950a3f548751301091ae4a224b8c8f59d988",
+      "msg": "panvk: fix allow_merging_workgroups logic",
+      "date": "2026-10-15T16:20:28.000+00:00"
     }
   ]
 }
