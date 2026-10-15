@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-10-15T20:45:31Z",
+  "triggered_at": "2026-10-15T23:27:06Z",
   "changed": [
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "a78a467",
-      "new": "569f40e",
-      "full": "569f40e2b28d5d7b76f32bd10d8fb3f9cabd14ac",
-      "msg": "[meta] Update dxbc-spirv",
-      "date": "2026-10-15T18:31:52Z"
+      "old": "569f40e",
+      "new": "e8c80a8",
+      "full": "e8c80a8d1cdaa0ad21516bf64d9cb073cb57eec3",
+      "msg": "[d3d9] Don't enable point scaling with weird projection matrices",
+      "date": "2026-10-15T20:50:27Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "d5388d4",
+      "new": "b1981cd",
+      "full": "b1981cd70543d14d57bdb17e457dfd8ca00bd4f6",
+      "msg": "[meta] Use DDSURFACEDESC2 for all surface interfaces",
+      "date": "2026-10-15T23:21:27Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "cf98950",
-      "new": "6a5e6fa",
-      "full": "6a5e6fadd8fbd1520334a36f04b0b9f8cad12398",
-      "msg": "gbm/dri: enable native YUYV format support in GBM and DRI format tables",
-      "date": "2026-10-15T19:50:52.000+00:00"
+      "old": "6a5e6fa",
+      "new": "827d538",
+      "full": "827d538ed9eb53e0a3c23f01ba68f858cdfdbcb3",
+      "msg": "panfrost: add ai-policy",
+      "date": "2026-10-15T23:00:53.000+00:00"
     }
   ]
 }
