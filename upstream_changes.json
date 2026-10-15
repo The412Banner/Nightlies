@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-15T17:31:15Z",
+  "triggered_at": "2026-10-15T20:45:31Z",
   "changed": [
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "a78a467",
+      "new": "569f40e",
+      "full": "569f40e2b28d5d7b76f32bd10d8fb3f9cabd14ac",
+      "msg": "[meta] Update dxbc-spirv",
+      "date": "2026-10-15T18:31:52Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "988a767",
-      "new": "cf98950",
-      "full": "cf98950a3f548751301091ae4a224b8c8f59d988",
-      "msg": "panvk: fix allow_merging_workgroups logic",
-      "date": "2026-10-15T16:20:28.000+00:00"
+      "old": "cf98950",
+      "new": "6a5e6fa",
+      "full": "6a5e6fadd8fbd1520334a36f04b0b9f8cad12398",
+      "msg": "gbm/dri: enable native YUYV format support in GBM and DRI format tables",
+      "date": "2026-10-15T19:50:52.000+00:00"
     }
   ]
 }
