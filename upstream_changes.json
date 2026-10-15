@@ -1,41 +1,59 @@
 {
-  "triggered_at": "2026-10-07T20:20:41Z",
+  "triggered_at": "2026-10-15T06:45:48Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "2f47bdf",
+      "new": "d653d0e",
+      "full": "d653d0ebefeba2c9abe13a5c4c13663bbd242549",
+      "msg": "[RV64_DYNAREC] Fix VMOVQ vl (#4569)",
+      "date": "2026-10-14T09:40:09Z"
+    },
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "d58a4e0",
-      "new": "14c9268",
-      "full": "14c92681f4d62cf84d901460e0358de09c8847a7",
-      "msg": "Docs: Update for release FEX-2610",
-      "date": "2026-10-07T18:42:33Z"
+      "old": "14c9268",
+      "new": "5285020",
+      "full": "5285020de0b30dbdae7b44d0d83541af2d13d002",
+      "msg": "Merge pull request #6037 from javelina-pkwy/fix/rpmalloc-vmdata",
+      "date": "2026-10-13T20:02:50Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "2230755",
+      "new": "0bb64c5",
+      "full": "0bb64c56c8f0dcc11ecc0f6c56e00e4f7bd8d506",
+      "msg": "dxil-spirv: Update submodule.",
+      "date": "2026-10-14T09:30:55Z"
     },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "5b94142",
-      "new": "56bac6b",
-      "full": "56bac6b1ba854e37e53fe32322a0dd6df8b9d38f",
-      "msg": "[dxvk] Restrict sin/cos workaround to pre-Xe3 Intel GPUs",
-      "date": "2026-10-07T14:24:34Z"
+      "old": "56bac6b",
+      "new": "a78a467",
+      "full": "a78a467cadb22bee928904290cf8e7921b121851",
+      "msg": "[dxvk] Avoid requiring \"\" Vulkan extension in VR interop for empty extension str",
+      "date": "2026-10-14T08:23:18Z"
     },
     {
       "repo": "WinterSnowfall/d7vk",
       "name": "D7VK (DDraw/D3D7)",
-      "old": "987ba5b",
-      "new": "a228b9f",
-      "full": "a228b9f80a038a4b96ef0ba88d01385b50906712",
-      "msg": "[meta] Track GDI surfaces and rework D3D9 pool selection",
-      "date": "2026-10-07T18:30:33Z"
+      "old": "a228b9f",
+      "new": "d5388d4",
+      "full": "d5388d4b728d47c9164e59de147497bcc396e6a3",
+      "msg": "[meta] Only set the gamma ramp when conditions are proper",
+      "date": "2026-10-12T15:06:13Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ad885a8",
-      "new": "f1a6b0d",
-      "full": "f1a6b0d71ade2b1304cc9b466ae6d27402b7e7c8",
-      "msg": "intel/compiler: Remove uses_is_indexed_draw field from prog_data",
-      "date": "2026-10-07T19:51:02.000+00:00"
+      "old": "f1a6b0d",
+      "new": "e793bd0",
+      "full": "e793bd0fa9580da35def95a47d265fee225c023d",
+      "msg": "llvmpipe: handle indirect geometry shader inputs",
+      "date": "2026-10-15T06:02:21.000+00:00"
     }
   ]
 }
