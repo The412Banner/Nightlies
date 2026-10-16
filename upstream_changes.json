@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-10-15T23:27:06Z",
+  "triggered_at": "2026-10-16T02:25:10Z",
   "changed": [
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "569f40e",
-      "new": "e8c80a8",
-      "full": "e8c80a8d1cdaa0ad21516bf64d9cb073cb57eec3",
-      "msg": "[d3d9] Don't enable point scaling with weird projection matrices",
-      "date": "2026-10-15T20:50:27Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "d5388d4",
-      "new": "b1981cd",
-      "full": "b1981cd70543d14d57bdb17e457dfd8ca00bd4f6",
-      "msg": "[meta] Use DDSURFACEDESC2 for all surface interfaces",
-      "date": "2026-10-15T23:21:27Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "6a5e6fa",
-      "new": "827d538",
-      "full": "827d538ed9eb53e0a3c23f01ba68f858cdfdbcb3",
-      "msg": "panfrost: add ai-policy",
-      "date": "2026-10-15T23:00:53.000+00:00"
+      "old": "827d538",
+      "new": "c486896",
+      "full": "c4868963fe414a45be6bcef29b7ca0e38a7d9de1",
+      "msg": "llvmpipe/fs: drop is_1d param description",
+      "date": "2026-10-16T01:17:54.000+00:00"
     }
   ]
 }
