@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-16T02:25:10Z",
+  "triggered_at": "2026-10-16T07:42:54Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "827d538",
-      "new": "c486896",
-      "full": "c4868963fe414a45be6bcef29b7ca0e38a7d9de1",
-      "msg": "llvmpipe/fs: drop is_1d param description",
-      "date": "2026-10-16T01:17:54.000+00:00"
+      "old": "c486896",
+      "new": "94b4ac1",
+      "full": "94b4ac134ac791d5757848c9283d5dabc338aea0",
+      "msg": "radv: stop setting POLY_OFFSET_PARA_ENABLE",
+      "date": "2026-10-16T06:46:39.000+00:00"
     }
   ]
 }
