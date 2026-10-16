@@ -1,14 +1,41 @@
 {
-  "triggered_at": "2026-10-15T01:07:33Z",
+  "triggered_at": "2026-10-16T12:52:58Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "d653d0e",
+      "new": "b99d443",
+      "full": "b99d44309e3c0102bfff40d1d680b915f565eb1f",
+      "msg": "[RV64_DYNAREC] Refactored AVX register mapping and register allocation (#4567)",
+      "date": "2026-10-16T08:09:26Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "a78a467",
+      "new": "6689ca9",
+      "full": "6689ca92f0f9a1c3ab86c16ce1c7ceebe995454b",
+      "msg": "[dxvk] Bump engine version to 3.2",
+      "date": "2026-10-16T10:49:29Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "d5388d4",
+      "new": "856bf15",
+      "full": "856bf154a54a41d926ddd8833cd35977c833715f",
+      "msg": "[d3d7/6] Rework vertex buffer lock tracking",
+      "date": "2026-10-16T10:22:32Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "c1e9286",
-      "new": "2521913",
-      "full": "25219134d356b2e2e0d408ab17b8a95a81a05623",
-      "msg": "util/u_queue: add a flag to wake blocked producers at half-empty",
-      "date": "2026-10-15T00:20:29.000+00:00"
+      "old": "2521913",
+      "new": "c7e599a",
+      "full": "c7e599ad60d7dc49e61ad181cd94cd619fde008a",
+      "msg": "radeonsi/mm: Increase obu_size length to 2 bytes in AV1 sequence header",
+      "date": "2026-10-16T12:18:35.000+00:00"
     }
   ]
 }
