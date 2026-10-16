@@ -7,18 +7,6 @@
   },
   {
     "type": "GpuDriver",
-    "verName": "gamesir \u2014 Turnip-Rutabaga-v1.zip",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/gamesir_Turnip-Rutabaga-v1.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "gamesir \u2014 Turnip-Rutabaga-v2.zip",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/gamesir_Turnip-Rutabaga-v2.zip"
-  },
-  {
-    "type": "GpuDriver",
     "verName": "gamesir \u2014 Turnip-Rutabaga-v3.zip",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/gamesir_Turnip-Rutabaga-v3.zip"
