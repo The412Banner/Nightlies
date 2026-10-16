@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-16T17:06:01Z",
+  "triggered_at": "2026-10-16T20:17:57Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "b99d443",
+      "new": "4e91870",
+      "full": "4e91870c51f7ce10ff48043e850673a9eff32cb5",
+      "msg": "[DYNAREC] Fixed fpu cache not written back after unused opcodes (again) (#4575)",
+      "date": "2026-10-16T20:00:04Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "c7e599a",
-      "new": "0f737d4",
-      "full": "0f737d4e20d9aabc5164d04c94edf6488db003c5",
-      "msg": "nvk: fix color_write_enable",
-      "date": "2026-10-16T16:37:36.000+00:00"
+      "old": "0f737d4",
+      "new": "27479e2",
+      "full": "27479e202444ed64f058db1e1c2d4d8d82eaf3bc",
+      "msg": "zink/video: decode interlaced H.264",
+      "date": "2026-10-16T19:47:34.000+00:00"
     }
   ]
 }
