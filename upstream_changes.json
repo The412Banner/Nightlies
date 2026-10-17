@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-10-17T07:20:55Z",
+  "triggered_at": "2026-10-17T11:52:34Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "4e91870",
-      "new": "27860e6",
-      "full": "27860e6aee72dd33c2588d081652d6e9becc1089",
-      "msg": "[RV64_DYNAREC] Fix VCVTPD2PS result clearing (#4572)",
-      "date": "2026-10-17T05:24:09Z"
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "227b83b",
+      "new": "f94ab2e",
+      "full": "f94ab2e6a9dcd942c491a5c7200442fd538dfa1d",
+      "msg": "[dxvk] Don't wait for present if timing is enabled",
+      "date": "2026-10-17T08:29:08Z"
     },
     {
-      "repo": "mesa/mesa",
-      "name": "Mesa (Turnip)",
-      "old": "14a19dd",
-      "new": "335d569",
-      "full": "335d5698dca1d1b9d11ef18cf5f523cc0f7f58fb",
-      "msg": "kk: Fix miptail computation due to behaviour difference in OS versions",
-      "date": "2026-10-17T02:43:03.000+00:00"
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "856bf15",
+      "new": "bcd66d0",
+      "full": "bcd66d0c95e7530e3b24bdab1ee5e7aae7131059",
+      "msg": "[d3d7/6] Rework vertex buffer lock tracking",
+      "date": "2026-10-17T08:54:19Z"
     }
   ]
 }
