@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-17T19:53:23Z",
+  "triggered_at": "2026-10-17T23:39:35Z",
   "changed": [
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "f94ab2e",
-      "new": "c8679a5",
-      "full": "c8679a55c37b67a8e97b09958801f2371786dc25",
-      "msg": "[dxvk] Pass null timeout to D3DKMTAcquireKeyedMutex on INFINITE wait",
-      "date": "2026-10-17T19:28:05Z"
+      "old": "c8679a5",
+      "new": "d744290",
+      "full": "d744290a405ec542f7b59b91ed11128be797104f",
+      "msg": "[dxvk] Fix native build issues",
+      "date": "2026-10-17T22:30:23Z"
     }
   ]
 }
