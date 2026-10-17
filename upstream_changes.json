@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-16T23:09:42Z",
+  "triggered_at": "2026-10-17T02:17:32Z",
   "changed": [
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "6689ca9",
-      "new": "227b83b",
-      "full": "227b83b3af7b7efe85d6d1352ca12c4fbb1df366",
-      "msg": "[d3d8] Reimplement CopyRects in the d3d8<->d3d9 bridge directly",
-      "date": "2026-10-16T21:44:27Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "27479e2",
-      "new": "af2f67b",
-      "full": "af2f67b2b3671ce4d5f95bba611a01e7eae3c84f",
-      "msg": "intel/compiler: Fix cooperative matrix conversion signedness",
-      "date": "2026-10-16T21:23:06.000+00:00"
+      "old": "af2f67b",
+      "new": "14a19dd",
+      "full": "14a19dd6c167d0d5fd0126688318ed5461022588",
+      "msg": "nak: fix extra . when printing membar",
+      "date": "2026-10-16T23:40:55.000+00:00"
     }
   ]
 }
