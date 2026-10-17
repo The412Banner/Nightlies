@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-17T11:52:34Z",
+  "triggered_at": "2026-10-17T19:53:23Z",
   "changed": [
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "227b83b",
-      "new": "f94ab2e",
-      "full": "f94ab2e6a9dcd942c491a5c7200442fd538dfa1d",
-      "msg": "[dxvk] Don't wait for present if timing is enabled",
-      "date": "2026-10-17T08:29:08Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "856bf15",
-      "new": "bcd66d0",
-      "full": "bcd66d0c95e7530e3b24bdab1ee5e7aae7131059",
-      "msg": "[d3d7/6] Rework vertex buffer lock tracking",
-      "date": "2026-10-17T08:54:19Z"
+      "old": "f94ab2e",
+      "new": "c8679a5",
+      "full": "c8679a55c37b67a8e97b09958801f2371786dc25",
+      "msg": "[dxvk] Pass null timeout to D3DKMTAcquireKeyedMutex on INFINITE wait",
+      "date": "2026-10-17T19:28:05Z"
     }
   ]
 }
