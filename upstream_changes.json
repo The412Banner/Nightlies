@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-17T02:17:32Z",
+  "triggered_at": "2026-10-17T07:20:55Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "4e91870",
+      "new": "27860e6",
+      "full": "27860e6aee72dd33c2588d081652d6e9becc1089",
+      "msg": "[RV64_DYNAREC] Fix VCVTPD2PS result clearing (#4572)",
+      "date": "2026-10-17T05:24:09Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "af2f67b",
-      "new": "14a19dd",
-      "full": "14a19dd6c167d0d5fd0126688318ed5461022588",
-      "msg": "nak: fix extra . when printing membar",
-      "date": "2026-10-16T23:40:55.000+00:00"
+      "old": "14a19dd",
+      "new": "335d569",
+      "full": "335d5698dca1d1b9d11ef18cf5f523cc0f7f58fb",
+      "msg": "kk: Fix miptail computation due to behaviour difference in OS versions",
+      "date": "2026-10-17T02:43:03.000+00:00"
     }
   ]
 }
