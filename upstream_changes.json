@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-17T23:39:35Z",
+  "triggered_at": "2026-10-18T02:17:32Z",
   "changed": [
     {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "c8679a5",
-      "new": "d744290",
-      "full": "d744290a405ec542f7b59b91ed11128be797104f",
-      "msg": "[dxvk] Fix native build issues",
-      "date": "2026-10-17T22:30:23Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "5285020",
+      "new": "741e146",
+      "full": "741e146fdf5a89517e1a67e3c899907cfba6131a",
+      "msg": "Merge pull request #6039 from Sonicadvance1/274",
+      "date": "2026-10-18T01:53:39Z"
     }
   ]
 }
