@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-18T12:18:41Z",
+  "triggered_at": "2026-10-18T19:06:52Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "27860e6",
-      "new": "66dafa5",
-      "full": "66dafa53302efc771352a6f7b4ca74869dc8c276",
-      "msg": "[RV64_DYNAREC] Added and refined more opcodes (#4578)",
-      "date": "2026-10-18T08:22:01Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "9a1e58d",
-      "new": "4c12390",
-      "full": "4c12390be306fb73b9b8e6e9445a3102a39ced77",
-      "msg": "zink: make MoltenVK headers and support optional on macOS",
-      "date": "2026-10-18T08:16:37.000+00:00"
+      "old": "4c12390",
+      "new": "c823a83",
+      "full": "c823a83e8f373a5c36c2b9ed1d7dc98a4f3360ee",
+      "msg": "brw: Use devinfo in size_read() for DPAS",
+      "date": "2026-10-18T16:10:33.000+00:00"
     }
   ]
 }
