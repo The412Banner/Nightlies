@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-18T07:35:13Z",
+  "triggered_at": "2026-10-18T12:18:41Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "27860e6",
+      "new": "66dafa5",
+      "full": "66dafa53302efc771352a6f7b4ca74869dc8c276",
+      "msg": "[RV64_DYNAREC] Added and refined more opcodes (#4578)",
+      "date": "2026-10-18T08:22:01Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "335d569",
-      "new": "9a1e58d",
-      "full": "9a1e58dabb9c51db8bb84e1a56a3aad694590584",
-      "msg": "amd/ci: update CI results for gfx8-9",
-      "date": "2026-10-18T06:35:43.000+00:00"
+      "old": "9a1e58d",
+      "new": "4c12390",
+      "full": "4c12390be306fb73b9b8e6e9445a3102a39ced77",
+      "msg": "zink: make MoltenVK headers and support optional on macOS",
+      "date": "2026-10-18T08:16:37.000+00:00"
     }
   ]
 }
