@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-18T02:17:32Z",
+  "triggered_at": "2026-10-18T07:35:13Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "5285020",
-      "new": "741e146",
-      "full": "741e146fdf5a89517e1a67e3c899907cfba6131a",
-      "msg": "Merge pull request #6039 from Sonicadvance1/274",
-      "date": "2026-10-18T01:53:39Z"
+      "repo": "mesa/mesa",
+      "name": "Mesa (Turnip)",
+      "old": "335d569",
+      "new": "9a1e58d",
+      "full": "9a1e58dabb9c51db8bb84e1a56a3aad694590584",
+      "msg": "amd/ci: update CI results for gfx8-9",
+      "date": "2026-10-18T06:35:43.000+00:00"
     }
   ]
 }
