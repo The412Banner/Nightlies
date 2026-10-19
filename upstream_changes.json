@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-19T05:31:05Z",
+  "triggered_at": "2026-10-19T11:39:12Z",
   "changed": [
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "bcd66d0",
+      "new": "633aee1",
+      "full": "633aee103734b5edaabbebf475bccfdcfa64cc2e",
+      "msg": "[meta] Use braced initialization with std::atomic",
+      "date": "2026-10-19T08:17:20Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "c823a83",
-      "new": "a2b6d50",
-      "full": "a2b6d5096ebee791427214cba47282788ef4e048",
-      "msg": "panvk: Advertise VK_EXT_vertex_attribute_robustness",
-      "date": "2026-10-19T03:24:39.000+00:00"
+      "old": "a2b6d50",
+      "new": "f8f26e7",
+      "full": "f8f26e737f1cf79f53dc83104359610b1961704e",
+      "msg": "v3d: implement the dual_color_blend_by_location driconf workaround",
+      "date": "2026-10-19T11:05:51.000+00:00"
     }
   ]
 }
