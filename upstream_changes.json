@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-18T19:06:52Z",
+  "triggered_at": "2026-10-19T00:37:51Z",
   "changed": [
     {
-      "repo": "mesa/mesa",
-      "name": "Mesa (Turnip)",
-      "old": "4c12390",
-      "new": "c823a83",
-      "full": "c823a83e8f373a5c36c2b9ed1d7dc98a4f3360ee",
-      "msg": "brw: Use devinfo in size_read() for DPAS",
-      "date": "2026-10-18T16:10:33.000+00:00"
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "d744290",
+      "new": "2cb4018",
+      "full": "2cb40186c43d617b5bd349a3756721aa4bd24b6d",
+      "msg": "[util] Allow AVX builds with clang",
+      "date": "2026-10-19T00:04:11Z"
     }
   ]
 }
