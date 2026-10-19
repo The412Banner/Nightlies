@@ -1207,6 +1207,30 @@
   },
   {
     "type": "GpuDriver",
+    "verName": "v27.0.0-R1 \u2014 Turnip_Gen8_V38.zip",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v27.0.0-R1_Turnip_Gen8_V38.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "v27.0.0-R1 \u2014 Turnip_Gen8_V38_Patched.zip",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v27.0.0-R1_Turnip_Gen8_V38_Patched.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "v27.0.0-R1 \u2014 Turnip_v27.0.0-R1-Oneui.zip",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v27.0.0-R1_Turnip_v27.0.0-R1-Oneui.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "v27.0.0-R1 \u2014 Turnip_v27.0.0-R1.zip",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v27.0.0-R1_Turnip_v27.0.0-R1.zip"
+  },
+  {
+    "type": "GpuDriver",
     "verName": "gamesir \u2014 Turnip-Rutabaga-v3.zip",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/gamesir_Turnip-Rutabaga-v3.zip"

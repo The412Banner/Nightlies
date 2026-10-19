@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-10-18T11:51:47Z",
+  "updated_at": "2026-10-19T11:39:32Z",
   "source": "https://github.com/StevenMXZ/Adreno-Tools-Drivers",
   "mirror_release": "https://github.com/The412Banner/Nightlies/releases/tag/stevenmxz-drivers",
-  "total_releases": 78,
-  "total_assets": 106,
+  "total_releases": 79,
+  "total_assets": 110,
   "releases": [
     {
       "tag": "v891.7",
@@ -17,6 +17,45 @@
           "original_url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/v891.7/v891.7.zip",
           "mirror_url": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v891.7_v891.7.zip",
           "published_at": "2026-10-05T19:49:14Z"
+        }
+      ]
+    },
+    {
+      "tag": "v27.0.0-R1",
+      "name": "Turnip Gen8 V38 / Turnip v27.0.0-R1",
+      "published_at": "2026-10-19T08:50:28Z",
+      "assets": [
+        {
+          "name": "Turnip_Gen8_V38.zip",
+          "mirror_name": "v27.0.0-R1_Turnip_Gen8_V38.zip",
+          "size": 2765405,
+          "original_url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/v27.0.0-R1/Turnip_Gen8_V38.zip",
+          "mirror_url": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v27.0.0-R1_Turnip_Gen8_V38.zip",
+          "published_at": "2026-10-19T08:49:35Z"
+        },
+        {
+          "name": "Turnip_Gen8_V38_Patched.zip",
+          "mirror_name": "v27.0.0-R1_Turnip_Gen8_V38_Patched.zip",
+          "size": 2805553,
+          "original_url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/v27.0.0-R1/Turnip_Gen8_V38_Patched.zip",
+          "mirror_url": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v27.0.0-R1_Turnip_Gen8_V38_Patched.zip",
+          "published_at": "2026-10-19T08:49:37Z"
+        },
+        {
+          "name": "Turnip_v27.0.0-R1-Oneui.zip",
+          "mirror_name": "v27.0.0-R1_Turnip_v27.0.0-R1-Oneui.zip",
+          "size": 2764954,
+          "original_url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/v27.0.0-R1/Turnip_v27.0.0-R1-Oneui.zip",
+          "mirror_url": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v27.0.0-R1_Turnip_v27.0.0-R1-Oneui.zip",
+          "published_at": "2026-10-19T08:49:34Z"
+        },
+        {
+          "name": "Turnip_v27.0.0-R1.zip",
+          "mirror_name": "v27.0.0-R1_Turnip_v27.0.0-R1.zip",
+          "size": 2765466,
+          "original_url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/v27.0.0-R1/Turnip_v27.0.0-R1.zip",
+          "mirror_url": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v27.0.0-R1_Turnip_v27.0.0-R1.zip",
+          "published_at": "2026-10-19T08:49:33Z"
         }
       ]
     },
