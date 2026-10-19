@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-10-19T11:39:12Z",
+  "triggered_at": "2026-10-19T18:00:26Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "66dafa5",
+      "new": "75ff158",
+      "full": "75ff158c4ca9fd72ed4094a376a56fd62e5701ce",
+      "msg": "[ARM64_DYNAREC] Enlarged a buffer",
+      "date": "2026-10-19T13:09:44Z"
+    },
     {
       "repo": "WinterSnowfall/d7vk",
       "name": "D7VK (DDraw/D3D7)",
-      "old": "bcd66d0",
-      "new": "633aee1",
-      "full": "633aee103734b5edaabbebf475bccfdcfa64cc2e",
-      "msg": "[meta] Use braced initialization with std::atomic",
-      "date": "2026-10-19T08:17:20Z"
+      "old": "633aee1",
+      "new": "1b42cad",
+      "full": "1b42caddfe7bb70fb47adfdfdf28e081f2c882ba",
+      "msg": "[meta] Rework IClassFactory DDraw object creation path",
+      "date": "2026-10-19T17:48:22Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "a2b6d50",
-      "new": "f8f26e7",
-      "full": "f8f26e737f1cf79f53dc83104359610b1961704e",
-      "msg": "v3d: implement the dual_color_blend_by_location driconf workaround",
-      "date": "2026-10-19T11:05:51.000+00:00"
+      "old": "f8f26e7",
+      "new": "44fd0fd",
+      "full": "44fd0fde8187b5bb1e919625f1ba24cb36c18cbc",
+      "msg": "gfxstream: expose VK_KHR_device_group",
+      "date": "2026-10-19T16:56:56.000+00:00"
     }
   ]
 }
