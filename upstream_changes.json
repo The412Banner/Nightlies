@@ -1,41 +1,32 @@
 {
-  "triggered_at": "2026-10-20T17:38:48Z",
+  "triggered_at": "2026-10-20T21:02:16Z",
   "changed": [
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "d7b8e14",
-      "new": "fd8a601",
-      "full": "fd8a6017720860c3275e9a367fb70a245c7fafc2",
-      "msg": "Merge pull request #6042 from Sonicadvance1/275",
-      "date": "2026-10-20T16:27:42Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "0bb64c5",
-      "new": "ef9a02e",
-      "full": "ef9a02e873715c9e2da0d6db8a236aca8380b303",
-      "msg": "vkd3d: Add a config flag to enable descriptor heap robustness globally.",
-      "date": "2026-10-20T15:16:23Z"
+      "old": "fd8a601",
+      "new": "eeb9902",
+      "full": "eeb99027c7ead74ba7dbb074e690bdbdb88d4e76",
+      "msg": "Merge pull request #6046 from Sonicadvance1/278",
+      "date": "2026-10-20T18:19:57Z"
     },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "ef3ef87",
-      "new": "879fdc8",
-      "full": "879fdc82a0401c3589e2e26438488b3956688ea4",
-      "msg": "[d3d11,d3d9] Set infinite submission timeout for reproducibleCommandStreams",
-      "date": "2026-10-20T12:57:17Z"
+      "old": "879fdc8",
+      "new": "65883aa",
+      "full": "65883aa8b109815b10484646637b57f41e35447c",
+      "msg": "[dxvk] Be more robust against broken present timing reports",
+      "date": "2026-10-20T20:49:06Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ef1c736",
-      "new": "255ecc7",
-      "full": "255ecc7e5837b2824d56f2d24ce500ae96313a83",
-      "msg": "v3dv: advertise VK_EXT_host_image_copy",
-      "date": "2026-10-20T16:54:42.000+00:00"
+      "old": "255ecc7",
+      "new": "36bb11d",
+      "full": "36bb11df1c4fbdbad452cfa9c9b0c447a69c8bab",
+      "msg": "radeonsi: re-emit the sqtt pipeline when shader states are emitted",
+      "date": "2026-10-20T18:22:26.000+00:00"
     }
   ]
 }
