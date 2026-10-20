@@ -1,14 +1,41 @@
 {
-  "triggered_at": "2026-10-20T12:25:28Z",
+  "triggered_at": "2026-10-20T17:38:48Z",
   "changed": [
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "d7b8e14",
+      "new": "fd8a601",
+      "full": "fd8a6017720860c3275e9a367fb70a245c7fafc2",
+      "msg": "Merge pull request #6042 from Sonicadvance1/275",
+      "date": "2026-10-20T16:27:42Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "0bb64c5",
+      "new": "ef9a02e",
+      "full": "ef9a02e873715c9e2da0d6db8a236aca8380b303",
+      "msg": "vkd3d: Add a config flag to enable descriptor heap robustness globally.",
+      "date": "2026-10-20T15:16:23Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "ef3ef87",
+      "new": "879fdc8",
+      "full": "879fdc82a0401c3589e2e26438488b3956688ea4",
+      "msg": "[d3d11,d3d9] Set infinite submission timeout for reproducibleCommandStreams",
+      "date": "2026-10-20T12:57:17Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "42c325e",
-      "new": "ef1c736",
-      "full": "ef1c7363f9909d751bcf31f1794e44da87367711",
-      "msg": "radv: allow shader caching with shader abort",
-      "date": "2026-10-20T11:30:17.000+00:00"
+      "old": "ef1c736",
+      "new": "255ecc7",
+      "full": "255ecc7e5837b2824d56f2d24ce500ae96313a83",
+      "msg": "v3dv: advertise VK_EXT_host_image_copy",
+      "date": "2026-10-20T16:54:42.000+00:00"
     }
   ]
 }
