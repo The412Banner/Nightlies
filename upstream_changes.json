@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-10-19T22:41:34Z",
+  "triggered_at": "2026-10-20T01:22:53Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "741e146",
-      "new": "d7b8e14",
-      "full": "d7b8e1497a646fa7cdf63c38215c1f7c3a52852f",
-      "msg": "Merge pull request #6043 from Sonicadvance1/276",
-      "date": "2026-10-19T21:47:03Z"
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "2cb4018",
+      "new": "ef3ef87",
+      "full": "ef3ef8712ecfd619775662ee8d2778bf7db89af4",
+      "msg": "[d3d11] Fix losing D3D11_RASTERIZER_DESC1 ForcedSampleCount",
+      "date": "2026-10-20T00:53:02Z"
     },
     {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "1b42cad",
-      "new": "ee26c15",
-      "full": "ee26c15e7a10f9093235c93ee3feb0bc905464b3",
-      "msg": "[meta] Rework the IClassFactory DDraw object creation path",
-      "date": "2026-10-19T18:04:29Z"
+      "repo": "mesa/mesa",
+      "name": "Mesa (Turnip)",
+      "old": "44fd0fd",
+      "new": "4b0f64c",
+      "full": "4b0f64ceac6a86af38c1e69cd38cf29f84ba611d",
+      "msg": "jay: Handle load/store_global_block_intel",
+      "date": "2026-10-19T22:34:37.000+00:00"
     }
   ]
 }
