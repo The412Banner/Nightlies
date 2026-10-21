@@ -1,23 +1,41 @@
 {
-  "triggered_at": "2026-10-21T05:34:19Z",
+  "triggered_at": "2026-10-21T10:53:09Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "eeb9902",
-      "new": "3b7daa5",
-      "full": "3b7daa5e8dc004f6e9cec3a877f3f3f1ddd6ce11",
-      "msg": "Merge pull request #6048 from Sonicadvance1/280",
-      "date": "2026-10-21T02:05:02Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "ae3412c",
+      "new": "d96343f",
+      "full": "d96343fbb1777458e4bc3adcd5a4b93c113fd245",
+      "msg": "[RV64_DYNAREC] Added and optimized some SSE/AVX opcodes (#4581)",
+      "date": "2026-10-21T08:29:55Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "65883aa",
+      "new": "d713ef8",
+      "full": "d713ef8748a1eee3e90d4b6d5dc2e80f5be4b519",
+      "msg": "[dxvk] Remove double lock from queryPresentTiming",
+      "date": "2026-10-21T07:49:26Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "ee26c15",
+      "new": "492a76b",
+      "full": "492a76bccae637eaa875f87dc07018d280532f13",
+      "msg": "[meta] Improve handling of early HWND overrides",
+      "date": "2026-10-21T07:59:24Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "96aea8a",
-      "new": "f7c93a1",
-      "full": "f7c93a1352b578fbea6c249227d44df65b8f6a35",
-      "msg": "glsl/lower_instructions: Use ir_builder carry instead of local _carry helper",
-      "date": "2026-10-21T04:32:29.000+00:00"
+      "old": "f7c93a1",
+      "new": "1995244",
+      "full": "1995244946e85247e849fb65e3b0a71c27bad1fb",
+      "msg": "gfxstream: make kumquat gpu socket path configurable via env var",
+      "date": "2026-10-21T10:00:04.000+00:00"
     }
   ]
 }
