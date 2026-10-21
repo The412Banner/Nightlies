@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T12:22:18Z",
+  "updated_at": "2026-10-21T12:32:09Z",
   "source": "https://github.com/StevenMXZ/Adreno-Tools-Drivers",
   "mirror_release": "https://github.com/The412Banner/Nightlies/releases/tag/stevenmxz-drivers",
   "total_releases": 79,
@@ -13,10 +13,10 @@
         {
           "name": "v891.7.zip",
           "mirror_name": "v891.7_v891.7.zip",
-          "size": 6995203,
+          "size": 35912180,
           "original_url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/v891.7/v891.7.zip",
           "mirror_url": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v891.7_v891.7.zip",
-          "published_at": "2026-10-05T19:49:14Z"
+          "published_at": "2026-10-20T15:21:24Z"
         }
       ]
     },
