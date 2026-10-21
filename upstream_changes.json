@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-10-20T21:02:16Z",
+  "triggered_at": "2026-10-21T00:15:05Z",
   "changed": [
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "fd8a601",
-      "new": "eeb9902",
-      "full": "eeb99027c7ead74ba7dbb074e690bdbdb88d4e76",
-      "msg": "Merge pull request #6046 from Sonicadvance1/278",
-      "date": "2026-10-20T18:19:57Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "879fdc8",
-      "new": "65883aa",
-      "full": "65883aa8b109815b10484646637b57f41e35447c",
-      "msg": "[dxvk] Be more robust against broken present timing reports",
-      "date": "2026-10-20T20:49:06Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "255ecc7",
-      "new": "36bb11d",
-      "full": "36bb11df1c4fbdbad452cfa9c9b0c447a69c8bab",
-      "msg": "radeonsi: re-emit the sqtt pipeline when shader states are emitted",
-      "date": "2026-10-20T18:22:26.000+00:00"
+      "old": "36bb11d",
+      "new": "96aea8a",
+      "full": "96aea8aa7595d47abe9e24b434e1ced4199e4a60",
+      "msg": "spirv: Move OpSpecConstantOp into its own function",
+      "date": "2026-10-20T23:21:47.000+00:00"
     }
   ]
 }
