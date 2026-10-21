@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-21T15:45:31Z",
+  "triggered_at": "2026-10-21T19:48:13Z",
   "changed": [
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "492a76b",
-      "new": "a339262",
-      "full": "a339262ab426d5bde0bf9e051a32d4d55ae8c56f",
-      "msg": "[meta] Improve handling of early HWND overrides",
-      "date": "2026-10-21T08:13:58Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "1995244",
-      "new": "48ac151",
-      "full": "48ac151e847f17f1b36a76e63f73ec400ed78097",
-      "msg": "hasvk: fixup environment variable name in log output",
-      "date": "2026-10-21T15:13:30.000+00:00"
+      "old": "48ac151",
+      "new": "929957a",
+      "full": "929957a7e9db53aaa2b96a38cae753fbfe1423ab",
+      "msg": "lavapipe: Add CPU-based BC texture decompression emulation",
+      "date": "2026-10-21T19:08:55.000+00:00"
     }
   ]
 }
