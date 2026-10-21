@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-21T00:15:05Z",
+  "triggered_at": "2026-10-21T05:34:19Z",
   "changed": [
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "eeb9902",
+      "new": "3b7daa5",
+      "full": "3b7daa5e8dc004f6e9cec3a877f3f3f1ddd6ce11",
+      "msg": "Merge pull request #6048 from Sonicadvance1/280",
+      "date": "2026-10-21T02:05:02Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "36bb11d",
-      "new": "96aea8a",
-      "full": "96aea8aa7595d47abe9e24b434e1ced4199e4a60",
-      "msg": "spirv: Move OpSpecConstantOp into its own function",
-      "date": "2026-10-20T23:21:47.000+00:00"
+      "old": "96aea8a",
+      "new": "f7c93a1",
+      "full": "f7c93a1352b578fbea6c249227d44df65b8f6a35",
+      "msg": "glsl/lower_instructions: Use ir_builder carry instead of local _carry helper",
+      "date": "2026-10-21T04:32:29.000+00:00"
     }
   ]
 }
