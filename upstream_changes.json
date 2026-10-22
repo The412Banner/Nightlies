@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-10-21T22:55:12Z",
+  "triggered_at": "2026-10-22T01:06:25Z",
   "changed": [
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "3b7daa5",
-      "new": "ca389e0",
-      "full": "ca389e06a6b7c697c8f40f8fde822ae8d8b328cc",
-      "msg": "code-format-helper: More dependabot things",
-      "date": "2026-10-21T21:26:32Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "d713ef8",
-      "new": "02e2028",
-      "full": "02e2028c3fe954c8913b1f39bce2f581739f0c41",
-      "msg": "[dxgi] Advertize fake nonlocal heap on integrated graphics",
-      "date": "2026-10-21T12:01:44Z"
+      "old": "ca389e0",
+      "new": "4e2b509",
+      "full": "4e2b509a42b7762a48c407d6a59bb897dca1ded8",
+      "msg": "Merge pull request #6052 from Sonicadvance1/283",
+      "date": "2026-10-21T23:57:04Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "929957a",
-      "new": "1fddf34",
-      "full": "1fddf34d3cd6c637f8b80afa6305bcd60383234a",
-      "msg": "pco: Enable scalar blend consts",
-      "date": "2026-10-21T22:35:49.000+00:00"
+      "old": "1fddf34",
+      "new": "a5e5c21",
+      "full": "a5e5c21fa764332be63ee3d1e2fd1d5f9d2c9f4a",
+      "msg": "pco: Add additional asserts for indices",
+      "date": "2026-10-22T00:46:47.000+00:00"
     }
   ]
 }
