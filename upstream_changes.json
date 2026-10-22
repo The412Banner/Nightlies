@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-22T12:39:16Z",
+  "triggered_at": "2026-10-22T17:45:28Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "a111fca",
-      "new": "39aae76",
-      "full": "39aae76ddf3c515393bab5b2dd58ce676386501f",
-      "msg": "[RV64_DYNAREC] Optimized some AVX opcodes (#4586)",
-      "date": "2026-10-22T12:05:52Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "69f1f21",
-      "new": "617f463",
-      "full": "617f463e21a12a8125dae72f5b8818770da81195",
-      "msg": "nvk: only upload descriptor state if dirty",
-      "date": "2026-10-22T11:39:19.000+00:00"
+      "old": "617f463",
+      "new": "a799b0b",
+      "full": "a799b0baca93870e722b12391a0c273d77023bf3",
+      "msg": "tu: Apply tu_enable_ssbo_emulation workaround to all UE5 games",
+      "date": "2026-10-22T16:23:20.000+00:00"
     }
   ]
 }
