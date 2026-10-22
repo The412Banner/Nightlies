@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-10-22T06:52:09Z",
+  "triggered_at": "2026-10-22T12:39:16Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "d96343f",
-      "new": "a111fca",
-      "full": "a111fcafeee03a930cbbd895184329a1ee4f08de",
-      "msg": "[RV64_DYNAREC] Fix vector register aliasing",
-      "date": "2026-10-22T03:37:38Z"
+      "old": "a111fca",
+      "new": "39aae76",
+      "full": "39aae76ddf3c515393bab5b2dd58ce676386501f",
+      "msg": "[RV64_DYNAREC] Optimized some AVX opcodes (#4586)",
+      "date": "2026-10-22T12:05:52Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "a5e5c21",
-      "new": "69f1f21",
-      "full": "69f1f21f0258a77046dbaeb8ed7a8ad37a683006",
-      "msg": "tu: upload draw_id_offset through driver_params UBO",
-      "date": "2026-10-22T05:47:33.000+00:00"
+      "old": "69f1f21",
+      "new": "617f463",
+      "full": "617f463e21a12a8125dae72f5b8818770da81195",
+      "msg": "nvk: only upload descriptor state if dirty",
+      "date": "2026-10-22T11:39:19.000+00:00"
     }
   ]
 }
