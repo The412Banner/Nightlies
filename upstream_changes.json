@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-22T17:45:28Z",
+  "triggered_at": "2026-10-22T21:00:28Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "617f463",
-      "new": "a799b0b",
-      "full": "a799b0baca93870e722b12391a0c273d77023bf3",
-      "msg": "tu: Apply tu_enable_ssbo_emulation workaround to all UE5 games",
-      "date": "2026-10-22T16:23:20.000+00:00"
+      "old": "a799b0b",
+      "new": "64245a2",
+      "full": "64245a20b78824634008b240c3f97c29a353ebe3",
+      "msg": "tu: Add back float16 3D path for multisampled copies",
+      "date": "2026-10-22T20:09:08.000+00:00"
     }
   ]
 }
