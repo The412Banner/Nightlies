@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-10-22T01:06:25Z",
+  "triggered_at": "2026-10-22T06:52:09Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "ca389e0",
-      "new": "4e2b509",
-      "full": "4e2b509a42b7762a48c407d6a59bb897dca1ded8",
-      "msg": "Merge pull request #6052 from Sonicadvance1/283",
-      "date": "2026-10-21T23:57:04Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "d96343f",
+      "new": "a111fca",
+      "full": "a111fcafeee03a930cbbd895184329a1ee4f08de",
+      "msg": "[RV64_DYNAREC] Fix vector register aliasing",
+      "date": "2026-10-22T03:37:38Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "1fddf34",
-      "new": "a5e5c21",
-      "full": "a5e5c21fa764332be63ee3d1e2fd1d5f9d2c9f4a",
-      "msg": "pco: Add additional asserts for indices",
-      "date": "2026-10-22T00:46:47.000+00:00"
+      "old": "a5e5c21",
+      "new": "69f1f21",
+      "full": "69f1f21f0258a77046dbaeb8ed7a8ad37a683006",
+      "msg": "tu: upload draw_id_offset through driver_params UBO",
+      "date": "2026-10-22T05:47:33.000+00:00"
     }
   ]
 }
