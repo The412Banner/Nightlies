@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-23T19:39:08Z",
+  "triggered_at": "2026-10-23T22:45:43Z",
   "changed": [
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "3da673e",
+      "new": "2e537bd",
+      "full": "2e537bd10c867c0a7ca3dcd071f458163b144841",
+      "msg": "Merge pull request #6059 from Sonicadvance1/287",
+      "date": "2026-10-23T20:28:31Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "86bc45c",
-      "new": "821ce63",
-      "full": "821ce631fea7f5fb79a1b3b5e391a72e39708c03",
-      "msg": "radeonsi/mm: use preenc_pitch_wa for sizing preencode DPB",
-      "date": "2026-10-23T19:04:33.000+00:00"
+      "old": "821ce63",
+      "new": "6885a06",
+      "full": "6885a06b826b63bcf47b7f1070114662737f7a81",
+      "msg": "mediafoundation: add support for AV1 QP Map resource (PIPE_FORMAT_R16_SINT)",
+      "date": "2026-10-23T22:14:22.000+00:00"
     }
   ]
 }
