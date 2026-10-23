@@ -1,41 +1,14 @@
 {
-  "triggered_at": "2026-10-23T15:32:29Z",
+  "triggered_at": "2026-10-23T19:39:08Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "827f0ee",
-      "new": "420eda6",
-      "full": "420eda69ff51ab5d5a7cbc3dee2e70433be3411d",
-      "msg": "[RV64_DYNAREC] Fix VPERM2I128 vector mask multiple (#4589)",
-      "date": "2026-10-23T13:56:40Z"
-    },
-    {
-      "repo": "Pipetto-crypto/box64",
-      "name": "Box64 (Hybrid/Pipetto)",
-      "old": "eb6fb21",
-      "new": "f1c8106",
-      "full": "f1c8106614daf79c75eeb3929c094c4468b8ef1d",
-      "msg": "WRAPPER: wrap Winlator libandroid-sysvshm",
-      "date": "2026-10-23T11:34:22Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "a339262",
-      "new": "67ca1a9",
-      "full": "67ca1a9f2361c0722d4ed06cc99b4a4853d7569e",
-      "msg": "[meta] Clean up and optimize various DDraw surface operations",
-      "date": "2026-10-23T15:11:17Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "a4e371e",
-      "new": "86bc45c",
-      "full": "86bc45c5f3fe6dee69c143ccd1567de6d98daaf0",
-      "msg": "jay/performance: handle SYNC.allrd/wr",
-      "date": "2026-10-23T14:40:44.000+00:00"
+      "old": "86bc45c",
+      "new": "821ce63",
+      "full": "821ce631fea7f5fb79a1b3b5e391a72e39708c03",
+      "msg": "radeonsi/mm: use preenc_pitch_wa for sizing preencode DPB",
+      "date": "2026-10-23T19:04:33.000+00:00"
     }
   ]
 }
