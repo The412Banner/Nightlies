@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-22T21:00:28Z",
+  "triggered_at": "2026-10-23T00:15:44Z",
   "changed": [
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "4e2b509",
+      "new": "e3e8304",
+      "full": "e3e83041edeeafa8f05f09909498e9ba0659e3ef",
+      "msg": "Merge pull request #6055 from Sonicadvance1/284",
+      "date": "2026-10-22T22:57:14Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "a799b0b",
-      "new": "64245a2",
-      "full": "64245a20b78824634008b240c3f97c29a353ebe3",
-      "msg": "tu: Add back float16 3D path for multisampled copies",
-      "date": "2026-10-22T20:09:08.000+00:00"
+      "old": "64245a2",
+      "new": "997d905",
+      "full": "997d90563d2bf7148aec383530a5bd08e579a1d5",
+      "msg": "spirv: Fix is_null_constant annotation for aggregates with pointers inside",
+      "date": "2026-10-22T23:40:26.000+00:00"
     }
   ]
 }
