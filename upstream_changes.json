@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-10-23T00:15:44Z",
+  "triggered_at": "2026-10-23T05:35:09Z",
   "changed": [
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "4e2b509",
-      "new": "e3e8304",
-      "full": "e3e83041edeeafa8f05f09909498e9ba0659e3ef",
-      "msg": "Merge pull request #6055 from Sonicadvance1/284",
-      "date": "2026-10-22T22:57:14Z"
+      "old": "e3e8304",
+      "new": "3da673e",
+      "full": "3da673e6956fd8bfc0e8eabc08c9141d0a68bb8c",
+      "msg": "Merge pull request #6057 from Sonicadvance1/286",
+      "date": "2026-10-23T02:03:33Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "64245a2",
-      "new": "997d905",
-      "full": "997d90563d2bf7148aec383530a5bd08e579a1d5",
-      "msg": "spirv: Fix is_null_constant annotation for aggregates with pointers inside",
-      "date": "2026-10-22T23:40:26.000+00:00"
+      "old": "997d905",
+      "new": "af3b0f0",
+      "full": "af3b0f05fc9c7d01a9674f1046bf6389a5af47c9",
+      "msg": "radv/rt: fix overwriting stack size on partial cache hits",
+      "date": "2026-10-23T04:53:46.000+00:00"
     }
   ]
 }
