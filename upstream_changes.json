@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-10-23T05:35:09Z",
+  "triggered_at": "2026-10-23T10:44:50Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "e3e8304",
-      "new": "3da673e",
-      "full": "3da673e6956fd8bfc0e8eabc08c9141d0a68bb8c",
-      "msg": "Merge pull request #6057 from Sonicadvance1/286",
-      "date": "2026-10-23T02:03:33Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "39aae76",
+      "new": "827f0ee",
+      "full": "827f0ee54e54087baab2ed1e33ebc38998700589",
+      "msg": "[RV64_DYNAREC] Optimitize VSHUFPS and VPERMILPS 128-bit case",
+      "date": "2026-10-23T08:29:30Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "997d905",
-      "new": "af3b0f0",
-      "full": "af3b0f05fc9c7d01a9674f1046bf6389a5af47c9",
-      "msg": "radv/rt: fix overwriting stack size on partial cache hits",
-      "date": "2026-10-23T04:53:46.000+00:00"
+      "old": "af3b0f0",
+      "new": "a4e371e",
+      "full": "a4e371e0214b87da6622dbf6f78cf199fbca4765",
+      "msg": "blorp: fix compiler warnings for uninitialized variables",
+      "date": "2026-10-23T10:15:55.000+00:00"
     }
   ]
 }
