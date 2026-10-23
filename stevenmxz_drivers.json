@@ -1,6 +1,12 @@
 [
   {
     "type": "GpuDriver",
+    "verName": "v891.11 \u2014 891.11.zip",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v891.11_891.11.zip"
+  },
+  {
+    "type": "GpuDriver",
     "verName": "v891.7 \u2014 v891.7.zip",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v891.7_v891.7.zip"
