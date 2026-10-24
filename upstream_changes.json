@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-10-24T11:44:08Z",
+  "triggered_at": "2026-10-24T15:06:21Z",
   "changed": [
     {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "02e2028",
-      "new": "cbd2206",
-      "full": "cbd2206d72d3d9dd9941d5d868bb03a858e85f9b",
-      "msg": "[native] Find the executable and the Vulkan loader on macOS",
-      "date": "2026-10-24T08:02:57Z"
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "67ca1a9",
+      "new": "a06a994",
+      "full": "a06a994a5cf98f79916988aafd133b61fb757b8d",
+      "msg": "[meta] Fix surface desc struct size mismatch",
+      "date": "2026-10-24T13:27:33Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "19a1352",
-      "new": "ac7be6e",
-      "full": "ac7be6e18ef0869c3cffeeb8a8d05d30c97e3872",
-      "msg": "ci: Un-skip dEQP-VK.api.driver_properties.conformance_version",
-      "date": "2026-10-24T10:42:16.000+00:00"
+      "old": "ac7be6e",
+      "new": "c515ec0",
+      "full": "c515ec0fe77da9f42f390e442379f2d0629d908c",
+      "msg": "docs: update the list of drivers in the u_trace docs",
+      "date": "2026-10-24T09:13:52.000-03:00"
     }
   ]
 }
