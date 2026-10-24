@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-10-24T15:06:21Z",
+  "triggered_at": "2026-10-24T18:27:28Z",
   "changed": [
     {
       "repo": "WinterSnowfall/d7vk",
       "name": "D7VK (DDraw/D3D7)",
-      "old": "67ca1a9",
-      "new": "a06a994",
-      "full": "a06a994a5cf98f79916988aafd133b61fb757b8d",
-      "msg": "[meta] Fix surface desc struct size mismatch",
-      "date": "2026-10-24T13:27:33Z"
+      "old": "a06a994",
+      "new": "b44bec8",
+      "full": "b44bec8f6efc7d31baf2d09d4d65bfcc7413ef67",
+      "msg": "[meta] Pass the D3D9 device to the common device object on creation",
+      "date": "2026-10-24T17:33:02Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ac7be6e",
-      "new": "c515ec0",
-      "full": "c515ec0fe77da9f42f390e442379f2d0629d908c",
-      "msg": "docs: update the list of drivers in the u_trace docs",
-      "date": "2026-10-24T09:13:52.000-03:00"
+      "old": "c515ec0",
+      "new": "e2ab668",
+      "full": "e2ab6687d5ad700cc2b856af684aa014f9dae943",
+      "msg": "mesa: zero pipe_memory_info before querying it",
+      "date": "2026-10-24T17:39:17.000+00:00"
     }
   ]
 }
