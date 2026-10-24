@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-10-24T06:41:49Z",
+  "triggered_at": "2026-10-24T11:44:08Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "2e537bd",
-      "new": "9eb5d92",
-      "full": "9eb5d92c0dc1b5893d9cdf838f6e7c86acb9cc35",
-      "msg": "Merge pull request #6060 from Sonicadvance1/288",
-      "date": "2026-10-24T04:44:08Z"
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "02e2028",
+      "new": "cbd2206",
+      "full": "cbd2206d72d3d9dd9941d5d868bb03a858e85f9b",
+      "msg": "[native] Find the executable and the Vulkan loader on macOS",
+      "date": "2026-10-24T08:02:57Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ed2b00f",
-      "new": "19a1352",
-      "full": "19a135296672f24ec1699ada244d5b80ced371da",
-      "msg": "venus: avoid casting vulkan handles",
-      "date": "2026-10-23T21:28:03.000-07:00"
+      "old": "19a1352",
+      "new": "ac7be6e",
+      "full": "ac7be6e18ef0869c3cffeeb8a8d05d30c97e3872",
+      "msg": "ci: Un-skip dEQP-VK.api.driver_properties.conformance_version",
+      "date": "2026-10-24T10:42:16.000+00:00"
     }
   ]
 }
