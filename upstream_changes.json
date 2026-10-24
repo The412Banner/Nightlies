@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-23T22:45:43Z",
+  "triggered_at": "2026-10-24T01:15:42Z",
   "changed": [
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "3da673e",
-      "new": "2e537bd",
-      "full": "2e537bd10c867c0a7ca3dcd071f458163b144841",
-      "msg": "Merge pull request #6059 from Sonicadvance1/287",
-      "date": "2026-10-23T20:28:31Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "821ce63",
-      "new": "6885a06",
-      "full": "6885a06b826b63bcf47b7f1070114662737f7a81",
-      "msg": "mediafoundation: add support for AV1 QP Map resource (PIPE_FORMAT_R16_SINT)",
-      "date": "2026-10-23T22:14:22.000+00:00"
+      "old": "6885a06",
+      "new": "ed2b00f",
+      "full": "ed2b00fa28dfc60061e21ecbe2280a49940fb470",
+      "msg": "ir3: assemble the block copy between global memory and local",
+      "date": "2026-10-24T00:21:14.000+00:00"
     }
   ]
 }
