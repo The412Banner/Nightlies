@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-24T01:15:42Z",
+  "triggered_at": "2026-10-24T06:41:49Z",
   "changed": [
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "2e537bd",
+      "new": "9eb5d92",
+      "full": "9eb5d92c0dc1b5893d9cdf838f6e7c86acb9cc35",
+      "msg": "Merge pull request #6060 from Sonicadvance1/288",
+      "date": "2026-10-24T04:44:08Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "6885a06",
-      "new": "ed2b00f",
-      "full": "ed2b00fa28dfc60061e21ecbe2280a49940fb470",
-      "msg": "ir3: assemble the block copy between global memory and local",
-      "date": "2026-10-24T00:21:14.000+00:00"
+      "old": "ed2b00f",
+      "new": "19a1352",
+      "full": "19a135296672f24ec1699ada244d5b80ced371da",
+      "msg": "venus: avoid casting vulkan handles",
+      "date": "2026-10-23T21:28:03.000-07:00"
     }
   ]
 }
