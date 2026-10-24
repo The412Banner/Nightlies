@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-24T21:19:56Z",
+  "triggered_at": "2026-10-24T23:52:28Z",
   "changed": [
     {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "b44bec8",
-      "new": "077b496",
-      "full": "077b496749e246d8137ee4f7561ec3a79ecf0bb1",
-      "msg": "[meta] Handle DDraw interface creation failures more gracefully",
-      "date": "2026-10-24T20:30:56Z"
+      "repo": "mesa/mesa",
+      "name": "Mesa (Turnip)",
+      "old": "e2ab668",
+      "new": "02f1337",
+      "full": "02f13375231bf0a9ed20b09cb21171351053be52",
+      "msg": "mesa: don't read past the name when matching a resource without its [0]",
+      "date": "2026-10-24T20:57:47.000+00:00"
     }
   ]
 }
