@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-24T18:27:28Z",
+  "triggered_at": "2026-10-24T21:19:56Z",
   "changed": [
     {
       "repo": "WinterSnowfall/d7vk",
       "name": "D7VK (DDraw/D3D7)",
-      "old": "a06a994",
-      "new": "b44bec8",
-      "full": "b44bec8f6efc7d31baf2d09d4d65bfcc7413ef67",
-      "msg": "[meta] Pass the D3D9 device to the common device object on creation",
-      "date": "2026-10-24T17:33:02Z"
-    },
-    {
-      "repo": "mesa/mesa",
-      "name": "Mesa (Turnip)",
-      "old": "c515ec0",
-      "new": "e2ab668",
-      "full": "e2ab6687d5ad700cc2b856af684aa014f9dae943",
-      "msg": "mesa: zero pipe_memory_info before querying it",
-      "date": "2026-10-24T17:39:17.000+00:00"
+      "old": "b44bec8",
+      "new": "077b496",
+      "full": "077b496749e246d8137ee4f7561ec3a79ecf0bb1",
+      "msg": "[meta] Handle DDraw interface creation failures more gracefully",
+      "date": "2026-10-24T20:30:56Z"
     }
   ]
 }
