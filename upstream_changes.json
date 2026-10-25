@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-25T12:54:33Z",
+  "triggered_at": "2026-10-25T16:54:48Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "9eb5d92",
-      "new": "1c4f04b",
-      "full": "1c4f04b71a4d33091183fd7e1a2c09e6823d27fd",
-      "msg": "Merge pull request #6062 from Sonicadvance1/290",
-      "date": "2026-10-25T12:05:03Z"
+      "repo": "mesa/mesa",
+      "name": "Mesa (Turnip)",
+      "old": "18879c9",
+      "new": "e7371b0",
+      "full": "e7371b0711bb1cd38c39d1c05e5578c445cc6bca",
+      "msg": "freedreno: Record the batch's write when a query ends",
+      "date": "2026-10-25T14:21:47.000+00:00"
     }
   ]
 }
