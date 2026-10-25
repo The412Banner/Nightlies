@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-24T23:52:28Z",
+  "triggered_at": "2026-10-25T07:56:29Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "e2ab668",
-      "new": "02f1337",
-      "full": "02f13375231bf0a9ed20b09cb21171351053be52",
-      "msg": "mesa: don't read past the name when matching a resource without its [0]",
-      "date": "2026-10-24T20:57:47.000+00:00"
+      "old": "02f1337",
+      "new": "18879c9",
+      "full": "18879c94176c777064cbc5223a7206468c7a00a7",
+      "msg": "docs: fix typo in no-gpl extension name",
+      "date": "2026-10-25T07:17:31.000+00:00"
     }
   ]
 }
