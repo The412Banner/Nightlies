@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-25T16:54:48Z",
+  "triggered_at": "2026-10-25T19:23:41Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "18879c9",
-      "new": "e7371b0",
-      "full": "e7371b0711bb1cd38c39d1c05e5578c445cc6bca",
-      "msg": "freedreno: Record the batch's write when a query ends",
-      "date": "2026-10-25T14:21:47.000+00:00"
+      "old": "e7371b0",
+      "new": "837ab0e",
+      "full": "837ab0e30740abb9ebb60bcd40a5114c68c673d9",
+      "msg": "freedreno/decode : Add new test for crashdec with devcore dump with mempool",
+      "date": "2026-10-25T17:22:16.000+00:00"
     }
   ]
 }
