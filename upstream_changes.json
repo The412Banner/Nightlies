@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-10-25T22:10:44Z",
+  "triggered_at": "2026-10-26T11:56:22Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "420eda6",
-      "new": "a46ad9d",
-      "full": "a46ad9dfe9db4c5c70c86ac9b4e9b5b737049cc9",
-      "msg": "[RV64_DYNAREC] Reworked move immediate (#4591)",
-      "date": "2026-10-25T19:57:34Z"
+      "old": "a46ad9d",
+      "new": "61add52",
+      "full": "61add52ed5baf9213761fb20cca1585315fb9273",
+      "msg": "[RV64_DYNAREC] Use generic vector stores for XMM spills (#4605)",
+      "date": "2026-10-26T07:56:56Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "077b496",
+      "new": "337e3a3",
+      "full": "337e3a352d756399c9a0364159e45e70a40f1396",
+      "msg": "[meta] Add a proxied gamma ramp option and make gamma handling more robust",
+      "date": "2026-10-26T11:25:01Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "837ab0e",
-      "new": "ab1502f",
-      "full": "ab1502fd1606633e910212da185e92fa6bd4cde1",
-      "msg": "asahi: Fix GL_EXT_semaphore[_fd].",
-      "date": "2026-10-25T20:56:59.000+01:00"
+      "old": "ab1502f",
+      "new": "ec7b2f3",
+      "full": "ec7b2f322abbcd593d600a14afe2d2773512af4e",
+      "msg": "panvk: Fix incremental rendering for v14+",
+      "date": "2026-10-26T10:54:43.000+00:00"
     }
   ]
 }
