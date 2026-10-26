@@ -1,32 +1,41 @@
 {
-  "triggered_at": "2026-10-26T11:56:22Z",
+  "triggered_at": "2026-10-26T18:05:32Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "a46ad9d",
-      "new": "61add52",
-      "full": "61add52ed5baf9213761fb20cca1585315fb9273",
-      "msg": "[RV64_DYNAREC] Use generic vector stores for XMM spills (#4605)",
-      "date": "2026-10-26T07:56:56Z"
+      "old": "61add52",
+      "new": "74ee428",
+      "full": "74ee4280dbd3ea311808d7204e29ae5a6ff85517",
+      "msg": "[DYNAREC] Added callret=3 and move in_used tracking to it (#4609)",
+      "date": "2026-10-26T15:12:23Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "ef9a02e",
+      "new": "7ab6cd5",
+      "full": "7ab6cd5bd843bd6daaa199fe8badb9cb673c3665",
+      "msg": "vkd3d: Avoid querying surface capabilities on every present when not occluded.",
+      "date": "2026-10-26T15:46:14Z"
     },
     {
       "repo": "WinterSnowfall/d7vk",
       "name": "D7VK (DDraw/D3D7)",
-      "old": "077b496",
-      "new": "337e3a3",
-      "full": "337e3a352d756399c9a0364159e45e70a40f1396",
-      "msg": "[meta] Add a proxied gamma ramp option and make gamma handling more robust",
-      "date": "2026-10-26T11:25:01Z"
+      "old": "337e3a3",
+      "new": "8b914b3",
+      "full": "8b914b3a4825d3ef77a1c358a7643dc1911de8d4",
+      "msg": "[meta] Slightly optimize display mode enumeration",
+      "date": "2026-10-26T12:00:59Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ab1502f",
-      "new": "ec7b2f3",
-      "full": "ec7b2f322abbcd593d600a14afe2d2773512af4e",
-      "msg": "panvk: Fix incremental rendering for v14+",
-      "date": "2026-10-26T10:54:43.000+00:00"
+      "old": "ec7b2f3",
+      "new": "3f8a353",
+      "full": "3f8a3533e701f5994f6fb2ec6a932e171baf6fcb",
+      "msg": "mesa: remove lookup_texture_ext_dsa function",
+      "date": "2026-10-26T17:24:46.000+00:00"
     }
   ]
 }
