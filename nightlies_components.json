@@ -979,27 +979,27 @@
   },
   {
     "type": "Box64",
-    "verName": "Box64-0.4.5-c48d4340f-Native",
+    "verName": "Box64-0.4.5-5eab50c02-Native",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-c48d4340f-Native.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-5eab50c02-Native.wcp"
   },
   {
     "type": "Box64",
-    "verName": "Box64-0.4.5-c48d4340f-Native",
+    "verName": "Box64-0.4.5-5eab50c02-Native",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-c48d4340f-Native.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-5eab50c02-Native.zip"
   },
   {
     "type": "Box64",
-    "verName": "Box64-0.4.5-efe75dbb3-Bionic",
+    "verName": "Box64-0.4.5-7b3f5a9ff-Bionic",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-efe75dbb3-Bionic.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-7b3f5a9ff-Bionic.wcp"
   },
   {
     "type": "Box64",
-    "verName": "Box64-0.4.5-efe75dbb3-Bionic",
+    "verName": "Box64-0.4.5-7b3f5a9ff-Bionic",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-efe75dbb3-Bionic.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-7b3f5a9ff-Bionic.zip"
   },
   {
     "type": "Box64",
@@ -1159,39 +1159,39 @@
   },
   {
     "type": "VKD3D",
-    "verName": "VKD3D-Proton-3.0.1-7ab6cd5b",
+    "verName": "VKD3D-Proton-3.0.1-dff84379",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-3.0.1-7ab6cd5b.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-3.0.1-dff84379.wcp"
   },
   {
     "type": "VKD3D",
-    "verName": "VKD3D-Proton-3.0.1-7ab6cd5b",
+    "verName": "VKD3D-Proton-3.0.1-dff84379",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-3.0.1-7ab6cd5b.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-3.0.1-dff84379.zip"
   },
   {
     "type": "VKD3D",
-    "verName": "VKD3D-Proton-arm64ec-3.0.1-7ab6cd5b",
+    "verName": "VKD3D-Proton-arm64ec-3.0.1-dff84379",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-arm64ec-3.0.1-7ab6cd5b.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-arm64ec-3.0.1-dff84379.wcp"
   },
   {
     "type": "VKD3D",
-    "verName": "VKD3D-Proton-arm64ec-3.0.1-7ab6cd5b",
+    "verName": "VKD3D-Proton-arm64ec-3.0.1-dff84379",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-arm64ec-3.0.1-7ab6cd5b.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-arm64ec-3.0.1-dff84379.zip"
   },
   {
     "type": "WOWBox64",
-    "verName": "WOWBox64-0.4.5-d82bdd734",
+    "verName": "WOWBox64-0.4.5-7b3f5a9ff",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/WOWBox64-0.4.5-d82bdd734.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/WOWBox64-0.4.5-7b3f5a9ff.wcp"
   },
   {
     "type": "WOWBox64",
-    "verName": "WOWBox64-0.4.5-d82bdd734",
+    "verName": "WOWBox64-0.4.5-7b3f5a9ff",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/WOWBox64-0.4.5-d82bdd734.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/WOWBox64-0.4.5-7b3f5a9ff.zip"
   },
   {
     "type": "WOWBox64",
