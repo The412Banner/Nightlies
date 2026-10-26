@@ -6,6 +6,30 @@
 
 ---
 
+## Session — 2026-10-26
+
+### [feat] — Rutabaga-26.10.22 added to the Rutabaga driver feed (2026-10-26, main, published)
+**Why:** GameHub released `rutabaga-26.10.22` (component id 481, tzst MD5 `ba48e1219c92a9c033ec180452bfba03`). The user asked to repackage it like the other three and add it to the feed and release.
+
+#### What changed
+- Repackaged as `Rutabaga-26.10.22.zip` = `meta.json` + `libvulkan_freedreno.so` (same layout as the older three). Zip sha256 `f4efa850eb0f0661587ac65c87fb067c92950390c258171ff2889fe21edb9937`; downloaded back from the release, hash matches.
+- Uploaded to release `rutabaga-drivers` (new asset, nothing replaced; release stays non-Latest).
+- `rutabaga_drivers.json`: new first entry `Rutabaga-26.10.22`.
+- Release notes: added a 26.10.22 line.
+
+#### What the build is (strings + decoded built-in game profiles)
+- Mesa 26.3.0-devel git-6e2cf3d72b (not in upstream Mesa), built 2026-10-22 with NDK clang 17.0.2.
+- Mesh shaders run through compute, A8xx cube-map fix and A8xx IB virtual alias: same code as Max's (maxjivi05) WinNative Turnip patches (WinNative-Emu/Drivers PR #6, also in Droid-Deck/Drivers `patches/linux`).
+- New profiles: Final Fantasy VII Rebirth (compute mesh shaders, Wave32 option, 64-wide subgroups), Final Fantasy XVI; `TU_FF7_CP_COPY` / `TU_FF7_CP_UPDATE`; 007 First Light gets `tu_sync_renderpass_cache`; KGSL wait-any fences. AC4 debug log removed.
+
+#### Device test
+- NOT device-tested.
+
+#### Note
+- The feed itself (`60a70836`, 2026-10-13, three builds) was never logged here.
+
+---
+
 ## Session — 2026-09-16
 
 ### [fix] — Keep Banners-Turnip Wayland builds out of the GPU driver catalog and the nightly bundle (2026-09-16)
