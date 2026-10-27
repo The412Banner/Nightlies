@@ -1,41 +1,32 @@
 {
-  "triggered_at": "2026-10-27T13:48:06Z",
+  "triggered_at": "2026-10-27T19:06:55Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "74ee428",
-      "new": "11a20e3",
-      "full": "11a20e37c8f5996dfcd3b1f247a9b273e56ad189",
-      "msg": "[RV64_DYNAREC] Emit scalar AVX FMA with vl=1 (#4613)",
-      "date": "2026-10-27T07:26:44Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "1c4f04b",
+      "new": "8a3764e",
+      "full": "8a3764ee1b82fe5136630642aad6fd40b36fadba",
+      "msg": "Merge pull request #6066 from Sonicadvance1/292",
+      "date": "2026-10-27T17:00:26Z"
     },
     {
       "repo": "HansKristian-Work/vkd3d-proton",
       "name": "VKD3D-Proton",
-      "old": "dff8437",
-      "new": "cae2e00",
-      "full": "cae2e003bb8251627ff93c0f471ae18a28234490",
-      "msg": "vkd3d: Iterate candidate memory types on allocation failure.",
-      "date": "2026-10-27T13:18:21Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "8b914b3",
-      "new": "b2bb70d",
-      "full": "b2bb70d6e73a83010c537c92e922dc3102d18f61",
-      "msg": "[meta] Add an option to expose only legacy aspect ratio modes",
-      "date": "2026-10-27T13:28:57Z"
+      "old": "cae2e00",
+      "new": "49a1e2c",
+      "full": "49a1e2c7098f4646374458b9a8fbc7c0d0b5ff3d",
+      "msg": "vkd3d: Do not deduplicate identical fence event registrations.",
+      "date": "2026-10-27T16:15:49Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "10e0cdd",
-      "new": "2c95c90",
-      "full": "2c95c9030c315ded1bdae9bc80bd2337416f434d",
-      "msg": "ci/deqp-runner: add `allow_improvements_over_expectations` CI input for downstre",
-      "date": "2026-10-27T12:12:39.000+00:00"
+      "old": "2c95c90",
+      "new": "a79e3fc",
+      "full": "a79e3fc796402a6c1e06defa2facbf8dbab8051c",
+      "msg": "nak: Move FutureReadyInstr::new into postpass.rs",
+      "date": "2026-10-27T17:33:26.000+00:00"
     }
   ]
 }
