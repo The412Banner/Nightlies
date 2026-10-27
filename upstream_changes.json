@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-27T01:46:50Z",
+  "triggered_at": "2026-10-27T07:05:22Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "789e349",
-      "new": "34d9ed8",
-      "full": "34d9ed80fc6556ce1c626b2c756e8ac70827ee89",
-      "msg": "tu/ci: Update trace checksums for non-visible changes.",
-      "date": "2026-10-27T00:27:04.000+00:00"
+      "old": "34d9ed8",
+      "new": "10e0cdd",
+      "full": "10e0cdd9c6eaba8e2ed91822d12e96003f7498a4",
+      "msg": "radv/ci: automatically reboot on network error",
+      "date": "2026-10-27T07:51:14.000+02:00"
     }
   ]
 }
