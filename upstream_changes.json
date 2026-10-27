@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-26T22:56:32Z",
+  "triggered_at": "2026-10-27T01:46:50Z",
   "changed": [
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "7ab6cd5",
-      "new": "dff8437",
-      "full": "dff843794e7b56b133b63bafac0f91beac273186",
-      "msg": "vkd3d: Add pre-compute barrier to resolve UE4 RT glitches on AMD.",
-      "date": "2026-10-26T18:27:08Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "3f8a353",
-      "new": "789e349",
-      "full": "789e349029c7f730cb0aad0889127bdc75bac77c",
-      "msg": "Revert \"intel: fix compiler warning for XML function deprecations\"",
-      "date": "2026-10-26T22:16:20.000+00:00"
+      "old": "789e349",
+      "new": "34d9ed8",
+      "full": "34d9ed80fc6556ce1c626b2c756e8ac70827ee89",
+      "msg": "tu/ci: Update trace checksums for non-visible changes.",
+      "date": "2026-10-27T00:27:04.000+00:00"
     }
   ]
 }
