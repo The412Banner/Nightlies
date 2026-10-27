@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-10-27T19:06:55Z",
+  "triggered_at": "2026-10-27T23:22:54Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "1c4f04b",
-      "new": "8a3764e",
-      "full": "8a3764ee1b82fe5136630642aad6fd40b36fadba",
-      "msg": "Merge pull request #6066 from Sonicadvance1/292",
-      "date": "2026-10-27T17:00:26Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "cae2e00",
-      "new": "49a1e2c",
-      "full": "49a1e2c7098f4646374458b9a8fbc7c0d0b5ff3d",
-      "msg": "vkd3d: Do not deduplicate identical fence event registrations.",
-      "date": "2026-10-27T16:15:49Z"
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "cbd2206",
+      "new": "9c5551c",
+      "full": "9c5551cbefa8a6782d1b94554e254a2ff483e254",
+      "msg": "[d3d9] Fix integer divisions in YUV conversion",
+      "date": "2026-10-27T20:42:32Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "2c95c90",
-      "new": "a79e3fc",
-      "full": "a79e3fc796402a6c1e06defa2facbf8dbab8051c",
-      "msg": "nak: Move FutureReadyInstr::new into postpass.rs",
-      "date": "2026-10-27T17:33:26.000+00:00"
+      "old": "a79e3fc",
+      "new": "f01e9b0",
+      "full": "f01e9b07a91f7e7ab730edfbb383b083f146067b",
+      "msg": "aco: fix packing negated 16-bit constants in neg_mul_to_i16_cb",
+      "date": "2026-10-27T22:52:08.000+00:00"
     }
   ]
 }
