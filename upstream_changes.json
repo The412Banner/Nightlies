@@ -1,23 +1,50 @@
 {
-  "triggered_at": "2026-10-28T10:11:04Z",
+  "triggered_at": "2026-10-28T16:54:26Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "11a20e3",
-      "new": "2da6411",
-      "full": "2da641175cc2525f98f14b71427b914312184173",
-      "msg": "[RV64_DYNAREC] Fixed vtype restore skipped by epilog branches (#4621)",
-      "date": "2026-10-28T09:40:33Z"
+      "old": "2da6411",
+      "new": "30d5c77",
+      "full": "30d5c77188fa9cf8bea7064d93ced554c3a34cde",
+      "msg": "[RV64_DYNAREC] Keep live YMMs cached across merge points, skip dead write-backs ",
+      "date": "2026-10-28T11:16:15Z"
+    },
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "8a3764e",
+      "new": "fb48e2d",
+      "full": "fb48e2d19de4bd49bbc66d42242609357883a302",
+      "msg": "Merge pull request #6069 from Sonicadvance1/292",
+      "date": "2026-10-28T13:59:06Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "49a1e2c",
+      "new": "4522cc1",
+      "full": "4522cc1a8b1347f1ab1b0f7b14a23ed9444d95d1",
+      "msg": "meta: Add 3.1 changelog.",
+      "date": "2026-10-28T10:13:54Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "9c5551c",
+      "new": "0cfe089",
+      "full": "0cfe0898289fb11e3d8d0e1c62cd344b825b7d57",
+      "msg": "[dxvk] Fix DxvkGraphicsPipelineVertexInputState::eq",
+      "date": "2026-10-28T13:15:26Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "fe02f98",
-      "new": "ed603cc",
-      "full": "ed603cc9180185f8a0b58e5ead6f147906f727a6",
-      "msg": "broadcom/ci: update expected results",
-      "date": "2026-10-28T09:20:18.000+00:00"
+      "old": "ed603cc",
+      "new": "732f32f",
+      "full": "732f32f1714e93ac1f59fbad501b362f985c09a5",
+      "msg": "panfrost/ci: `panfrost-{g610,g925}-traces:arm64` only run gl traces",
+      "date": "2026-10-28T16:26:54.000+00:00"
     }
   ]
 }
