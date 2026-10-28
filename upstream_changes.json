@@ -1,50 +1,23 @@
 {
-  "triggered_at": "2026-10-28T16:54:26Z",
+  "triggered_at": "2026-10-28T21:27:17Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "2da6411",
-      "new": "30d5c77",
-      "full": "30d5c77188fa9cf8bea7064d93ced554c3a34cde",
-      "msg": "[RV64_DYNAREC] Keep live YMMs cached across merge points, skip dead write-backs ",
-      "date": "2026-10-28T11:16:15Z"
-    },
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "8a3764e",
-      "new": "fb48e2d",
-      "full": "fb48e2d19de4bd49bbc66d42242609357883a302",
-      "msg": "Merge pull request #6069 from Sonicadvance1/292",
-      "date": "2026-10-28T13:59:06Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "49a1e2c",
-      "new": "4522cc1",
-      "full": "4522cc1a8b1347f1ab1b0f7b14a23ed9444d95d1",
-      "msg": "meta: Add 3.1 changelog.",
-      "date": "2026-10-28T10:13:54Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "9c5551c",
-      "new": "0cfe089",
-      "full": "0cfe0898289fb11e3d8d0e1c62cd344b825b7d57",
-      "msg": "[dxvk] Fix DxvkGraphicsPipelineVertexInputState::eq",
-      "date": "2026-10-28T13:15:26Z"
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "b2bb70d",
+      "new": "321d63a",
+      "full": "321d63a7470582eb3b709c5f007c3ecd12e5d4ef",
+      "msg": "[meta] Clean up some stale imports and forward declarations",
+      "date": "2026-10-28T21:16:32Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ed603cc",
-      "new": "732f32f",
-      "full": "732f32f1714e93ac1f59fbad501b362f985c09a5",
-      "msg": "panfrost/ci: `panfrost-{g610,g925}-traces:arm64` only run gl traces",
-      "date": "2026-10-28T16:26:54.000+00:00"
+      "old": "732f32f",
+      "new": "087e1fe",
+      "full": "087e1fe4e6a5e1d30f30538112fd8cd62f4167f6",
+      "msg": "panvk: fix mark_all_access_non_uniform metadata preservation",
+      "date": "2026-10-28T18:44:07.000+00:00"
     }
   ]
 }
