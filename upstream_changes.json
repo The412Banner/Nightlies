@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-27T23:22:54Z",
+  "triggered_at": "2026-10-28T03:13:49Z",
   "changed": [
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "cbd2206",
-      "new": "9c5551c",
-      "full": "9c5551cbefa8a6782d1b94554e254a2ff483e254",
-      "msg": "[d3d9] Fix integer divisions in YUV conversion",
-      "date": "2026-10-27T20:42:32Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "a79e3fc",
-      "new": "f01e9b0",
-      "full": "f01e9b07a91f7e7ab730edfbb383b083f146067b",
-      "msg": "aco: fix packing negated 16-bit constants in neg_mul_to_i16_cb",
-      "date": "2026-10-27T22:52:08.000+00:00"
+      "old": "f01e9b0",
+      "new": "fe02f98",
+      "full": "fe02f9878ce6634f2fd76f2ca47ed976d9d3402a",
+      "msg": "ac/nir/meta_cs_blit: optionally log shader keys to a file",
+      "date": "2026-10-28T02:37:25.000+00:00"
     }
   ]
 }
