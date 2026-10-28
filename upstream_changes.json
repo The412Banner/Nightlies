@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-28T03:13:49Z",
+  "triggered_at": "2026-10-28T10:11:04Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "11a20e3",
+      "new": "2da6411",
+      "full": "2da641175cc2525f98f14b71427b914312184173",
+      "msg": "[RV64_DYNAREC] Fixed vtype restore skipped by epilog branches (#4621)",
+      "date": "2026-10-28T09:40:33Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "f01e9b0",
-      "new": "fe02f98",
-      "full": "fe02f9878ce6634f2fd76f2ca47ed976d9d3402a",
-      "msg": "ac/nir/meta_cs_blit: optionally log shader keys to a file",
-      "date": "2026-10-28T02:37:25.000+00:00"
+      "old": "fe02f98",
+      "new": "ed603cc",
+      "full": "ed603cc9180185f8a0b58e5ead6f147906f727a6",
+      "msg": "broadcom/ci: update expected results",
+      "date": "2026-10-28T09:20:18.000+00:00"
     }
   ]
 }
