@@ -8,7 +8,7 @@
 
 ## Session — 2026-10-29
 
-### [feat] — VKD3D-Proton 3.1 stable: repack workflow (2026-10-29, feat/vkd3d-stable-repack, dry run)
+### [feat] — VKD3D-Proton 3.1 stable: repack workflow (2026-10-29, main, PUBLISHED)
 **Why:** upstream released vkd3d-proton v3.1 (2026-10-28, tag commit `4522cc1a`). The nightly already built that exact commit (`VKD3D-Proton-3.1-4522cc1a` + arm64ec, first in `nightly-20261028-152656`), but the stable releases `Vkd3d-proton` / `VKD3D-PROTON-ARM` stopped at 3.0.1. The user asked for a stable 3.1 named, packed and listed like 3.0.1, made standalone on this repo by repackaging the nightly.
 
 #### Findings
@@ -20,8 +20,21 @@
 - New `.github/workflows/vkd3d-stable-repack.yml` + `scripts/vkd3d-stable-repack.py`: takes the nightly pair built from the upstream tag commit (hash-checked against the release digest), `llvm-strip --strip-all`, proves code/data sections and exports are unchanged, writes `profile.json` in the 3.0.1 format (versionName `3.1` / `3.1-arm64ec`, versionCode 0, description "Built on Banners Nightlies (Upstream: Hans-Kristian Arntzen)"), packs root-owned tar + zstd -3, re-checks the packed files, then uploads `vkd3d-proton-3.1.wcp` → `Vkd3d-proton` and `vkd3d-proton-arm64ec-3.1.wcp` → `VKD3D-PROTON-ARM`, sets "Current version: 3.1" in both notes, and dispatches `nightlies-components-json.yml`. Push to the feature branch = dry run.
 - Local run of the strip/pack/verify steps on the real nightly files: passed; x64 `d3d12.dll` 507904 → 131072 B, `d3d12core.dll` 6615040 → 5332992 B.
 
+#### Runs and result
+- Dry run 40850013850 (push, `d93c57af`): green; its artifact unpacks to the same DLLs + profile.json as the local run.
+- main fast-forwarded to `d93c57af` (backups `refs/backup/20261029/main-before-vkd3d-stable-repack` = `e7194064`, `refs/backup/20261029/feat-vkd3d-stable-repack`).
+- Publish run 40850206247 (dispatch, `d93c57af`, version 3.1, nightly-latest): green. `Vkd3d-proton` 9 → 10 assets, `VKD3D-PROTON-ARM` 5 → 6, both notes "Current version: 3.1".
+    - `vkd3d-proton-3.1.wcp` 4038412 B, sha256 `18a107537ce289811080947c6c465406ca64922e8012aae34f58f5691d95aaf5`
+    - `vkd3d-proton-arm64ec-3.1.wcp` 4048118 B, sha256 `35ba77e4ab0efcaed54b446d55ed801bc19a639a237dd9e797dd5eb293e0c291`
+    - Downloaded back: hashes match the release digests, check-pkg passes, contents identical to the dry run.
+- Catalog run 40850271340 green → `04721f6f`: `nightlies_components.json` 943 → 945 with `vkd3d-proton-3.1` and `vkd3d-proton-arm64ec-3.1` (same shape as 3.0.1).
+- winlator-contents `16b45493` (contents.json 200 → 202 rows, same two entries).
+
 #### Device test
 - NOT device-tested.
+
+#### Open
+- The nightly `build-vkd3d` (x64) job still ships unstripped DLLs; fix = the same `llvm-strip --strip-all` lines the arm64ec job has. Not done, needs the user's go.
 
 ## Session — 2026-10-26
 
