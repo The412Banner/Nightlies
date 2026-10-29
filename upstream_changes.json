@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-10-29T01:25:45Z",
+  "triggered_at": "2026-10-29T07:51:14Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "087e1fe",
-      "new": "fa72708",
-      "full": "fa7270894217a66a0ed2a15eca7e272c2e2c8244",
-      "msg": "llvmpipe: release freed memory from the allocation memfd",
-      "date": "2026-10-29T00:21:03.000+00:00"
+      "old": "fa72708",
+      "new": "1c3a936",
+      "full": "1c3a936490f9f0951188218e136cd03bca497386",
+      "msg": "Replace `reallocarray` with `realloc` in lp_scene.c",
+      "date": "2026-10-29T01:04:50.000+00:00"
     }
   ]
 }
