@@ -8,6 +8,18 @@
 
 ## Session — 2026-10-29
 
+### [fix] — VKD3D x64 nightly strip + VKD3D-Proton 3.1 Linux stable (2026-10-29, fix/vkd3d-x64-strip-linux, dry run)
+**Why:** user: "fix the strip and make the linux one too, build them in a separate standalone workflow". Scan of nightly-latest (see the 3.1 entry below) found the x64 VKD3D DLLs unstripped.
+
+#### What changed
+- AIO `build-vkd3d` and `vkd3dProtons-standalone-nightly.yml` x64 job: `llvm-strip --strip-all` on the packaged DLLs, as the arm64ec jobs already do. Meson's `-Dstrip=true` only strips on `meson install`, which these jobs never run.
+- New `.github/workflows/vkd3d-linux-stable.yml`: the `dxwrappers-linux-repack.yml` conversion for one version only, so other `Vkd3d-proton-Linux` assets are not re-uploaded. `Vkd3d-proton/vkd3d-proton-3.1.wcp` → `vkd3d-proton-3.1-linux.wcp` (versionName `3.1-linux`), `VKD3D-PROTON-ARM/vkd3d-proton-arm64ec-3.1.wcp` → `vkd3d-proton-arm64ec-3.1-linux.wcp` (`3.1-arm64ec-linux`; 3.0.1 had no arm64ec Linux file, the low-latency one did). The arm64ec file lets DroidDeck pair its `DD-vkd3d-proton-arm64ec-3.1-nightly.wcp` with a stable row (`ComponentsManager.nightlyPairs`). Release notes: table row for the x64 file, one line for the arm64ec file.
+- `scripts/vkd3d-stable-repack.py check-linux`: layout, profile (type `VKD3D-Linux`, files[]), DLLs byte-identical to the stable source, stripped. Checked against the existing `vkd3d-proton-3.0.1-linux.wcp`: passes.
+- The standalone VKD3D nightly publishes from any branch, so it is not run from this branch; the AIO only publishes from main and is run here to prove the strip.
+
+#### Device test
+- NOT device-tested.
+
 ### [feat] — VKD3D-Proton 3.1 stable: repack workflow (2026-10-29, main, PUBLISHED)
 **Why:** upstream released vkd3d-proton v3.1 (2026-10-28, tag commit `4522cc1a`). The nightly already built that exact commit (`VKD3D-Proton-3.1-4522cc1a` + arm64ec, first in `nightly-20261028-152656`), but the stable releases `Vkd3d-proton` / `VKD3D-PROTON-ARM` stopped at 3.0.1. The user asked for a stable 3.1 named, packed and listed like 3.0.1, made standalone on this repo by repackaging the nightly.
 
