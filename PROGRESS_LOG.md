@@ -8,7 +8,7 @@
 
 ## Session — 2026-10-29
 
-### [fix] — VKD3D x64 nightly strip + VKD3D-Proton 3.1 Linux stable (2026-10-29, fix/vkd3d-x64-strip-linux, dry run)
+### [fix] — VKD3D x64 nightly strip + VKD3D-Proton 3.1 Linux stable (2026-10-29, main, PUBLISHED)
 **Why:** user: "fix the strip and make the linux one too, build them in a separate standalone workflow". Scan of nightly-latest (see the 3.1 entry below) found the x64 VKD3D DLLs unstripped.
 
 #### What changed
@@ -16,6 +16,16 @@
 - New `.github/workflows/vkd3d-linux-stable.yml`: the `dxwrappers-linux-repack.yml` conversion for one version only, so other `Vkd3d-proton-Linux` assets are not re-uploaded. `Vkd3d-proton/vkd3d-proton-3.1.wcp` → `vkd3d-proton-3.1-linux.wcp` (versionName `3.1-linux`), `VKD3D-PROTON-ARM/vkd3d-proton-arm64ec-3.1.wcp` → `vkd3d-proton-arm64ec-3.1-linux.wcp` (`3.1-arm64ec-linux`; 3.0.1 had no arm64ec Linux file, the low-latency one did). The arm64ec file lets DroidDeck pair its `DD-vkd3d-proton-arm64ec-3.1-nightly.wcp` with a stable row (`ComponentsManager.nightlyPairs`). Release notes: table row for the x64 file, one line for the arm64ec file.
 - `scripts/vkd3d-stable-repack.py check-linux`: layout, profile (type `VKD3D-Linux`, files[]), DLLs byte-identical to the stable source, stripped. Checked against the existing `vkd3d-proton-3.0.1-linux.wcp`: passes.
 - The standalone VKD3D nightly publishes from any branch, so it is not run from this branch; the AIO only publishes from main and is run here to prove the strip.
+
+#### Runs and result
+- Linux dry run 40851472641 (push, `670ca4e2`): green; output checked locally (check-linux vs the live stable 3.1, README same form as 3.0.1-linux). Notes edit tested on the real notes, idempotent.
+- AIO on the branch 40851481798 (`670ca4e2`, Create Nightly Release skipped as designed): green; x64 VKD3D now 0 symbols, no debug sections, sizes = stable 3.1; only `.buildid` differs from the stable DLLs.
+- main fast-forwarded `fecd8de4` → `670ca4e2` (backups `refs/backup/20261029/main-before-vkd3d-x64-strip-linux`, `fix-vkd3d-x64-strip-linux`).
+- Linux publish 40852432176 (`670ca4e2`): green, `Vkd3d-proton-Linux` 11 → 13 assets.
+    - `vkd3d-proton-3.1-linux.wcp` sha256 `a6ef7e515eb9d6c06b4501c83e61d9b989f36cf2a5140fcf157e353c2ea65529`
+    - `vkd3d-proton-arm64ec-3.1-linux.wcp` sha256 `a5384c014d3495840a857823c94bc1d44b54b1968b0e201eac2ba5394b7881ee`
+- DroidDeck-Components (user: repack the built stables and update the release by hand, no workflow): new release `linux-stable` (tag @ `c56198fd`, not Latest) with `DD-vkd3d-proton-3.1.wcp` (`DD-3.1`, sha256 `92197733…`) and `DD-vkd3d-proton-arm64ec-3.1.wcp` (`DD-3.1-arm64ec`, `bd458d8a…`), packed with that repo's `tools/linux-nightly/pack.sh`, DLLs byte-identical to the stable 3.1. The DroidDeck app does not read `linux-stable` yet (user chose no app change).
+- All six 3.1 files in `/sdcard/Download`, hashes equal on host, device and GitHub digests.
 
 #### Device test
 - NOT device-tested.
