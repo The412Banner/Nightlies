@@ -99,6 +99,9 @@ jobs:
           find src/build-x86 -name "d3d12.dll" -exec cp -L {} final_package/syswow64/ \;
           find src/build-x86 -name "d3d12core.dll" -exec cp -L {} final_package/syswow64/ \;
           
+          llvm-strip --strip-all final_package/system32/*.dll
+          llvm-strip --strip-all final_package/syswow64/*.dll
+          
           cat <<EOF > final_package/profile.json
           {
             "type": "VKD3D",
