@@ -1,0 +1,253 @@
+name: VKD3D-Proton Stable — Repack from nightly
+
+# ==================================================================
+# Publishes a VKD3D-Proton stable version from the binaries the
+# All-in-One nightly already built from upstream's release tag.
+# Nothing is compiled here.
+#
+# Source (on the nightly release, default nightly-latest):
+#   VKD3D-Proton-<ver>-<commit>.wcp           x64 + x86
+#   VKD3D-Proton-arm64ec-<ver>-<commit>.wcp   arm64ec + x86
+# <commit> must be the commit upstream tagged v<ver>, and v<ver> must
+# be a published (non-prerelease) upstream release.
+#
+# Repacked in the same format as the existing stable files (3.0.1):
+#   - the same 4 DLLs in system32/ + syswow64/
+#   - llvm-strip --strip-all: the nightly x64 job leaves debug info
+#     and symbols in; scripts/vkd3d-stable-repack.py proves code, data
+#     and exports are unchanged by the strip
+#   - profile.json: type VKD3D, versionName <ver> / <ver>-arm64ec,
+#     versionCode 0
+#   - tar with root-owned entries, zstd at the default level
+#
+# Publishes (adds one file to each release, other assets untouched):
+#   Vkd3d-proton      vkd3d-proton-<ver>.wcp
+#   VKD3D-PROTON-ARM  vkd3d-proton-arm64ec-<ver>.wcp
+# sets "Current version: <ver>" in both release notes, then runs
+# nightlies-components-json.yml so the catalog lists them.
+#
+# workflow_dispatch registers only from the default branch. A push to
+# feat/vkd3d-stable-repack runs the same job as a dry run.
+# ==================================================================
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'VKD3D-Proton stable version, no leading v (e.g. 3.1)'
+        required: true
+        default: '3.1'
+      source_tag:
+        description: 'Release holding the nightly VKD3D-Proton-<version>-<commit>.wcp pair'
+        required: false
+        default: 'nightly-latest'
+      dry_run:
+        description: 'Verify everything and publish NOTHING'
+        type: boolean
+        required: false
+        default: false
+  push:
+    branches: [feat/vkd3d-stable-repack]
+    paths:
+      - .github/workflows/vkd3d-stable-repack.yml
+      - scripts/vkd3d-stable-repack.py
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  repack:
+    name: Repack and publish VKD3D-Proton stable
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      VERSION: ${{ inputs.version || '3.1' }}
+      SOURCE_TAG: ${{ inputs.source_tag || 'nightly-latest' }}
+      DRY_RUN: ${{ github.event_name != 'workflow_dispatch' || inputs.dry_run }}
+      UPSTREAM: HansKristian-Work/vkd3d-proton
+      CHECK: scripts/vkd3d-stable-repack.py
+    steps:
+      - name: Checkout (checker script)
+        uses: actions/checkout@v4
+
+      - name: Setup llvm-mingw (llvm-strip, same toolchain as the nightly build)
+        run: |
+          set -euo pipefail
+          LLVM_MINGW_TAG="20251104"
+          wget -q "https://github.com/mstorsjo/llvm-mingw/releases/download/$LLVM_MINGW_TAG/llvm-mingw-$LLVM_MINGW_TAG-ucrt-ubuntu-22.04-x86_64.tar.xz" -O llvm.tar.xz
+          sudo mkdir -p /opt/llvm-mingw
+          sudo tar -C /opt/llvm-mingw --strip-components=1 -xJf llvm.tar.xz
+          rm llvm.tar.xz
+          echo "/opt/llvm-mingw/bin" >> $GITHUB_PATH
+          command -v zstd jq python3
+
+      - name: Resolve upstream tag and nightly assets
+        id: src
+        run: |
+          set -euo pipefail
+          case "$VERSION" in v*|'') echo "::error::version must be given without a leading v"; exit 1;; esac
+
+          REL=$(gh api "repos/$UPSTREAM/releases/tags/v${VERSION}" --jq '"\(.draft) \(.prerelease)"') \
+            || { echo "::error::upstream has no release v${VERSION}"; exit 1; }
+          [ "$REL" = "false false" ] || { echo "::error::upstream v${VERSION} is a draft or prerelease ($REL)"; exit 1; }
+          FULL=$(gh api "repos/$UPSTREAM/commits/v${VERSION}" --jq .sha)
+          echo "upstream v${VERSION} = $FULL"
+
+          gh api "repos/$REPO/releases/tags/$SOURCE_TAG" --jq '.assets[]|"\(.name) \(.digest)"' > assets.txt
+          VRE="${VERSION//./\\.}"
+          pick() {
+            # $1 = filename prefix; prints "<name> <commit> <digest>" for the asset built from $FULL
+            { grep -E "^$1-${VRE}-[0-9a-f]{7,40}\.wcp " assets.txt || true; } | while read -r name digest; do
+              c=${name%.wcp}; c=${c##*-}
+              case "$FULL" in "$c"*) echo "$name $c $digest";; esac
+            done
+          }
+          X64=$(pick VKD3D-Proton); EC=$(pick VKD3D-Proton-arm64ec)
+          [ "$(echo "$X64" | grep -c .)" = 1 ] && [ "$(echo "$EC" | grep -c .)" = 1 ] || {
+            echo "::error::$SOURCE_TAG has no single x64 + arm64ec ${VERSION} pair built from ${FULL:0:12}"
+            grep -i vkd3d assets.txt || true
+            exit 1
+          }
+          read -r X64_NAME C X64_DIGEST <<< "$X64"
+          read -r EC_NAME C2 EC_DIGEST <<< "$EC"
+          [ "$C" = "$C2" ] || { echo "::error::x64 ($C) and arm64ec ($C2) come from different commits"; exit 1; }
+          {
+            echo "commit=$C"
+            echo "full=$FULL"
+            echo "x64_name=$X64_NAME"
+            echo "x64_digest=$X64_DIGEST"
+            echo "ec_name=$EC_NAME"
+            echo "ec_digest=$EC_DIGEST"
+          } >> $GITHUB_OUTPUT
+          echo "x64    : $X64_NAME ($X64_DIGEST)"
+          echo "arm64ec: $EC_NAME ($EC_DIGEST)"
+
+      - name: Download, hash-check and unpack the nightly pair
+        env:
+          C: ${{ steps.src.outputs.commit }}
+          X64_NAME: ${{ steps.src.outputs.x64_name }}
+          EC_NAME: ${{ steps.src.outputs.ec_name }}
+          X64_DIGEST: ${{ steps.src.outputs.x64_digest }}
+          EC_DIGEST: ${{ steps.src.outputs.ec_digest }}
+        run: |
+          set -euo pipefail
+          mkdir -p dl src/x64 src/arm64ec
+          gh release download "$SOURCE_TAG" -R "$REPO" -p "$X64_NAME" -p "$EC_NAME" -D dl
+          [ "sha256:$(sha256sum "dl/$X64_NAME" | cut -d' ' -f1)" = "$X64_DIGEST" ] || { echo "::error::$X64_NAME hash mismatch"; exit 1; }
+          [ "sha256:$(sha256sum "dl/$EC_NAME"  | cut -d' ' -f1)" = "$EC_DIGEST" ]  || { echo "::error::$EC_NAME hash mismatch"; exit 1; }
+          tar -xf "dl/$X64_NAME" -C src/x64
+          tar -xf "dl/$EC_NAME"  -C src/arm64ec
+          python3 -I "$CHECK" check-src src/x64     x64     "${VERSION}-${C}"
+          python3 -I "$CHECK" check-src src/arm64ec arm64ec "arm64ec-${VERSION}-${C}"
+
+      - name: Strip and write the stable profile.json
+        run: |
+          set -euo pipefail
+          for v in x64 arm64ec; do
+            rm -rf "pkg/$v" && mkdir -p "pkg/$v"
+            cp -r "src/$v/system32" "src/$v/syswow64" "pkg/$v/"
+            llvm-strip --strip-all pkg/$v/system32/*.dll pkg/$v/syswow64/*.dll
+            python3 -I "$CHECK" same-code "src/$v" "pkg/$v"
+          done
+          python3 -I "$CHECK" profile pkg/x64     "${VERSION}"
+          python3 -I "$CHECK" profile pkg/arm64ec "${VERSION}-arm64ec"
+          cat pkg/x64/profile.json pkg/arm64ec/profile.json
+
+      - name: Pack (.wcp = root-owned tar + zstd, like 3.0.1)
+        run: |
+          set -euo pipefail
+          mkdir -p publish
+          pack() {
+            ( cd "pkg/$1"
+              chmod 755 system32 syswow64 system32/*.dll syswow64/*.dll
+              chmod 644 profile.json
+              tar --owner=0 --group=0 --numeric-owner --sort=name -cf - profile.json system32 syswow64 ) \
+              | zstd -3 -q -o "publish/$2"
+          }
+          pack x64     "vkd3d-proton-${VERSION}.wcp"
+          pack arm64ec "vkd3d-proton-arm64ec-${VERSION}.wcp"
+          ls -l publish
+
+      - name: Verify the packed files BEFORE any upload
+        run: |
+          set -euo pipefail
+          while read -r file variant vname; do
+            echo "::group::verify $file"
+            [ "$(head -c4 "publish/$file" | od -An -tx1 | tr -d ' \n')" = "28b52ffd" ] || { echo "::error::$file is not zstd"; exit 1; }
+            rm -rf "check/$variant" && mkdir -p "check/$variant"
+            tar -xf "publish/$file" -C "check/$variant"
+            tar -tvf "publish/$file"
+            if tar -tvf "publish/$file" | awk '{print $2}' | grep -v '^0/0$'; then
+              echo "::error::$file has entries not owned by 0/0"; exit 1
+            fi
+            python3 -I "$CHECK" check-pkg "check/$variant" "$variant" "$vname"
+            ( cd "pkg/$variant" && find . -type f | sort | xargs sha256sum ) > a.sum
+            ( cd "check/$variant" && find . -type f | sort | xargs sha256sum ) > b.sum
+            cmp a.sum b.sum || { echo "::error::$file does not unpack to the staged files"; exit 1; }
+            echo "::endgroup::"
+          done <<EOF
+          vkd3d-proton-${VERSION}.wcp x64 ${VERSION}
+          vkd3d-proton-arm64ec-${VERSION}.wcp arm64ec ${VERSION}-arm64ec
+          EOF
+          echo "both packages verified"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vkd3d-proton-${{ env.VERSION }}-stable
+          path: publish/*.wcp
+
+      - name: Upload to the stable releases
+        if: env.DRY_RUN != 'true'
+        run: |
+          set -euo pipefail
+          # --clobber replaces only a same-named asset; other assets are untouched.
+          while read -r file tag; do
+            echo "::group::upload $file -> $tag"
+            gh release view "$tag" -R "$REPO" >/dev/null || { echo "::error::release $tag does not exist"; exit 1; }
+            BEFORE=$(gh release view "$tag" -R "$REPO" --json assets --jq '.assets|length')
+            gh release upload "$tag" "publish/$file" -R "$REPO" --clobber
+            AFTER=$(gh release view "$tag" -R "$REPO" --json assets --jq '.assets|length')
+            echo "$tag: assets $BEFORE -> $AFTER"
+            [ "$AFTER" -ge "$BEFORE" ] || { echo "::error::$tag lost assets"; exit 1; }
+            GOT=$(gh api "repos/$REPO/releases/tags/$tag" --jq ".assets[]|select(.name==\"$file\")|.digest")
+            [ "$GOT" = "sha256:$(sha256sum "publish/$file" | cut -d' ' -f1)" ] || { echo "::error::$tag/$file digest $GOT does not match"; exit 1; }
+
+            NOTES=$(gh release view "$tag" -R "$REPO" --json body --jq .body)
+            if echo "$NOTES" | grep -q '^Current version: '; then
+              echo "$NOTES" | sed "s/^Current version: .*/Current version: ${VERSION}/" > notes.md
+              gh release edit "$tag" -R "$REPO" --notes-file notes.md
+            fi
+            echo "::endgroup::"
+          done <<EOF
+          vkd3d-proton-${VERSION}.wcp Vkd3d-proton
+          vkd3d-proton-arm64ec-${VERSION}.wcp VKD3D-PROTON-ARM
+          EOF
+
+      - name: Refresh nightlies_components.json
+        if: env.DRY_RUN != 'true'
+        run: gh workflow run nightlies-components-json.yml --repo "$REPO"
+
+      - name: Report
+        if: always()
+        env:
+          FULL: ${{ steps.src.outputs.full }}
+          X64_NAME: ${{ steps.src.outputs.x64_name }}
+          EC_NAME: ${{ steps.src.outputs.ec_name }}
+        run: |
+          {
+            echo "## VKD3D-Proton ${VERSION} stable repack"
+            echo ""
+            if [ "$DRY_RUN" = "true" ]; then echo "**DRY RUN — nothing was published.**"; echo ""; fi
+            echo "Upstream v${VERSION}: \`${FULL}\`  "
+            echo "Source: \`${SOURCE_TAG}\` / \`${X64_NAME}\`, \`${EC_NAME}\`"
+            echo ""
+            echo "| file | bytes | sha256 |"
+            echo "|---|---|---|"
+            for f in publish/*.wcp; do
+              if [ -f "$f" ]; then
+                echo "| \`$(basename "$f")\` | $(stat -c%s "$f") | \`$(sha256sum "$f" | cut -d' ' -f1)\` |"
+              fi
+            done
+          } >> $GITHUB_STEP_SUMMARY
