@@ -1,32 +1,41 @@
 {
-  "triggered_at": "2026-10-29T19:58:34Z",
+  "triggered_at": "2026-10-29T23:48:36Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "4df6988",
-      "new": "07e9e5c",
-      "full": "07e9e5c34420b3116913b44e3f38a5c8f6f4e546",
-      "msg": "Fix typos in documentation (#4629)",
-      "date": "2026-10-29T15:37:25Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "fb48e2d",
+      "new": "d321f49",
+      "full": "d321f49fb5551b7e7ad0e09eee73940bf236e370",
+      "msg": "Merge pull request #6068 from Sonicadvance1/291",
+      "date": "2026-10-29T22:09:01Z"
     },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "0cfe089",
-      "new": "2b804af",
-      "full": "2b804afc30e632c8479d4d805aea85b04c730cd9",
-      "msg": "[dxvk] Check actual frame's present mode to decide whether to wait",
-      "date": "2026-10-29T18:39:45Z"
+      "old": "2b804af",
+      "new": "78cdf8f",
+      "full": "78cdf8f1e62954eda30c382dfb13e65d6d43ba4b",
+      "msg": "[dxvk] Sanitize wait duration for frame target time",
+      "date": "2026-10-29T22:44:51Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "321d63a",
+      "new": "2a17d4e",
+      "full": "2a17d4e891258735ede22b3656615d7b8848b5d8",
+      "msg": "[meta] Add a workaround to reset the window size before surface flips",
+      "date": "2026-10-29T22:37:01Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "14f59d0",
-      "new": "8c12f30",
-      "full": "8c12f30359850520e36d7b74031b131d8a3b8c00",
-      "msg": "brw: Allow fill-to-fill optimization with overlapping destinations",
-      "date": "2026-10-29T18:30:59.000+00:00"
+      "old": "8c12f30",
+      "new": "b39d00d",
+      "full": "b39d00df594f6cea276c9c17591f6900798ed80f",
+      "msg": "ac/llvm: pass an LLVMContext to PassBuilder for LLVM 24",
+      "date": "2026-10-29T23:14:12.000+00:00"
     }
   ]
 }
