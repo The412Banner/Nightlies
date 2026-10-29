@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-29T07:51:14Z",
+  "triggered_at": "2026-10-29T14:49:04Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "30d5c77",
+      "new": "4df6988",
+      "full": "4df6988c9f02de9a2f9ad8c3cc1dd81f33a6cced",
+      "msg": "[ARM64_DYNAREC] Fixed xmm value lost in a loop (#4627)",
+      "date": "2026-10-29T13:19:55Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "fa72708",
-      "new": "1c3a936",
-      "full": "1c3a936490f9f0951188218e136cd03bca497386",
-      "msg": "Replace `reallocarray` with `realloc` in lp_scene.c",
-      "date": "2026-10-29T01:04:50.000+00:00"
+      "old": "1c3a936",
+      "new": "14f59d0",
+      "full": "14f59d063887011b54b1e4da7785b4d83b4c4347",
+      "msg": "kk: Advertise geometryShader",
+      "date": "2026-10-29T14:22:42.000+00:00"
     }
   ]
 }
