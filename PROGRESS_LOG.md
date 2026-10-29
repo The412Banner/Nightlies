@@ -6,6 +6,23 @@
 
 ---
 
+## Session — 2026-10-29
+
+### [feat] — VKD3D-Proton 3.1 stable: repack workflow (2026-10-29, feat/vkd3d-stable-repack, dry run)
+**Why:** upstream released vkd3d-proton v3.1 (2026-10-28, tag commit `4522cc1a`). The nightly already built that exact commit (`VKD3D-Proton-3.1-4522cc1a` + arm64ec, first in `nightly-20261028-152656`), but the stable releases `Vkd3d-proton` / `VKD3D-PROTON-ARM` stopped at 3.0.1. The user asked for a stable 3.1 named, packed and listed like 3.0.1, made standalone on this repo by repackaging the nightly.
+
+#### Findings
+- 3.0.1 on both releases is a copy of an older Winlator WCP Hub (Arihany) build: zstd tar (2 MiB window), entries owned 0/0, `profile.json` versionName `3.0.1` / `3.0.1-arm64ec`, versionCode 0, description "Built on the Winlator WCP Hub (Upstream: Hans-Kristian Arntzen)". The hub has an x64 3.1 now (128 MiB zstd window), its arm64ec 3.1 build failed (run 40772378838, `i686-w64-mingw32-gcc` missing).
+- Nightly x64 VKD3D DLLs are NOT stripped (`.debug_*` sections, 990–12417 symbols): the AIO `build-vkd3d` job relies on meson `-Dstrip=true`, which only strips on `meson install`, and copies DLLs from the build dir. `build-vkd3d-arm64ec` runs `llvm-strip --strip-all` itself, so arm64ec is clean. Not changed here.
+- `nightlies_components.json` lists every `.wcp` on the two releases automatically (verName = filename without extension). `winlator-contents/contents.json` is hand-edited per stable release.
+
+#### What changed
+- New `.github/workflows/vkd3d-stable-repack.yml` + `scripts/vkd3d-stable-repack.py`: takes the nightly pair built from the upstream tag commit (hash-checked against the release digest), `llvm-strip --strip-all`, proves code/data sections and exports are unchanged, writes `profile.json` in the 3.0.1 format (versionName `3.1` / `3.1-arm64ec`, versionCode 0, description "Built on Banners Nightlies (Upstream: Hans-Kristian Arntzen)"), packs root-owned tar + zstd -3, re-checks the packed files, then uploads `vkd3d-proton-3.1.wcp` → `Vkd3d-proton` and `vkd3d-proton-arm64ec-3.1.wcp` → `VKD3D-PROTON-ARM`, sets "Current version: 3.1" in both notes, and dispatches `nightlies-components-json.yml`. Push to the feature branch = dry run.
+- Local run of the strip/pack/verify steps on the real nightly files: passed; x64 `d3d12.dll` 507904 → 131072 B, `d3d12core.dll` 6615040 → 5332992 B.
+
+#### Device test
+- NOT device-tested.
+
 ## Session — 2026-10-26
 
 ### [feat] — Rutabaga-26.10.22 added to the Rutabaga driver feed (2026-10-26, main, published)
