@@ -5,6 +5,8 @@
   same-code  <before_dir> <after_dir>            strip removed only debug info/symbols
   profile    <dir> <versionName>                 write profile.json in the stable format
   check-pkg  <dir> <x64|arm64ec> <versionName>   unpacked stable .wcp
+  check-linux <dir> <x64|arm64ec> <versionName> <stable_dir>
+                                                 unpacked -linux .wcp against the stable it came from
 """
 import hashlib
 import json
@@ -152,6 +154,28 @@ def main():
             info = parse_pe(os.path.join(d, rel))
             if info["nsym"] or info["sym_ptr"] or any(s.startswith((".debug", "/")) for s in info["sections"]):
                 fail(f"{d}/{rel}: still carries debug info or a symbol table")
+    elif cmd == "check-linux":
+        d, variant, version_name, stable = args
+        linux_of = {rel: "files/lib/wine/vkd3d-proton/%s-windows/%s" % (
+            "aarch64" if rel.startswith("system32/") else "i386", os.path.basename(rel)) for rel in DLLS}
+        found = sorted(os.path.relpath(os.path.join(r, f), d) for r, _, fs in os.walk(d) for f in fs)
+        want = sorted(["profile.json", "README-LINUX.txt"] + list(linux_of.values()))
+        if found != want:
+            fail(f"{d}: files {found}, expected {want}")
+        p = json.load(open(os.path.join(d, "profile.json")))
+        files = [{"source": f, "target": "${proton}/" + f} for f in sorted(linux_of.values())]
+        if (p.get("type"), p.get("versionName"), p.get("versionCode"), p.get("files")) != \
+                ("VKD3D-Linux", version_name, 0, files):
+            fail(f"{d}/profile.json: type/versionName/versionCode/files are not the -Linux layout for {version_name}")
+        for rel, lrel in linux_of.items():
+            a, b = os.path.join(stable, rel), os.path.join(d, lrel)
+            if hashlib.sha256(open(a, "rb").read()).digest() != hashlib.sha256(open(b, "rb").read()).digest():
+                fail(f"{lrel} is not the same file as the stable {rel}")
+            info = parse_pe(b)
+            want_m = SYSTEM32_MACHINE[variant] if rel.startswith("system32/") else "I386"
+            if info["machine"] != want_m or info["nsym"] or any(s.startswith((".debug", "/")) for s in info["sections"]):
+                fail(f"{lrel}: machine {info['machine']} (want {want_m}) or not stripped")
+            print(f"  {lrel:52s} {info['machine']:8s} = stable {rel}")
     else:
         fail(f"unknown command {cmd}")
     print(f"{cmd} ok: {' '.join(args)}")

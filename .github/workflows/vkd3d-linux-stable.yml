@@ -1,0 +1,190 @@
+name: VKD3D-Proton Stable — Linux repack
+
+# ==================================================================
+# Repacks one VKD3D-Proton stable version for the Linux Steam client
+# (glibc Protons) and adds it to Vkd3d-proton-Linux. Same conversion
+# as dxwrappers-linux-repack.yml, but for the named files only, so
+# the other packages on the release are not re-uploaded.
+#
+#   Vkd3d-proton/vkd3d-proton-<ver>.wcp
+#     -> vkd3d-proton-<ver>-linux.wcp           (versionName <ver>-linux)
+#   VKD3D-PROTON-ARM/vkd3d-proton-arm64ec-<ver>.wcp
+#     -> vkd3d-proton-arm64ec-<ver>-linux.wcp   (versionName <ver>-arm64ec-linux)
+#
+# Nothing is rebuilt: system32/ -> files/lib/wine/vkd3d-proton/aarch64-windows/,
+# syswow64/ -> .../i386-windows/, profile type VKD3D-Linux, README-LINUX.txt,
+# tar + zstd -19. scripts/vkd3d-stable-repack.py checks the source is a
+# stripped stable package and that every DLL is copied unchanged.
+#
+# workflow_dispatch registers only from the default branch. A push to
+# fix/vkd3d-x64-strip-linux runs the same job as a dry run.
+# ==================================================================
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'VKD3D-Proton stable version, no leading v (e.g. 3.1)'
+        required: true
+        default: '3.1'
+      dry_run:
+        description: 'Verify everything and publish NOTHING'
+        type: boolean
+        required: false
+        default: false
+  push:
+    branches: [fix/vkd3d-x64-strip-linux]
+    paths:
+      - .github/workflows/vkd3d-linux-stable.yml
+      - scripts/vkd3d-stable-repack.py
+
+permissions:
+  contents: write
+
+jobs:
+  repack:
+    name: Repack VKD3D-Proton stable for Linux
+    # Same runner as dxwrappers-linux-repack.yml, so README-LINUX.txt reads the same.
+    runs-on: ubuntu-22.04
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      VERSION: ${{ inputs.version || '3.1' }}
+      DRY_RUN: ${{ github.event_name != 'workflow_dispatch' || inputs.dry_run }}
+      DEST: Vkd3d-proton-Linux
+      CHECK: scripts/vkd3d-stable-repack.py
+    steps:
+      - name: Checkout (checker script)
+        uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y --no-install-recommends zstd xz-utils jq file
+
+      - name: Repack
+        run: |
+          set -euo pipefail
+          case "$VERSION" in v*|'') echo "::error::version must be given without a leading v"; exit 1;; esac
+          mkdir -p in out
+          # source release | source file | variant | stable versionName
+          cat > table.txt <<EOF
+          Vkd3d-proton vkd3d-proton-${VERSION} x64 ${VERSION}
+          VKD3D-PROTON-ARM vkd3d-proton-arm64ec-${VERSION} arm64ec ${VERSION}-arm64ec
+          EOF
+          while read -r SRC base variant vname; do
+            echo "::group::$SRC/$base.wcp"
+            gh release download "$SRC" -R "$REPO" -p "$base.wcp" -D in --clobber
+            DIGEST=$(gh api "repos/$REPO/releases/tags/$SRC" --jq ".assets[]|select(.name==\"$base.wcp\")|.digest")
+            [ "$DIGEST" = "sha256:$(sha256sum "in/$base.wcp" | cut -d' ' -f1)" ] || { echo "::error::$base.wcp hash mismatch"; exit 1; }
+            x="x/$base"; mkdir -p "$x"
+            tar -xf "in/$base.wcp" -C "$x"
+            python3 -I "$CHECK" check-pkg "$x" "$variant" "$vname"
+
+            comp=vkd3d-proton
+            p="p/$base"; mkdir -p "$p"
+            files_json="[]"
+            for pair in "system32:aarch64-windows" "syswow64:i386-windows"; do
+              from=${pair%%:*}; to=${pair#*:}
+              d="$p/files/lib/wine/$comp/$to"; mkdir -p "$d"
+              for dll in "$x/$from"/*.dll; do
+                n=$(basename "$dll")
+                file -b "$dll" | grep -q '^PE32' || { echo "::error::$SRC/$base.wcp: $from/$n is not a PE file"; exit 1; }
+                cp "$dll" "$d/$n"
+                files_json=$(jq -c --arg s "files/lib/wine/$comp/$to/$n" --arg t "\${proton}/files/lib/wine/$comp/$to/$n" \
+                  '. + [{source: $s, target: $t}]' <<<"$files_json")
+              done
+            done
+            jq --arg type "VKD3D-Linux" --argjson files "$files_json" --arg from "$SRC/$base.wcp" \
+               '.type = $type
+                | .versionName = (.versionName + "-linux")
+                | .description = ((.description // "") + " · Repacked for Linux (glibc) Proton from " + $from + ": system32 -> aarch64-windows, syswow64 -> i386-windows.")
+                | .files = $files' \
+               "$x/profile.json" > "$p/profile.json"
+            { echo "Repacked from $SRC/$base.wcp for Linux (glibc) Proton, ARM64."
+              echo "Proton copies files/lib/wine/$comp/aarch64-windows into a game's system32 and i386-windows into its syswow64."
+              echo "Install: back up the Proton's files/lib/wine/$comp/, then copy this package's files/ over the Proton's files/."
+              echo "Use it with GE-Proton or proton-cachyos: Steam restores Valve's own Proton on its next update."
+              echo; echo "Files:"; ( cd "$p" && find files -type f | sort | while read -r f; do echo "  $f  ($(file -b "$f" | cut -d, -f1-2))"; done )
+            } > "$p/README-LINUX.txt"
+            ( cd "$p" && tar -cf - . | zstd -19 -q -o "../../out/${base}-linux.wcp" )
+
+            c="c/$base"; mkdir -p "$c"
+            tar -xf "out/${base}-linux.wcp" -C "$c"
+            python3 -I "$CHECK" check-linux "$c" "$variant" "${vname}-linux" "$x"
+            cat "$c/profile.json"
+            echo "ok  $base.wcp -> ${base}-linux.wcp"
+            echo "::endgroup::"
+          done < table.txt
+          ls -l out
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vkd3d-proton-${{ env.VERSION }}-linux
+          path: out/*.wcp
+
+      - name: Upload to Vkd3d-proton-Linux
+        if: env.DRY_RUN != 'true'
+        run: |
+          set -euo pipefail
+          BEFORE=$(gh release view "$DEST" -R "$REPO" --json assets --jq '.assets|length')
+          # --clobber replaces only a same-named asset; other assets are untouched.
+          gh release upload "$DEST" -R "$REPO" --clobber out/*.wcp
+          AFTER=$(gh release view "$DEST" -R "$REPO" --json assets --jq '.assets|length')
+          echo "$DEST: assets $BEFORE -> $AFTER"
+          [ "$AFTER" -ge "$BEFORE" ] || { echo "::error::$DEST lost assets"; exit 1; }
+          for f in out/*.wcp; do
+            n=$(basename "$f")
+            GOT=$(gh api "repos/$REPO/releases/tags/$DEST" --jq ".assets[]|select(.name==\"$n\")|.digest")
+            [ "$GOT" = "sha256:$(sha256sum "$f" | cut -d' ' -f1)" ] || { echo "::error::$DEST/$n digest $GOT does not match"; exit 1; }
+            echo "$n $GOT"
+          done
+
+      - name: Add the packages to the release notes
+        if: env.DRY_RUN != 'true'
+        run: |
+          set -euo pipefail
+          gh release view "$DEST" -R "$REPO" --json body --jq .body > notes.md
+          python3 -I - <<'PY'
+          import os, re, subprocess
+          v = os.environ["VERSION"]
+          repo = os.environ["REPO"]
+          body = open("notes.md").read().replace("\r\n", "\n")
+          lines = body.split("\n")
+          # Package table: add the x64 file and keep its rows in version order.
+          rows = [i for i, l in enumerate(lines) if re.match(r"^\| `[^`]+-linux\.wcp` \|$", l)]
+          if not rows:
+              raise SystemExit("::error::no package table in the release notes")
+          names = [lines[i][3:-3] for i in rows]
+          new = f"vkd3d-proton-{v}-linux.wcp"
+          if new not in names:
+              names.append(new)
+          names = subprocess.run(["sort", "-V"], input="\n".join(names), capture_output=True, text=True, check=True).stdout.split()
+          lines[rows[0]:rows[-1] + 1] = [f"| `{n}` |" for n in names]
+          # The ARM64EC file comes from another release; say so in its own line.
+          ec = f"vkd3d-proton-arm64ec-{v}-linux.wcp"
+          if ec not in "\n".join(lines):
+              note = (f"**ARM64EC:** `{ec}` is [VKD3D-PROTON-ARM](https://github.com/{repo}/releases/tag/VKD3D-PROTON-ARM)'s "
+                      f"`vkd3d-proton-arm64ec-{v}.wcp`, repacked the same way (its ARM64EC DLLs go to `aarch64-windows/`).")
+              at = next((i for i, l in enumerate(lines) if l.startswith("**Also here:**")), len(lines))
+              lines[at:at] = [note, ""]
+          open("notes.md", "w").write("\n".join(lines))
+          PY
+          gh release edit "$DEST" -R "$REPO" --notes-file notes.md --latest=false
+          gh release view "$DEST" -R "$REPO" --json body --jq .body
+
+      - name: Report
+        if: always()
+        run: |
+          {
+            echo "## VKD3D-Proton ${VERSION} Linux repack"
+            echo ""
+            if [ "$DRY_RUN" = "true" ]; then echo "**DRY RUN — nothing was published.**"; echo ""; fi
+            echo "| file | bytes | sha256 |"
+            echo "|---|---|---|"
+            for f in out/*.wcp; do
+              if [ -f "$f" ]; then
+                echo "| \`$(basename "$f")\` | $(stat -c%s "$f") | \`$(sha256sum "$f" | cut -d' ' -f1)\` |"
+              fi
+            done
+          } >> $GITHUB_STEP_SUMMARY
