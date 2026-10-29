@@ -925,6 +925,12 @@
   },
   {
     "type": "VKD3D",
+    "verName": "vkd3d-proton-arm64ec-3.1",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/VKD3D-PROTON-ARM/vkd3d-proton-arm64ec-3.1.wcp"
+  },
+  {
+    "type": "VKD3D",
     "verName": "Vk3dk-3.0b-Tfix",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/Vkd3d-proton/Vk3dk-3.0b-Tfix.wcp"
@@ -976,6 +982,12 @@
     "verName": "vkd3d-proton-3.0b",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/Vkd3d-proton/vkd3d-proton-3.0b.wcp"
+  },
+  {
+    "type": "VKD3D",
+    "verName": "vkd3d-proton-3.1",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/Vkd3d-proton/vkd3d-proton-3.1.wcp"
   },
   {
     "type": "Box64",
