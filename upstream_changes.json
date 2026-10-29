@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-10-28T21:27:17Z",
+  "triggered_at": "2026-10-29T01:25:45Z",
   "changed": [
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "b2bb70d",
-      "new": "321d63a",
-      "full": "321d63a7470582eb3b709c5f007c3ecd12e5d4ef",
-      "msg": "[meta] Clean up some stale imports and forward declarations",
-      "date": "2026-10-28T21:16:32Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "732f32f",
-      "new": "087e1fe",
-      "full": "087e1fe4e6a5e1d30f30538112fd8cd62f4167f6",
-      "msg": "panvk: fix mark_all_access_non_uniform metadata preservation",
-      "date": "2026-10-28T18:44:07.000+00:00"
+      "old": "087e1fe",
+      "new": "fa72708",
+      "full": "fa7270894217a66a0ed2a15eca7e272c2e2c8244",
+      "msg": "llvmpipe: release freed memory from the allocation memfd",
+      "date": "2026-10-29T00:21:03.000+00:00"
     }
   ]
 }
