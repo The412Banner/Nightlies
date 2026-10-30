@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-10-30T03:42:19Z",
+  "triggered_at": "2026-10-30T10:37:13Z",
   "changed": [
     {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "2a17d4e",
-      "new": "96d69ac",
-      "full": "96d69ac64f250a94478d9120119f044af088a232",
-      "msg": "[meta] Keep only a legacy mode filter for affected titles",
-      "date": "2026-10-30T00:27:13Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "07e9e5c",
+      "new": "75cff5c",
+      "full": "75cff5c5849867b568f981cd1416c884207c2d41",
+      "msg": "[INTERP] Fixed unaligned LOCK BTS (#4635)",
+      "date": "2026-10-30T08:26:41Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "78cdf8f",
+      "new": "d5df6b7",
+      "full": "d5df6b768d116452ee737ce845df8b586f403ea9",
+      "msg": "[meta] Update dxbc-spirv",
+      "date": "2026-10-30T09:08:34Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "b39d00d",
-      "new": "77452b9",
-      "full": "77452b9092cc44d76d92180a12d3aaaf27a98382",
-      "msg": "radeonsi: dirty DB_Z_INFO when the sample count changes without Z/S",
-      "date": "2026-10-30T01:55:43.000+00:00"
+      "old": "77452b9",
+      "new": "1d6fe65",
+      "full": "1d6fe659c4b09cef208714eb8b5d18d967a86dd6",
+      "msg": "compiler/nir: add missing intrinsic to avoid hitting assert",
+      "date": "2026-10-30T09:50:33.000+00:00"
     }
   ]
 }
