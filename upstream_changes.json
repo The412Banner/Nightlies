@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-10-30T10:37:13Z",
+  "triggered_at": "2026-10-30T16:53:31Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "07e9e5c",
-      "new": "75cff5c",
-      "full": "75cff5c5849867b568f981cd1416c884207c2d41",
-      "msg": "[INTERP] Fixed unaligned LOCK BTS (#4635)",
-      "date": "2026-10-30T08:26:41Z"
+      "old": "75cff5c",
+      "new": "8a7a148",
+      "full": "8a7a148bdda279c92601fe13817b87e036f94ae3",
+      "msg": "[RV64_DYNAREC] Translate round mode for some int to float convert opcodes (#4636",
+      "date": "2026-10-30T16:45:33Z"
     },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "78cdf8f",
-      "new": "d5df6b7",
-      "full": "d5df6b768d116452ee737ce845df8b586f403ea9",
+      "old": "d5df6b7",
+      "new": "21fda8f",
+      "full": "21fda8fe3253bb727c01885e96f4f2d879c20b1d",
       "msg": "[meta] Update dxbc-spirv",
-      "date": "2026-10-30T09:08:34Z"
+      "date": "2026-10-30T14:07:14Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "77452b9",
-      "new": "1d6fe65",
-      "full": "1d6fe659c4b09cef208714eb8b5d18d967a86dd6",
-      "msg": "compiler/nir: add missing intrinsic to avoid hitting assert",
-      "date": "2026-10-30T09:50:33.000+00:00"
+      "old": "1d6fe65",
+      "new": "94d09f6",
+      "full": "94d09f6ac35b08af3ed9ac6aabc694eabe570dfc",
+      "msg": "zink/ci: add anv-adl sparse commitment skip",
+      "date": "2026-10-30T16:24:19.000+00:00"
     }
   ]
 }
