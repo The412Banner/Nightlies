@@ -1,41 +1,23 @@
 {
-  "triggered_at": "2026-10-29T23:48:36Z",
+  "triggered_at": "2026-10-30T03:42:19Z",
   "changed": [
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "fb48e2d",
-      "new": "d321f49",
-      "full": "d321f49fb5551b7e7ad0e09eee73940bf236e370",
-      "msg": "Merge pull request #6068 from Sonicadvance1/291",
-      "date": "2026-10-29T22:09:01Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "2b804af",
-      "new": "78cdf8f",
-      "full": "78cdf8f1e62954eda30c382dfb13e65d6d43ba4b",
-      "msg": "[dxvk] Sanitize wait duration for frame target time",
-      "date": "2026-10-29T22:44:51Z"
-    },
     {
       "repo": "WinterSnowfall/d7vk",
       "name": "D7VK (DDraw/D3D7)",
-      "old": "321d63a",
-      "new": "2a17d4e",
-      "full": "2a17d4e891258735ede22b3656615d7b8848b5d8",
-      "msg": "[meta] Add a workaround to reset the window size before surface flips",
-      "date": "2026-10-29T22:37:01Z"
+      "old": "2a17d4e",
+      "new": "96d69ac",
+      "full": "96d69ac64f250a94478d9120119f044af088a232",
+      "msg": "[meta] Keep only a legacy mode filter for affected titles",
+      "date": "2026-10-30T00:27:13Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "8c12f30",
-      "new": "b39d00d",
-      "full": "b39d00df594f6cea276c9c17591f6900798ed80f",
-      "msg": "ac/llvm: pass an LLVMContext to PassBuilder for LLVM 24",
-      "date": "2026-10-29T23:14:12.000+00:00"
+      "old": "b39d00d",
+      "new": "77452b9",
+      "full": "77452b9092cc44d76d92180a12d3aaaf27a98382",
+      "msg": "radeonsi: dirty DB_Z_INFO when the sample count changes without Z/S",
+      "date": "2026-10-30T01:55:43.000+00:00"
     }
   ]
 }
