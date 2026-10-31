@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-10-31T01:16:50Z",
+  "triggered_at": "2026-10-31T07:47:17Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "6dfbebd",
+      "new": "d74ec76",
+      "full": "d74ec762c695d1a399284de7617980a9946d6a9f",
+      "msg": "[DYNAREC] Don't run a block that intersects a hot page (#4642)",
+      "date": "2026-10-31T07:06:27Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "367aea1",
-      "new": "553844b",
-      "full": "553844bf54c818c06a3a05e657fc0a31b6114a98",
-      "msg": "gfxstream: emulate DRM_FORMAT_MOD_LINEAR with VK_IMAGE_TILING_OPTIMAL",
-      "date": "2026-10-31T00:57:25.000+00:00"
+      "old": "553844b",
+      "new": "fd8ef2b",
+      "full": "fd8ef2befafd01190e33f12dbfd109b924c8ebc3",
+      "msg": "asahi: drop NIR_PASS from poly_nir_lower_gs calls",
+      "date": "2026-10-31T06:07:27.000+00:00"
     }
   ]
 }
