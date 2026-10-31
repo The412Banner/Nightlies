@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-10-30T21:15:37Z",
+  "triggered_at": "2026-10-31T01:16:50Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "8a7a148",
-      "new": "6dfbebd",
-      "full": "6dfbebd2d485efe1510db02a45ac0235c1f75ddc",
-      "msg": "[ARM64_DYNAREC] Fixed YMM upper half lost with VPCLMULQDQ fallback (#4632)",
-      "date": "2026-10-30T19:13:21Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "96d69ac",
-      "new": "798be86",
-      "full": "798be869e8b329ae97ed1e89b780dd9ef98ae6ee",
-      "msg": "[meta] Handle mode reporting through the DXVK WSI",
-      "date": "2026-10-30T17:27:30Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "94d09f6",
-      "new": "367aea1",
-      "full": "367aea118c1b54615151e283ecce969a31954a4a",
-      "msg": "hk: Add hk_geometry_heap_size_mb drirc option",
-      "date": "2026-10-30T20:57:02.000+00:00"
+      "old": "367aea1",
+      "new": "553844b",
+      "full": "553844bf54c818c06a3a05e657fc0a31b6114a98",
+      "msg": "gfxstream: emulate DRM_FORMAT_MOD_LINEAR with VK_IMAGE_TILING_OPTIMAL",
+      "date": "2026-10-31T00:57:25.000+00:00"
     }
   ]
 }
