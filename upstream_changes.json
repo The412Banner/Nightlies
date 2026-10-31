@@ -1,14 +1,32 @@
 {
-  "triggered_at": "2026-10-31T18:56:29Z",
+  "triggered_at": "2026-10-31T22:07:46Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "e86a766",
+      "new": "93c68ac",
+      "full": "93c68acd377eacb4b149a94c9d09f4e88661c882",
+      "msg": "[LA64_DYNAREC] Restore pending scalar XMM values on signal exit (#4647)",
+      "date": "2026-10-31T19:06:44Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "798be86",
+      "new": "40977a0",
+      "full": "40977a00fdfc545cee321b199275927c604b2f89",
+      "msg": "[meta] Change file product/company metadata and language",
+      "date": "2026-10-31T19:16:28Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "fd8ef2b",
-      "new": "b27d00d",
-      "full": "b27d00d7612910455111102bd284e36afafd69c8",
-      "msg": "r300: remove backend deadcode pass",
-      "date": "2026-10-31T18:19:28.000+00:00"
+      "old": "b27d00d",
+      "new": "44989e5",
+      "full": "44989e5a489c0ddbc79d2019f2c236699251c69e",
+      "msg": "zink: enable subgroups even if shaderFloat64 is not exposed",
+      "date": "2026-10-31T21:34:50.000+00:00"
     }
   ]
 }
