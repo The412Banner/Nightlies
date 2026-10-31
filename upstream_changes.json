@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-10-31T07:47:17Z",
+  "triggered_at": "2026-10-31T14:05:15Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "6dfbebd",
-      "new": "d74ec76",
-      "full": "d74ec762c695d1a399284de7617980a9946d6a9f",
-      "msg": "[DYNAREC] Don't run a block that intersects a hot page (#4642)",
-      "date": "2026-10-31T07:06:27Z"
+      "old": "d74ec76",
+      "new": "e86a766",
+      "full": "e86a766cbe1e147fd90ff8248e2bf9beb007ff8e",
+      "msg": "[ARM64] Added a dection of write error on segfault using extra signal informatio",
+      "date": "2026-10-31T13:30:55Z"
     },
     {
-      "repo": "mesa/mesa",
-      "name": "Mesa (Turnip)",
-      "old": "553844b",
-      "new": "fd8ef2b",
-      "full": "fd8ef2befafd01190e33f12dbfd109b924c8ebc3",
-      "msg": "asahi: drop NIR_PASS from poly_nir_lower_gs calls",
-      "date": "2026-10-31T06:07:27.000+00:00"
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "4522cc1",
+      "new": "8293130",
+      "full": "8293130ebe370b1deb761898ae0d397d680837de",
+      "msg": "Update bug_report.yml",
+      "date": "2026-10-31T11:07:40Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "21fda8f",
+      "new": "23b07e9",
+      "full": "23b07e9be441f87eb46204d78d9265e565cfbc0f",
+      "msg": "[meta] Add LLM checkbox to issue templates",
+      "date": "2026-10-31T11:34:37Z"
     }
   ]
 }
