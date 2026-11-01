@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-11-01T19:59:15Z",
+  "triggered_at": "2026-11-01T23:24:32Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "74d9149",
-      "new": "22f67f2",
-      "full": "22f67f2b20400b933336cff77e54c29581bb5e93",
-      "msg": "[DYNAREC] Clear pending df on all DIV/IDIV paths (#4651)",
-      "date": "2026-11-01T17:47:28Z"
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "40977a0",
+      "new": "d727fd1",
+      "full": "d727fd19c22bfe8e7ba97699c054cc116ba2842a",
+      "msg": "[meta] Change file product/company metadata and language",
+      "date": "2026-11-01T20:22:25Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "00e37b6",
-      "new": "1558388",
-      "full": "1558388535b109e4e77919fc2a6ba11fc7f058f2",
-      "msg": "kk: query the OS page size for allocation alignment",
-      "date": "2026-11-01T18:55:27.000+00:00"
+      "old": "1558388",
+      "new": "ae9e17f",
+      "full": "ae9e17fc684b2fe0ee55fe0d32584e0834a1759f",
+      "msg": "venus: terminate pNext properly in vn_fix_command_buffer_begin_info",
+      "date": "2026-11-01T20:38:52.000+00:00"
     }
   ]
 }
