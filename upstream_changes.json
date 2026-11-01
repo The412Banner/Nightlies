@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-11-01T15:37:13Z",
+  "triggered_at": "2026-11-01T19:59:15Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "93c68ac",
-      "new": "74d9149",
-      "full": "74d9149095cf11aee60c87e2a070dd7eab1c2b5b",
-      "msg": "[DYNAREC] Rollbacked a wrong optimization in PR #4648 (#4650)",
-      "date": "2026-11-01T15:12:20Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "23b07e9",
-      "new": "f863776",
-      "full": "f863776806824486d709fee16ea619c03e22def4",
-      "msg": "[d3d11] Limit number of command submissions in flight",
-      "date": "2026-11-01T10:30:59Z"
+      "old": "74d9149",
+      "new": "22f67f2",
+      "full": "22f67f2b20400b933336cff77e54c29581bb5e93",
+      "msg": "[DYNAREC] Clear pending df on all DIV/IDIV paths (#4651)",
+      "date": "2026-11-01T17:47:28Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "1d4b5ef",
-      "new": "00e37b6",
-      "full": "00e37b614d1d9d7d957ba10036ef0a271d807ed2",
-      "msg": "hk: Advertise VK_KHR_shader_constant_data",
-      "date": "2026-11-01T15:02:04.000+00:00"
+      "old": "00e37b6",
+      "new": "1558388",
+      "full": "1558388535b109e4e77919fc2a6ba11fc7f058f2",
+      "msg": "kk: query the OS page size for allocation alignment",
+      "date": "2026-11-01T18:55:27.000+00:00"
     }
   ]
 }
