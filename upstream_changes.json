@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-11-01T01:41:54Z",
+  "triggered_at": "2026-11-01T08:27:51Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "44989e5",
-      "new": "cc5680b",
-      "full": "cc5680bbcdc5c033b545295281142e19403a17e7",
-      "msg": "freedreno/a5xx: enable EXT_demote_to_helper_invocation",
-      "date": "2026-11-01T00:22:43.000+00:00"
+      "old": "cc5680b",
+      "new": "1d4b5ef",
+      "full": "1d4b5ef4a5562b6e2dba2cb5aacd60787979ba86",
+      "msg": "nv30: invalidate currently bound sampler during clear",
+      "date": "2026-11-01T07:18:37.000+01:00"
     }
   ]
 }
