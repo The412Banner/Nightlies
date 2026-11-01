@@ -1,14 +1,32 @@
 {
-  "triggered_at": "2026-11-01T08:27:51Z",
+  "triggered_at": "2026-11-01T15:37:13Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "93c68ac",
+      "new": "74d9149",
+      "full": "74d9149095cf11aee60c87e2a070dd7eab1c2b5b",
+      "msg": "[DYNAREC] Rollbacked a wrong optimization in PR #4648 (#4650)",
+      "date": "2026-11-01T15:12:20Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "23b07e9",
+      "new": "f863776",
+      "full": "f863776806824486d709fee16ea619c03e22def4",
+      "msg": "[d3d11] Limit number of command submissions in flight",
+      "date": "2026-11-01T10:30:59Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "cc5680b",
-      "new": "1d4b5ef",
-      "full": "1d4b5ef4a5562b6e2dba2cb5aacd60787979ba86",
-      "msg": "nv30: invalidate currently bound sampler during clear",
-      "date": "2026-11-01T07:18:37.000+01:00"
+      "old": "1d4b5ef",
+      "new": "00e37b6",
+      "full": "00e37b614d1d9d7d957ba10036ef0a271d807ed2",
+      "msg": "hk: Advertise VK_KHR_shader_constant_data",
+      "date": "2026-11-01T15:02:04.000+00:00"
     }
   ]
 }
