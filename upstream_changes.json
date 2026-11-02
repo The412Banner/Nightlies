@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-11-02T03:36:54Z",
+  "triggered_at": "2026-11-02T11:52:25Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "d321f49",
-      "new": "02e24ca",
-      "full": "02e24ca5c01ed0c864466ed573db347336f70170",
-      "msg": "Merge pull request #6080 from Sonicadvance1/293",
-      "date": "2026-11-02T00:57:23Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "d727fd1",
-      "new": "06656b9",
-      "full": "06656b9e94bf275854e3d83d6426517253937738",
-      "msg": "[meta] Validate D3D interface compatibility level before device creation",
-      "date": "2026-11-02T01:57:29Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "22f67f2",
+      "new": "23597f6",
+      "full": "23597f62fd57da4da3a2b8feb17c5e5e83e715dd",
+      "msg": "[RV64_DYNAREC] Keep SEW when flushing YMM upper halves to reduce vsetvli (#4652)",
+      "date": "2026-11-02T08:03:40Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ae9e17f",
-      "new": "759dedd",
-      "full": "759dedd64bd7a6572cd8d76aff39958262ae15d3",
-      "msg": "nv30/ci: add nv34 piglit results",
-      "date": "2026-11-02T02:03:30.000+00:00"
+      "old": "759dedd",
+      "new": "c1ce620",
+      "full": "c1ce62066de08ab7ed0636a8a39142014f16469a",
+      "msg": "pvr: Add support for VK_KHR_load_store_op_none",
+      "date": "2026-11-02T11:22:52.000+00:00"
     }
   ]
 }
