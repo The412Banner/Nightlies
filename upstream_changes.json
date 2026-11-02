@@ -1,23 +1,50 @@
 {
-  "triggered_at": "2026-11-02T11:52:25Z",
+  "triggered_at": "2026-11-02T21:08:49Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "22f67f2",
-      "new": "23597f6",
-      "full": "23597f62fd57da4da3a2b8feb17c5e5e83e715dd",
-      "msg": "[RV64_DYNAREC] Keep SEW when flushing YMM upper halves to reduce vsetvli (#4652)",
-      "date": "2026-11-02T08:03:40Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "02e24ca",
+      "new": "1e463b0",
+      "full": "1e463b0407fb905666b94c3c71eeae389f6088e5",
+      "msg": "Merge pull request #6075 from Sonicadvance1/292",
+      "date": "2026-11-02T18:41:48Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "8293130",
+      "new": "15dd1ee",
+      "full": "15dd1ee7864ef83c4ef835c72720effe60a10899",
+      "msg": "vkd3d: Add workaround for environment flickering in Monster Hunter Rise.",
+      "date": "2026-11-02T13:30:12Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "f863776",
+      "new": "cf0a0d9",
+      "full": "cf0a0d90f8965147741ad17dcd0b263817572ab3",
+      "msg": "[dxvk] Don't pass shared handle type for images that aren't shared",
+      "date": "2026-11-02T18:18:23Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "06656b9",
+      "new": "1065922",
+      "full": "10659222422e223c3c25ea765405885f20382196",
+      "msg": "[meta] Validate D3D interface compatibility level before device creation",
+      "date": "2026-11-02T19:41:33Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "759dedd",
-      "new": "c1ce620",
-      "full": "c1ce62066de08ab7ed0636a8a39142014f16469a",
-      "msg": "pvr: Add support for VK_KHR_load_store_op_none",
-      "date": "2026-11-02T11:22:52.000+00:00"
+      "old": "c1ce620",
+      "new": "b5b73e5",
+      "full": "b5b73e5964bee5d9cdc2b7e813e791d948094e75",
+      "msg": "v3d: don't drop the last row in the sand30 blit",
+      "date": "2026-11-02T20:40:31.000+00:00"
     }
   ]
 }
