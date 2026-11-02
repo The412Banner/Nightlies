@@ -6,6 +6,28 @@
 
 ---
 
+## Session — 2026-11-02
+
+### [feat] — Rutabaga-26.10.30 added to the Rutabaga driver feed (2026-11-02, main, published)
+**Why:** GameHub released `rutabaga-26.10.30` (user's file `rutabaga-26.10.30.tzst`, MD5 `0d418316410b4ed578e04db70f93a794`). The user asked to repackage it like the others, write its meta.json, say what changed, post it to the same release and add it to the feed.
+
+#### What changed
+- Repackaged as `Rutabaga-26.10.30.zip` = `meta.json` + `libvulkan_freedreno.so` (.so MD5 `0b6766172b024b06bdec134f9fc18c35`, byte-identical to the tzst). driverVersion `26.3.0-devel` (the build has no git hash). Zip 2694902 B, sha256 `3562aa096d9cf4c915a32ea15679e5bf9d8d5e2740a45569805a9c2d88e60e52`; GitHub digest and a downloaded copy match.
+- Uploaded to release `rutabaga-drivers` (new asset, nothing replaced; release stays non-Latest). Release notes: 26.10.30 line added, "Newest" moved off 26.10.22.
+- `rutabaga_drivers.json`: new first entry `Rutabaga-26.10.30` (`51ed36a4`, branch `feat/rutabaga-26.10.30`, backup `refs/backup/20261102/main-before-rutabaga-26.10.30` = `c6f4c282`).
+
+#### What the build is (compared with 26.10.22: strings, decoded game profiles, entrypoint tables, disassembly)
+- Mesa 26.3.0-devel, no git hash, built 2026-10-30 with NDK r29 (14206865), target API 34 (26.10.22 used NDK r26d / clang 17, API 30). RELR relocations. Game names in the profile table, option descriptions and source file paths are not in the binary; option names are unchanged.
+- Device extension list (474), entrypoint names and env names: identical sets to 26.10.22.
+- Entrypoint tables: `tu_device_entrypoints` gains GetGeneratedCommandsMemoryRequirementsEXT, Create/DestroyIndirectCommandsLayoutEXT, GetMemoryHostPointerPropertiesEXT; the a6xx/a7xx/a8xx tables gain CmdExecuteGeneratedCommandsEXT (about 6.7 KB of code each) and CmdPreprocessGeneratedCommandsEXT. Slot names checked against the symbol-carrying 26.10.10 build (all slots below 549 match vk.xml order). IndirectExecutionSet functions are still empty.
+- KGSL: new host-pointer import (`IOCTL_KGSL_GPUOBJ_IMPORT` type 2 = user address, then GPUOBJ_INFO, needs an IO-coherent result, else VK_ERROR_INVALID_EXTERNAL_HANDLE "Failed to import host memory"; BO name "host-import"). New 1 MiB "sparse unbind temporary" buffer in the sparse path.
+- None of this is in upstream Mesa (main `342d310d`, 2026-11-02) or on GitHub code search.
+- New profiles: Crimson Desert (exe + regex) and Borderlands 4 → `tu_restrict_subgroup_size_64` + `tu_advertise_wave32_compat`; `PBZ.exe` (likely Phantom Blade Zero, install folder `PBZ`) → `tu_sync_renderpass_cache`. All other profiles unchanged.
+- Not checked: whether the driver reports VK_EXT_device_generated_commands / VK_EXT_external_memory_host as supported (needs a run on a device).
+
+#### Device test
+- NOT device-tested.
+
 ## Session — 2026-10-29
 
 ### [fix] — VKD3D x64 nightly strip + VKD3D-Proton 3.1 Linux stable (2026-10-29, main, PUBLISHED)
