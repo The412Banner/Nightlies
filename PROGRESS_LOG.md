@@ -13,7 +13,7 @@
 
 #### What changed
 - Repackaged as `Rutabaga-26.10.30.zip` = `meta.json` + `libvulkan_freedreno.so` (.so MD5 `0b6766172b024b06bdec134f9fc18c35`, byte-identical to the tzst). driverVersion `26.3.0-devel` (the build has no git hash). Zip 2694902 B, sha256 `3562aa096d9cf4c915a32ea15679e5bf9d8d5e2740a45569805a9c2d88e60e52`; GitHub digest and a downloaded copy match.
-- Uploaded to release `rutabaga-drivers` (new asset, nothing replaced; release stays non-Latest). Release notes: 26.10.30 line added, "Newest" moved off 26.10.22.
+- Uploaded to release `rutabaga-drivers` (new asset, nothing replaced; release stays non-Latest). Release notes: 26.10.30 line added, "Newest" moved off 26.10.22. Same day, on the user's request, expanded into a "Changes from 26.10.22" list (new DGC and host-memory-import code, sparse-unbind buffer, extension reporting not confirmed, new profiles, same settings/env, NDK r29 + stripped names, not in upstream Mesa).
 - `rutabaga_drivers.json`: new first entry `Rutabaga-26.10.30` (`51ed36a4`, branch `feat/rutabaga-26.10.30`, backup `refs/backup/20261102/main-before-rutabaga-26.10.30` = `c6f4c282`).
 
 #### What the build is (compared with 26.10.22: strings, decoded game profiles, entrypoint tables, disassembly)
