@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-11-01T23:24:32Z",
+  "triggered_at": "2026-11-02T03:36:54Z",
   "changed": [
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "d321f49",
+      "new": "02e24ca",
+      "full": "02e24ca5c01ed0c864466ed573db347336f70170",
+      "msg": "Merge pull request #6080 from Sonicadvance1/293",
+      "date": "2026-11-02T00:57:23Z"
+    },
     {
       "repo": "WinterSnowfall/d7vk",
       "name": "D7VK (DDraw/D3D7)",
-      "old": "40977a0",
-      "new": "d727fd1",
-      "full": "d727fd19c22bfe8e7ba97699c054cc116ba2842a",
-      "msg": "[meta] Change file product/company metadata and language",
-      "date": "2026-11-01T20:22:25Z"
+      "old": "d727fd1",
+      "new": "06656b9",
+      "full": "06656b9e94bf275854e3d83d6426517253937738",
+      "msg": "[meta] Validate D3D interface compatibility level before device creation",
+      "date": "2026-11-02T01:57:29Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "1558388",
-      "new": "ae9e17f",
-      "full": "ae9e17fc684b2fe0ee55fe0d32584e0834a1759f",
-      "msg": "venus: terminate pNext properly in vn_fix_command_buffer_begin_info",
-      "date": "2026-11-01T20:38:52.000+00:00"
+      "old": "ae9e17f",
+      "new": "759dedd",
+      "full": "759dedd64bd7a6572cd8d76aff39958262ae15d3",
+      "msg": "nv30/ci: add nv34 piglit results",
+      "date": "2026-11-02T02:03:30.000+00:00"
     }
   ]
 }
