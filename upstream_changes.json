@@ -1,41 +1,23 @@
 {
-  "triggered_at": "2026-11-03T18:54:12Z",
+  "triggered_at": "2026-11-03T23:48:48Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "b640a57",
-      "new": "27a2d1f",
-      "full": "27a2d1f81df2c0166162cc859eafb61a178aa440",
-      "msg": "[WRAPPER] Wrapped CRYPTO_set_mem_functions for libcrypto.so.3 (#4665)",
-      "date": "2026-11-03T17:01:15Z"
-    },
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "4a4669a",
-      "new": "effbda6",
-      "full": "effbda64cab7b55c987b8382ff51ab14834ce27e",
-      "msg": "Merge pull request #6094 from Sonicadvance1/302",
-      "date": "2026-11-03T18:29:51Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "1065922",
-      "new": "3c7b8db",
-      "full": "3c7b8dbad8f01290a55bc14d7bd9d69405a98071",
-      "msg": "[d3d7/6] Introduce a Glide compatibility mode",
-      "date": "2026-11-03T12:26:31Z"
+      "old": "effbda6",
+      "new": "fc770b3",
+      "full": "fc770b368cef87b12ae5015784576bf1fb6d8aa1",
+      "msg": "Merge pull request #6095 from lioncash/vixlup",
+      "date": "2026-11-03T20:22:58Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "b4d5140",
-      "new": "f4a706c",
-      "full": "f4a706c5a218cbee80caef7f40cd511a6fa46b36",
-      "msg": "radv/nir: apply sampler fixups only when lowering tex instructions",
-      "date": "2026-11-03T17:01:48.000+00:00"
+      "old": "f4a706c",
+      "new": "98a55f4",
+      "full": "98a55f454dff645be1c88284634126a2c17fd416",
+      "msg": "ac/nir/clear_copy_buffer: Don't round up the number of components for the first ",
+      "date": "2026-11-03T23:03:45.000+00:00"
     }
   ]
 }
