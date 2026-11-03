@@ -1,32 +1,41 @@
 {
-  "triggered_at": "2026-11-03T11:29:50Z",
+  "triggered_at": "2026-11-03T18:54:12Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "23597f6",
-      "new": "b640a57",
-      "full": "b640a570b34ddd0ae271b37bfb2fac64d6d77c57",
-      "msg": "[RV64_DYNAREC] Use fence.tso for RET and strongmem barriers (#4663)",
-      "date": "2026-11-03T11:18:50Z"
+      "old": "b640a57",
+      "new": "27a2d1f",
+      "full": "27a2d1f81df2c0166162cc859eafb61a178aa440",
+      "msg": "[WRAPPER] Wrapped CRYPTO_set_mem_functions for libcrypto.so.3 (#4665)",
+      "date": "2026-11-03T17:01:15Z"
     },
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "2b10820",
-      "new": "4a4669a",
-      "full": "4a4669a078f79300d8b6bff283547ff5f0d6264a",
-      "msg": "Merge pull request #6092 from Claudemirovsky/fix/build/libcxx-moment",
-      "date": "2026-11-03T07:24:53Z"
+      "old": "4a4669a",
+      "new": "effbda6",
+      "full": "effbda64cab7b55c987b8382ff51ab14834ce27e",
+      "msg": "Merge pull request #6094 from Sonicadvance1/302",
+      "date": "2026-11-03T18:29:51Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "1065922",
+      "new": "3c7b8db",
+      "full": "3c7b8dbad8f01290a55bc14d7bd9d69405a98071",
+      "msg": "[d3d7/6] Introduce a Glide compatibility mode",
+      "date": "2026-11-03T12:26:31Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "08e7afc",
-      "new": "b4d5140",
-      "full": "b4d51408d3c55593d2e4099c80b7849cfbb94147",
-      "msg": "v3dv: update conformance version",
-      "date": "2026-11-03T10:24:26.000+00:00"
+      "old": "b4d5140",
+      "new": "f4a706c",
+      "full": "f4a706c5a218cbee80caef7f40cd511a6fa46b36",
+      "msg": "radv/nir: apply sampler fixups only when lowering tex instructions",
+      "date": "2026-11-03T17:01:48.000+00:00"
     }
   ]
 }
