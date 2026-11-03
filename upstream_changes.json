@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-11-03T03:11:50Z",
+  "triggered_at": "2026-11-03T11:29:50Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "23597f6",
+      "new": "b640a57",
+      "full": "b640a570b34ddd0ae271b37bfb2fac64d6d77c57",
+      "msg": "[RV64_DYNAREC] Use fence.tso for RET and strongmem barriers (#4663)",
+      "date": "2026-11-03T11:18:50Z"
+    },
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "1e463b0",
-      "new": "2b10820",
-      "full": "2b1082060d47b93795c7a643202fec729e298d6d",
-      "msg": "Merge pull request #6045 from Sonicadvance1/277",
-      "date": "2026-11-03T02:38:34Z"
+      "old": "2b10820",
+      "new": "4a4669a",
+      "full": "4a4669a078f79300d8b6bff283547ff5f0d6264a",
+      "msg": "Merge pull request #6092 from Claudemirovsky/fix/build/libcxx-moment",
+      "date": "2026-11-03T07:24:53Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "b5b73e5",
-      "new": "08e7afc",
-      "full": "08e7afcd25aa4c1937865cff3e8665b7df86141a",
-      "msg": "jay: Rename fsign lowering to algebraic lowering",
-      "date": "2026-11-03T01:25:43.000+00:00"
+      "old": "08e7afc",
+      "new": "b4d5140",
+      "full": "b4d51408d3c55593d2e4099c80b7849cfbb94147",
+      "msg": "v3dv: update conformance version",
+      "date": "2026-11-03T10:24:26.000+00:00"
     }
   ]
 }
