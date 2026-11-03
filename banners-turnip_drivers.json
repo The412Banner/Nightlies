@@ -1,6 +1,54 @@
 [
   {
     "type": "GpuDriver",
+    "verName": "Turnip-v27.0.0-20261103-710-720-Test-Linux",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v27.0.0-20261103/Turnip-v27.0.0-20261103-710-720-Test-Linux.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v27.0.0-20261103-710-720-Test",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v27.0.0-20261103/Turnip-v27.0.0-20261103-710-720-Test.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v27.0.0-20261103-8G2-OneUI-Linux",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v27.0.0-20261103/Turnip-v27.0.0-20261103-8G2-OneUI-Linux.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v27.0.0-20261103-8G2-OneUI",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v27.0.0-20261103/Turnip-v27.0.0-20261103-8G2-OneUI.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v27.0.0-20261103-A8xx-Linux",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v27.0.0-20261103/Turnip-v27.0.0-20261103-A8xx-Linux.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v27.0.0-20261103-A8xx",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v27.0.0-20261103/Turnip-v27.0.0-20261103-A8xx.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v27.0.0-20261103-Linux",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v27.0.0-20261103/Turnip-v27.0.0-20261103-Linux.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "Turnip-v27.0.0-20261103",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v27.0.0-20261103/Turnip-v27.0.0-20261103.zip"
+  },
+  {
+    "type": "GpuDriver",
     "verName": "Turnip-v27.0.0-20261102-r3-710-720-Test-Linux",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v27.0.0-20261102-r3/Turnip-v27.0.0-20261102-r3-710-720-Test-Linux.zip"
@@ -4312,41 +4360,5 @@
     "verName": "Turnip-v26.3.0-20261013-r4",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261013-r4/Turnip-v26.3.0-20261013-r4.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "Turnip-v26.3.0-20261013-r3-710-720-Test-Linux",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261013-r3/Turnip-v26.3.0-20261013-r3-710-720-Test-Linux.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "Turnip-v26.3.0-20261013-r3-710-720-Test",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261013-r3/Turnip-v26.3.0-20261013-r3-710-720-Test.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "Turnip-v26.3.0-20261013-r3-8G2-OneUI-Linux",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261013-r3/Turnip-v26.3.0-20261013-r3-8G2-OneUI-Linux.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "Turnip-v26.3.0-20261013-r3-8G2-OneUI",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261013-r3/Turnip-v26.3.0-20261013-r3-8G2-OneUI.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "Turnip-v26.3.0-20261013-r3-Linux",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261013-r3/Turnip-v26.3.0-20261013-r3-Linux.zip"
-  },
-  {
-    "type": "GpuDriver",
-    "verName": "Turnip-v26.3.0-20261013-r3",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Banners-Turnip/releases/download/v26.3.0-20261013-r3/Turnip-v26.3.0-20261013-r3.zip"
   }
 ]
