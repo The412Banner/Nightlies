@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-11-04T04:03:34Z",
+  "triggered_at": "2026-11-04T12:41:03Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "fc770b3",
-      "new": "75df0f8",
-      "full": "75df0f815bd929d28c2ddc6adfdf398029f9a898",
-      "msg": "Merge pull request #6096 from Sonicadvance1/303",
-      "date": "2026-11-04T01:36:07Z"
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "15dd1ee",
+      "new": "f05a771",
+      "full": "f05a77108ebf88e6f716f8928cccaa34a47af726",
+      "msg": "vkd3d: Enable descriptor heap robustness by default in heap path.",
+      "date": "2026-11-04T10:21:11Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "98a55f4",
-      "new": "ae47f65",
-      "full": "ae47f65f7de25c3d1f3035fcefacfc57a1156202",
-      "msg": "intel/compiler: Archive shader binaries as separate MDA objects",
-      "date": "2026-11-04T01:23:45.000+00:00"
+      "old": "ae47f65",
+      "new": "1b60c2e",
+      "full": "1b60c2e3bd66612554b27c065ceebb239e8296c0",
+      "msg": "docs: advertise v3d for GL_OES_texture_cube_map_array",
+      "date": "2026-11-04T12:12:55.000+00:00"
     }
   ]
 }
