@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-11-03T23:48:48Z",
+  "triggered_at": "2026-11-04T04:03:34Z",
   "changed": [
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "effbda6",
-      "new": "fc770b3",
-      "full": "fc770b368cef87b12ae5015784576bf1fb6d8aa1",
-      "msg": "Merge pull request #6095 from lioncash/vixlup",
-      "date": "2026-11-03T20:22:58Z"
+      "old": "fc770b3",
+      "new": "75df0f8",
+      "full": "75df0f815bd929d28c2ddc6adfdf398029f9a898",
+      "msg": "Merge pull request #6096 from Sonicadvance1/303",
+      "date": "2026-11-04T01:36:07Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "f4a706c",
-      "new": "98a55f4",
-      "full": "98a55f454dff645be1c88284634126a2c17fd416",
-      "msg": "ac/nir/clear_copy_buffer: Don't round up the number of components for the first ",
-      "date": "2026-11-03T23:03:45.000+00:00"
+      "old": "98a55f4",
+      "new": "ae47f65",
+      "full": "ae47f65f7de25c3d1f3035fcefacfc57a1156202",
+      "msg": "intel/compiler: Archive shader binaries as separate MDA objects",
+      "date": "2026-11-04T01:23:45.000+00:00"
     }
   ]
 }
