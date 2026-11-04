@@ -50,10 +50,10 @@ A single JSON index of every component published here — point any compatible W
 <!-- NIGHTLY-LATEST-START -->
 | | |
 | :--- | :--- |
-| **Release** | [🔗 nightly-20261104-041022](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261104-041022) |
+| **Release** | [🔗 nightly-20261104-124742](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261104-124742) |
 | **FEXCore** | [`75df0f815`](https://github.com/FEX-Emu/FEX/commit/75df0f815) — FEX-2610+166-Nightly-75df0f815 |
-| **VKD3D-Proton (Std)** | [`15dd1ee7`](https://github.com/HansKristian-Work/vkd3d-proton/commit/15dd1ee7) |
-| **VKD3D-Proton (ARM64EC)** | [`15dd1ee7`](https://github.com/HansKristian-Work/vkd3d-proton/commit/15dd1ee7) |
+| **VKD3D-Proton (Std)** | [`f05a7710`](https://github.com/HansKristian-Work/vkd3d-proton/commit/f05a7710) |
+| **VKD3D-Proton (ARM64EC)** | [`f05a7710`](https://github.com/HansKristian-Work/vkd3d-proton/commit/f05a7710) |
 | **DXVK (GPLAsync)** | [`cf0a0d90`](https://github.com/doitsujin/dxvk/commit/cf0a0d90) |
 | **DXVK (ARM64EC)** | [`cf0a0d90`](https://github.com/doitsujin/dxvk/commit/cf0a0d90) |
 | **DXVK BinSem (GPLAsync)** | [`97fe0c66`](https://github.com/doitsujin/dxvk/commit/97fe0c66) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |
@@ -61,7 +61,7 @@ A single JSON index of every component published here — point any compatible W
 | **D7VK (DDraw/D3D7)** | [`3c7b8dbad`](https://github.com/WinterSnowfall/d7vk/commit/3c7b8dbad) — DDraw Wrapper slot; `.tzst` = bundled-asset refresh |
 | **Box64** | [ptitSeb/box64](https://github.com/ptitSeb/box64/commits/main) + [Pipetto/box64](https://github.com/Pipetto-crypto/box64/commits/main) |
 | **Turnip** | [v27.0.0-20261104-r3](https://github.com/The412Banner/Banners-Turnip/releases/tag/v27.0.0-20261104-r3) — Turnip v27.0.0-20261104-r3 |
-| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261104-041022) |
+| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261104-124742) |
 <!-- NIGHTLY-LATEST-END -->
 
 </details>
