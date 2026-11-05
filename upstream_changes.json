@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-11-05T01:10:42Z",
+  "triggered_at": "2026-11-05T08:46:27Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "75df0f8",
-      "new": "eff9f45",
-      "full": "eff9f459d8a13dc80aa9edb331c3da0e98334a38",
-      "msg": "Merge pull request #6103 from Sonicadvance1/307",
-      "date": "2026-11-04T23:31:44Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "27a2d1f",
+      "new": "59b3eb1",
+      "full": "59b3eb1555406db697941ddd5e414c7085b90e4f",
+      "msg": "[RV64_DYNAREC] Reuse sew to remove vsetvli for avx_load_reg_vector (#4668)",
+      "date": "2026-11-05T04:07:06Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "bacacb1",
-      "new": "3df8fc4",
-      "full": "3df8fc4058902bc622f4ecd950122df09f96ff87",
-      "msg": "glsl: treat volatile as coherent when translating to nir",
-      "date": "2026-11-05T00:30:52.000+00:00"
+      "old": "3df8fc4",
+      "new": "af1f2b2",
+      "full": "af1f2b2acf61d4d983f460105ae7146d4c1ac03f",
+      "msg": "radv: fix an assert typo when copying the VRS rates",
+      "date": "2026-11-05T08:15:18.000+00:00"
     }
   ]
 }
