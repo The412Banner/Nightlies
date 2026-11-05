@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-11-04T20:10:12Z",
+  "triggered_at": "2026-11-05T01:10:42Z",
   "changed": [
     {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "f05a771",
-      "new": "87983f3",
-      "full": "87983f34c5cffa6691b7deb665d09d06376772ea",
-      "msg": "vkd3d: Do not explicitly enable sample shading.",
-      "date": "2026-11-04T16:03:29Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "75df0f8",
+      "new": "eff9f45",
+      "full": "eff9f459d8a13dc80aa9edb331c3da0e98334a38",
+      "msg": "Merge pull request #6103 from Sonicadvance1/307",
+      "date": "2026-11-04T23:31:44Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "1b60c2e",
-      "new": "bacacb1",
-      "full": "bacacb1ac9dec6b371f2a20cb715f5da217750a5",
-      "msg": "radeonsi, winsys/amdgpu: rework stable pstate handling",
-      "date": "2026-11-04T19:21:59.000+00:00"
+      "old": "bacacb1",
+      "new": "3df8fc4",
+      "full": "3df8fc4058902bc622f4ecd950122df09f96ff87",
+      "msg": "glsl: treat volatile as coherent when translating to nir",
+      "date": "2026-11-05T00:30:52.000+00:00"
     }
   ]
 }
