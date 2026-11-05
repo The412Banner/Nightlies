@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-11-05T16:58:12Z",
+  "triggered_at": "2026-11-05T22:33:11Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "59b3eb1",
-      "new": "5c60cf8",
-      "full": "5c60cf8f429346647d56cd7bd4d4eef15a14bc6d",
-      "msg": "[ARM64_DYNAREC] Small optimsation for test emitters",
-      "date": "2026-11-05T10:39:06Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "eff9f45",
+      "new": "8f92e80",
+      "full": "8f92e80dccd043e5f9e2cec1be69f5168562eab9",
+      "msg": "Docs: Update for release FEX-2611",
+      "date": "2026-11-05T17:36:54Z"
     },
     {
       "repo": "HansKristian-Work/vkd3d-proton",
       "name": "VKD3D-Proton",
-      "old": "87983f3",
-      "new": "d0890b2",
-      "full": "d0890b2d9e817420d76a0881a55ecca8a68a20e5",
-      "msg": "vkd3d: Remove obsolete workaround for robustbufferaccess on RADV.",
-      "date": "2026-11-05T11:25:12Z"
+      "old": "d0890b2",
+      "new": "865b12b",
+      "full": "865b12ba0cc20796b3709397ce5d6d3b8a205b04",
+      "msg": "meta: Add version.rc info to build.",
+      "date": "2026-11-05T18:38:37Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "af1f2b2",
-      "new": "570dde6",
-      "full": "570dde696b8308b96614c34fe8ba5123c4cb9edc",
-      "msg": "vc4: read utiles with paired loads on aarch64",
-      "date": "2026-11-05T15:25:20.000+00:00"
+      "old": "570dde6",
+      "new": "ea4dc62",
+      "full": "ea4dc62bae6477dc12bc00695926e47ca534257a",
+      "msg": "lavapipe: use region aspects for depth/stencil blits",
+      "date": "2026-11-05T21:41:48.000+00:00"
     }
   ]
 }
