@@ -1,0 +1,284 @@
+name: tmp FEXCore 2611 stable build
+# Temporary: builds FEX at the FEX-2611 tag with the all-in-one workflow's own build-fex job
+# (DLLs + bionic unix .so) and uploads artifacts only. Publishes nothing. Deleted afterwards.
+on:
+  push:
+    branches: [ 'tmp/fexcore-2611' ]
+permissions:
+  contents: read
+jobs:
+  build-fex:
+    name: Build FEXCore
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      commit: ${{ steps.version.outputs.commit }}
+    steps:
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y --no-install-recommends \
+            ca-certificates curl xz-utils jq git zip \
+            build-essential python3 pkg-config cmake zstd \
+            dos2unix perl tar unzip meson ninja-build wget
+
+      - name: Setup GLSLANG
+        run: |
+          wget -q https://github.com/KhronosGroup/glslang/releases/download/master-tot/glslang-master-linux-Release.zip
+          unzip -q glslang-master-linux-Release.zip -d glslang
+          echo "$PWD/glslang/bin" >> $GITHUB_PATH
+
+      - name: Setup Toolchain
+        run: |
+          LLVM_MINGW_TAG="20251104"
+          TOOLCHAIN_DIR="/opt/llvm-mingw"
+          wget -q "https://github.com/mstorsjo/llvm-mingw/releases/download/$LLVM_MINGW_TAG/llvm-mingw-$LLVM_MINGW_TAG-ucrt-ubuntu-22.04-x86_64.tar.xz" -O llvm.tar.xz
+          sudo rm -rf "$TOOLCHAIN_DIR" && sudo mkdir -p "$TOOLCHAIN_DIR"
+          sudo tar -C "$TOOLCHAIN_DIR" --strip-components=1 -xJf llvm.tar.xz
+          echo "$TOOLCHAIN_DIR/bin" >> $GITHUB_PATH
+
+      - name: Build FEX
+        id: version
+        run: |
+          git clone --recursive --branch FEX-2611 https://github.com/FEX-Emu/FEX.git source && git -C source rev-parse HEAD
+          cd source
+
+          # Name by distance from the nearest FEX release tag:
+          #   - exactly on the tag  -> stable release: FEXCore-<ver>-stable
+          #   - N commits past it    -> nightly:        FEX-<ver>+N-Nightly-<sha>
+          # so a drifted build is never mislabeled as the clean release.
+          COMMIT_HASH=$(git rev-parse --short HEAD)
+          BASE_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "FEX-Unknown")
+          if [ "$BASE_TAG" = "FEX-Unknown" ]; then
+            VERSION_NAME="FEX-Unknown-Nightly-${COMMIT_HASH}"
+          else
+            COMMITS_SINCE_TAG=$(git rev-list "${BASE_TAG}..HEAD" --count 2>/dev/null || echo 0)
+            if [ "$COMMITS_SINCE_TAG" -gt 0 ]; then
+              VERSION_NAME="${BASE_TAG}+${COMMITS_SINCE_TAG}-Nightly-${COMMIT_HASH}"
+            else
+              VERSION_NAME="FEXCore-${BASE_TAG#FEX-}-stable"
+            fi
+          fi
+          echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_ENV
+          echo "version=${VERSION_NAME}" >> $GITHUB_OUTPUT
+          echo "commit=${COMMIT_HASH}" >> $GITHUB_OUTPUT
+
+          build_arch() {
+            local triple="$1"
+            local dest="$2"
+            local build_dir="build-${triple}"
+
+            rm -rf "$build_dir" && mkdir "$build_dir" && cd "$build_dir"
+            cmake -G Ninja -Wno-dev \
+              -DCMAKE_BUILD_TYPE=Release \
+              -DCMAKE_TOOLCHAIN_FILE=../Data/CMake/toolchain_mingw.cmake \
+              -DMINGW_TRIPLE="${triple}-w64-mingw32" \
+              -DCMAKE_INSTALL_PREFIX=/usr \
+              -DCMAKE_INSTALL_LIBDIR=/usr/lib/wine/aarch64-windows \
+              -DENABLE_JEMALLOC_GLIBC_ALLOC=False \
+              -DENABLE_LTO=False -DENABLE_ASSERTIONS=False -DBUILD_TESTING=False \
+              ..
+            ninja -j 2
+            DESTDIR="$dest" ninja install
+            cd ..
+          }
+
+          build_arch "arm64ec" "../../stage-ec"
+          build_arch "aarch64" "../../stage-wo"
+
+      - name: Package
+        run: |
+          rm -rf final_package && mkdir -p final_package/system32
+          DLL_EC=$(find stage-ec -type f -name '*.dll' | head -n 1)
+          DLL_WOW=$(find stage-wo -type f -name '*.dll' | head -n 1)
+
+          cp "$DLL_EC" final_package/system32/libarm64ecfex.dll
+          cp "$DLL_WOW" final_package/system32/libwow64fex.dll
+          /opt/llvm-mingw/bin/llvm-strip --strip-all final_package/system32/*.dll
+
+          cat <<EOF > final_package/profile.json
+          {
+            "type": "FEXCore",
+            "versionName": "${{ env.VERSION_NAME }}",
+            "versionCode": ${{ github.run_number }},
+            "description": "FEXCore Nightly\n${{ env.VERSION_NAME }}",
+            "author": "FEX-Emu",
+            "files": [
+              { "source": "system32/libarm64ecfex.dll", "target": "\${system32}/libarm64ecfex.dll" },
+              { "source": "system32/libwow64fex.dll", "target": "\${system32}/libwow64fex.dll" }
+            ]
+          }
+          EOF
+
+          cd final_package
+
+          # Create WCP
+          tar -cJf ../${{ env.VERSION_NAME }}.wcp .
+
+          # Create ZIP
+          zip -r ../${{ env.VERSION_NAME }}.zip .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fex-nightly
+          path: |
+            *.wcp
+            *.zip
+
+      # --- Unix (.so) variant: same FEX checkout as the DLLs above, so the
+      #     DLLs + native aarch64 .so stay a matched pair for this exact commit.
+      - name: Cache Android NDK
+        id: cache-ndk
+        uses: actions/cache@v4
+        with:
+          path: /opt/android-ndk
+          key: android-ndk-r27c
+
+      - name: Setup Android NDK
+        if: steps.cache-ndk.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          NDK_VER="r27c"
+          wget -q "https://dl.google.com/android/repository/android-ndk-${NDK_VER}-linux.zip" -O ndk.zip
+          rm -rf /tmp/ndk-x && mkdir -p /tmp/ndk-x
+          unzip -q ndk.zip -d /tmp/ndk-x
+          sudo rm -rf /opt/android-ndk
+          sudo mv "/tmp/ndk-x/android-ndk-${NDK_VER}" /opt/android-ndk
+          rm -rf ndk.zip /tmp/ndk-x
+
+      - name: Build unix libs (aarch64 bionic .so)
+        run: |
+          set -euo pipefail
+          # Native aarch64 FEX UnixLib .so, built for BIONIC (Android NDK r27c,
+          # API 28) so it loads in WinNative/Bannerlator bionic wine — NOT glibc.
+          # Built from THIS job's own FEX checkout (source/) so the DLLs + .so
+          # remain a matched pair for this exact commit.
+          # HARD-FAIL on an older FEX ref that lacks UnixLib — never emit a
+          # DLL-only "-unix" wcp.
+          if [ ! -f source/Source/Windows/UnixLib/FEXUnixLib.cpp ]; then
+            echo "::error::No source/Source/Windows/UnixLib/FEXUnixLib.cpp in this FEX checkout (older ref) — cannot build unix .so"
+            exit 1
+          fi
+
+          NDK="/opt/android-ndk"
+          API=28
+          CXX="$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android${API}-clang++"
+          "$CXX" --version | head -1
+
+          # bionic libc does NOT provide shm_open/shm_unlink, and nothing else
+          # does either. Wine's loader dlopen()s this .so with RTLD_NOW, which
+          # requires EVERY symbol resolved — an undefined shm_open makes dlopen
+          # return NULL and the unixlib silently never loads. So DEFINE ENOSYS
+          # stubs and compile them straight INTO the .so (FEX's SHM stats are
+          # non-essential to translation; a failing stub is fine — FEX skips them).
+          #
+          # Header = DECLARATIONS only, force-included so FEXUnixLib.cpp (which
+          # calls shm_open/shm_unlink via <sys/mman.h>, where bionic omits their
+          # prototypes) still compiles.
+          cat > /tmp/bionic_shm_decl.h <<'HDR'
+          #pragma once
+          #include <sys/types.h>
+          extern "C" {
+          int shm_open(const char* name, int oflag, mode_t mode);
+          int shm_unlink(const char* name);
+          }
+          HDR
+
+          # Stub = DEFINITIONS, compiled to an object and linked into each .so so
+          # there are NO unresolved shm_open/shm_unlink symbols left for RTLD_NOW.
+          cat > /tmp/fex_bionic_shm_stub.c <<'STUB'
+          #include <errno.h>
+          int shm_open(const char* n, int o, unsigned m){ (void)n; (void)o; (void)m; errno = ENOSYS; return -1; }
+          int shm_unlink(const char* n){ (void)n; errno = ENOSYS; return -1; }
+          STUB
+          NDK_CC="$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android${API}-clang"
+          "$NDK_CC" -c -fPIC -O2 -o /tmp/fex_bionic_shm_stub.o /tmp/fex_bionic_shm_stub.c
+
+          mkdir -p unixlibs
+          # No -lrt (bionic folds it into libc); no --allow-shlib-undefined — with
+          # the stub linked in, shm_open/shm_unlink are defined and the only
+          # remaining UND symbols are libc (@LIBC) + libc++ (NEEDED
+          # libc++_shared.so), which resolve at load from imagefs/usr/lib on
+          # LD_LIBRARY_PATH.
+          CXXFLAGS="-shared -fPIC -O2 -std=c++17 -g3 -gdwarf-4 -fno-omit-frame-pointer \
+            -fasynchronous-unwind-tables -funwind-tables -mtune=generic \
+            -include /tmp/bionic_shm_decl.h"
+          # Same TU built twice, named for FEX's two UnixLib targets (byte-identical),
+          # each with the shm stub object linked in.
+          for name in libwow64fex libarm64ecfex; do
+            "$CXX" $CXXFLAGS -o "unixlibs/${name}.so" \
+              source/Source/Windows/UnixLib/FEXUnixLib.cpp /tmp/fex_bionic_shm_stub.o
+          done
+
+          # Wine libs are executable (0771); a 0600 .so cannot be dlopen'd on
+          # Android. Make them executable so the packaged wcp carries the exec bit.
+          chmod 0755 unixlibs/*.so
+
+          echo "Built bionic unix .so (shm stubs compiled in):"
+          file unixlibs/*.so
+          # Self-check: hard-fail if shm_open/shm_unlink are still undefined.
+          RE="$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf"
+          for name in libwow64fex libarm64ecfex; do
+            BAD=$("$RE" --dyn-syms "unixlibs/${name}.so" | grep ' UND ' | grep -E 'shm_open|shm_unlink' || true)
+            if [ -n "$BAD" ]; then
+              echo "::error::${name}.so still has undefined shm symbols:"; echo "$BAD"; exit 1
+            fi
+          done
+          echo "OK: no undefined shm_open/shm_unlink in the unix .so"
+
+      - name: Package (unix wcp)
+        run: |
+          set -euo pipefail
+          rm -rf final_package_unix
+          mkdir -p final_package_unix/system32 final_package_unix/aarch64-unix
+
+          # DLLs: reuse THIS job's already-built, matched DLLs (from final_package).
+          cp final_package/system32/libarm64ecfex.dll final_package_unix/system32/libarm64ecfex.dll
+          cp final_package/system32/libwow64fex.dll   final_package_unix/system32/libwow64fex.dll
+          # .so: this job's matched bionic unix libs. Force the execute bit so
+          # the wcp tar stores them 0755 (a 0600 .so cannot be dlopen'd on
+          # Android; wine libs are 0771).
+          cp unixlibs/libarm64ecfex.so final_package_unix/aarch64-unix/libarm64ecfex.so
+          cp unixlibs/libwow64fex.so   final_package_unix/aarch64-unix/libwow64fex.so
+          chmod 0755 final_package_unix/aarch64-unix/*.so
+
+          # TODO(delivery-path): confirm the .so target dir from the proton
+          # loader-search spike. On Bannerlator ${libdir}=imagefs/usr/lib, where
+          # the FEX loader does NOT search — swap SO_TARGET_DIR when the spike
+          # lands. Single-quoted so ${libdir} stays literal in the JSON below.
+          SO_TARGET_DIR='${libdir}/wine/aarch64-unix'
+
+          cat > final_package_unix/profile.json <<EOF
+          {
+            "type": "FEXCore",
+            "versionName": "${VERSION_NAME}-unix",
+            "versionCode": 0,
+            "description": "FEXCore ${VERSION_NAME} +unix libs",
+            "files": [
+              { "source": "aarch64-unix/libarm64ecfex.so", "target": "${SO_TARGET_DIR}/libarm64ecfex.so" },
+              { "source": "aarch64-unix/libwow64fex.so",   "target": "${SO_TARGET_DIR}/libwow64fex.so" },
+              { "source": "system32/libarm64ecfex.dll",    "target": "\${system32}/libarm64ecfex.dll" },
+              { "source": "system32/libwow64fex.dll",      "target": "\${system32}/libwow64fex.dll" }
+            ]
+          }
+          EOF
+
+          cd final_package_unix
+          tar -cJf "../${VERSION_NAME}-unix.wcp" .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fex-nightly-unix
+          path: '*-unix.wcp'
+
+  # ==================================================================
+  # JOB 2b: FEXCore Nightly — PPA flavor
+  # Same FEX HEAD as build-fex; different toolchain + recipe to mirror
+  # the fex-emu-wine Launchpad PPA wcp:
+  #   - bylaws/llvm-mingw 20250920  (clang 21.1.0 from bylaws/llvm-project)
+  #   - Release + CFLAGS=-g           (debug info only for C, not C++)
+  #   - INSTALL_PREFIX=/ + LIBDIR=/   (bakes "//fex-emu/HostThunks")
+  #   - TUNE_ARCH=generic + TUNE_CPU=none  (generic codegen, no host leak)
+  #   - No llvm-strip, no ninja install (cp DLLs from build/Bin)
+  # Calibrated against an actual upstream FEX-2604 PPA wcp at -0.16% size drift.
+  # ==================================================================
