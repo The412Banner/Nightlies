@@ -1,50 +1,23 @@
 {
-  "triggered_at": "2026-11-06T17:45:01Z",
+  "triggered_at": "2026-11-06T22:33:30Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "5c60cf8",
-      "new": "4049cea",
-      "full": "4049ceacf0751bb89e4a918bfb495dd04fefa24e",
-      "msg": "Windows builds needs ULL to be 64bits",
-      "date": "2026-11-06T11:02:52Z"
-    },
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "c985199",
-      "new": "ae495b9",
-      "full": "ae495b971b1e148f7fac26fe7451b1a5df971303",
-      "msg": "Merge pull request #6106 from Sonicadvance1/310",
-      "date": "2026-11-06T14:52:49Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "a1aca15",
-      "new": "829e377",
-      "full": "829e377d2d5cf4b07455412fcabed66a1bf4390c",
-      "msg": "[meta] Update dxbc-spirv",
-      "date": "2026-11-06T12:18:26Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "7321413",
-      "new": "3ae3a11",
-      "full": "3ae3a11d530d88ab4bbc1c811c3964facd714bc6",
-      "msg": "[meta] Fix a memory leak in ProcessVerticesSW",
-      "date": "2026-11-06T12:26:09Z"
+      "old": "4049cea",
+      "new": "50855a1",
+      "full": "50855a1e2bdb0bd09135bb84d6904223775f16a5",
+      "msg": "[ARM64_DYNAREC] Fix native flags record in signal arch info (#4678)",
+      "date": "2026-11-06T19:36:04Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "35a0fef",
-      "new": "21bbed3",
-      "full": "21bbed371887fa750a6ce5ccbedf5354d2411a66",
-      "msg": "gamma: Add option to export trace as portable",
-      "date": "2026-11-06T16:24:30.000+00:00"
+      "old": "21bbed3",
+      "new": "f74ccde",
+      "full": "f74ccde1daafe4bdd928f44ce84470920ba8fde3",
+      "msg": "kk: Push debug utils to command buffer if no encoder is active",
+      "date": "2026-11-06T22:14:20.000+00:00"
     }
   ]
 }
