@@ -58,7 +58,7 @@ A single JSON index of every component published here — point any compatible W
 | **DXVK (ARM64EC)** | [`829e377d`](https://github.com/doitsujin/dxvk/commit/829e377d) |
 | **DXVK BinSem (GPLAsync)** | [`97fe0c66`](https://github.com/doitsujin/dxvk/commit/97fe0c66) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |
 | **DXVK BinSem (ARM64EC)** | [`97fe0c66`](https://github.com/doitsujin/dxvk/commit/97fe0c66) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |
-| **D7VK (DDraw/D3D7)** | [`2e3da3613`](https://github.com/WinterSnowfall/d7vk/commit/2e3da3613) — DDraw Wrapper slot; `.tzst` = bundled-asset refresh |
+| **D7VK (DDraw/D3D7)** | [`3ae3a11d5`](https://github.com/WinterSnowfall/d7vk/commit/3ae3a11d5) — DDraw Wrapper slot; `.tzst` = bundled-asset refresh |
 | **Box64** | [ptitSeb/box64](https://github.com/ptitSeb/box64/commits/main) + [Pipetto/box64](https://github.com/Pipetto-crypto/box64/commits/main) |
 | **Turnip** | [v27.0.0-20261106-r2](https://github.com/The412Banner/Banners-Turnip/releases/tag/v27.0.0-20261106-r2) — Turnip v27.0.0-20261106-r2 |
 | **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261106-175431) |
