@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-11-06T02:58:43Z",
+  "triggered_at": "2026-11-06T10:28:09Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "8f92e80",
-      "new": "c985199",
-      "full": "c985199ed5032a871366572c3d6a4f80f12ae6e7",
-      "msg": "Merge pull request #6104 from Sonicadvance1/308",
-      "date": "2026-11-06T00:49:40Z"
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "865b12b",
+      "new": "db5628e",
+      "full": "db5628e2af7989fcb46ca9978b51e7859f1d9eef",
+      "msg": "tests: Fixup assumption to be bug-compatible with NV.",
+      "date": "2026-11-06T10:22:22Z"
     },
     {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "3c7b8db",
-      "new": "7321413",
-      "full": "7321413dc4b173fe49f155ee7eeb1f8437a3096b",
-      "msg": "[meta] Fix a memory leak in ProcessVerticesSW",
-      "date": "2026-11-06T00:55:41Z"
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "cf0a0d9",
+      "new": "a1aca15",
+      "full": "a1aca15ba5c4c9a5c4f4ef3bcb63e0392877c8ed",
+      "msg": "[dxvk] Forward frame interval to Reflex",
+      "date": "2026-11-06T08:29:46Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ea4dc62",
-      "new": "2f42570",
-      "full": "2f42570a92cadca90d5f63c00788d691f9c73a07",
-      "msg": "zink: reset attachment storeOp when begin_rendering has no tc info",
-      "date": "2026-11-06T02:26:51.000+00:00"
+      "old": "2f42570",
+      "new": "35a0fef",
+      "full": "35a0fef154b0fc9939674db4f943326b3f3724d3",
+      "msg": "radv: rename some Vulkan definitions that have been promoted",
+      "date": "2026-11-06T07:29:41.000+00:00"
     }
   ]
 }
