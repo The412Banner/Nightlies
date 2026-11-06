@@ -1,32 +1,50 @@
 {
-  "triggered_at": "2026-11-06T10:28:09Z",
+  "triggered_at": "2026-11-06T17:45:01Z",
   "changed": [
     {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "865b12b",
-      "new": "db5628e",
-      "full": "db5628e2af7989fcb46ca9978b51e7859f1d9eef",
-      "msg": "tests: Fixup assumption to be bug-compatible with NV.",
-      "date": "2026-11-06T10:22:22Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "5c60cf8",
+      "new": "4049cea",
+      "full": "4049ceacf0751bb89e4a918bfb495dd04fefa24e",
+      "msg": "Windows builds needs ULL to be 64bits",
+      "date": "2026-11-06T11:02:52Z"
+    },
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "c985199",
+      "new": "ae495b9",
+      "full": "ae495b971b1e148f7fac26fe7451b1a5df971303",
+      "msg": "Merge pull request #6106 from Sonicadvance1/310",
+      "date": "2026-11-06T14:52:49Z"
     },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "cf0a0d9",
-      "new": "a1aca15",
-      "full": "a1aca15ba5c4c9a5c4f4ef3bcb63e0392877c8ed",
-      "msg": "[dxvk] Forward frame interval to Reflex",
-      "date": "2026-11-06T08:29:46Z"
+      "old": "a1aca15",
+      "new": "829e377",
+      "full": "829e377d2d5cf4b07455412fcabed66a1bf4390c",
+      "msg": "[meta] Update dxbc-spirv",
+      "date": "2026-11-06T12:18:26Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "7321413",
+      "new": "3ae3a11",
+      "full": "3ae3a11d530d88ab4bbc1c811c3964facd714bc6",
+      "msg": "[meta] Fix a memory leak in ProcessVerticesSW",
+      "date": "2026-11-06T12:26:09Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "2f42570",
-      "new": "35a0fef",
-      "full": "35a0fef154b0fc9939674db4f943326b3f3724d3",
-      "msg": "radv: rename some Vulkan definitions that have been promoted",
-      "date": "2026-11-06T07:29:41.000+00:00"
+      "old": "35a0fef",
+      "new": "21bbed3",
+      "full": "21bbed371887fa750a6ce5ccbedf5354d2411a66",
+      "msg": "gamma: Add option to export trace as portable",
+      "date": "2026-11-06T16:24:30.000+00:00"
     }
   ]
 }
