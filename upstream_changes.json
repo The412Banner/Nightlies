@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-11-07T02:28:23Z",
+  "triggered_at": "2026-11-07T09:26:59Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "f74ccde",
-      "new": "b8368b4",
-      "full": "b8368b4fb34693b48933d205d688b211bafb4bf6",
-      "msg": "anv: switch to blorp_mem_copy()",
-      "date": "2026-11-07T01:57:45.000+00:00"
+      "old": "b8368b4",
+      "new": "482dee6",
+      "full": "482dee68a4bbce675c03e0f9587c13f342a8e999",
+      "msg": "AGENTS: add poly to the no-AI list",
+      "date": "2026-11-07T05:39:25.000+00:00"
     }
   ]
 }
