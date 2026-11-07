@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-11-06T22:33:30Z",
+  "triggered_at": "2026-11-07T02:28:23Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "4049cea",
-      "new": "50855a1",
-      "full": "50855a1e2bdb0bd09135bb84d6904223775f16a5",
-      "msg": "[ARM64_DYNAREC] Fix native flags record in signal arch info (#4678)",
-      "date": "2026-11-06T19:36:04Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "21bbed3",
-      "new": "f74ccde",
-      "full": "f74ccde1daafe4bdd928f44ce84470920ba8fde3",
-      "msg": "kk: Push debug utils to command buffer if no encoder is active",
-      "date": "2026-11-06T22:14:20.000+00:00"
+      "old": "f74ccde",
+      "new": "b8368b4",
+      "full": "b8368b4fb34693b48933d205d688b211bafb4bf6",
+      "msg": "anv: switch to blorp_mem_copy()",
+      "date": "2026-11-07T01:57:45.000+00:00"
     }
   ]
 }
