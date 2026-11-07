@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-11-07T09:26:59Z",
+  "triggered_at": "2026-11-07T15:58:55Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "50855a1",
+      "new": "37f5e4b",
+      "full": "37f5e4b7b0002a247c04866a44d0321e92cfef3c",
+      "msg": "Expand special names in DT_NEEDED names too (for #4682)",
+      "date": "2026-11-07T10:26:50Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "b8368b4",
-      "new": "482dee6",
-      "full": "482dee68a4bbce675c03e0f9587c13f342a8e999",
-      "msg": "AGENTS: add poly to the no-AI list",
-      "date": "2026-11-07T05:39:25.000+00:00"
+      "old": "482dee6",
+      "new": "2648b20",
+      "full": "2648b2059f1a412d64a8700dbbb75bbb4a768b0e",
+      "msg": "freedreno/a5xx: program the guard band and ignore the viewport clip codes",
+      "date": "2026-11-07T10:15:06.000+00:00"
     }
   ]
 }
