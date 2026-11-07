@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-11-07T15:58:55Z",
+  "triggered_at": "2026-11-07T23:24:15Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "50855a1",
-      "new": "37f5e4b",
-      "full": "37f5e4b7b0002a247c04866a44d0321e92cfef3c",
-      "msg": "Expand special names in DT_NEEDED names too (for #4682)",
-      "date": "2026-11-07T10:26:50Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "ae495b9",
+      "new": "388fd9c",
+      "full": "388fd9cf409dbd3da43dcac5cb9fc11e109f9630",
+      "msg": "Merge pull request #6109 from crueter/ci-checkout-update",
+      "date": "2026-11-07T20:32:42Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "3ae3a11",
+      "new": "635f4c7",
+      "full": "635f4c79c366a80c15cbfa71d69e4f1ab51aad00",
+      "msg": "[meta] Remove all builtin mip map autogen workarounds",
+      "date": "2026-11-07T21:40:32Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "482dee6",
-      "new": "2648b20",
-      "full": "2648b2059f1a412d64a8700dbbb75bbb4a768b0e",
-      "msg": "freedreno/a5xx: program the guard band and ignore the viewport clip codes",
-      "date": "2026-11-07T10:15:06.000+00:00"
+      "old": "2648b20",
+      "new": "c0235ef",
+      "full": "c0235eff650720faff05452a06a0a09479b3621f",
+      "msg": "freedreno/a5xx: program the 2D source and use BLIT_OP_SCALE",
+      "date": "2026-11-07T22:44:35.000+00:00"
     }
   ]
 }
