@@ -1225,12 +1225,6 @@
   },
   {
     "type": "GpuDriver",
-    "verName": "v39 \u2014 Turnip_Gen8_V39_patched.zip",
-    "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v39_Turnip_Gen8_V39_patched.zip"
-  },
-  {
-    "type": "GpuDriver",
     "verName": "v39 \u2014 Turnip_v27.0.0-R2-Oneui.zip",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v39_Turnip_v27.0.0-R2-Oneui.zip"
