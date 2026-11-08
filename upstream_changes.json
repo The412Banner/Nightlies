@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-11-08T10:55:31Z",
+  "triggered_at": "2026-11-08T16:52:30Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "37f5e4b",
+      "new": "c8ad5c3",
+      "full": "c8ad5c3782ca4d2d3fff662bf30474b849a2d12b",
+      "msg": "[VULKAN] Added 1 more extension",
+      "date": "2026-11-08T12:42:15Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "c0235ef",
-      "new": "6384fd6",
-      "full": "6384fd6037871b44784d78bf63369bdf05708965",
-      "msg": "Revert \"rusticl: support cl_khr_icd_unloadable\"",
-      "date": "2026-11-08T03:42:19.000+01:00"
+      "old": "6384fd6",
+      "new": "0171c86",
+      "full": "0171c861547de8730dbeee4335b5b29e78634d05",
+      "msg": "aco/opt_postRA: reuse register writer tables between blocks",
+      "date": "2026-11-08T16:32:16.000+00:00"
     }
   ]
 }
