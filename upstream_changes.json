@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-11-07T23:24:15Z",
+  "triggered_at": "2026-11-08T10:55:31Z",
   "changed": [
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "ae495b9",
-      "new": "388fd9c",
-      "full": "388fd9cf409dbd3da43dcac5cb9fc11e109f9630",
-      "msg": "Merge pull request #6109 from crueter/ci-checkout-update",
-      "date": "2026-11-07T20:32:42Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "3ae3a11",
-      "new": "635f4c7",
-      "full": "635f4c79c366a80c15cbfa71d69e4f1ab51aad00",
-      "msg": "[meta] Remove all builtin mip map autogen workarounds",
-      "date": "2026-11-07T21:40:32Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "2648b20",
-      "new": "c0235ef",
-      "full": "c0235eff650720faff05452a06a0a09479b3621f",
-      "msg": "freedreno/a5xx: program the 2D source and use BLIT_OP_SCALE",
-      "date": "2026-11-07T22:44:35.000+00:00"
+      "old": "c0235ef",
+      "new": "6384fd6",
+      "full": "6384fd6037871b44784d78bf63369bdf05708965",
+      "msg": "Revert \"rusticl: support cl_khr_icd_unloadable\"",
+      "date": "2026-11-08T03:42:19.000+01:00"
     }
   ]
 }
