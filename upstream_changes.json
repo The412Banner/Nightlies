@@ -1,14 +1,41 @@
 {
-  "triggered_at": "2026-11-09T07:29:00Z",
+  "triggered_at": "2026-11-09T18:01:19Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "c8ad5c3",
+      "new": "77a8d9f",
+      "full": "77a8d9f5409c0c57d104f9eea58f25805e69ac14",
+      "msg": "[CORE] Added BOX64_LD_PRELOAD rcfile support and added WeMeet unlock shim (#4689",
+      "date": "2026-11-09T14:42:11Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "db5628e",
+      "new": "324704f",
+      "full": "324704f793e525703f35ff669d71e1513680a940",
+      "msg": "tests: Add test for unusual stage io.",
+      "date": "2026-11-09T15:39:45Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "829e377",
+      "new": "60f8ee0",
+      "full": "60f8ee09ce33a1ed91ec379a012fe44d194125f5",
+      "msg": "[dxvk] Give out no shared handle for a fence that cannot be exported",
+      "date": "2026-11-09T14:47:18Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "586fd4d",
-      "new": "e254ec7",
-      "full": "e254ec7be402174038ac7e2d21e841293acfd422",
-      "msg": "loader: fix drm device memory management issues",
-      "date": "2026-11-09T06:33:43.000+00:00"
+      "old": "e254ec7",
+      "new": "979c6d1",
+      "full": "979c6d13b6310252b022125b6da7184d9e729ac7",
+      "msg": "gfxstream: advertise VK_KHR_display WSI instance extensions",
+      "date": "2026-11-09T17:46:18.000+00:00"
     }
   ]
 }
