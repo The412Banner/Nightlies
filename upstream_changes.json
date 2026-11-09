@@ -1,14 +1,14 @@
 {
-  "triggered_at": "2026-11-09T00:21:16Z",
+  "triggered_at": "2026-11-09T07:29:00Z",
   "changed": [
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "3160097",
-      "new": "586fd4d",
-      "full": "586fd4de6e1959848bc82415973893fb57fc312a",
-      "msg": "radeonsi: remove old radeonsi_zerovram option",
-      "date": "2026-11-08T23:38:50.000+00:00"
+      "old": "586fd4d",
+      "new": "e254ec7",
+      "full": "e254ec7be402174038ac7e2d21e841293acfd422",
+      "msg": "loader: fix drm device memory management issues",
+      "date": "2026-11-09T06:33:43.000+00:00"
     }
   ]
 }
