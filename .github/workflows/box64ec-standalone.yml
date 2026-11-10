@@ -1,10 +1,10 @@
 name: Box64EC Standalone (experimental)
 
 # Box64EC = box64 built as an ARM64EC PE module for Wine, the box64 counterpart to FEX's
-# libarm64ecfex.dll (x86-64 translation inside arm64ec Wine). Upstream still labels it
-# "no emulation yet": the DLL builds and has process/thread/context plumbing, but it does not
-# export BeginSimulation, which Wine's ntdll calls to run x64 code. This workflow only builds it
-# and reports which of Wine's xtajit64 entry points it exports. It never touches nightly-latest
+# libarm64ecfex.dll (x86-64 translation inside arm64ec Wine). Built the way upstream's own CI
+# builds it (release.yml, platform ARM64EC, type Release): ARM64 runner, aarch64 LLVM-MinGW,
+# same CMake flags. Upstream publishes no box64ec.dll, so this workflow builds one, reports which
+# of Wine's xtajit64 entry points it exports and packages it. It never touches nightly-latest
 # or the catalog: artifacts only, plus an optional prerelease that is never marked latest.
 
 on:
@@ -34,7 +34,7 @@ on:
 jobs:
   build-box64ec:
     name: Build Box64EC
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04-arm
     permissions:
       contents: write
     env:
@@ -48,12 +48,12 @@ jobs:
       - name: Cache LLVM-MinGW
         uses: actions/cache@v4
         with:
-          path: ${{ github.workspace }}/llvm-mingw-${{ env.LLVM_MINGW_VERSION }}-ucrt-ubuntu-22.04-x86_64
-          key: llvm-mingw-${{ env.LLVM_MINGW_VERSION }}-ucrt-x86_64
+          path: ${{ github.workspace }}/llvm-mingw-${{ env.LLVM_MINGW_VERSION }}-ucrt-ubuntu-22.04-aarch64
+          key: llvm-mingw-${{ env.LLVM_MINGW_VERSION }}-ucrt-aarch64
 
       - name: Setup Toolchain (LLVM-MinGW, arm64ec)
         run: |
-          DIR="llvm-mingw-${LLVM_MINGW_VERSION}-ucrt-ubuntu-22.04-x86_64"
+          DIR="llvm-mingw-${LLVM_MINGW_VERSION}-ucrt-ubuntu-22.04-aarch64"
           if [ ! -d "$PWD/$DIR" ]; then
             wget -q "https://github.com/mstorsjo/llvm-mingw/releases/download/${LLVM_MINGW_VERSION}/${DIR}.tar.xz"
             tar -xf "${DIR}.tar.xz"
@@ -63,10 +63,10 @@ jobs:
 
       - name: Clone Source
         run: |
-          # Push runs have no inputs: they build our experimental dynarec branch
-          # (The412Banner/box64 exp/box64ec-dynarec-20261013, on top of upstream main).
-          REPO="${{ github.event_name == 'push' && 'The412Banner/box64' || inputs.box64_repo }}"
-          REF="${{ github.event_name == 'push' && 'exp/box64ec-dynarec-20261013' || inputs.box64_ref }}"
+          # Push runs have no inputs: they build upstream box64 main at a pinned commit
+          # (c415ed7a4, 2026-11-10, after PR #4676 linked the Box64EC dynarec and enabled it).
+          REPO="${{ github.event_name == 'push' && 'ptitSeb/box64' || inputs.box64_repo }}"
+          REF="${{ github.event_name == 'push' && 'c415ed7a4f3b7a1b3dc94665259c237ee1e36e56' || inputs.box64_ref }}"
           PR="${{ github.event_name == 'push' && '' || inputs.box64_pr }}"
           echo "BOX64_REPO=$REPO" >> $GITHUB_ENV
           git clone "https://github.com/$REPO" source
@@ -97,11 +97,16 @@ jobs:
       - name: Configure and Build
         run: |
           mkdir build && cd build
-          # Same flags as upstream's own ARM64EC CI job (release.yml).
+          # Same flags as upstream's own CI job "build (ARM64EC, Release)" (release.yml).
           cmake ../source \
             -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
-            -DARM64EC=1 -DARM_DYNAREC=1 -DNOBOX64=1 -DCMAKE_BUILD_TYPE=Release
-          make -j$(nproc) box64ec
+            -DTERMUX=0 \
+            -DARM64EC=1 -DARM_DYNAREC=1 -DNOBOX64=1 \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DHAVE_TRACE=0 -DZYDIS3=1 -DSTATICBUILD=0 -DBOX32=0 \
+            -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
+            -DCI=true
+          make -j$(nproc) VERBOSE=1
           DLL=box64ec-prefix/src/box64ec-build/box64ec.dll
           test -f "$DLL" || { echo "box64ec.dll not produced"; exit 1; }
           echo "DLL=$PWD/$DLL" >> $GITHUB_ENV
@@ -114,9 +119,9 @@ jobs:
           {
             echo "### Box64EC \`${FULL_VERSION}\`"
             echo
-            echo "**Experimental, not an official box64 release.** This package is an experimental build by The412Banner,"
-            echo "based on the box64 project (https://github.com/ptitSeb/box64) and its developer airidosas252's pull request"
-            echo "https://github.com/ptitSeb/box64/pull/4480. Report problems with this package here, not to the box64 project."
+            echo "**Experimental, not an official box64 release.** This package is an unofficial build by The412Banner"
+            echo "of the box64 project (https://github.com/ptitSeb/box64); Box64EC is airidosas252's work in that project."
+            echo "Report problems with this package here, not to the box64 project."
             echo
             echo "${BOX64_REPO} \`${BOX64_COMMIT}\`${BOX64_PR:+ (PR #${BOX64_PR})}"
             echo
