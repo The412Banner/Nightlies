@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-11-10T01:48:38Z",
+  "triggered_at": "2026-11-10T08:59:33Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "16c1000",
-      "new": "90c9595",
-      "full": "90c9595cf4cb6edf57e987fc69fbe0d5315865c7",
-      "msg": "Merge pull request #6112 from k33bs/upstream-tf-l1",
-      "date": "2026-11-10T01:13:10Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "635f4c7",
-      "new": "e3ff461",
-      "full": "e3ff461d6d37db7c9f56262122fe916980277e22",
-      "msg": "[meta] Early check RT surface wrapping on device creation",
-      "date": "2026-11-09T19:16:06Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "77a8d9f",
+      "new": "c415ed7",
+      "full": "c415ed7a4f3b7a1b3dc94665259c237ee1e36e56",
+      "msg": "[RV64_DYNAREC] Fix sse cache entry state error when unwinding",
+      "date": "2026-11-10T07:17:14Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "979c6d1",
-      "new": "cc2dcf9",
-      "full": "cc2dcf9abdc6afc093e85d48e4cfa34eed60a01e",
-      "msg": "dzn: Advertise shaderSignedZeroInfNanPreserveFloat32",
-      "date": "2026-11-10T00:32:40.000+00:00"
+      "old": "cc2dcf9",
+      "new": "94e3bb6",
+      "full": "94e3bb6a05d40452dff4063322a44c872a61e7b5",
+      "msg": "gfxstream: add hasApiCall for snapshot decoder",
+      "date": "2026-11-10T08:20:36.000+00:00"
     }
   ]
 }
