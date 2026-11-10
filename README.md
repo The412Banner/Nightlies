@@ -41,6 +41,7 @@ A single JSON index of every component published here — point any compatible W
 | **D7VK (DDraw/D3D7)** | — | [Latest](https://github.com/The412Banner/Nightlies/releases/tag/nightly-latest) |
 | **Box64** | [glibc](https://github.com/The412Banner/Nightlies/releases/tag/Box64) · [Bionic](https://github.com/The412Banner/Nightlies/releases/tag/Box64-Bionic) · [Hybrid](https://github.com/The412Banner/Nightlies/releases/tag/Box64-Hybrid) | [Latest](https://github.com/The412Banner/Nightlies/releases/tag/nightly-latest) |
 | **WOWBox64** | [Archive](https://github.com/The412Banner/Nightlies/releases/tag/Wowbox64) | [Latest](https://github.com/The412Banner/Nightlies/releases/tag/nightly-latest) |
+| **Box64EC** *(experimental — not an official box64 release, not proven working)* | — | [Latest](https://github.com/The412Banner/Nightlies/releases/tag/nightly-latest) |
 | **FEXCore** | [Archive](https://github.com/The412Banner/Nightlies/releases/tag/FexCore) · [PPA-flavor](https://github.com/The412Banner/Nightlies/releases/tag/fexcore-ppa-FEX-2608-e869aa644) | [Latest](https://github.com/The412Banner/Nightlies/releases/tag/nightly-latest) |
 | **Proton / Wine** | [Proton 11](https://github.com/The412Banner/Nightlies/releases/tag/Proton-11) · [Prefix pack (P10-4)](https://github.com/The412Banner/Nightlies/releases/tag/P10-4-prefixpack) | — |
 
@@ -172,6 +173,7 @@ Third-party components used for packaging retain their original upstream license
 
 - **FEX:** [FEX-Emu](https://github.com/FEX-Emu)
 - **Box64:** [ptitSeb](https://github.com/ptitSeb)
+- **Box64EC:** [airidosas252](https://github.com/airidosas252), in the box64 project (built here from box64 main; box64 has not released it)
 - **DXVK:** [Philip Rebohle (doitsujin)](https://github.com/doitsujin)
 - **DXVK-Sarek:** [pythonlover02](https://github.com/pythonlover02)
 - **DXVK-GPLAsync Patch:** [Ph42oN](https://gitlab.com/Ph42oN)

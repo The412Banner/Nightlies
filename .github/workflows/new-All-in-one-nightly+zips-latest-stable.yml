@@ -202,6 +202,111 @@ jobs:
           path: dist/*
 
   # ==================================================================
+  # JOB 1b: Box64EC (experimental, unofficial)
+  # box64 built as an ARM64EC PE module (box64ec.dll), the x86-64 translator for arm64ec Wine
+  # (the box64 counterpart of FEX's libarm64ecfex.dll). box64 has not released Box64EC; this
+  # is built from ptitSeb/box64 main the way upstream's own CI job "build (ARM64EC, Release)"
+  # builds it (release.yml): ARM64 runner, aarch64 LLVM-MinGW, same CMake flags. A failure here
+  # never holds back the nightly: the job always succeeds and the release just has no Box64EC.
+  # ==================================================================
+  build-box64ec:
+    name: Build Box64EC (experimental)
+    runs-on: ubuntu-22.04-arm
+    env:
+      LLVM_MINGW_VERSION: '20260616'
+    outputs:
+      built: ${{ steps.b64ec.outputs.built }}
+      version: ${{ steps.b64ec.outputs.version }}
+      commit: ${{ steps.b64ec.outputs.commit }}
+    steps:
+      - name: Cache LLVM-MinGW (aarch64)
+        uses: actions/cache@v4
+        continue-on-error: true
+        with:
+          path: ${{ github.workspace }}/llvm-mingw-${{ env.LLVM_MINGW_VERSION }}-ucrt-ubuntu-22.04-aarch64
+          key: llvm-mingw-${{ env.LLVM_MINGW_VERSION }}-ucrt-aarch64
+
+      - name: Build and package Box64EC
+        id: b64ec
+        continue-on-error: true
+        run: |
+          set -eo pipefail
+          sudo apt-get update
+          sudo apt-get install -y git cmake make python3 gcc-aarch64-linux-gnu wget xz-utils zip
+
+          DIR="llvm-mingw-${LLVM_MINGW_VERSION}-ucrt-ubuntu-22.04-aarch64"
+          if [ ! -d "$PWD/$DIR" ]; then
+            wget -q "https://github.com/mstorsjo/llvm-mingw/releases/download/${LLVM_MINGW_VERSION}/${DIR}.tar.xz"
+            tar -xf "${DIR}.tar.xz"
+          fi
+          export PATH="$PATH:$PWD/$DIR/bin"
+
+          git clone https://github.com/ptitSeb/box64 source
+          grep -q 'option(ARM64EC' source/CMakeLists.txt || { echo "box64 main has no ARM64EC option"; exit 1; }
+          COMMIT=$(git -C source rev-parse --short HEAD)
+          FULL_COMMIT=$(git -C source rev-parse HEAD)
+          MAJOR=$(grep '#define BOX64_MAJOR' source/src/box64version.h | awk '{print $3}')
+          MINOR=$(grep '#define BOX64_MINOR' source/src/box64version.h | awk '{print $3}')
+          REVISION=$(grep '#define BOX64_REVISION' source/src/box64version.h | awk '{print $3}')
+          VER="${MAJOR}.${MINOR}.${REVISION}-${COMMIT}-experimental"
+          FULL_VERSION="Box64EC-${VER}"
+
+          # Same flags as upstream's CI job "build (ARM64EC, Release)" (release.yml).
+          mkdir build && cd build
+          cmake ../source \
+            -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
+            -DTERMUX=0 \
+            -DARM64EC=1 -DARM_DYNAREC=1 -DNOBOX64=1 \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DHAVE_TRACE=0 -DZYDIS3=1 -DSTATICBUILD=0 -DBOX32=0 \
+            -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
+            -DCI=true
+          make -j$(nproc) VERBOSE=1
+          DLL="$PWD/box64ec-prefix/src/box64ec-build/box64ec.dll"
+          cd ..
+          test -f "$DLL" || { echo "box64ec.dll not produced"; exit 1; }
+
+          # Wine's ntdll runs x86-64 code through the translator's BeginSimulation export.
+          llvm-readobj --file-headers "$DLL" | grep -q 'IMAGE_FILE_MACHINE_ARM64EC' || { echo "box64ec.dll is not ARM64EC"; exit 1; }
+          llvm-readobj --coff-exports "$DLL" | awk '/Name:/{print $2}' | sort > box64ec-exports.txt
+          cat box64ec-exports.txt
+          grep -qx BeginSimulation box64ec-exports.txt || { echo "box64ec.dll has no BeginSimulation export"; exit 1; }
+
+          NOTE="Experimental and unofficial: not a box64 release and not proven working."
+          mkdir -p dist pkg/system32
+          cp "$DLL" pkg/system32/box64ec.dll
+          printf '{"type": "Box64EC", "versionName": "%s", "versionCode": 0, "description": "Box64EC %s (ptitSeb/box64 %s). %s", "files": [{"source": "system32/box64ec.dll", "target": "${system32}/box64ec.dll"}]}' \
+            "$VER" "$VER" "$COMMIT" "$NOTE" > pkg/profile.json
+          (cd pkg && tar -cJf "../dist/${FULL_VERSION}.wcp" system32 profile.json)
+          # The .zip adds the registry switches (Wine picks the x86-64 translator from
+          # HKLM\Software\Microsoft\Wow64\amd64) and a README.
+          printf 'REGEDIT4\r\n\r\n[HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Wow64\\amd64]\r\n@="box64ec.dll"\r\n' > pkg/use-box64ec.reg
+          printf 'REGEDIT4\r\n\r\n[HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Wow64\\amd64]\r\n@="libarm64ecfex.dll"\r\n' > pkg/use-fex.reg
+          {
+            echo "# ${FULL_VERSION}"
+            echo
+            echo "**${NOTE}** box64 has not released Box64EC. This box64ec.dll is built by The412Banner's"
+            echo "Nightlies from https://github.com/ptitSeb/box64 commit ${FULL_COMMIT}, the way box64's own CI builds it."
+            echo "Box64EC is airidosas252's work in the box64 project. Report problems to The412Banner/Nightlies,"
+            echo "not to the box64 project."
+            echo
+            echo "Copy system32/box64ec.dll into the prefix's system32 and import use-box64ec.reg"
+            echo "(use-fex.reg switches back to FEX). Set BOX64_DYNAREC=0 to fall back to the interpreter."
+          } > pkg/README.md
+          (cd pkg && zip -r "../dist/${FULL_VERSION}.zip" system32 profile.json use-box64ec.reg use-fex.reg README.md)
+          ls -la dist
+
+          echo "built=1" >> "$GITHUB_OUTPUT"
+          echo "version=${VER}" >> "$GITHUB_OUTPUT"
+          echo "commit=${FULL_COMMIT}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        if: steps.b64ec.outputs.built == '1'
+        with:
+          name: box64ec-Official
+          path: dist/*
+
+  # ==================================================================
   # JOB 2: FEXCore Nightly
   # ==================================================================
   build-fex:
@@ -2490,7 +2595,7 @@ jobs:
     # workflow_dispatch runs still build every job (validating the build) but never
     # publish a release or clobber the production nightly-latest that clients pull.
     if: github.ref == 'refs/heads/main'
-    needs: [build-box64-matrix, build-fex, build-fex-ppa, repack-fex-ppa-official, build-vkd3d, build-dxvk, build-vkd3d-arm64ec, build-dxvk-arm64ec, build-dxvk-binsem, build-dxvk-binsem-arm64ec, build-d7vk, build-dxvk-vanilla, build-dxvk-arm64ec-vanilla]
+    needs: [build-box64-matrix, build-box64ec, build-fex, build-fex-ppa, repack-fex-ppa-official, build-vkd3d, build-dxvk, build-vkd3d-arm64ec, build-dxvk-arm64ec, build-dxvk-binsem, build-dxvk-binsem-arm64ec, build-d7vk, build-dxvk-vanilla, build-dxvk-arm64ec-vanilla]
     permissions:
       contents: write
       actions: write
@@ -2618,7 +2723,19 @@ jobs:
           DXVK_BINSEM_ARM64EC_COMMIT: ${{ needs.build-dxvk-binsem-arm64ec.outputs.commit }}
           D7VK_VERSION: ${{ needs.build-d7vk.outputs.version }}
           D7VK_COMMIT: ${{ needs.build-d7vk.outputs.commit }}
+          BOX64EC_BUILT: ${{ needs.build-box64ec.outputs.built }}
+          BOX64EC_VERSION: ${{ needs.build-box64ec.outputs.version }}
+          BOX64EC_COMMIT: ${{ needs.build-box64ec.outputs.commit }}
         run: |
+          # Box64EC is experimental and unofficial; say so wherever it appears.
+          if [ "$BOX64EC_BUILT" = "1" ]; then
+            BOX64EC_WARNING="> ⚠️ **Box64EC (\`Box64EC-*-experimental\`) is experimental: it is NOT an official box64 release and it is NOT proven working.** box64 has not released Box64EC. This build is made by this repository from [ptitSeb/box64 \`${BOX64EC_COMMIT:0:9}\`](https://github.com/ptitSeb/box64/commit/${BOX64EC_COMMIT}) the way box64's own CI builds it; Box64EC is [airidosas252](https://github.com/airidosas252)'s work in the box64 project. Report problems here, not to the box64 project."
+            BOX64EC_ROW="[\`${BOX64EC_COMMIT:0:9}\`](https://github.com/ptitSeb/box64/commit/${BOX64EC_COMMIT}) — **experimental, not official, not proven working**"
+          else
+            BOX64EC_WARNING=""
+            BOX64EC_ROW="not built this time (the experimental Box64EC build failed; the rest of this nightly is unaffected)"
+          fi
+
           REPOS=(
             "ptitSeb/box64"
             "Pipetto-crypto/box64"
@@ -2697,6 +2814,11 @@ jobs:
           cat > release_body.md << BODYEOF
           > ⚠️ **Nightly build — not always stable. Use at your own risk; stable releases are best.**
 
+          BODYEOF
+          if [ -n "$BOX64EC_WARNING" ]; then
+            printf '%s\n\n' "$BOX64EC_WARNING" >> release_body.md
+          fi
+          cat >> release_body.md << BODYEOF
           ---
 
           ## 🚀 Nightly Build: ${{ env.TAG_NAME }}
@@ -2721,6 +2843,7 @@ jobs:
           | :--- | :--- |
           | **Box64 (All Variants)** | [ptitSeb/main](https://github.com/ptitSeb/box64/commits/main) |
           | **Box64 Hybrid (All Variants)** | [Pipetto/main](https://github.com/Pipetto-crypto/box64/commits/main) |
+          | **Box64EC (ARM64EC, experimental)** | ${BOX64EC_ROW} |
           | **FEXCore** | [${FEX_VERSION}](https://github.com/FEX-Emu/FEX/commit/${FEX_COMMIT}) |
           | **VKD3D-Proton (Std)** | [${VKD3D_VERSION}](https://github.com/HansKristian-Work/vkd3d-proton/commit/${VKD3D_COMMIT}) |
           | **VKD3D-Proton (ARM64EC)** | [${VKD3D_ARM64EC_VERSION}](https://github.com/HansKristian-Work/vkd3d-proton/commit/${VKD3D_ARM64EC_COMMIT}) |
@@ -2741,6 +2864,7 @@ jobs:
           4. **Box64 Hybrid Native**: \`Box64-*-Hybrid-*-Native.wcp\` (and \`.zip\`)
           5. **Box64 Hybrid Bionic**: \`Box64-*-Hybrid-*-Bionic.wcp\` (and \`.zip\`)
           6. **WOWBox64 Hybrid**: \`WOWBox64-*-Hybrid-*.wcp\` (and \`.zip\`)
+          6b. **Box64EC — experimental, NOT an official box64 release, NOT proven working**: \`Box64EC-*-experimental.wcp\` (and \`.zip\`) — \`box64ec.dll\`, box64 as the x86-64 translator for arm64ec Wine (the box64 counterpart of FEX's \`libarm64ecfex.dll\`), built from ptitSeb/box64 main with the flags of box64's own ARM64EC CI job. In Bannerlator: install it as a Box64EC component, then pick Box64EC as the 64-bit translator. The \`.zip\` also has \`use-box64ec.reg\` / \`use-fex.reg\` (\`HKLM\\Software\\Microsoft\\Wow64\\amd64\`). Set \`BOX64_DYNAREC=0\` to fall back to the interpreter.
           7. **FEXCore**: \`FEX-*.wcp\` (and \`.zip\`)
           7b. **FEXCore PPA-flavor**: \`FEX-*-PPA.wcp\` (and \`.zip\`) — same FEX HEAD, built with \`bylaws/llvm-mingw 20250920\` and the calibrated PPA recipe (Release + C-only debug info, \`//fex-emu/HostThunks\` baked, \`versionCode=0\`, \`description="FEXCore Release from PPA"\`). Calibrated to land within −0.16% of the upstream PPA wcp.
           7c. **FEXCore +unix libs**: \`FEX-*-unix.wcp\` — the FEX DLLs **plus** the native aarch64 \`.so\` unixlib companions (\`libarm64ecfex.so\`/\`libwow64fex.so\`, shm-stubbed, executable). Requires a Proton built with the FEX unixlib loader (Proton 11.0-1+ with \`MemoryWineLoadUnixLibByName\`); on older Proton the \`.so\` is ignored and it runs DLL-only.
@@ -2840,6 +2964,8 @@ jobs:
           DXVK_BINSEM_COMMIT: ${{ needs.build-dxvk-binsem.outputs.commit }}
           DXVK_BINSEM_ARM64EC_COMMIT: ${{ needs.build-dxvk-binsem-arm64ec.outputs.commit }}
           D7VK_COMMIT: ${{ needs.build-d7vk.outputs.commit }}
+          BOX64EC_BUILT: ${{ needs.build-box64ec.outputs.built }}
+          BOX64EC_COMMIT: ${{ needs.build-box64ec.outputs.commit }}
         run: |
           python3 <<'PY'
           import re, os
@@ -2858,6 +2984,11 @@ jobs:
           dxvk_bs_commit   = os.environ.get("DXVK_BINSEM_COMMIT", "")
           dxvk_bs_ec_commit = os.environ.get("DXVK_BINSEM_ARM64EC_COMMIT", "")
           d7vk_commit      = os.environ.get("D7VK_COMMIT", "")
+          b64ec_built      = os.environ.get("BOX64EC_BUILT", "") == "1"
+          b64ec_commit     = os.environ.get("BOX64EC_COMMIT", "")
+          b64ec_row = (f"[`{b64ec_commit[:9]}`](https://github.com/ptitSeb/box64/commit/{b64ec_commit}) — "
+                       "**experimental, not an official box64 release, not proven working**"
+                       if b64ec_built else "not built in this nightly (experimental build failed)")
           turnip_tag       = os.environ.get("TURNIP_TAG", "unknown")
           turnip_name      = os.environ.get("TURNIP_NAME", "")
 
@@ -2875,6 +3006,7 @@ jobs:
               f"| **DXVK BinSem (ARM64EC)** | [`{dxvk_bs_ec_commit}`](https://github.com/doitsujin/dxvk/commit/{dxvk_bs_ec_commit}) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |",
               f"| **D7VK (DDraw/D3D7)** | [`{d7vk_commit}`](https://github.com/WinterSnowfall/d7vk/commit/{d7vk_commit}) — DDraw Wrapper slot; `.tzst` = bundled-asset refresh |",
               f"| **Box64** | [ptitSeb/box64](https://github.com/ptitSeb/box64/commits/main) + [Pipetto/box64](https://github.com/Pipetto-crypto/box64/commits/main) |",
+              f"| **Box64EC (ARM64EC)** | {b64ec_row} |",
               f"| **Turnip** | [{turnip_tag}](https://github.com/The412Banner/Banners-Turnip/releases/tag/{turnip_tag}) — {turnip_name} |",
               f"| **Files** | [`.wcp` and `.zip` — scroll to Assets]({release_url}) |",
               "<!-- NIGHTLY-LATEST-END -->",

@@ -50,6 +50,9 @@ jobs:
 
           def detect_nightly_type(name):
               n = name.lower()
+              # Box64EC (box64ec.dll, experimental) before the plain "box64" match below.
+              if "box64ec" in n:
+                  return "Box64EC"
               if "wow64" in n or "wowbox" in n:
                   return "WOWBox64"
               if "box64" in n:
