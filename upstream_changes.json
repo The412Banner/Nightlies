@@ -1,41 +1,32 @@
 {
-  "triggered_at": "2026-11-09T18:01:19Z",
+  "triggered_at": "2026-11-10T01:48:38Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "c8ad5c3",
-      "new": "77a8d9f",
-      "full": "77a8d9f5409c0c57d104f9eea58f25805e69ac14",
-      "msg": "[CORE] Added BOX64_LD_PRELOAD rcfile support and added WeMeet unlock shim (#4689",
-      "date": "2026-11-09T14:42:11Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "16c1000",
+      "new": "90c9595",
+      "full": "90c9595cf4cb6edf57e987fc69fbe0d5315865c7",
+      "msg": "Merge pull request #6112 from k33bs/upstream-tf-l1",
+      "date": "2026-11-10T01:13:10Z"
     },
     {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "db5628e",
-      "new": "324704f",
-      "full": "324704f793e525703f35ff669d71e1513680a940",
-      "msg": "tests: Add test for unusual stage io.",
-      "date": "2026-11-09T15:39:45Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "829e377",
-      "new": "60f8ee0",
-      "full": "60f8ee09ce33a1ed91ec379a012fe44d194125f5",
-      "msg": "[dxvk] Give out no shared handle for a fence that cannot be exported",
-      "date": "2026-11-09T14:47:18Z"
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "635f4c7",
+      "new": "e3ff461",
+      "full": "e3ff461d6d37db7c9f56262122fe916980277e22",
+      "msg": "[meta] Early check RT surface wrapping on device creation",
+      "date": "2026-11-09T19:16:06Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "e254ec7",
-      "new": "979c6d1",
-      "full": "979c6d13b6310252b022125b6da7184d9e729ac7",
-      "msg": "gfxstream: advertise VK_KHR_display WSI instance extensions",
-      "date": "2026-11-09T17:46:18.000+00:00"
+      "old": "979c6d1",
+      "new": "cc2dcf9",
+      "full": "cc2dcf9abdc6afc093e85d48e4cfa34eed60a01e",
+      "msg": "dzn: Advertise shaderSignedZeroInfNanPreserveFloat32",
+      "date": "2026-11-10T00:32:40.000+00:00"
     }
   ]
 }
