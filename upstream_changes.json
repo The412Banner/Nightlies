@@ -1,23 +1,50 @@
 {
-  "triggered_at": "2026-11-10T08:59:33Z",
+  "triggered_at": "2026-11-10T16:51:39Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "77a8d9f",
-      "new": "c415ed7",
-      "full": "c415ed7a4f3b7a1b3dc94665259c237ee1e36e56",
-      "msg": "[RV64_DYNAREC] Fix sse cache entry state error when unwinding",
-      "date": "2026-11-10T07:17:14Z"
+      "old": "c415ed7",
+      "new": "c03f083",
+      "full": "c03f0835d430452e0b93f6989b22353f43a5fa75",
+      "msg": "[RV64_DYNAREC] Add FASTNAN=0 path to VADDPS (#4693)",
+      "date": "2026-11-10T13:58:30Z"
+    },
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "90c9595",
+      "new": "7fdac22",
+      "full": "7fdac224834d10cacdf7fc6da08484f72f1fb63d",
+      "msg": "Merge pull request #6116 from Sonicadvance1/314",
+      "date": "2026-11-10T11:57:33Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "324704f",
+      "new": "00b6ef0",
+      "full": "00b6ef0575d762cac67c78c9933c05737a6e6bd8",
+      "msg": "Fix NVAPI OMM code violation of VUID 11640.",
+      "date": "2026-11-10T10:15:42Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "60f8ee0",
+      "new": "2231570",
+      "full": "2231570b2fffff759239f7c2f2ca41a2232db99e",
+      "msg": "[meta] Update dxbc-spirv",
+      "date": "2026-11-10T11:19:17Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "cc2dcf9",
-      "new": "94e3bb6",
-      "full": "94e3bb6a05d40452dff4063322a44c872a61e7b5",
-      "msg": "gfxstream: add hasApiCall for snapshot decoder",
-      "date": "2026-11-10T08:20:36.000+00:00"
+      "old": "94e3bb6",
+      "new": "62b0e52",
+      "full": "62b0e52f875e5cb37b38776908f1b8f85588b385",
+      "msg": "v3d: Implement GL_OES_texture_buffer",
+      "date": "2026-11-10T15:36:27.000+00:00"
     }
   ]
 }
