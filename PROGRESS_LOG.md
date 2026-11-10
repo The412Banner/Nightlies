@@ -6,6 +6,18 @@
 
 ---
 
+## Session — 2026-11-10
+
+### [feat] — experimental Box64EC in the all-in-one nightly (2026-11-10, main 0760bfce, merged; first nightly pending)
+**Why:** box64 merged airidosas252's Box64EC dynarec into main (ptitSeb/box64 #4666 11-05, #4676 "Fully link Dynarec and enable it by default" 11-10 01:02 EST) but has no release of it (v0.4.4 = Latest, 08-02, before any Box64EC code). The user asked to build Box64EC in the all-in-one nightly next to Box64/WOWBox64, say in the release text that it is not an official release and not proven working, and list it in the app catalog (user's choice, asked 05:0x EST).
+**Changes (feat/box64ec-aio 2b80bafb, merged --no-ff 0760bfce, backup refs/backup/20261110/main-before-box64ec-aio = 7e25a601):**
+- `new-All-in-one-nightly+zips-latest-stable.yml`: job `build-box64ec` = box64's own CI job "build (ARM64EC, Release)" (ubuntu-22.04-arm, llvm-mingw 20260616 aarch64, `-DARM64EC=1 -DARM_DYNAREC=1 -DNOBOX64=1 -DCMAKE_BUILD_TYPE=Release -DHAVE_TRACE=0 -DZYDIS3=1 -DSTATICBUILD=0 -DBOX32=0 -DCI=true`), fails unless the DLL is ARM64EC and exports `BeginSimulation`; the build step is `continue-on-error`, so a Box64EC failure never blocks the nightly (body then says "not built this time"). Output `Box64EC-<ver>-<sha>-experimental.wcp` (system32/box64ec.dll + profile.json, description says experimental/unofficial/not proven) and `.zip` (+ use-box64ec.reg / use-fex.reg / README.md). Release body: top warning line, Built-components row, Files item 6b. README block row.
+- `nightlies-components-json.yml`: `detect_nightly_type` returns `Box64EC` for names with "box64ec" before the plain "box64" match (which would have filed it under Box64).
+- README: components table row + credit airidosas252.
+**CI:** branch dispatch run 42797409256 GREEN (all 20 jobs; create-release skipped off main). Box64EC artifact: .wcp 1056844 B, box64ec.dll sha256 ffdd57f0…44e7 (built from c415ed7a4; differs from the standalone 30341afb build 2d3b96ea… only in the 4 PE timestamp bytes). Local dry run of the body script OK both ways; catalog type test OK.
+**Device:** NOT device-tested (Box64EC device test on the Pocket FIT waits for the user).
+**Standalone:** `feat/box64ec-standalone` 30341afb (run 42794332101) builds the same thing on demand; not merged.
+
 ## Session — 2026-11-02
 
 ### [feat] — Rutabaga-26.10.30 added to the Rutabaga driver feed (2026-11-02, main, published)
