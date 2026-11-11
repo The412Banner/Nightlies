@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-11-10T22:04:40Z",
+  "triggered_at": "2026-11-11T02:25:21Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "c03f083",
-      "new": "e4d0022",
-      "full": "e4d0022487bc6c1a64011e84f638b4889d991de0",
-      "msg": "[RV64_DYNAREC] Restore cached MMX state at loop back-edges (#4694)",
-      "date": "2026-11-10T17:26:57Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "7fdac22",
+      "new": "0fe0648",
+      "full": "0fe06483496f1d29fe190c44df6c7c5b881b15d0",
+      "msg": "Merge pull request #6117 from Sonicadvance1/315",
+      "date": "2026-11-10T22:23:58Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "e3ff461",
+      "new": "888613c",
+      "full": "888613c2c55d6b509fe9b24b16a4668dd5d14ce8",
+      "msg": "[meta] Fix current mode bit depth and enumeration",
+      "date": "2026-11-11T00:22:38Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "62b0e52",
-      "new": "4404b6b",
-      "full": "4404b6bb9f858bc768f8d75fce1bcb224f12fceb",
-      "msg": "util: Initialize memstream outputs on Xbox",
-      "date": "2026-11-10T19:40:47.000+00:00"
+      "old": "4404b6b",
+      "new": "f2ccbe6",
+      "full": "f2ccbe6bf47e602a446998a0d8454f9c73cf6186",
+      "msg": "intel: Exclude helper lanes for optimized divergent atomics",
+      "date": "2026-11-11T01:44:27.000+00:00"
     }
   ]
 }
