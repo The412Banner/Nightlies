@@ -1015,27 +1015,27 @@
   },
   {
     "type": "Box64",
-    "verName": "Box64-0.4.5-139d03135-Native",
+    "verName": "Box64-0.4.5-217f07320-Bionic",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-139d03135-Native.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-217f07320-Bionic.wcp"
   },
   {
     "type": "Box64",
-    "verName": "Box64-0.4.5-139d03135-Native",
+    "verName": "Box64-0.4.5-217f07320-Bionic",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-139d03135-Native.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-217f07320-Bionic.zip"
   },
   {
     "type": "Box64",
-    "verName": "Box64-0.4.5-45d3630f5-Bionic",
+    "verName": "Box64-0.4.5-754e18b31-Native",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-45d3630f5-Bionic.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-754e18b31-Native.wcp"
   },
   {
     "type": "Box64",
-    "verName": "Box64-0.4.5-45d3630f5-Bionic",
+    "verName": "Box64-0.4.5-754e18b31-Native",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-45d3630f5-Bionic.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-754e18b31-Native.zip"
   },
   {
     "type": "Box64",
@@ -1075,15 +1075,15 @@
   },
   {
     "type": "D7VK",
-    "verName": "d7vk-v2.5_WIP-888613c2c-nightly",
+    "verName": "d7vk-v2.5_WIP-380f7d0ac-nightly",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/d7vk-v2.5_WIP-888613c2c-nightly.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/d7vk-v2.5_WIP-380f7d0ac-nightly.wcp"
   },
   {
     "type": "D7VK",
-    "verName": "d7vk-v2.5_WIP-888613c2c-nightly",
+    "verName": "d7vk-v2.5_WIP-380f7d0ac-nightly",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/d7vk-v2.5_WIP-888613c2c-nightly.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/d7vk-v2.5_WIP-380f7d0ac-nightly.zip"
   },
   {
     "type": "DXVK",
@@ -1207,39 +1207,39 @@
   },
   {
     "type": "VKD3D",
-    "verName": "VKD3D-Proton-3.1-00b6ef05",
+    "verName": "VKD3D-Proton-3.1-e54da185",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-3.1-00b6ef05.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-3.1-e54da185.wcp"
   },
   {
     "type": "VKD3D",
-    "verName": "VKD3D-Proton-3.1-00b6ef05",
+    "verName": "VKD3D-Proton-3.1-e54da185",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-3.1-00b6ef05.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-3.1-e54da185.zip"
   },
   {
     "type": "VKD3D",
-    "verName": "VKD3D-Proton-arm64ec-3.1-00b6ef05",
+    "verName": "VKD3D-Proton-arm64ec-3.1-e54da185",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-arm64ec-3.1-00b6ef05.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-arm64ec-3.1-e54da185.wcp"
   },
   {
     "type": "VKD3D",
-    "verName": "VKD3D-Proton-arm64ec-3.1-00b6ef05",
+    "verName": "VKD3D-Proton-arm64ec-3.1-e54da185",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-arm64ec-3.1-00b6ef05.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/VKD3D-Proton-arm64ec-3.1-e54da185.zip"
   },
   {
     "type": "WOWBox64",
-    "verName": "WOWBox64-0.4.5-75d5eaa49",
+    "verName": "WOWBox64-0.4.5-35af218ff",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/WOWBox64-0.4.5-75d5eaa49.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/WOWBox64-0.4.5-35af218ff.wcp"
   },
   {
     "type": "WOWBox64",
-    "verName": "WOWBox64-0.4.5-75d5eaa49",
+    "verName": "WOWBox64-0.4.5-35af218ff",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/WOWBox64-0.4.5-75d5eaa49.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/WOWBox64-0.4.5-35af218ff.zip"
   },
   {
     "type": "WOWBox64",
