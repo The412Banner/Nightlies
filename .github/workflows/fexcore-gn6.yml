@@ -268,7 +268,7 @@ jobs:
         run: |
           set -euo pipefail
           file final_package/system32/*.dll final_package_unix/aarch64-unix/*.so
-          file final_package/system32/libwow64fex.dll | grep -q 'PE32+ executable.*Aarch64' \
+          file final_package/system32/libwow64fex.dll | grep -qiE 'PE32\+ executable.*(Aarch64|ARM64)' \
             || { echo "::error::libwow64fex.dll is not an ARM64 PE DLL"; exit 1; }
           loadcfg=$(/opt/llvm-mingw/bin/llvm-readobj --coff-load-config final_package/system32/libarm64ecfex.dll)
           grep -q 'CHPEMetadata' <<<"$loadcfg" || { echo "::error::libarm64ecfex.dll has no ARM64EC (CHPE) metadata"; exit 1; }
