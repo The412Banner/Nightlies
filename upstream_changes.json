@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-11-11T10:03:39Z",
+  "triggered_at": "2026-11-11T18:13:48Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "0fe0648",
-      "new": "e3b30dd",
-      "full": "e3b30dda25342362588ed1096494bea019cde4cd",
-      "msg": "Merge pull request #6122 from Sonicadvance1/318",
-      "date": "2026-11-11T05:00:14Z"
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "00b6ef0",
+      "new": "e54da18",
+      "full": "e54da185ff41df045798d8726c57e2f986a84163",
+      "msg": "vkd3d: fix a memleak with scratch allocs in RT pipeline compilation",
+      "date": "2026-11-11T13:40:24Z"
     },
     {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "2231570",
-      "new": "1c28444",
-      "full": "1c284449626d3599bb718942aab18344479f37ab",
-      "msg": "[d3d11] Clamp ForceSampleCount to device limits",
-      "date": "2026-11-11T07:49:12Z"
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "888613c",
+      "new": "380f7d0",
+      "full": "380f7d0acef559ec4231aee90db120b99ae8b57f",
+      "msg": "[meta] Implement missed mode filtering on EnumDisplayModes calls",
+      "date": "2026-11-11T17:05:57Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "f2ccbe6",
-      "new": "5223876",
-      "full": "52238762dd44939c2912185f4df00b90d8306225",
-      "msg": "kk: Disable KK_WORKAROUND_10 on M3+",
-      "date": "2026-11-11T09:07:56.000+00:00"
+      "old": "5223876",
+      "new": "9df1258",
+      "full": "9df125830edcb0e9826814bf43431ebc26646373",
+      "msg": "hk: remove input attachment offset from tex instructions",
+      "date": "2026-11-11T17:43:36.000+00:00"
     }
   ]
 }
