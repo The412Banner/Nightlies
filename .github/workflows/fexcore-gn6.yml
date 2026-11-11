@@ -2,7 +2,7 @@ name: FEXCore gn6 (GameNative patch series)
 
 # Upstream FEX-2611 + the GameNative patch series gn-6 (GameNative/FEX branch "gamenative",
 # 12 patches: protected launchers / anti-tamper, Counter-Strike 2 load ordering, code cache fixes).
-# Artifacts only, nothing is published.
+# Artifacts only: nothing is published.
 #   android: the all-in-one workflow's build-fex job -> FEXCore-2611-gn6.wcp + FEXCore-2611-gn6-unix.wcp (bionic unixlibs)
 #   linux:   the fexcore-linux-stable.yml build job  -> FEXCore-2611-gn6-linux.wcp (glibc unixlibs, Proton tree)
 # The series does not touch Source/Windows/UnixLib, so the .so files are the upstream FEX-2611 ones.
