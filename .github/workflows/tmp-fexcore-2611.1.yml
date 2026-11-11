@@ -1,9 +1,9 @@
-name: tmp FEXCore 2611 stable build
-# Temporary: builds FEX at the FEX-2611 tag with the all-in-one workflow's own build-fex job
+name: tmp FEXCore 2611.1 stable build
+# Temporary: builds FEX at the FEX-2611.1 tag with the all-in-one workflow's own build-fex job
 # (DLLs + bionic unix .so) and uploads artifacts only. Publishes nothing. Deleted afterwards.
 on:
   push:
-    branches: [ 'tmp/fexcore-2611' ]
+    branches: [ 'tmp/fexcore-2611.1' ]
 permissions:
   contents: read
 jobs:
@@ -40,7 +40,7 @@ jobs:
       - name: Build FEX
         id: version
         run: |
-          git clone --recursive --branch FEX-2611 https://github.com/FEX-Emu/FEX.git source && git -C source rev-parse HEAD
+          git clone --recursive --branch FEX-2611.1 https://github.com/FEX-Emu/FEX.git source && git -C source rev-parse HEAD
           cd source
 
           # Name by distance from the nearest FEX release tag:
