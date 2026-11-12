@@ -1,41 +1,23 @@
 {
-  "triggered_at": "2026-11-12T17:26:57Z",
+  "triggered_at": "2026-11-12T22:59:59Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "ae2174c",
-      "new": "4dbba13",
-      "full": "4dbba1300a8d74c7c385f0d8a4e453c740622f9f",
-      "msg": "[LA64_DYNAREC] Added olds tracking (#4697)",
-      "date": "2026-11-12T09:51:04Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "22d4d29",
-      "new": "2576c0b",
-      "full": "2576c0b4adfae4a76d4c89d8cf5ec4f5ca795cff",
-      "msg": "meta: Add LLM checkbox to \"other\" template",
-      "date": "2026-11-12T10:18:25Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "1039f68",
-      "new": "13f2afc",
-      "full": "13f2afc3458871cf752b75a07132688ad1e81ee1",
-      "msg": "[d3d9] Add an adapterGroups config option",
-      "date": "2026-11-12T15:32:37Z"
+      "old": "4dbba13",
+      "new": "52db1d0",
+      "full": "52db1d07ac8f198fd0bbef7e28f677116a688f3f",
+      "msg": "[ARM64_DYNAREC] Fixed wrongly skipped dirty xmm registers (#4698)",
+      "date": "2026-11-12T18:40:51Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "bc466bc",
-      "new": "e287c76",
-      "full": "e287c76e6b3cb9fe14ad1c5e9a6b0ed0f8c1ec03",
-      "msg": "kk: Support new M6 texel buffer formats",
-      "date": "2026-11-12T16:54:26.000+00:00"
+      "old": "e287c76",
+      "new": "6f2c401",
+      "full": "6f2c401851f92109240c64a2977f7d584b53300a",
+      "msg": "jay: Scalarize indirect push-data loads",
+      "date": "2026-11-12T22:18:28.000+00:00"
     }
   ]
 }
