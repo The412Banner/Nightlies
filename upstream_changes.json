@@ -1,50 +1,32 @@
 {
-  "triggered_at": "2026-11-12T01:11:23Z",
+  "triggered_at": "2026-11-12T08:59:52Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "e4d0022",
+      "new": "ae2174c",
+      "full": "ae2174c162c9756897b9016c0b9e01ae1b206631",
+      "msg": "[RV64_DYNAREC] Removed the fence stores at RET (#4696)",
+      "date": "2026-11-12T08:46:29Z"
+    },
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "e3b30dd",
-      "new": "9143cca",
-      "full": "9143ccaf2be35783961286124b97601be9963140",
-      "msg": "Merge pull request #6125 from Sonicadvance1/319",
-      "date": "2026-11-11T23:55:07Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "e54da18",
-      "new": "22d4d29",
-      "full": "22d4d293c5cf8964a293a8bf58f8bc6127eb829f",
-      "msg": "vkd3d: Get rid of NO_CLEAR_UAV option.",
-      "date": "2026-11-11T18:58:31Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "1c28444",
-      "new": "1039f68",
-      "full": "1039f682058fa71f159129b9e14fee05cc4e3cef",
-      "msg": "[meta] Update build instructions",
-      "date": "2026-11-11T21:30:40Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "380f7d0",
-      "new": "1166818",
-      "full": "1166818ac10133a799b531bf8ec498cf3425baf5",
-      "msg": "[meta] Skip restoring the display mode on swapchain release",
-      "date": "2026-11-11T23:18:54Z"
+      "old": "9143cca",
+      "new": "ab135df",
+      "full": "ab135df091d005cc98dfddc56c3dc9c9e4bd501d",
+      "msg": "Merge pull request #6126 from Sonicadvance1/320",
+      "date": "2026-11-12T01:20:16Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "9df1258",
-      "new": "3853491",
-      "full": "385349124cd31555191acbfa39c57ca8c149ee7f",
-      "msg": "freedreno/a5xx: Implement alpha-to-one",
-      "date": "2026-11-12T00:15:19.000+00:00"
+      "old": "3853491",
+      "new": "bc466bc",
+      "full": "bc466bc5fe404d08ed17edd551f3459431048c38",
+      "msg": "glx: Add AppleGL glapi functions as optional to libgl-symbols.txt",
+      "date": "2026-11-12T08:05:14.000+00:00"
     }
   ]
 }
