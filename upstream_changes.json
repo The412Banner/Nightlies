@@ -1,23 +1,41 @@
 {
-  "triggered_at": "2026-11-13T11:44:43Z",
+  "triggered_at": "2026-11-13T18:58:57Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "52db1d0",
-      "new": "43c0465",
-      "full": "43c0465059171536225399df6fee40f0dbc259bb",
-      "msg": "[DYNAREC] Refined libtbb detection and optimization (#4699)",
-      "date": "2026-11-13T09:35:46Z"
+      "old": "43c0465",
+      "new": "69642b9",
+      "full": "69642b9dd768531e9a5e5ff5c376c9f759500322",
+      "msg": "[LA64_DYNAREC] Optimized xmm/ymm registers preloading (#4700)",
+      "date": "2026-11-13T12:27:30Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "2576c0b",
+      "new": "5b1089c",
+      "full": "5b1089c89dbc5cb9f662650feb60d2d3df3e55ca",
+      "msg": "vkd3d: Work around descriptor mismatches in Phantom Blade Zero.",
+      "date": "2026-11-13T13:13:45Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "4d7afda",
+      "new": "80e45d8",
+      "full": "80e45d897d7c7ea1db085b87acefbb45c1bfb1ff",
+      "msg": "[meta] Introduce a workaround to report 0 free texture memory",
+      "date": "2026-11-13T14:29:53Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "87b49c5",
-      "new": "641aed3",
-      "full": "641aed34bcb1cdb73651b3248c4a132c2a59e512",
-      "msg": "etnaviv: Allocate the planes of an NV12 resource",
-      "date": "2026-11-13T10:42:55.000+00:00"
+      "old": "641aed3",
+      "new": "3f04f07",
+      "full": "3f04f0701fcafd261febf7b287a74c952cda3a3d",
+      "msg": "jay: add missing dependency on brw",
+      "date": "2026-11-13T18:28:13.000+00:00"
     }
   ]
 }
