@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-11-12T22:59:59Z",
+  "triggered_at": "2026-11-13T03:17:34Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "4dbba13",
-      "new": "52db1d0",
-      "full": "52db1d07ac8f198fd0bbef7e28f677116a688f3f",
-      "msg": "[ARM64_DYNAREC] Fixed wrongly skipped dirty xmm registers (#4698)",
-      "date": "2026-11-12T18:40:51Z"
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "1166818",
+      "new": "4d7afda",
+      "full": "4d7afda178b3e1fea7d218f034c6e8c7a1037a8d",
+      "msg": "[meta] Introduce a workaround to report 0 free texture memory",
+      "date": "2026-11-12T15:56:07Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "e287c76",
-      "new": "6f2c401",
-      "full": "6f2c401851f92109240c64a2977f7d584b53300a",
-      "msg": "jay: Scalarize indirect push-data loads",
-      "date": "2026-11-12T22:18:28.000+00:00"
+      "old": "6f2c401",
+      "new": "87b49c5",
+      "full": "87b49c516b5514851dea64bb785e3ccecffe3b7d",
+      "msg": "gfxstream: handle WSI dummy sync objects and reset temporary state",
+      "date": "2026-11-13T01:49:17.000+00:00"
     }
   ]
 }
