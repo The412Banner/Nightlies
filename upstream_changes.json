@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-11-13T03:17:34Z",
+  "triggered_at": "2026-11-13T11:44:43Z",
   "changed": [
     {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "1166818",
-      "new": "4d7afda",
-      "full": "4d7afda178b3e1fea7d218f034c6e8c7a1037a8d",
-      "msg": "[meta] Introduce a workaround to report 0 free texture memory",
-      "date": "2026-11-12T15:56:07Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "52db1d0",
+      "new": "43c0465",
+      "full": "43c0465059171536225399df6fee40f0dbc259bb",
+      "msg": "[DYNAREC] Refined libtbb detection and optimization (#4699)",
+      "date": "2026-11-13T09:35:46Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "6f2c401",
-      "new": "87b49c5",
-      "full": "87b49c516b5514851dea64bb785e3ccecffe3b7d",
-      "msg": "gfxstream: handle WSI dummy sync objects and reset temporary state",
-      "date": "2026-11-13T01:49:17.000+00:00"
+      "old": "87b49c5",
+      "new": "641aed3",
+      "full": "641aed34bcb1cdb73651b3248c4a132c2a59e512",
+      "msg": "etnaviv: Allocate the planes of an NV12 resource",
+      "date": "2026-11-13T10:42:55.000+00:00"
     }
   ]
 }
