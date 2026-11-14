@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-11-14T00:12:43Z",
+  "triggered_at": "2026-11-14T07:13:38Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "69642b9",
-      "new": "6441fcf",
-      "full": "6441fcfaeb69487039b0fd8cfb948c9e3f18c3d6",
-      "msg": "[ARM64_DYNAREC] Improved Preload of Xmm/Ymm efficiency",
-      "date": "2026-11-13T18:59:43Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "ab135df",
+      "new": "ea43314",
+      "full": "ea43314f040633c76fb5891ff31d8a7c3dc533b8",
+      "msg": "Merge pull request #6131 from Sonicadvance1/321",
+      "date": "2026-11-14T02:22:11Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "3f04f07",
-      "new": "f4ab1f9",
-      "full": "f4ab1f91b0749f34b6342885bc5ff98a731e92e3",
-      "msg": "nv50: only push constant buffer updates through a current binding",
-      "date": "2026-11-13T23:41:59.000+00:00"
+      "old": "f4ab1f9",
+      "new": "94ad3c5",
+      "full": "94ad3c5e42a07cff1720a30555a784b42e97b3d5",
+      "msg": "dzn: Pass modified resource desc in dzn_BindBufferMemory2",
+      "date": "2026-11-14T04:12:11.000+00:00"
     }
   ]
 }
