@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-11-14T19:37:25Z",
+  "triggered_at": "2026-11-14T23:31:58Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "7174c12",
-      "new": "9d5fa88",
-      "full": "9d5fa8884c1cf8657fa543081fdfd32fbdc21fe0",
-      "msg": "[ARM64_DYNAREC] Fixed another issue with ymm0 handling",
-      "date": "2026-11-14T17:19:23Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "3e65fd3",
-      "new": "71bf4ba",
-      "full": "71bf4bad427dd6a6a338d6768812110c61bb4503",
-      "msg": "[dxvk] Update allocation resource index on assignment",
-      "date": "2026-11-14T18:48:08Z"
+      "old": "9d5fa88",
+      "new": "085b7cb",
+      "full": "085b7cb8136495f807267523d31f6775790dacfa",
+      "msg": "[RV64_DYNAREC] Reworked XMM/YMM preloading (#4718)",
+      "date": "2026-11-14T20:12:00Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "767fbf7",
-      "new": "8a9009e",
-      "full": "8a9009e0482c8770933c7f2661872677cf013f6e",
-      "msg": "v3d: keep compute dirty state until the next dispatch",
-      "date": "2026-11-14T18:15:06.000+00:00"
+      "old": "8a9009e",
+      "new": "c9ce420",
+      "full": "c9ce420e39bc5d97d3e54ef54ec9603a45772bb2",
+      "msg": "vulkan: fix lookup of VkRenderingAttachmentLocationInfo",
+      "date": "2026-11-14T19:11:38.000+00:00"
     }
   ]
 }
