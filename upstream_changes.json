@@ -1,41 +1,32 @@
 {
-  "triggered_at": "2026-11-14T14:39:38Z",
+  "triggered_at": "2026-11-14T19:37:25Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "6441fcf",
-      "new": "7174c12",
-      "full": "7174c12d2b5f136fa52dfc323169d506a1687300",
-      "msg": "[WRAPPER] Wrapped more symbols for libmvec (#4708)",
-      "date": "2026-11-14T13:12:53Z"
+      "old": "7174c12",
+      "new": "9d5fa88",
+      "full": "9d5fa8884c1cf8657fa543081fdfd32fbdc21fe0",
+      "msg": "[ARM64_DYNAREC] Fixed another issue with ymm0 handling",
+      "date": "2026-11-14T17:19:23Z"
     },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "13f2afc",
-      "new": "3e65fd3",
-      "full": "3e65fd34fd7890a510ee2639a41a4eb14c4b4113",
-      "msg": "[dxvk] Fix broken loop over layers during resource relocation",
-      "date": "2026-11-14T14:07:44Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "80e45d8",
-      "new": "2502472",
-      "full": "25024721d9cfbaa732b8d8a34c1594129fc9aee6",
-      "msg": "[meta] Introduce a workaround to report 0 free texture memory",
-      "date": "2026-11-14T14:14:30Z"
+      "old": "3e65fd3",
+      "new": "71bf4ba",
+      "full": "71bf4bad427dd6a6a338d6768812110c61bb4503",
+      "msg": "[dxvk] Update allocation resource index on assignment",
+      "date": "2026-11-14T18:48:08Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "94ad3c5",
-      "new": "767fbf7",
-      "full": "767fbf7c6492f64549c90e9a080ab5417895a9ec",
-      "msg": "aco/isel: simplify image_load_mip condition",
-      "date": "2026-11-14T10:45:18.000+00:00"
+      "old": "767fbf7",
+      "new": "8a9009e",
+      "full": "8a9009e0482c8770933c7f2661872677cf013f6e",
+      "msg": "v3d: keep compute dirty state until the next dispatch",
+      "date": "2026-11-14T18:15:06.000+00:00"
     }
   ]
 }
