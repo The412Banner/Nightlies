@@ -19,6 +19,12 @@ name: DXVK Stable (Patched) — GPLAsync + BinSem
 # Reusable on every future upstream stable: leave the version input
 # empty and it resolves the latest upstream stable release itself.
 #
+# Commit mode (dxvk_commit + version_label): builds one fixed upstream
+# master commit instead of a tag, e.g. the 3.1-a6xx base (6b989c5a,
+# "Do not require 16-bit and 8-bit storage buffer access"). Same patches
+# and checks; the label names the files and the description names the
+# commit.
+#
 # DELIBERATE DIFFERENCE FROM THE NIGHTLY: the nightly's DXVK jobs carry a
 # compile guard that falls back to a pinned v3.0 + gplasync-3.0-1 tree so
 # the nightly always ships something. That behaviour is WRONG here — the
@@ -48,6 +54,14 @@ on:
         description: 'Asset revision — the -N in dxvk-gplasync-<version>-<N>.wcp'
         required: false
         default: '1'
+      dxvk_commit:
+        description: 'Optional: build this upstream doitsujin/dxvk commit (full or short SHA, must be on master) instead of a release tag. Needs version_label.'
+        required: false
+        default: ''
+      version_label:
+        description: 'With dxvk_commit only: the name used in the file name and versionName (e.g. 3.1-a6xx -> dxvk-gplasync-3.1-a6xx-1.wcp)'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -66,6 +80,7 @@ jobs:
       version: ${{ steps.r.outputs.version }}
       commit: ${{ steps.r.outputs.commit }}
       revision: ${{ steps.r.outputs.revision }}
+      mode: ${{ steps.r.outputs.mode }}
     steps:
       - name: Resolve tag and peel to commit
         id: r
@@ -73,26 +88,47 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           INPUT_TAG: ${{ inputs.dxvk_version }}
           INPUT_REV: ${{ inputs.asset_revision }}
+          INPUT_COMMIT: ${{ inputs.dxvk_commit }}
+          INPUT_LABEL: ${{ inputs.version_label }}
         run: |
           set -euo pipefail
 
-          TAG="$INPUT_TAG"
-          if [ -z "$TAG" ]; then
-            TAG=$(gh api repos/doitsujin/dxvk/releases/latest --jq '.tag_name')
-            echo "No version given — latest upstream stable release is $TAG"
-          fi
-
-          # Annotated tags point at a tag object; peel it to the commit.
-          OBJ_TYPE=$(gh api "repos/doitsujin/dxvk/git/ref/tags/$TAG" --jq '.object.type')
-          OBJ_SHA=$(gh api "repos/doitsujin/dxvk/git/ref/tags/$TAG" --jq '.object.sha')
-          if [ "$OBJ_TYPE" = "tag" ]; then
-            COMMIT=$(gh api "repos/doitsujin/dxvk/git/tags/$OBJ_SHA" --jq '.object.sha')
+          if [ -n "$INPUT_COMMIT" ]; then
+            # Commit mode: a fixed upstream commit, named by version_label.
+            [ -n "$INPUT_LABEL" ] || { echo "::error::version_label is required with dxvk_commit"; exit 1; }
+            [ -z "$INPUT_TAG" ] || { echo "::error::set dxvk_version OR dxvk_commit, not both"; exit 1; }
+            case "$INPUT_LABEL" in *[!A-Za-z0-9._-]*) echo "::error::version_label may only contain A-Z a-z 0-9 . _ -"; exit 1 ;; esac
+            COMMIT=$(gh api "repos/doitsujin/dxvk/commits/$INPUT_COMMIT" --jq '.sha')
+            # Only commits that are on upstream master (not forks or PR heads).
+            ON_MASTER=$(gh api "repos/doitsujin/dxvk/compare/$COMMIT...master" --jq '.status')
+            case "$ON_MASTER" in
+              ahead|identical) ;;
+              *) echo "::error::$COMMIT is not on doitsujin/dxvk master (compare status: $ON_MASTER)"; exit 1 ;;
+            esac
+            MODE=commit
+            TAG="v$INPUT_LABEL"
+            VERSION="$INPUT_LABEL"
           else
-            COMMIT="$OBJ_SHA"
+            MODE=tag
+            TAG="$INPUT_TAG"
+            if [ -z "$TAG" ]; then
+              TAG=$(gh api repos/doitsujin/dxvk/releases/latest --jq '.tag_name')
+              echo "No version given — latest upstream stable release is $TAG"
+            fi
+
+            # Annotated tags point at a tag object; peel it to the commit.
+            OBJ_TYPE=$(gh api "repos/doitsujin/dxvk/git/ref/tags/$TAG" --jq '.object.type')
+            OBJ_SHA=$(gh api "repos/doitsujin/dxvk/git/ref/tags/$TAG" --jq '.object.sha')
+            if [ "$OBJ_TYPE" = "tag" ]; then
+              COMMIT=$(gh api "repos/doitsujin/dxvk/git/tags/$OBJ_SHA" --jq '.object.sha')
+            else
+              COMMIT="$OBJ_SHA"
+            fi
+            VERSION="${TAG#v}"
           fi
 
-          VERSION="${TAG#v}"
           REV="${INPUT_REV:-1}"
+          echo "mode=$MODE"       >> $GITHUB_OUTPUT
 
           echo "tag=$TAG"         >> $GITHUB_OUTPUT
           echo "version=$VERSION" >> $GITHUB_OUTPUT
@@ -104,6 +140,7 @@ jobs:
             echo ""
             echo "| field | value |"
             echo "|---|---|"
+            echo "| mode | \`$MODE\` |"
             echo "| tag | \`$TAG\` |"
             echo "| version | \`$VERSION\` |"
             echo "| commit | \`$COMMIT\` |"
@@ -193,15 +230,26 @@ jobs:
         env:
           TAG: ${{ needs.resolve.outputs.tag }}
           EXPECTED: ${{ needs.resolve.outputs.commit }}
+          MODE: ${{ needs.resolve.outputs.mode }}
         run: |
           set -euo pipefail
           cd "$GITHUB_WORKSPACE"
           rm -rf dxvk dxvk-built
-          git clone --depth 1 --branch "$TAG" --recurse-submodules --shallow-submodules \
-            https://github.com/doitsujin/dxvk.git dxvk
-          cd dxvk
+          if [ "$MODE" = "commit" ]; then
+            # Full history, so git describe (the DLL version string) names
+            # the commit as <last tag>-<N>-g<sha>.
+            git clone --no-checkout https://github.com/doitsujin/dxvk.git dxvk
+            cd dxvk
+            git checkout -q "$EXPECTED"
+            git submodule update --init --recursive
+          else
+            git clone --depth 1 --branch "$TAG" --recurse-submodules --shallow-submodules \
+              https://github.com/doitsujin/dxvk.git dxvk
+            cd dxvk
+          fi
+          echo "git describe: $(git describe --tags --always)"
           ACTUAL=$(git rev-parse HEAD)
-          echo "Requested tag : $TAG"
+          echo "Requested     : $TAG ($MODE)"
           echo "Expected commit: $EXPECTED"
           echo "CHECKED OUT DXVK COMMIT: $ACTUAL"
           if [ "$ACTUAL" != "$EXPECTED" ]; then
@@ -274,10 +322,15 @@ jobs:
           SUFFIX: ${{ matrix.suffix }}
           ASSET_PREFIX: ${{ matrix.asset_prefix }}
           DESCRIPTION: ${{ matrix.description }}
+          MODE: ${{ needs.resolve.outputs.mode }}
+          COMMIT: ${{ needs.resolve.outputs.commit }}
         run: |
           set -euo pipefail
           cd "$GITHUB_WORKSPACE"
 
+          if [ "$MODE" = "commit" ]; then
+            DESCRIPTION="${DESCRIPTION} Base: doitsujin/dxvk ${COMMIT:0:8}."
+          fi
           VERSION_NAME="${TAG}-${SUFFIX}"
           WCP="${ASSET_PREFIX}-${VERSION}-${REV}.wcp"
           echo "VERSION_NAME=$VERSION_NAME" >> $GITHUB_ENV
@@ -452,15 +505,26 @@ jobs:
         env:
           TAG: ${{ needs.resolve.outputs.tag }}
           EXPECTED: ${{ needs.resolve.outputs.commit }}
+          MODE: ${{ needs.resolve.outputs.mode }}
         run: |
           set -euo pipefail
           cd "$GITHUB_WORKSPACE"
           rm -rf dxvk build-ec build-x86
-          git clone --depth 1 --branch "$TAG" --recurse-submodules --shallow-submodules \
-            https://github.com/doitsujin/dxvk.git dxvk
-          cd dxvk
+          if [ "$MODE" = "commit" ]; then
+            # Full history, so git describe (the DLL version string) names
+            # the commit as <last tag>-<N>-g<sha>.
+            git clone --no-checkout https://github.com/doitsujin/dxvk.git dxvk
+            cd dxvk
+            git checkout -q "$EXPECTED"
+            git submodule update --init --recursive
+          else
+            git clone --depth 1 --branch "$TAG" --recurse-submodules --shallow-submodules \
+              https://github.com/doitsujin/dxvk.git dxvk
+            cd dxvk
+          fi
+          echo "git describe: $(git describe --tags --always)"
           ACTUAL=$(git rev-parse HEAD)
-          echo "Requested tag : $TAG"
+          echo "Requested     : $TAG ($MODE)"
           echo "Expected commit: $EXPECTED"
           echo "CHECKED OUT DXVK COMMIT: $ACTUAL"
           if [ "$ACTUAL" != "$EXPECTED" ]; then
@@ -522,10 +586,15 @@ jobs:
           SUFFIX: ${{ matrix.suffix }}
           ASSET_PREFIX: ${{ matrix.asset_prefix }}
           DESCRIPTION: ${{ matrix.description }}
+          MODE: ${{ needs.resolve.outputs.mode }}
+          COMMIT: ${{ needs.resolve.outputs.commit }}
         run: |
           set -euo pipefail
           cd "$GITHUB_WORKSPACE"
 
+          if [ "$MODE" = "commit" ]; then
+            DESCRIPTION="${DESCRIPTION} Base: doitsujin/dxvk ${COMMIT:0:8}."
+          fi
           VERSION_NAME="${TAG}-${SUFFIX}"
           WCP="${ASSET_PREFIX}-${VERSION}-${REV}.wcp"
           echo "VERSION_NAME=$VERSION_NAME" >> $GITHUB_ENV
