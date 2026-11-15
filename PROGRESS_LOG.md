@@ -23,7 +23,8 @@
 | dxvk-binsem-gplasync-arm64ec-3.1-a6xx-1.wcp | 6,431,557 | c3b36308…412c |
 Copied to the Pocket FIT /sdcard/Download (hash-checked host + device).
 **Device:** NOT device-tested.
-**Open:** publish (where?) and merge of the branch wait for the user.
+**Published (user: "make a simple release on the repo with those files and brief description of what they are where they came from and what device they are for"):** release `dxvk-3.1-a6xx-gplasync` ("DXVK 3.1-a6xx GPLAsync", 2026-11-15 ~15:25 EST), tag → 41cc8bc0 (the built commit), not Latest (Latest stays the nightly), not prerelease; the 4 files above, GitHub digests == local, live download re-hashed. Not added to nightlies_components.json (static list) or winlator-contents. Notes checked against sources: Turnip `storage_8bit` only in a7xx_base (Mesa main freedreno_devices.py); DXVK at d30be2ba asks for Vulkan 1.3 (`DxvkVulkanApiVersion`). Side finding: the `Dxvk-gplasync` page says "DXVK 3.0 requires Vulkan 1.4", but v3.0 and v3.1.1 source request 1.3 — not changed.
+**Open:** merge of the branch waits for the user.
 
 ## Session — 2026-11-10
 
