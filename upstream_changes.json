@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-11-14T23:31:58Z",
+  "triggered_at": "2026-11-15T11:46:15Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "9d5fa88",
-      "new": "085b7cb",
-      "full": "085b7cb8136495f807267523d31f6775790dacfa",
-      "msg": "[RV64_DYNAREC] Reworked XMM/YMM preloading (#4718)",
-      "date": "2026-11-14T20:12:00Z"
+      "old": "085b7cb",
+      "new": "b78a8ca",
+      "full": "b78a8ca86ed14b9f85f156d5c609c5788c1ad4a7",
+      "msg": "[LA64_DYNAREC] Defer SSE scalar upper-lane clears (#4722)",
+      "date": "2026-11-15T11:41:37Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "8a9009e",
-      "new": "c9ce420",
-      "full": "c9ce420e39bc5d97d3e54ef54ec9603a45772bb2",
-      "msg": "vulkan: fix lookup of VkRenderingAttachmentLocationInfo",
-      "date": "2026-11-14T19:11:38.000+00:00"
+      "old": "c9ce420",
+      "new": "66b6dda",
+      "full": "66b6dda0bf2dab9e8362321b057e15652047be34",
+      "msg": "zink: enable VK_EXT_vertex_address_binding_unrestricted",
+      "date": "2026-11-15T10:11:33.000+00:00"
     }
   ]
 }
