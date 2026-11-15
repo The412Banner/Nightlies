@@ -1,0 +1,27 @@
+[dxvk] Do not require 16-bit and 8-bit storage buffer access
+
+Author: StevenMX (github.com/StevenMXZ). This is the change behind the
+"dxvk-3.1-a6xx.wcp" build in StevenMXZ/Winlator-Contents (made for
+Adreno 6xx GPUs). Source commit 6b989c5a3e5d95dc62649163e4284da241250e12
+(2026-10-02, doitsujin/dxvk fork network, parent d30be2ba on master).
+DXVK license (zlib/libpng) applies.
+
+diff --git a/src/dxvk/dxvk_device_info.cpp b/src/dxvk/dxvk_device_info.cpp
+index ab1f56343b9..383e15aef0b 100644
+--- a/src/dxvk/dxvk_device_info.cpp
++++ b/src/dxvk/dxvk_device_info.cpp
+@@ -891,12 +891,12 @@ namespace dxvk {
+       ENABLE_FEATURE(core.features, wideLines, false),
+ 
+       ENABLE_FEATURE(vk11, shaderDrawParameters, true),
+-      ENABLE_FEATURE(vk11, storageBuffer16BitAccess, true),
++      ENABLE_FEATURE(vk11, storageBuffer16BitAccess, false),
+       ENABLE_FEATURE(vk11, storagePushConstant16, false),
+ 
+       ENABLE_FEATURE(vk12, bufferDeviceAddress, true),
+       ENABLE_FEATURE(vk12, descriptorIndexing, true),
+-      ENABLE_FEATURE(vk12, storageBuffer8BitAccess, true),
++      ENABLE_FEATURE(vk12, storageBuffer8BitAccess, false),
+       ENABLE_FEATURE(vk12, storagePushConstant8, false),
+       ENABLE_FEATURE(vk12, shaderUniformTexelBufferArrayDynamicIndexing, false),
+       ENABLE_FEATURE(vk12, shaderStorageTexelBufferArrayDynamicIndexing, false),

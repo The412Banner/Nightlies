@@ -20,10 +20,12 @@ name: DXVK Stable (Patched) — GPLAsync + BinSem
 # empty and it resolves the latest upstream stable release itself.
 #
 # Commit mode (dxvk_commit + version_label): builds one fixed upstream
-# master commit instead of a tag, e.g. the 3.1-a6xx base (6b989c5a,
-# "Do not require 16-bit and 8-bit storage buffer access"). Same patches
-# and checks; the label names the files and the description names the
-# commit.
+# master commit instead of a tag. Same patches and checks; the label
+# names the files and the description names the commit. extra_patch
+# adds one more file from patches/ (strict git apply, before gplasync).
+# Example, the 3.1-a6xx set: dxvk_commit=d30be2baea (master 10-01),
+# version_label=3.1-a6xx, extra_patch=dxvk-a6xx-optional-8-16bit-storage.patch
+# (StevenMX's change from his dxvk-3.1-a6xx build).
 #
 # DELIBERATE DIFFERENCE FROM THE NIGHTLY: the nightly's DXVK jobs carry a
 # compile guard that falls back to a pinned v3.0 + gplasync-3.0-1 tree so
@@ -60,6 +62,10 @@ on:
         default: ''
       version_label:
         description: 'With dxvk_commit only: the name used in the file name and versionName (e.g. 3.1-a6xx -> dxvk-gplasync-3.1-a6xx-1.wcp)'
+        required: false
+        default: ''
+      extra_patch:
+        description: 'Optional: a file in patches/ applied (strictly, git apply) BEFORE gplasync, e.g. dxvk-a6xx-optional-8-16bit-storage.patch'
         required: false
         default: ''
 
@@ -262,6 +268,7 @@ jobs:
         env:
           TAG: ${{ needs.resolve.outputs.tag }}
           FLAVOR: ${{ matrix.flavor }}
+          EXTRA_PATCH: ${{ inputs.extra_patch }}
         run: |
           set -euo pipefail
           PATCHES="$GITHUB_WORKSPACE/patches"
@@ -283,6 +290,17 @@ jobs:
             patch -p1 --fuzz=3 < "$p"
             echo "::endgroup::"
           }
+
+          if [ -n "$EXTRA_PATCH" ]; then
+            case "$EXTRA_PATCH" in */*|..*) echo "::error::extra_patch must be a bare file name in patches/"; exit 1 ;; esac
+            [ -f "$PATCHES/$EXTRA_PATCH" ] || { echo "::error::patches/$EXTRA_PATCH not found"; exit 1; }
+            echo "::group::extra patch $EXTRA_PATCH (strict)"
+            git apply --check -v "$PATCHES/$EXTRA_PATCH" \
+              || { echo "::endgroup::"; echo "::error::$EXTRA_PATCH does not apply cleanly to $TAG"; exit 1; }
+            git apply "$PATCHES/$EXTRA_PATCH"
+            git diff --stat
+            echo "::endgroup::"
+          fi
 
           apply_patch "$PATCHES/dxvk-gplasync-master.patch"
           if [ "$FLAVOR" = "binsem" ]; then
@@ -324,12 +342,16 @@ jobs:
           DESCRIPTION: ${{ matrix.description }}
           MODE: ${{ needs.resolve.outputs.mode }}
           COMMIT: ${{ needs.resolve.outputs.commit }}
+          EXTRA_PATCH: ${{ inputs.extra_patch }}
         run: |
           set -euo pipefail
           cd "$GITHUB_WORKSPACE"
 
           if [ "$MODE" = "commit" ]; then
             DESCRIPTION="${DESCRIPTION} Base: doitsujin/dxvk ${COMMIT:0:8}."
+          fi
+          if [ -n "$EXTRA_PATCH" ]; then
+            DESCRIPTION="${DESCRIPTION} Extra patch: ${EXTRA_PATCH%.patch}."
           fi
           VERSION_NAME="${TAG}-${SUFFIX}"
           WCP="${ASSET_PREFIX}-${VERSION}-${REV}.wcp"
@@ -537,6 +559,7 @@ jobs:
         env:
           TAG: ${{ needs.resolve.outputs.tag }}
           FLAVOR: ${{ matrix.flavor }}
+          EXTRA_PATCH: ${{ inputs.extra_patch }}
         run: |
           set -euo pipefail
           PATCHES="$GITHUB_WORKSPACE/patches"
@@ -553,6 +576,17 @@ jobs:
             patch -p1 --fuzz=3 < "$p"
             echo "::endgroup::"
           }
+
+          if [ -n "$EXTRA_PATCH" ]; then
+            case "$EXTRA_PATCH" in */*|..*) echo "::error::extra_patch must be a bare file name in patches/"; exit 1 ;; esac
+            [ -f "$PATCHES/$EXTRA_PATCH" ] || { echo "::error::patches/$EXTRA_PATCH not found"; exit 1; }
+            echo "::group::extra patch $EXTRA_PATCH (strict)"
+            git apply --check -v "$PATCHES/$EXTRA_PATCH" \
+              || { echo "::endgroup::"; echo "::error::$EXTRA_PATCH does not apply cleanly to $TAG"; exit 1; }
+            git apply "$PATCHES/$EXTRA_PATCH"
+            git diff --stat
+            echo "::endgroup::"
+          fi
 
           apply_patch "$PATCHES/dxvk-gplasync-master.patch"
           if [ "$FLAVOR" = "binsem" ]; then
@@ -588,12 +622,16 @@ jobs:
           DESCRIPTION: ${{ matrix.description }}
           MODE: ${{ needs.resolve.outputs.mode }}
           COMMIT: ${{ needs.resolve.outputs.commit }}
+          EXTRA_PATCH: ${{ inputs.extra_patch }}
         run: |
           set -euo pipefail
           cd "$GITHUB_WORKSPACE"
 
           if [ "$MODE" = "commit" ]; then
             DESCRIPTION="${DESCRIPTION} Base: doitsujin/dxvk ${COMMIT:0:8}."
+          fi
+          if [ -n "$EXTRA_PATCH" ]; then
+            DESCRIPTION="${DESCRIPTION} Extra patch: ${EXTRA_PATCH%.patch}."
           fi
           VERSION_NAME="${TAG}-${SUFFIX}"
           WCP="${ASSET_PREFIX}-${VERSION}-${REV}.wcp"
