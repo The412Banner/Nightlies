@@ -6,6 +6,25 @@
 
 ---
 
+## Session — 2026-11-15
+
+### [feat] — DXVK 3.1-a6xx GPLAsync builds (2026-11-15, feat/dxvk-stable-commit 41cc8bc0, artifacts only, not merged)
+**Why:** the user asked to rebuild StevenMXZ's `dxvk-3.1-a6xx.wcp` (StevenMXZ/Winlator-Contents/DXVK, uploaded 2026-10-02) as a gplasync version on Nightlies.
+**Findings:** Steven's file = xz .wcp, MSVC build with .pdb files, versionName `3.1-a6xx`, DLL version `v3.1.1-56-g6b989c5a`, no gplasync. 6b989c5a is StevenMX's own commit (fork network, not on doitsujin/dxvk master; parent d30be2ba = master 2026-10-01). It changes 2 lines in `src/dxvk/dxvk_device_info.cpp`: `storageBuffer16BitAccess` and `storageBuffer8BitAccess` go from required to optional. Upstream master (71bf4bad, 11-14) still requires both.
+**Changes:**
+- `dxvk-stable-patched.yml`: new inputs `dxvk_commit` (must be on upstream master; full clone so the DLL version names the commit), `version_label` (names the files/versionName), `extra_patch` (bare file in `patches/`, strict `git apply` before gplasync; description names it). Tag mode unchanged.
+- `patches/dxvk-a6xx-optional-8-16bit-storage.patch`: StevenMX's change with a credit header.
+**CI:** run 43755289378 failed on purpose (guard: 6b989c5a not on master). Run 43755609983 (41cc8bc0, dxvk_commit=d30be2ba, version_label=3.1-a6xx, extra_patch=dxvk-a6xx-optional-8-16bit-storage.patch) GREEN, all 5 jobs; every job checked out d30be2ba (`v3.1.1-55-gd30be2ba`), applied the extra patch (dxvk_device_info.cpp 4 ++--), gplasync (+binsem) and passed verify-dxvk-wcp.sh. Artifacts:
+| file | size | sha256 |
+|---|---|---|
+| dxvk-gplasync-3.1-a6xx-1.wcp | 8,721,156 | e04ac3b7…f3b4 |
+| dxvk-gplasync-arm64ec-3.1-a6xx-1.wcp | 6,427,677 | 24abc960…25d7 |
+| dxvk-binsem-gplasync-3.1-a6xx-1.wcp | 7,796,792 | 4a923131…67ef |
+| dxvk-binsem-gplasync-arm64ec-3.1-a6xx-1.wcp | 6,431,557 | c3b36308…412c |
+Copied to the Pocket FIT /sdcard/Download (hash-checked host + device).
+**Device:** NOT device-tested.
+**Open:** publish (where?) and merge of the branch wait for the user.
+
 ## Session — 2026-11-10
 
 ### [feat] — experimental Box64EC in the all-in-one nightly (2026-11-10, main 0760bfce, merged; first nightly pending)
