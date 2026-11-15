@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-11-15T11:46:15Z",
+  "triggered_at": "2026-11-15T18:16:41Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "085b7cb",
-      "new": "b78a8ca",
-      "full": "b78a8ca86ed14b9f85f156d5c609c5788c1ad4a7",
-      "msg": "[LA64_DYNAREC] Defer SSE scalar upper-lane clears (#4722)",
-      "date": "2026-11-15T11:41:37Z"
+      "old": "b78a8ca",
+      "new": "35c0983",
+      "full": "35c098362930aeff9f374a15505517df19ebdba4",
+      "msg": "[RV64_DYNAREC] Reworked cvt opcodes (#4725)",
+      "date": "2026-11-15T17:38:55Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "2502472",
+      "new": "5346089",
+      "full": "5346089cecacf94b1eb459ac3d404c3b76131b89",
+      "msg": "[meta] Relax low resolution matching filter",
+      "date": "2026-11-15T17:52:36Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "c9ce420",
-      "new": "66b6dda",
-      "full": "66b6dda0bf2dab9e8362321b057e15652047be34",
-      "msg": "zink: enable VK_EXT_vertex_address_binding_unrestricted",
-      "date": "2026-11-15T10:11:33.000+00:00"
+      "old": "66b6dda",
+      "new": "a062ae1",
+      "full": "a062ae1df4bd9f8109f609aeeccd159a5fa6ca94",
+      "msg": "zink: gate conditional rendering buffer usage behind the extension",
+      "date": "2026-11-15T17:31:27.000+00:00"
     }
   ]
 }
