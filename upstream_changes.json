@@ -1,23 +1,41 @@
 {
-  "triggered_at": "2026-11-16T03:58:22Z",
+  "triggered_at": "2026-11-16T12:27:32Z",
   "changed": [
     {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "ea43314",
-      "new": "8e95a99",
-      "full": "8e95a994a014b0e68fa38b7bf17d84987102e374",
-      "msg": "Merge pull request #6134 from Sonicadvance1/322",
-      "date": "2026-11-16T01:44:34Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "83e26cf",
+      "new": "7fab053",
+      "full": "7fab05334445948c918281b54f2a604ff63337f7",
+      "msg": "[GDBJIT] Reworked gdbjit support (#4732)",
+      "date": "2026-11-16T11:47:20Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "5b1089c",
+      "new": "f2963ee",
+      "full": "f2963ee23c2a392d72c1e383128129b92e53df25",
+      "msg": "vkd3d: Report sphere and LSS shader intrinsic support.",
+      "date": "2026-11-16T10:29:21Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "71bf4ba",
+      "new": "1f1dfc6",
+      "full": "1f1dfc65fc59e7f3b81766e0536d0c9d4639f1a6",
+      "msg": "[dxgi] Add DXVK_HOTPATCHABLE to swapchain dispatcher",
+      "date": "2026-11-16T11:02:51Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "13baeb7",
-      "new": "6c09d07",
-      "full": "6c09d07c567eb8c9624b4026e49d09fd83166ae0",
-      "msg": "util/u_perfetto: Split the simple C api to a separate header.",
-      "date": "2026-11-16T00:25:36.000+00:00"
+      "old": "6c09d07",
+      "new": "4fac831",
+      "full": "4fac8318e4a533ea8be4782ba3e0ddb8742b14e6",
+      "msg": "rocket: cache BO mappings across transfers",
+      "date": "2026-11-16T10:08:35.000+00:00"
     }
   ]
 }
