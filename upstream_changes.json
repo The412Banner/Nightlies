@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-11-15T23:17:10Z",
+  "triggered_at": "2026-11-16T03:58:22Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "35c0983",
-      "new": "83e26cf",
-      "full": "83e26cfb8e045b63fa0fce45dd6309e6111c1c8f",
-      "msg": "[RV64_DYNAREC] Ported df_notneeded from Arm64 (#4726)",
-      "date": "2026-11-15T21:37:08Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "ea43314",
+      "new": "8e95a99",
+      "full": "8e95a994a014b0e68fa38b7bf17d84987102e374",
+      "msg": "Merge pull request #6134 from Sonicadvance1/322",
+      "date": "2026-11-16T01:44:34Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "a062ae1",
-      "new": "13baeb7",
-      "full": "13baeb70c066a9f82d2bcfb29f06e4865212affa",
-      "msg": "d3d12: Handle shader variant compilation failures",
-      "date": "2026-11-15T20:34:32.000+00:00"
+      "old": "13baeb7",
+      "new": "6c09d07",
+      "full": "6c09d07c567eb8c9624b4026e49d09fd83166ae0",
+      "msg": "util/u_perfetto: Split the simple C api to a separate header.",
+      "date": "2026-11-16T00:25:36.000+00:00"
     }
   ]
 }
