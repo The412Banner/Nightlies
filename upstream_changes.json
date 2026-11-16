@@ -1,41 +1,41 @@
 {
-  "triggered_at": "2026-11-16T12:27:32Z",
+  "triggered_at": "2026-11-16T22:40:53Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "83e26cf",
-      "new": "7fab053",
-      "full": "7fab05334445948c918281b54f2a604ff63337f7",
-      "msg": "[GDBJIT] Reworked gdbjit support (#4732)",
-      "date": "2026-11-16T11:47:20Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "5b1089c",
-      "new": "f2963ee",
-      "full": "f2963ee23c2a392d72c1e383128129b92e53df25",
-      "msg": "vkd3d: Report sphere and LSS shader intrinsic support.",
-      "date": "2026-11-16T10:29:21Z"
+      "old": "7fab053",
+      "new": "27c8275",
+      "full": "27c8275d8295f521bb40faf920788ac5116dbfb0",
+      "msg": "[PERFMAP] Enlarged perfmap buffer size (#4733)",
+      "date": "2026-11-16T20:02:20Z"
     },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "71bf4ba",
-      "new": "1f1dfc6",
-      "full": "1f1dfc65fc59e7f3b81766e0536d0c9d4639f1a6",
-      "msg": "[dxgi] Add DXVK_HOTPATCHABLE to swapchain dispatcher",
-      "date": "2026-11-16T11:02:51Z"
+      "old": "1f1dfc6",
+      "new": "7046b43",
+      "full": "7046b43a619f22feedadbbc39de9c9ccce159ed3",
+      "msg": "Revert \"[dxgi] Add DXVK_HOTPATCHABLE to swapchain dispatcher\"",
+      "date": "2026-11-16T17:31:34Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "5346089",
+      "new": "730f00b",
+      "full": "730f00bbe61740c6baa586a280137b94b82f15c7",
+      "msg": "[meta] Only update VSync status on successful proxied surface flips",
+      "date": "2026-11-16T18:51:39Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "6c09d07",
-      "new": "4fac831",
-      "full": "4fac8318e4a533ea8be4782ba3e0ddb8742b14e6",
-      "msg": "rocket: cache BO mappings across transfers",
-      "date": "2026-11-16T10:08:35.000+00:00"
+      "old": "4fac831",
+      "new": "cd6d3a7",
+      "full": "cd6d3a730e2715aff0f83c974da4766181d16a20",
+      "msg": "gen: Reject byte Vx1 and VxH sources on Xe2+",
+      "date": "2026-11-16T21:57:00.000+00:00"
     }
   ]
 }
