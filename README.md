@@ -51,8 +51,8 @@ A single JSON index of every component published here — point any compatible W
 <!-- NIGHTLY-LATEST-START -->
 | | |
 | :--- | :--- |
-| **Release** | [🔗 nightly-20261115-232147](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261115-232147) |
-| **FEXCore** | [`ea43314f0`](https://github.com/FEX-Emu/FEX/commit/ea43314f0) — FEX-2611+47-Nightly-ea43314f0 |
+| **Release** | [🔗 nightly-20261116-040427](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261116-040427) |
+| **FEXCore** | [`8e95a994a`](https://github.com/FEX-Emu/FEX/commit/8e95a994a) — FEX-2611+49-Nightly-8e95a994a |
 | **VKD3D-Proton (Std)** | [`5b1089c8`](https://github.com/HansKristian-Work/vkd3d-proton/commit/5b1089c8) |
 | **VKD3D-Proton (ARM64EC)** | [`5b1089c8`](https://github.com/HansKristian-Work/vkd3d-proton/commit/5b1089c8) |
 | **DXVK (GPLAsync)** | [`71bf4bad`](https://github.com/doitsujin/dxvk/commit/71bf4bad) |
@@ -62,8 +62,8 @@ A single JSON index of every component published here — point any compatible W
 | **D7VK (DDraw/D3D7)** | [`5346089ce`](https://github.com/WinterSnowfall/d7vk/commit/5346089ce) — DDraw Wrapper slot; `.tzst` = bundled-asset refresh |
 | **Box64** | [ptitSeb/box64](https://github.com/ptitSeb/box64/commits/main) + [Pipetto/box64](https://github.com/Pipetto-crypto/box64/commits/main) |
 | **Box64EC (ARM64EC)** | [`83e26cfb8`](https://github.com/ptitSeb/box64/commit/83e26cfb8e045b63fa0fce45dd6309e6111c1c8f) — **experimental, not an official box64 release, not proven working** |
-| **Turnip** | [v27.0.0-20261115-r3](https://github.com/The412Banner/Banners-Turnip/releases/tag/v27.0.0-20261115-r3) — Turnip v27.0.0-20261115-r3 |
-| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261115-232147) |
+| **Turnip** | [v27.0.0-20261116](https://github.com/The412Banner/Banners-Turnip/releases/tag/v27.0.0-20261116) — Turnip v27.0.0-20261116 |
+| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261116-040427) |
 <!-- NIGHTLY-LATEST-END -->
 
 </details>
