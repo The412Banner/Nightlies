@@ -1,41 +1,32 @@
 {
-  "triggered_at": "2026-11-16T22:40:53Z",
+  "triggered_at": "2026-11-17T04:54:00Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "7fab053",
-      "new": "27c8275",
-      "full": "27c8275d8295f521bb40faf920788ac5116dbfb0",
-      "msg": "[PERFMAP] Enlarged perfmap buffer size (#4733)",
-      "date": "2026-11-16T20:02:20Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "8e95a99",
+      "new": "be66e03",
+      "full": "be66e03d65217f53a7a2e5af46473cc9a79ce3f8",
+      "msg": "Merge pull request #6139 from Sonicadvance1/324",
+      "date": "2026-11-17T04:28:07Z"
     },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "1f1dfc6",
-      "new": "7046b43",
-      "full": "7046b43a619f22feedadbbc39de9c9ccce159ed3",
-      "msg": "Revert \"[dxgi] Add DXVK_HOTPATCHABLE to swapchain dispatcher\"",
-      "date": "2026-11-16T17:31:34Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "5346089",
-      "new": "730f00b",
-      "full": "730f00bbe61740c6baa586a280137b94b82f15c7",
-      "msg": "[meta] Only update VSync status on successful proxied surface flips",
-      "date": "2026-11-16T18:51:39Z"
+      "old": "7046b43",
+      "new": "c6f453f",
+      "full": "c6f453f710a6be3246e893068b44ec5136929d8e",
+      "msg": "[dxgi] Add DXVK_HOTPATCHABLE to swapchain dispatcher (Round #2)",
+      "date": "2026-11-16T22:50:20Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "4fac831",
-      "new": "cd6d3a7",
-      "full": "cd6d3a730e2715aff0f83c974da4766181d16a20",
-      "msg": "gen: Reject byte Vx1 and VxH sources on Xe2+",
-      "date": "2026-11-16T21:57:00.000+00:00"
+      "old": "cd6d3a7",
+      "new": "6dfa32a",
+      "full": "6dfa32a85f91f2227e4003d13e51eb24be7892b8",
+      "msg": "vtn: Replace u_memstream in create_shader_name() with _mesa_string_buffer",
+      "date": "2026-11-17T03:47:29.000+00:00"
     }
   ]
 }
