@@ -1,14 +1,32 @@
 {
-  "triggered_at": "2026-11-17T14:00:10Z",
+  "triggered_at": "2026-11-17T22:06:36Z",
   "changed": [
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "f2963ee",
+      "new": "bfdb811",
+      "full": "bfdb811c6d7ccd8c6151f19532654b063a6631f2",
+      "msg": "dxil-spirv: Update submodule.",
+      "date": "2026-11-17T14:45:56Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "730f00b",
+      "new": "58edd5a",
+      "full": "58edd5ab45a2929bf7b24dae88bf5acf659798bc",
+      "msg": "[d3d6/5/3] Return a static device GUID in EnumDevices",
+      "date": "2026-11-17T15:56:07Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "6dfa32a",
-      "new": "4912245",
-      "full": "4912245c6fa768e4a9c90686e724195605d24b2f",
-      "msg": "intel/brw: Fix sparse sampler residency with efficient 64bit addressing enabled",
-      "date": "2026-11-17T13:35:59.000+00:00"
+      "old": "4912245",
+      "new": "55cfd6e",
+      "full": "55cfd6e78cb29a34016f000786366c34a1b6064f",
+      "msg": "tu, ir3: Enable storagePushConstant{8,16}",
+      "date": "2026-11-17T21:24:47.000+00:00"
     }
   ]
 }
