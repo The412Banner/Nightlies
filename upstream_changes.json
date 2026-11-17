@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-11-17T04:54:00Z",
+  "triggered_at": "2026-11-17T14:00:10Z",
   "changed": [
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "8e95a99",
-      "new": "be66e03",
-      "full": "be66e03d65217f53a7a2e5af46473cc9a79ce3f8",
-      "msg": "Merge pull request #6139 from Sonicadvance1/324",
-      "date": "2026-11-17T04:28:07Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "7046b43",
-      "new": "c6f453f",
-      "full": "c6f453f710a6be3246e893068b44ec5136929d8e",
-      "msg": "[dxgi] Add DXVK_HOTPATCHABLE to swapchain dispatcher (Round #2)",
-      "date": "2026-11-16T22:50:20Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "cd6d3a7",
-      "new": "6dfa32a",
-      "full": "6dfa32a85f91f2227e4003d13e51eb24be7892b8",
-      "msg": "vtn: Replace u_memstream in create_shader_name() with _mesa_string_buffer",
-      "date": "2026-11-17T03:47:29.000+00:00"
+      "old": "6dfa32a",
+      "new": "4912245",
+      "full": "4912245c6fa768e4a9c90686e724195605d24b2f",
+      "msg": "intel/brw: Fix sparse sampler residency with efficient 64bit addressing enabled",
+      "date": "2026-11-17T13:35:59.000+00:00"
     }
   ]
 }
