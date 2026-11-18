@@ -1,32 +1,41 @@
 {
-  "triggered_at": "2026-11-18T12:40:54Z",
+  "triggered_at": "2026-11-18T21:00:51Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "27c8275",
-      "new": "57f0c53",
-      "full": "57f0c5309e9110744b8e05fb7a85f46ae220f49b",
-      "msg": "[BOX32][WRAPPER] addeding a few functions, redoing #4706 (for #4714)",
-      "date": "2026-11-18T10:33:30Z"
+      "old": "57f0c53",
+      "new": "6f0df3e",
+      "full": "6f0df3efe29aedae73e516277ce9cb2378779960",
+      "msg": "[WRAPPER] Reworked with wrapperhelper wrapped gssapikrb5",
+      "date": "2026-11-18T13:04:04Z"
     },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "c6f453f",
-      "new": "ad73cfe",
-      "full": "ad73cfe0480be1b95fd2992e5f418ca2d0483cdb",
-      "msg": "[dxgi] Rework Intel XeSS workaround",
-      "date": "2026-11-18T11:46:48Z"
+      "old": "ad73cfe",
+      "new": "d9af364",
+      "full": "d9af36496fef7a5b24f0b916bfd578b9f875d9b1",
+      "msg": "[util] Add Package Installer and catch all to Sims 2 pile",
+      "date": "2026-11-18T18:28:10Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "3aaaed3",
+      "new": "26b49a4",
+      "full": "26b49a48dc254010beb4b5f47da369415979e75a",
+      "msg": "[meta] Also use static desc structs in EnumDevices",
+      "date": "2026-11-18T20:38:50Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "d8cfbe8",
-      "new": "22fddf3",
-      "full": "22fddf363a3785ba046eab5e3d09e59de2fea2dd",
-      "msg": "gallium/radeonsi: add missing NULL checks after allocations",
-      "date": "2026-11-18T12:10:31.000+00:00"
+      "old": "22fddf3",
+      "new": "dce62b0",
+      "full": "dce62b06f1a6a9e75e414e4f9149def6f633e859",
+      "msg": "Jay: Dont' predicate SEND with gateway message",
+      "date": "2026-11-18T20:30:04.000+00:00"
     }
   ]
 }
