@@ -51,19 +51,19 @@ A single JSON index of every component published here — point any compatible W
 <!-- NIGHTLY-LATEST-START -->
 | | |
 | :--- | :--- |
-| **Release** | [🔗 nightly-20261118-040322](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261118-040322) |
+| **Release** | [🔗 nightly-20261118-124810](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261118-124810) |
 | **FEXCore** | [`be66e03d6`](https://github.com/FEX-Emu/FEX/commit/be66e03d6) — FEX-2611+53-Nightly-be66e03d6 |
 | **VKD3D-Proton (Std)** | [`bfdb811c`](https://github.com/HansKristian-Work/vkd3d-proton/commit/bfdb811c) |
 | **VKD3D-Proton (ARM64EC)** | [`bfdb811c`](https://github.com/HansKristian-Work/vkd3d-proton/commit/bfdb811c) |
-| **DXVK (GPLAsync)** | [`c6f453f7`](https://github.com/doitsujin/dxvk/commit/c6f453f7) |
-| **DXVK (ARM64EC)** | [`c6f453f7`](https://github.com/doitsujin/dxvk/commit/c6f453f7) |
+| **DXVK (GPLAsync)** | [`ad73cfe0`](https://github.com/doitsujin/dxvk/commit/ad73cfe0) |
+| **DXVK (ARM64EC)** | [`ad73cfe0`](https://github.com/doitsujin/dxvk/commit/ad73cfe0) |
 | **DXVK BinSem (GPLAsync)** | [`97fe0c66`](https://github.com/doitsujin/dxvk/commit/97fe0c66) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |
 | **DXVK BinSem (ARM64EC)** | [`97fe0c66`](https://github.com/doitsujin/dxvk/commit/97fe0c66) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |
 | **D7VK (DDraw/D3D7)** | [`3aaaed302`](https://github.com/WinterSnowfall/d7vk/commit/3aaaed302) — DDraw Wrapper slot; `.tzst` = bundled-asset refresh |
 | **Box64** | [ptitSeb/box64](https://github.com/ptitSeb/box64/commits/main) + [Pipetto/box64](https://github.com/Pipetto-crypto/box64/commits/main) |
-| **Box64EC (ARM64EC)** | [`27c8275d8`](https://github.com/ptitSeb/box64/commit/27c8275d8295f521bb40faf920788ac5116dbfb0) — **experimental, not an official box64 release, not proven working** |
-| **Turnip** | [v27.0.0-20261118](https://github.com/The412Banner/Banners-Turnip/releases/tag/v27.0.0-20261118) — Turnip v27.0.0-20261118 |
-| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261118-040322) |
+| **Box64EC (ARM64EC)** | [`57f0c5309`](https://github.com/ptitSeb/box64/commit/57f0c5309e9110744b8e05fb7a85f46ae220f49b) — **experimental, not an official box64 release, not proven working** |
+| **Turnip** | [v27.0.0-20261118-r2](https://github.com/The412Banner/Banners-Turnip/releases/tag/v27.0.0-20261118-r2) — Turnip v27.0.0-20261118-r2 |
+| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261118-124810) |
 <!-- NIGHTLY-LATEST-END -->
 
 </details>
