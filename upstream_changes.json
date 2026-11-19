@@ -1,23 +1,32 @@
 {
-  "triggered_at": "2026-11-19T02:53:20Z",
+  "triggered_at": "2026-11-19T10:57:09Z",
   "changed": [
     {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "bfdb811",
-      "new": "d6659d8",
-      "full": "d6659d8b9061b7a87128e75127e451710f8603b2",
-      "msg": "vkd3d: Make use of static app DB.",
-      "date": "2026-11-18T21:08:53Z"
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "6f0df3e",
+      "new": "5138450",
+      "full": "5138450d40a5aee171f87756e4cc3b16652ca390",
+      "msg": "[RV64_DYNAREC] Small optimization on simd analyze cost (#4750)",
+      "date": "2026-11-19T10:47:26Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "26b49a4",
+      "new": "ed9a4f2",
+      "full": "ed9a4f2a0ebbcfc39eef6aa4a3225ae433bcbefd",
+      "msg": "[meta] Also use static desc structs in EnumDevices",
+      "date": "2026-11-19T10:40:01Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "dce62b0",
-      "new": "b591938",
-      "full": "b591938239bb52c5c3d944238299b459aab8e6ff",
-      "msg": "nvk: add support for performance counters",
-      "date": "2026-11-19T01:58:43.000+00:00"
+      "old": "b591938",
+      "new": "09115be",
+      "full": "09115be787e133496a03f2f45f858c208793fe17",
+      "msg": "vc4/simulator: protect simulator BO rallocs with the mutex",
+      "date": "2026-11-19T10:36:32.000+00:00"
     }
   ]
 }
