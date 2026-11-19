@@ -1,41 +1,23 @@
 {
-  "triggered_at": "2026-11-18T21:00:51Z",
+  "triggered_at": "2026-11-19T02:53:20Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "57f0c53",
-      "new": "6f0df3e",
-      "full": "6f0df3efe29aedae73e516277ce9cb2378779960",
-      "msg": "[WRAPPER] Reworked with wrapperhelper wrapped gssapikrb5",
-      "date": "2026-11-18T13:04:04Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "ad73cfe",
-      "new": "d9af364",
-      "full": "d9af36496fef7a5b24f0b916bfd578b9f875d9b1",
-      "msg": "[util] Add Package Installer and catch all to Sims 2 pile",
-      "date": "2026-11-18T18:28:10Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "3aaaed3",
-      "new": "26b49a4",
-      "full": "26b49a48dc254010beb4b5f47da369415979e75a",
-      "msg": "[meta] Also use static desc structs in EnumDevices",
-      "date": "2026-11-18T20:38:50Z"
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "bfdb811",
+      "new": "d6659d8",
+      "full": "d6659d8b9061b7a87128e75127e451710f8603b2",
+      "msg": "vkd3d: Make use of static app DB.",
+      "date": "2026-11-18T21:08:53Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "22fddf3",
-      "new": "dce62b0",
-      "full": "dce62b06f1a6a9e75e414e4f9149def6f633e859",
-      "msg": "Jay: Dont' predicate SEND with gateway message",
-      "date": "2026-11-18T20:30:04.000+00:00"
+      "old": "dce62b0",
+      "new": "b591938",
+      "full": "b591938239bb52c5c3d944238299b459aab8e6ff",
+      "msg": "nvk: add support for performance counters",
+      "date": "2026-11-19T01:58:43.000+00:00"
     }
   ]
 }
