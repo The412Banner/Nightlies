@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-11-20T01:33:42Z",
+  "triggered_at": "2026-11-20T09:28:34Z",
   "changed": [
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "be66e03",
-      "new": "cfc74fe",
-      "full": "cfc74fe80fdd9082119144b818964ede1feab78a",
-      "msg": "Merge pull request #6140 from javelina-pkwy/perf/sha1-peephole",
-      "date": "2026-11-19T20:06:22Z"
+      "old": "cfc74fe",
+      "new": "031d6d1",
+      "full": "031d6d1edeb68ea1a224f1c4aebac0c0b342f438",
+      "msg": "Merge pull request #6143 from Sonicadvance1/325",
+      "date": "2026-11-20T04:05:49Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "9db7b9f",
-      "new": "0db4e29",
-      "full": "0db4e290a0a2d95709203abd45f21f464b71f24c",
-      "msg": "kk: Avoid kernel panic due to out of device memory in Metal",
-      "date": "2026-11-20T00:10:25.000+00:00"
+      "old": "0db4e29",
+      "new": "c9a08fb",
+      "full": "c9a08fbab483ea85816e0b1241f188c2393af395",
+      "msg": "radv: fix a regression with dynamic buffers and ESO",
+      "date": "2026-11-20T08:49:43.000+00:00"
     }
   ]
 }
