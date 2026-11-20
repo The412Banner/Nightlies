@@ -1,23 +1,50 @@
 {
-  "triggered_at": "2026-11-20T09:28:34Z",
+  "triggered_at": "2026-11-20T18:10:13Z",
   "changed": [
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "cfc74fe",
-      "new": "031d6d1",
-      "full": "031d6d1edeb68ea1a224f1c4aebac0c0b342f438",
-      "msg": "Merge pull request #6143 from Sonicadvance1/325",
-      "date": "2026-11-20T04:05:49Z"
+      "old": "031d6d1",
+      "new": "b4ab982",
+      "full": "b4ab98290341630c8dd10b878f7fb51393815d6d",
+      "msg": "Merge pull request #6136 from yannhodiesne/nix-flake",
+      "date": "2026-11-20T16:55:50Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "3b5dd10",
+      "new": "cae8353",
+      "full": "cae8353ed7959c448ac976342052de1ec2b81715",
+      "msg": "vkd3d: Add similar TGSM_BARRIER entry for SF6.",
+      "date": "2026-11-20T14:08:59Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "d9af364",
+      "new": "727d3fc",
+      "full": "727d3fc4b8e72f84441ebea3e660a9cf3b1b36c0",
+      "msg": "[d3d9] Call endFrame during presentation",
+      "date": "2026-11-20T13:02:30Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "ed9a4f2",
+      "new": "9c2e924",
+      "full": "9c2e9247a2fdcbf9ac04838aadfa292e76eaf305",
+      "msg": "[meta] Add a driver dll entry for Intel",
+      "date": "2026-11-20T12:53:14Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "0db4e29",
-      "new": "c9a08fb",
-      "full": "c9a08fbab483ea85816e0b1241f188c2393af395",
-      "msg": "radv: fix a regression with dynamic buffers and ESO",
-      "date": "2026-11-20T08:49:43.000+00:00"
+      "old": "c9a08fb",
+      "new": "fdd523e",
+      "full": "fdd523e0eb4c4a0cf9838fb4c87c2575ad3df030",
+      "msg": "zink/ci: no longer disable reporting flakes on ci-tron jobs",
+      "date": "2026-11-20T17:41:52.000+00:00"
     }
   ]
 }
