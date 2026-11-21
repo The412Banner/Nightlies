@@ -1,50 +1,32 @@
 {
-  "triggered_at": "2026-11-20T18:10:13Z",
+  "triggered_at": "2026-11-21T00:31:35Z",
   "changed": [
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "031d6d1",
-      "new": "b4ab982",
-      "full": "b4ab98290341630c8dd10b878f7fb51393815d6d",
-      "msg": "Merge pull request #6136 from yannhodiesne/nix-flake",
-      "date": "2026-11-20T16:55:50Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "3b5dd10",
-      "new": "cae8353",
-      "full": "cae8353ed7959c448ac976342052de1ec2b81715",
-      "msg": "vkd3d: Add similar TGSM_BARRIER entry for SF6.",
-      "date": "2026-11-20T14:08:59Z"
+      "old": "b4ab982",
+      "new": "bce85d9",
+      "full": "bce85d9941b2d37755f3b44a4f6e178617d94fba",
+      "msg": "Merge pull request #6144 from Ansud/main",
+      "date": "2026-11-20T20:32:22Z"
     },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "d9af364",
-      "new": "727d3fc",
-      "full": "727d3fc4b8e72f84441ebea3e660a9cf3b1b36c0",
-      "msg": "[d3d9] Call endFrame during presentation",
-      "date": "2026-11-20T13:02:30Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "ed9a4f2",
-      "new": "9c2e924",
-      "full": "9c2e9247a2fdcbf9ac04838aadfa292e76eaf305",
-      "msg": "[meta] Add a driver dll entry for Intel",
-      "date": "2026-11-20T12:53:14Z"
+      "old": "727d3fc",
+      "new": "f90f1bf",
+      "full": "f90f1bf180f41356695ddf3df6af62119fb64a3e",
+      "msg": "[dxvk] Disable point scaling based on PositionT usage",
+      "date": "2026-11-20T21:31:38Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "c9a08fb",
-      "new": "fdd523e",
-      "full": "fdd523e0eb4c4a0cf9838fb4c87c2575ad3df030",
-      "msg": "zink/ci: no longer disable reporting flakes on ci-tron jobs",
-      "date": "2026-11-20T17:41:52.000+00:00"
+      "old": "fdd523e",
+      "new": "0c418c5",
+      "full": "0c418c5054a1223668c73614227c5f4cb67addaf",
+      "msg": "gfxstream: migrate Vulkan objects to vk_object_base and drop global locks",
+      "date": "2026-11-20T23:53:11.000+00:00"
     }
   ]
 }
