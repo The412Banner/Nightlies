@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-11-21T07:53:08Z",
+  "triggered_at": "2026-11-21T15:48:56Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "3e5a0b5",
-      "new": "3de7e2a",
-      "full": "3de7e2a68038b52c331b2fa5ee817f8b7fe6fcc4",
-      "msg": "[ELF] Fixed a potential crash on",
-      "date": "2026-11-21T07:36:45Z"
-    },
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "bce85d9",
-      "new": "490bb02",
-      "full": "490bb02f6e6b7b50f17049e5bb254bd5a6a2b779",
-      "msg": "Merge pull request #6147 from cjacek/avx32",
-      "date": "2026-11-21T01:09:35Z"
+      "old": "490bb02",
+      "new": "53e1484",
+      "full": "53e148474caff8a8eae50e66a9da643da232b3d9",
+      "msg": "Merge pull request #6148 from Sonicadvance1/327",
+      "date": "2026-11-21T14:17:47Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "f90f1bf",
+      "new": "3d58463",
+      "full": "3d584633c1b2d9822d905a22434d10c534f4fec5",
+      "msg": "Add ARM64 NEON support for bit utilities in util_bit.h",
+      "date": "2026-11-21T13:12:58Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "0c418c5",
-      "new": "c9a875b",
-      "full": "c9a875b5187c89cf1e9918feb936691456cd7ee5",
-      "msg": "anv: ensure one BVH node is always encoded",
-      "date": "2026-11-21T07:29:09.000+00:00"
+      "old": "c9a875b",
+      "new": "98fc8b8",
+      "full": "98fc8b8f62a5a455f5353cbe19b510f8faf88947",
+      "msg": "jay: Uniformize invocation index for readInvocation",
+      "date": "2026-11-21T10:23:54.000+00:00"
     }
   ]
 }
