@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-11-21T15:48:56Z",
+  "triggered_at": "2026-11-21T21:22:09Z",
   "changed": [
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "490bb02",
-      "new": "53e1484",
-      "full": "53e148474caff8a8eae50e66a9da643da232b3d9",
-      "msg": "Merge pull request #6148 from Sonicadvance1/327",
-      "date": "2026-11-21T14:17:47Z"
-    },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "f90f1bf",
-      "new": "3d58463",
-      "full": "3d584633c1b2d9822d905a22434d10c534f4fec5",
-      "msg": "Add ARM64 NEON support for bit utilities in util_bit.h",
-      "date": "2026-11-21T13:12:58Z"
+      "old": "3d58463",
+      "new": "9e57fa0",
+      "full": "9e57fa0b2c5b495ba1c890017d659935e5f1df65",
+      "msg": "[build] Reinstate former x86-64 build path",
+      "date": "2026-11-21T20:30:28Z"
+    },
+    {
+      "repo": "WinterSnowfall/d7vk",
+      "name": "D7VK (DDraw/D3D7)",
+      "old": "9c2e924",
+      "new": "9fb6a2d",
+      "full": "9fb6a2d5046bbda0ab31d8399b68f6e979127320",
+      "msg": "[meta] Add a driver dll entry for Intel",
+      "date": "2026-11-21T19:30:56Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "c9a875b",
-      "new": "98fc8b8",
-      "full": "98fc8b8f62a5a455f5353cbe19b510f8faf88947",
-      "msg": "jay: Uniformize invocation index for readInvocation",
-      "date": "2026-11-21T10:23:54.000+00:00"
+      "old": "98fc8b8",
+      "new": "ef59438",
+      "full": "ef594386e28b9a01ab00d2190d5960d3eee8fe04",
+      "msg": "dzn: Drop the unused vk_sync reset callback",
+      "date": "2026-11-21T18:46:33.000+00:00"
     }
   ]
 }
