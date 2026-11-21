@@ -6,6 +6,15 @@
 
 ---
 
+## Session — 2026-11-20
+
+### [fix] — Nightly drops the DXVK BinSem builds (2026-11-20, fix/drop-binsem-nightly a3fdc215, merged main)
+**Why:** the user asked to drop the BinSem nightlies. Every all-in-one nightly since at least 2026-10-23 (runs 39941270296 … 44790217449) shipped the pinned v3.0 fallback (`DXVK-v3.0-binsem-gplasync-97fe0c66`): `patches/dxvk-binary-semaphores-master.patch` no longer applies to DXVK master 727d3fc4 (dxvk_cmdlist.cpp 3/8, dxvk_cmdlist.h 1/2, dxvk_queue hunks fail), the job stayed green and the warning named the gplasync patch. The bug BinSem worked around (Turnip-KGSL timeline-semaphore FPS drop in DXVK 2.5+) came from 0-timeout waits turning into forever waits, fixed in Mesa e984ef29 (MR 44838, merged 2026-10-08). The patch only acts with `DXVK_DISABLE_TIMELINE_SEMAPHORES=1`, which no app sets by default.
+**Changes:** `new-All-in-one-nightly+zips-latest-stable.yml`: removed jobs `build-dxvk-binsem` + `build-dxvk-binsem-arm64ec`, their `create-release` needs and env, the release-body table rows, file list items 12/13 (D7VK and Turnip now 12/13), the "DXVK BinSem fallback" section, and the README nightly rows (README.md too).
+**Kept:** stable releases `Dxvk-binsem-gplasync` / `Dxvk-binsem-gplasync-arm64ec` (3.1.1), the binsem files in `dxvk-3.1-a6xx-gplasync`, dispatch-only `dxvk-binsem-nightly.yml` / `dxvk-stable-matrix-nightly.yml` / stable workflows, `patches/dxvk-binary-semaphores*.patch`, README stable link and leegao credit.
+**CI:** branch run 44854764316 (headSha a3fdc215) green, 17 build jobs, no binsem artifacts; Create Nightly Release skipped (branch guard), its steps checked with `bash -n` + Python compile. Merged: main 25d416d5 → a3fdc215 (fast-forward, tree == tested), backup `refs/backup/20261120/main-before-drop-binsem-nightly`.
+**Open:** first main nightly after the merge should publish 48 assets (52 − 4) and the catalog should lose the 4 nightly binsem entries; check it.
+
 ## Session — 2026-11-15
 
 ### [feat] — DXVK 3.1-a6xx GPLAsync builds (2026-11-15, feat/dxvk-stable-commit 41cc8bc0, artifacts only, not merged)
