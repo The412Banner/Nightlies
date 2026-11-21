@@ -1051,27 +1051,27 @@
   },
   {
     "type": "Box64",
-    "verName": "Box64-0.4.5-4ebf22a7f-Native",
+    "verName": "Box64-0.4.5-8748b64a9-Native",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-4ebf22a7f-Native.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-8748b64a9-Native.wcp"
   },
   {
     "type": "Box64",
-    "verName": "Box64-0.4.5-4ebf22a7f-Native",
+    "verName": "Box64-0.4.5-8748b64a9-Native",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-4ebf22a7f-Native.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-8748b64a9-Native.zip"
   },
   {
     "type": "Box64",
-    "verName": "Box64-0.4.5-cfd40daf5-Bionic",
+    "verName": "Box64-0.4.5-d0fca62cc-Bionic",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-cfd40daf5-Bionic.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-d0fca62cc-Bionic.wcp"
   },
   {
     "type": "Box64",
-    "verName": "Box64-0.4.5-cfd40daf5-Bionic",
+    "verName": "Box64-0.4.5-d0fca62cc-Bionic",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-cfd40daf5-Bionic.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/Box64-0.4.5-d0fca62cc-Bionic.zip"
   },
   {
     "type": "Box64",
@@ -1243,15 +1243,15 @@
   },
   {
     "type": "WOWBox64",
-    "verName": "WOWBox64-0.4.5-153e8c008",
+    "verName": "WOWBox64-0.4.5-e11279053",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/WOWBox64-0.4.5-153e8c008.wcp"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/WOWBox64-0.4.5-e11279053.wcp"
   },
   {
     "type": "WOWBox64",
-    "verName": "WOWBox64-0.4.5-153e8c008",
+    "verName": "WOWBox64-0.4.5-e11279053",
     "verCode": "0",
-    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/WOWBox64-0.4.5-153e8c008.zip"
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/nightly-latest/WOWBox64-0.4.5-e11279053.zip"
   },
   {
     "type": "WOWBox64",
