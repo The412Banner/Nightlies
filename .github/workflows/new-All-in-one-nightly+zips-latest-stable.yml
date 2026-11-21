@@ -1705,462 +1705,6 @@ jobs:
             *.zip
 
   # ==================================================================
-  # JOB 7: DXVK Binary-Semaphores (Standard, GPLAsync)
-  # Same recipe as JOB 4 plus leegao's binary-semaphore queue fallback
-  # (patches/dxvk-binary-semaphores-master.patch on master, dxvk-binary-semaphores.patch
-  # on the v3.0 fallback). Adds DXVK_DISABLE_TIMELINE_SEMAPHORES=1
-  # runtime env to work around the Turnip-kgsl timeline-semaphore FPS regression
-  # in DXVK 2.5+. The patch touches only dxvk_cmdlist/dxvk_queue, which do NOT
-  # overlap the Ph42oN gplasync patch, so the two are layered together.
-  # ==================================================================
-  build-dxvk-binsem:
-    name: Build DXVK BinSem (GPLAsync)
-    runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.version.outputs.version }}
-      commit: ${{ steps.version.outputs.commit }}
-    steps:
-      - name: Checkout (for patch file)
-        uses: actions/checkout@v4
-
-      - name: Install Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y mingw-w64 wget git xz-utils python3 meson ninja-build build-essential unzip zip ccache patch
-
-      - name: Get DXVK Upstream Commit
-        id: dxvk-hash
-        run: |
-          HASH=$(git ls-remote https://github.com/doitsujin/dxvk.git HEAD | cut -f1)
-          echo "hash=$HASH" >> $GITHUB_OUTPUT
-
-      - name: Get week number (for glslang cache key)
-        id: date
-        run: echo "week=$(date +%Y-%W)" >> $GITHUB_OUTPUT
-
-      - name: Cache ccache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ccache
-          # Key tied to exact upstream commit — auto-busts when DXVK has new commits
-          key: ccache-dxvk-binsem-standard-${{ steps.dxvk-hash.outputs.hash }}
-          restore-keys: ccache-dxvk-binsem-standard-
-
-      - name: Cache glslang
-        id: cache-glslang
-        uses: actions/cache@v4
-        with:
-          path: glslang
-          key: glslang-master-tot-${{ runner.os }}-${{ steps.date.outputs.week }}
-          restore-keys: glslang-master-tot-${{ runner.os }}-
-
-      - name: Download glslang
-        if: steps.cache-glslang.outputs.cache-hit != 'true'
-        run: |
-          wget -q https://github.com/KhronosGroup/glslang/releases/download/master-tot/glslang-master-linux-Release.zip
-          unzip -qo glslang-master-linux-Release.zip -d glslang
-
-      - name: Add glslang to PATH
-        run: echo "$PWD/glslang/bin" >> $GITHUB_PATH
-
-      - name: Setup ccache compiler wrappers
-        run: |
-          mkdir -p ~/ccache-bin
-          for compiler in \
-            x86_64-w64-mingw32-gcc \
-            x86_64-w64-mingw32-g++ \
-            i686-w64-mingw32-gcc \
-            i686-w64-mingw32-g++; do
-            ln -s "$(which ccache)" ~/ccache-bin/$compiler
-          done
-          echo "$HOME/ccache-bin" >> $GITHUB_PATH
-          ccache --max-size=1G
-          ccache --zero-stats
-
-      - name: Build DXVK
-        id: version
-        run: |
-          PATCHES="$GITHUB_WORKSPACE/patches"
-          # Bleeding edge: dxvk MASTER + Ph42oN gplasync (master) + leegao binary-semaphore
-          # patch layered on top. COMPILE guard: PROVE the fully-patched tree builds; only if
-          # it fails to APPLY or COMPILE fall back to v3.0 + gplasync-3.0-1 (+ binsem) so the
-          # nightly still ships. The BinSem patch is applied in BOTH the master and fallback
-          # paths (touches dxvk_cmdlist/dxvk_queue only — no overlap with gplasync).
-
-          # Job-specific COMPILE recipe (package-release.sh propagates ninja failure as non-zero).
-          build_dxvk() {
-            cd "$GITHUB_WORKSPACE/dxvk" || return 1
-            # Use all available vCPUs (runners have 4; was hardcoded to 2)
-            sed -i 's/\bninja\b/ninja -j$(nproc)/g' package-release.sh \
-              && ./package-release.sh master ../dxvk-built --no-package
-          }
-
-          # Git detaches an auto-gc after a fetch and keeps writing into the clone for a while;
-          # an rm -rf racing it fails with "Directory not empty" and, under the shell's -e,
-          # killed the fallback before it cloned anything. Move each tree aside first (a
-          # rename cannot race), then delete with retries; a leftover is only a warning.
-          discard_trees() {
-            local d n
-            for d in "$@"; do
-              [ -e "$d" ] || continue
-              mv "$d" "$d.discard.$RANDOM" 2>/dev/null || true
-            done
-            for n in 1 2 3 4 5; do
-              rm -rf ./*.discard.* 2>/dev/null || true
-              ls -d ./*.discard.* >/dev/null 2>&1 || return 0
-              sleep 3
-            done
-            echo "::warning::stale build trees could not be deleted; continuing"
-            return 0
-          }
-
-          # Try upstream MASTER + master gplasync + binsem patches and PROVE IT COMPILES.
-          # Returns non-zero if any patch fails to APPLY or the tree fails to COMPILE.
-          attempt_master() {
-            cd "$GITHUB_WORKSPACE"; discard_trees dxvk dxvk-built build-ec build-x86
-            git clone -c gc.auto=0 --recurse-submodules --shallow-submodules \
-              https://github.com/doitsujin/dxvk.git dxvk
-            cd dxvk
-            git -c gc.auto=0 fetch --tags --force >/dev/null 2>&1 || true
-            # patch --fuzz (not git apply): tolerates minor context drift vs a moving master.
-            patch -p1 --fuzz=3 --dry-run < "$PATCHES/dxvk-gplasync-master.patch" >/dev/null 2>&1 || return 1
-            patch -p1 --fuzz=3 < "$PATCHES/dxvk-gplasync-master.patch" || return 1
-            # leegao binary-semaphore fallback, re-ported onto the 2026-10-09 submission rework
-            # (dxvk-binary-semaphores-master.patch); the v3.0 fallback keeps the original patch.
-            patch -p1 --fuzz=3 < "$PATCHES/dxvk-binary-semaphores-master.patch" || return 1
-            build_dxvk || return 1
-          }
-
-          # Pinned known-good fallback: v3.0 + gplasync-3.0-1 + binsem. Fatal if it fails.
-          use_fallback() {
-            cd "$GITHUB_WORKSPACE"; discard_trees dxvk dxvk-built build-ec build-x86
-            git clone -c gc.auto=0 --recurse-submodules --shallow-submodules --branch v3.0 \
-              https://github.com/doitsujin/dxvk.git dxvk
-            cd dxvk
-            patch -p1 --fuzz=3 < "$PATCHES/dxvk-gplasync-3.0-1.patch"
-            patch -p1 --fuzz=3 < "$PATCHES/dxvk-binary-semaphores.patch"
-            build_dxvk
-          }
-
-          if attempt_master; then
-            echo "DXVK master patched tree built OK"
-          else
-            echo "::warning::DXVK master gplasync patch failed to APPLY or COMPILE — falling back to pinned v3.0 + gplasync-3.0-1. Re-vendor patches/dxvk-gplasync-master.patch from Ph42oN."
-            use_fallback
-          fi
-
-          # Version reflects whichever tree actually built (master, or the v3.0 fallback).
-          cd "$GITHUB_WORKSPACE/dxvk"
-          LATEST_TAG=$(git describe --tags --abbrev=0)
-          COMMIT_HASH=$(git rev-parse --short HEAD)
-          VERSION_NAME="${LATEST_TAG}-binsem-gplasync-${COMMIT_HASH}"
-          echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_ENV
-          echo "version=${VERSION_NAME}" >> $GITHUB_OUTPUT
-          echo "commit=${COMMIT_HASH}" >> $GITHUB_OUTPUT
-
-      - name: Print ccache stats
-        run: ccache --show-stats
-
-      - name: Package
-        run: |
-          mkdir -p packaging
-          cp -r dxvk-built/dxvk-master/x64 packaging/system32
-          cp -r dxvk-built/dxvk-master/x32 packaging/syswow64
-
-          cat <<EOF > packaging/profile.json
-          {
-            "type": "DXVK",
-            "versionName": "${{ env.VERSION_NAME }}",
-            "versionCode": 0,
-            "description": "Banners Repo - Binary Semaphores + GPLAsync (Upstream: Philip Rebohle, GPLAsync: Ph42oN, BinSem: leegao). Set DXVK_DISABLE_TIMELINE_SEMAPHORES=1 to enable the fallback.",
-            "files": [
-              { "source": "system32/d3d10core.dll", "target": "\${system32}/d3d10core.dll" },
-              { "source": "system32/d3d11.dll", "target": "\${system32}/d3d11.dll" },
-              { "source": "system32/d3d8.dll", "target": "\${system32}/d3d8.dll" },
-              { "source": "system32/d3d9.dll", "target": "\${system32}/d3d9.dll" },
-              { "source": "system32/dxgi.dll", "target": "\${system32}/dxgi.dll" },
-              { "source": "syswow64/d3d10core.dll", "target": "\${syswow64}/d3d10core.dll" },
-              { "source": "syswow64/d3d11.dll", "target": "\${syswow64}/d3d11.dll" },
-              { "source": "syswow64/d3d8.dll", "target": "\${syswow64}/d3d8.dll" },
-              { "source": "syswow64/d3d9.dll", "target": "\${syswow64}/d3d9.dll" },
-              { "source": "syswow64/dxgi.dll", "target": "\${syswow64}/dxgi.dll" }
-            ]
-          }
-          EOF
-
-          # WCP
-          tar -cJf DXVK-${{ env.VERSION_NAME }}.wcp -C packaging .
-
-          # ZIP
-          cd packaging
-          zip -r ../DXVK-${{ env.VERSION_NAME }}.zip .
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: dxvk-binsem-standard
-          path: |
-            *.wcp
-            *.zip
-
-  # ==================================================================
-  # JOB 8: DXVK Binary-Semaphores (ARM64EC, GPLAsync)
-  # ARM64EC counterpart of JOB 7 — same cross-build recipe as JOB 6 plus
-  # the gplasync + leegao binary-semaphore patches layered on top.
-  # ==================================================================
-  build-dxvk-binsem-arm64ec:
-    name: Build DXVK BinSem (ARM64EC)
-    runs-on: ubuntu-24.04
-    outputs:
-      version: ${{ steps.version.outputs.version }}
-      commit: ${{ steps.version.outputs.commit }}
-    steps:
-      - name: Checkout (for patch file)
-        uses: actions/checkout@v4
-
-      - name: Install Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            ca-certificates curl xz-utils jq git build-essential \
-            python3 pkg-config zstd meson ninja-build wget unzip zip ccache patch
-
-      - name: Get DXVK Upstream Commit
-        id: dxvk-hash
-        run: |
-          HASH=$(git ls-remote https://github.com/doitsujin/dxvk.git HEAD | cut -f1)
-          echo "hash=$HASH" >> $GITHUB_OUTPUT
-
-      - name: Get week number (for glslang cache key)
-        id: date
-        run: echo "week=$(date +%Y-%W)" >> $GITHUB_OUTPUT
-
-      - name: Cache ccache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ccache
-          # Key tied to exact upstream commit — auto-busts when DXVK has new commits
-          key: ccache-dxvk-binsem-arm64ec-${{ steps.dxvk-hash.outputs.hash }}
-          restore-keys: ccache-dxvk-binsem-arm64ec-
-
-      - name: Cache glslang
-        id: cache-glslang
-        uses: actions/cache@v4
-        with:
-          path: glslang
-          key: glslang-master-tot-${{ runner.os }}-${{ steps.date.outputs.week }}
-          restore-keys: glslang-master-tot-${{ runner.os }}-
-
-      - name: Cache LLVM-MinGW
-        uses: actions/cache@v4
-        with:
-          path: /opt/llvm-mingw
-          # Version-pinned — only re-downloads if you bump the tag below
-          key: llvm-mingw-20251104-ubuntu22
-
-      - name: Download glslang
-        if: steps.cache-glslang.outputs.cache-hit != 'true'
-        run: |
-          wget -q https://github.com/KhronosGroup/glslang/releases/download/master-tot/glslang-master-linux-Release.zip
-          unzip -qo glslang-master-linux-Release.zip -d glslang
-
-      - name: Add glslang to PATH
-        run: echo "$PWD/glslang/bin" >> $GITHUB_PATH
-
-      - name: Setup LLVM-MinGW
-        run: |
-          if [ ! -d "/opt/llvm-mingw/bin" ]; then
-            echo "Cache miss — downloading LLVM-MinGW..."
-            LLVM_MINGW_TAG="20251104"
-            wget -q "https://github.com/mstorsjo/llvm-mingw/releases/download/$LLVM_MINGW_TAG/llvm-mingw-$LLVM_MINGW_TAG-ucrt-ubuntu-22.04-x86_64.tar.xz" -O llvm.tar.xz
-            sudo mkdir -p /opt/llvm-mingw
-            sudo tar -C /opt/llvm-mingw --strip-components=1 -xJf llvm.tar.xz
-          else
-            echo "Cache hit — LLVM-MinGW ready."
-          fi
-          echo "/opt/llvm-mingw/bin" >> $GITHUB_PATH
-
-      - name: Configure ccache
-        run: |
-          ccache --max-size=1G
-          ccache --zero-stats
-
-      - name: Configure Cross-Files
-        run: |
-          # ccache injected via the binaries array — cleanest approach for meson cross builds
-          cat <<EOF > arm64ec.txt
-          [binaries]
-          c = ['ccache', 'arm64ec-w64-mingw32-clang']
-          cpp = ['ccache', 'arm64ec-w64-mingw32-clang++']
-          ar = 'llvm-ar'
-          strip = 'llvm-strip'
-          windres = 'arm64ec-w64-mingw32-windres'
-          widl = 'arm64ec-w64-mingw32-widl'
-          pkg-config = 'pkg-config'
-          [host_machine]
-          system = 'windows'
-          cpu_family = 'aarch64'
-          cpu = 'aarch64'
-          endian = 'little'
-          EOF
-
-          cat <<EOF > x86.txt
-          [binaries]
-          c = ['ccache', 'i686-w64-mingw32-clang']
-          cpp = ['ccache', 'i686-w64-mingw32-clang++']
-          ar = 'llvm-ar'
-          strip = 'llvm-strip'
-          windres = 'i686-w64-mingw32-windres'
-          widl = 'i686-w64-mingw32-widl'
-          pkg-config = 'pkg-config'
-          [host_machine]
-          system = 'windows'
-          cpu_family = 'x86'
-          cpu = 'i686'
-          endian = 'little'
-          EOF
-
-      - name: Build
-        id: version
-        run: |
-          PATCHES="$GITHUB_WORKSPACE/patches"
-          # Bleeding edge: dxvk MASTER + Ph42oN gplasync (master) + leegao binary-semaphore
-          # patch layered on top. COMPILE guard: PROVE the fully-patched tree builds; only if
-          # it fails to APPLY or COMPILE fall back to v3.0 + gplasync-3.0-1 (+ binsem) so the
-          # nightly still ships. The BinSem patch is applied in BOTH the master and fallback
-          # paths (touches dxvk_cmdlist/dxvk_queue only — no overlap with gplasync). Cross files
-          # were written into $GITHUB_WORKSPACE by the preceding "Configure Cross-Files" step.
-
-          # Job-specific COMPILE recipe (meson + ninja cross-build; ../*.txt from Configure Cross-Files).
-          build_dxvk() {
-            cd "$GITHUB_WORKSPACE/dxvk" || return 1
-            meson setup build-ec --cross-file ../arm64ec.txt -Dbuildtype=release -Dstrip=true \
-              && meson setup build-x86 --cross-file ../x86.txt -Dbuildtype=release -Dstrip=true \
-              && ninja -C build-ec -j$(nproc) \
-              && ninja -C build-x86 -j$(nproc)
-          }
-
-          # Git detaches an auto-gc after a fetch and keeps writing into the clone for a while;
-          # an rm -rf racing it fails with "Directory not empty" and, under the shell's -e,
-          # killed the fallback before it cloned anything. Move each tree aside first (a
-          # rename cannot race), then delete with retries; a leftover is only a warning.
-          discard_trees() {
-            local d n
-            for d in "$@"; do
-              [ -e "$d" ] || continue
-              mv "$d" "$d.discard.$RANDOM" 2>/dev/null || true
-            done
-            for n in 1 2 3 4 5; do
-              rm -rf ./*.discard.* 2>/dev/null || true
-              ls -d ./*.discard.* >/dev/null 2>&1 || return 0
-              sleep 3
-            done
-            echo "::warning::stale build trees could not be deleted; continuing"
-            return 0
-          }
-
-          # Try upstream MASTER + master gplasync + binsem patches and PROVE IT COMPILES.
-          # Returns non-zero if any patch fails to APPLY or the tree fails to COMPILE.
-          attempt_master() {
-            cd "$GITHUB_WORKSPACE"; discard_trees dxvk dxvk-built build-ec build-x86
-            git clone -c gc.auto=0 --recurse-submodules --shallow-submodules \
-              https://github.com/doitsujin/dxvk.git dxvk
-            cd dxvk
-            git -c gc.auto=0 fetch --tags --force >/dev/null 2>&1 || true
-            # patch --fuzz (not git apply): tolerates minor context drift vs a moving master.
-            patch -p1 --fuzz=3 --dry-run < "$PATCHES/dxvk-gplasync-master.patch" >/dev/null 2>&1 || return 1
-            patch -p1 --fuzz=3 < "$PATCHES/dxvk-gplasync-master.patch" || return 1
-            # leegao binary-semaphore fallback, re-ported onto the 2026-10-09 submission rework
-            # (dxvk-binary-semaphores-master.patch); the v3.0 fallback keeps the original patch.
-            patch -p1 --fuzz=3 < "$PATCHES/dxvk-binary-semaphores-master.patch" || return 1
-            build_dxvk || return 1
-          }
-
-          # Pinned known-good fallback: v3.0 + gplasync-3.0-1 + binsem. Fatal if it fails.
-          use_fallback() {
-            cd "$GITHUB_WORKSPACE"; discard_trees dxvk dxvk-built build-ec build-x86
-            git clone -c gc.auto=0 --recurse-submodules --shallow-submodules --branch v3.0 \
-              https://github.com/doitsujin/dxvk.git dxvk
-            cd dxvk
-            patch -p1 --fuzz=3 < "$PATCHES/dxvk-gplasync-3.0-1.patch"
-            patch -p1 --fuzz=3 < "$PATCHES/dxvk-binary-semaphores.patch"
-            build_dxvk
-          }
-
-          if attempt_master; then
-            echo "DXVK master patched tree built OK"
-          else
-            echo "::warning::DXVK master gplasync patch failed to APPLY or COMPILE — falling back to pinned v3.0 + gplasync-3.0-1. Re-vendor patches/dxvk-gplasync-master.patch from Ph42oN."
-            use_fallback
-          fi
-
-          # Version reflects whichever tree actually built (master, or the v3.0 fallback).
-          cd "$GITHUB_WORKSPACE/dxvk"
-          LATEST_TAG=$(git describe --tags --abbrev=0)
-          COMMIT_HASH=$(git rev-parse --short HEAD)
-          VERSION_NAME="${LATEST_TAG}-binsem-gplasync-arm64ec-${COMMIT_HASH}"
-          echo "VERSION_NAME=$VERSION_NAME" >> $GITHUB_ENV
-          echo "version=$VERSION_NAME" >> $GITHUB_OUTPUT
-          echo "commit=$COMMIT_HASH" >> $GITHUB_OUTPUT
-
-      - name: Print ccache stats
-        run: ccache --show-stats
-
-      - name: Package
-        run: |
-          mkdir -p packaging/system32
-          mkdir -p packaging/syswow64
-
-          copy_dll() {
-            SRC_DIR=$1
-            DEST_DIR=$2
-            cp "dxvk/$SRC_DIR/src/d3d11/d3d11.dll" "$DEST_DIR/"
-            cp "dxvk/$SRC_DIR/src/d3d10/d3d10core.dll" "$DEST_DIR/"
-            cp "dxvk/$SRC_DIR/src/d3d9/d3d9.dll" "$DEST_DIR/"
-            cp "dxvk/$SRC_DIR/src/d3d8/d3d8.dll" "$DEST_DIR/" || true
-            cp "dxvk/$SRC_DIR/src/dxgi/dxgi.dll" "$DEST_DIR/"
-          }
-          copy_dll "build-ec" "packaging/system32"
-          copy_dll "build-x86" "packaging/syswow64"
-          llvm-strip --strip-all packaging/system32/*.dll
-          llvm-strip --strip-all packaging/syswow64/*.dll
-
-          cat <<EOF > packaging/profile.json
-          {
-            "type": "DXVK",
-            "versionName": "${{ env.VERSION_NAME }}",
-            "versionCode": 0,
-            "description": "Banners Repo - Binary Semaphores + GPLAsync ARM64EC (Upstream: Philip Rebohle, GPLAsync: Ph42oN, BinSem: leegao). Set DXVK_DISABLE_TIMELINE_SEMAPHORES=1 to enable the fallback.",
-            "files": [
-              { "source": "system32/d3d10core.dll", "target": "\${system32}/d3d10core.dll" },
-              { "source": "system32/d3d11.dll", "target": "\${system32}/d3d11.dll" },
-              { "source": "system32/d3d8.dll", "target": "\${system32}/d3d8.dll" },
-              { "source": "system32/d3d9.dll", "target": "\${system32}/d3d9.dll" },
-              { "source": "system32/dxgi.dll", "target": "\${system32}/dxgi.dll" },
-              { "source": "syswow64/d3d10core.dll", "target": "\${syswow64}/d3d10core.dll" },
-              { "source": "syswow64/d3d11.dll", "target": "\${syswow64}/d3d11.dll" },
-              { "source": "syswow64/d3d8.dll", "target": "\${syswow64}/d3d8.dll" },
-              { "source": "syswow64/d3d9.dll", "target": "\${syswow64}/d3d9.dll" },
-              { "source": "syswow64/dxgi.dll", "target": "\${syswow64}/dxgi.dll" }
-            ]
-          }
-          EOF
-
-          cd packaging
-
-          # WCP
-          tar --zstd -cf ../DXVK-${{ env.VERSION_NAME }}.wcp .
-
-          # ZIP
-          zip -r ../DXVK-${{ env.VERSION_NAME }}.zip .
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: dxvk-binsem-arm64ec
-          path: |
-            *.wcp
-            *.zip
-
-  # ==================================================================
   # JOB 8c: D7VK (DirectDraw / Direct3D 7·6·5·3 -> Vulkan)
   # WinterSnowfall/d7vk — a DXVK spin-off that ships ONLY ddraw.dll.
   # 32-bit ONLY: its package-release.sh defaults to opt_32_only=1, and every
@@ -2595,7 +2139,7 @@ jobs:
     # workflow_dispatch runs still build every job (validating the build) but never
     # publish a release or clobber the production nightly-latest that clients pull.
     if: github.ref == 'refs/heads/main'
-    needs: [build-box64-matrix, build-box64ec, build-fex, build-fex-ppa, repack-fex-ppa-official, build-vkd3d, build-dxvk, build-vkd3d-arm64ec, build-dxvk-arm64ec, build-dxvk-binsem, build-dxvk-binsem-arm64ec, build-d7vk, build-dxvk-vanilla, build-dxvk-arm64ec-vanilla]
+    needs: [build-box64-matrix, build-box64ec, build-fex, build-fex-ppa, repack-fex-ppa-official, build-vkd3d, build-dxvk, build-vkd3d-arm64ec, build-dxvk-arm64ec, build-d7vk, build-dxvk-vanilla, build-dxvk-arm64ec-vanilla]
     permissions:
       contents: write
       actions: write
@@ -2717,10 +2261,6 @@ jobs:
           DXVK_VERSION: ${{ needs.build-dxvk.outputs.version }}
           DXVK_ARM64EC_VERSION: ${{ needs.build-dxvk-arm64ec.outputs.version }}
           DXVK_ARM64EC_COMMIT: ${{ needs.build-dxvk-arm64ec.outputs.commit }}
-          DXVK_BINSEM_VERSION: ${{ needs.build-dxvk-binsem.outputs.version }}
-          DXVK_BINSEM_COMMIT: ${{ needs.build-dxvk-binsem.outputs.commit }}
-          DXVK_BINSEM_ARM64EC_VERSION: ${{ needs.build-dxvk-binsem-arm64ec.outputs.version }}
-          DXVK_BINSEM_ARM64EC_COMMIT: ${{ needs.build-dxvk-binsem-arm64ec.outputs.commit }}
           D7VK_VERSION: ${{ needs.build-d7vk.outputs.version }}
           D7VK_COMMIT: ${{ needs.build-d7vk.outputs.commit }}
           BOX64EC_BUILT: ${{ needs.build-box64ec.outputs.built }}
@@ -2849,8 +2389,6 @@ jobs:
           | **VKD3D-Proton (ARM64EC)** | [${VKD3D_ARM64EC_VERSION}](https://github.com/HansKristian-Work/vkd3d-proton/commit/${VKD3D_ARM64EC_COMMIT}) |
           | **DXVK (GPLAsync)** | [${DXVK_COMMIT}](https://github.com/doitsujin/dxvk/commit/${DXVK_COMMIT}) |
           | **DXVK (ARM64EC)** | [${DXVK_ARM64EC_VERSION}](https://github.com/doitsujin/dxvk/commit/${DXVK_ARM64EC_COMMIT}) |
-          | **DXVK BinSem (GPLAsync)** | [${DXVK_BINSEM_VERSION}](https://github.com/doitsujin/dxvk/commit/${DXVK_BINSEM_COMMIT}) |
-          | **DXVK BinSem (ARM64EC)** | [${DXVK_BINSEM_ARM64EC_VERSION}](https://github.com/doitsujin/dxvk/commit/${DXVK_BINSEM_ARM64EC_COMMIT}) |
           | **D7VK (DDraw/D3D7)** | [${D7VK_VERSION}](https://github.com/WinterSnowfall/d7vk/commit/${D7VK_COMMIT}) |
           | **Turnip (A6xx/A7xx/A8xx)** | [${TURNIP_NAME}](https://github.com/The412Banner/Banners-Turnip/releases/tag/${TURNIP_TAG}) |
 
@@ -2875,22 +2413,8 @@ jobs:
           9. **VKD3D-Proton (ARM64EC)**: \`VKD3D-Proton-${VKD3D_ARM64EC_VERSION}.wcp\` (and \`.zip\`)
           10. **DXVK**: \`dxvk-gplasync-*.wcp\` (and \`.zip\`)
           11. **DXVK (ARM64EC)**: \`DXVK-ARM64EC-*.wcp\` (and \`.zip\`)
-          12. **DXVK BinSem (GPLAsync)**: \`DXVK-*-binsem-gplasync-*.wcp\` (and \`.zip\`) — adds the \`DXVK_DISABLE_TIMELINE_SEMAPHORES=1\` runtime fallback (Turnip-kgsl timeline-semaphore FPS workaround)
-          13. **DXVK BinSem (ARM64EC)**: \`DXVK-*-binsem-gplasync-arm64ec-*.wcp\` (and \`.zip\`)
-          14. **D7VK (DDraw/D3D7)**: \`d7vk-*.tzst\` + \`d7vk-*.wcp\` (and \`.zip\`) — DirectDraw / Direct3D 7·6·5·3 → Vulkan (WinterSnowfall/d7vk, master). Ships **only** a 32-bit \`syswow64/ddraw.dll\`; occupies the **DDraw Wrapper** slot (independent of DXVK/VKD3D). The **\`.tzst\`** is the drop-in refresh for the app's bundled \`assets/ddrawrapper/d7vk.tzst\` (rename to \`d7vk.tzst\`); the \`.wcp\`/\`.zip\` are for manual / Winlator install.
-          15. **Turnip GPU Driver**: \`Turnip-v*.zip\` — latest release from [Banners-Turnip](https://github.com/The412Banner/Banners-Turnip/releases), Adreno A6xx/A7xx/A8xx, KGSL
-
-          </details>
-
-          <details><summary>⚙️ <b>DXVK BinSem fallback</b> — how to enable</summary>
-
-          The **DXVK BinSem** builds (\`*-binsem-gplasync-*\`) ship leegao's [binary-semaphore queue fallback](https://github.com/leegao/dxvk/commit/e950b4a90359acebf13f5a76cfa2cfaa7c238b74) on top of the usual GPLAsync patch. The fallback is **opt-in** — set the environment variable in your container/Wine environment:
-
-          \`\`\`
-          DXVK_DISABLE_TIMELINE_SEMAPHORES=1
-          \`\`\`
-
-          This restores binary-semaphore inter-queue sync and works around the Turnip-kgsl timeline-semaphore FPS regression in DXVK 2.5+. **Without the variable set, these DLLs behave like stock DXVK**, so the BinSem builds are safe drop-in replacements either way.
+          12. **D7VK (DDraw/D3D7)**: \`d7vk-*.tzst\` + \`d7vk-*.wcp\` (and \`.zip\`) — DirectDraw / Direct3D 7·6·5·3 → Vulkan (WinterSnowfall/d7vk, master). Ships **only** a 32-bit \`syswow64/ddraw.dll\`; occupies the **DDraw Wrapper** slot (independent of DXVK/VKD3D). The **\`.tzst\`** is the drop-in refresh for the app's bundled \`assets/ddrawrapper/d7vk.tzst\` (rename to \`d7vk.tzst\`); the \`.wcp\`/\`.zip\` are for manual / Winlator install.
+          13. **Turnip GPU Driver**: \`Turnip-v*.zip\` — latest release from [Banners-Turnip](https://github.com/The412Banner/Banners-Turnip/releases), Adreno A6xx/A7xx/A8xx, KGSL
 
           </details>
 
@@ -2961,8 +2485,6 @@ jobs:
           VKD3D_ARM64EC_COMMIT: ${{ needs.build-vkd3d-arm64ec.outputs.commit }}
           DXVK_COMMIT: ${{ needs.build-dxvk.outputs.commit }}
           DXVK_ARM64EC_COMMIT: ${{ needs.build-dxvk-arm64ec.outputs.commit }}
-          DXVK_BINSEM_COMMIT: ${{ needs.build-dxvk-binsem.outputs.commit }}
-          DXVK_BINSEM_ARM64EC_COMMIT: ${{ needs.build-dxvk-binsem-arm64ec.outputs.commit }}
           D7VK_COMMIT: ${{ needs.build-d7vk.outputs.commit }}
           BOX64EC_BUILT: ${{ needs.build-box64ec.outputs.built }}
           BOX64EC_COMMIT: ${{ needs.build-box64ec.outputs.commit }}
@@ -2981,8 +2503,6 @@ jobs:
           vkd3d_ec_commit  = os.environ.get("VKD3D_ARM64EC_COMMIT", "")
           dxvk_commit      = os.environ.get("DXVK_COMMIT", "")
           dxvk_ec_commit   = os.environ.get("DXVK_ARM64EC_COMMIT", "")
-          dxvk_bs_commit   = os.environ.get("DXVK_BINSEM_COMMIT", "")
-          dxvk_bs_ec_commit = os.environ.get("DXVK_BINSEM_ARM64EC_COMMIT", "")
           d7vk_commit      = os.environ.get("D7VK_COMMIT", "")
           b64ec_built      = os.environ.get("BOX64EC_BUILT", "") == "1"
           b64ec_commit     = os.environ.get("BOX64EC_COMMIT", "")
@@ -3002,8 +2522,6 @@ jobs:
               f"| **VKD3D-Proton (ARM64EC)** | [`{vkd3d_ec_commit}`](https://github.com/HansKristian-Work/vkd3d-proton/commit/{vkd3d_ec_commit}) |",
               f"| **DXVK (GPLAsync)** | [`{dxvk_commit}`](https://github.com/doitsujin/dxvk/commit/{dxvk_commit}) |",
               f"| **DXVK (ARM64EC)** | [`{dxvk_ec_commit}`](https://github.com/doitsujin/dxvk/commit/{dxvk_ec_commit}) |",
-              f"| **DXVK BinSem (GPLAsync)** | [`{dxvk_bs_commit}`](https://github.com/doitsujin/dxvk/commit/{dxvk_bs_commit}) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |",
-              f"| **DXVK BinSem (ARM64EC)** | [`{dxvk_bs_ec_commit}`](https://github.com/doitsujin/dxvk/commit/{dxvk_bs_ec_commit}) — set `DXVK_DISABLE_TIMELINE_SEMAPHORES=1` to activate |",
               f"| **D7VK (DDraw/D3D7)** | [`{d7vk_commit}`](https://github.com/WinterSnowfall/d7vk/commit/{d7vk_commit}) — DDraw Wrapper slot; `.tzst` = bundled-asset refresh |",
               f"| **Box64** | [ptitSeb/box64](https://github.com/ptitSeb/box64/commits/main) + [Pipetto/box64](https://github.com/Pipetto-crypto/box64/commits/main) |",
               f"| **Box64EC (ARM64EC)** | {b64ec_row} |",
