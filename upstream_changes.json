@@ -1,23 +1,23 @@
 {
-  "triggered_at": "2026-11-22T17:30:43Z",
+  "triggered_at": "2026-11-22T23:00:12Z",
   "changed": [
     {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "55889bc",
-      "new": "1d75642",
-      "full": "1d7564266933aa2b297a8e64bf7a656a819531cf",
-      "msg": "[ELF] Patch main ELF .dynamic before linkmap/init and run DT_PREINIT_ARRAY (#475",
-      "date": "2026-11-22T17:08:44Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "fcb4dc4",
+      "new": "95d69be",
+      "full": "95d69be58b697a72dadd7fe6c11faeba4eb402a0",
+      "msg": "Merge pull request #6149 from Ansud/seccomp-fixes",
+      "date": "2026-11-22T19:49:13Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "604f5fd",
-      "new": "22c08cc",
-      "full": "22c08cc53bd024a1a9f971c005a6fd862648eca6",
-      "msg": "nak/hw_tests: Add a basic test for TTU instructions",
-      "date": "2026-11-22T11:27:59.000+00:00"
+      "old": "22c08cc",
+      "new": "bb98606",
+      "full": "bb986060e01093a611b962b32fcc90b8d961b706",
+      "msg": "Uprev ANGLE to b7a90a6cc08e52857a6addc2bc2e569b7b01e9df",
+      "date": "2026-11-22T17:25:37.000+00:00"
     }
   ]
 }
