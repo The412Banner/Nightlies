@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-11-21T21:22:09Z",
+  "triggered_at": "2026-11-22T01:49:11Z",
   "changed": [
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "3d58463",
-      "new": "9e57fa0",
-      "full": "9e57fa0b2c5b495ba1c890017d659935e5f1df65",
-      "msg": "[build] Reinstate former x86-64 build path",
-      "date": "2026-11-21T20:30:28Z"
-    },
-    {
-      "repo": "WinterSnowfall/d7vk",
-      "name": "D7VK (DDraw/D3D7)",
-      "old": "9c2e924",
-      "new": "9fb6a2d",
-      "full": "9fb6a2d5046bbda0ab31d8399b68f6e979127320",
-      "msg": "[meta] Add a driver dll entry for Intel",
-      "date": "2026-11-21T19:30:56Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "98fc8b8",
-      "new": "ef59438",
-      "full": "ef594386e28b9a01ab00d2190d5960d3eee8fe04",
-      "msg": "dzn: Drop the unused vk_sync reset callback",
-      "date": "2026-11-21T18:46:33.000+00:00"
+      "old": "ef59438",
+      "new": "152b9cd",
+      "full": "152b9cde8dbd15927b75dd064d1bb701697ebcdc",
+      "msg": "Uprev Piglit to d2615737c1fd45325e4685819cc6ffc8316a6326",
+      "date": "2026-11-22T00:25:52.000+01:00"
     }
   ]
 }
