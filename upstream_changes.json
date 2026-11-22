@@ -1,32 +1,23 @@
 {
-  "triggered_at": "2026-11-22T09:06:42Z",
+  "triggered_at": "2026-11-22T17:30:43Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "3de7e2a",
-      "new": "55889bc",
-      "full": "55889bce503129bc229fa5cb4c95ceeb7a8195c0",
-      "msg": "[INTERP] Fixed FTST with infinity (#4739)",
-      "date": "2026-11-22T08:58:53Z"
-    },
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "53e1484",
-      "new": "fcb4dc4",
-      "full": "fcb4dc485b6b1014467d136f055d3780185c0da6",
-      "msg": "Merge pull request #6152 from lioncash/fence",
-      "date": "2026-11-22T09:01:39Z"
+      "old": "55889bc",
+      "new": "1d75642",
+      "full": "1d7564266933aa2b297a8e64bf7a656a819531cf",
+      "msg": "[ELF] Patch main ELF .dynamic before linkmap/init and run DT_PREINIT_ARRAY (#475",
+      "date": "2026-11-22T17:08:44Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "152b9cd",
-      "new": "604f5fd",
-      "full": "604f5fd4f2378c8ebcacf4c22928258d2eab3ed3",
-      "msg": "Revert \"anv: clear vertex & transform feedback buffer at end of command buffer\"",
-      "date": "2026-11-22T06:31:30.000+00:00"
+      "old": "604f5fd",
+      "new": "22c08cc",
+      "full": "22c08cc53bd024a1a9f971c005a6fd862648eca6",
+      "msg": "nak/hw_tests: Add a basic test for TTU instructions",
+      "date": "2026-11-22T11:27:59.000+00:00"
     }
   ]
 }
