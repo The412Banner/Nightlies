@@ -1,10 +1,25 @@
 {
-  "updated_at": "2026-11-22T14:57:25Z",
+  "updated_at": "2026-11-23T13:54:02Z",
   "source": "https://github.com/StevenMXZ/Adreno-Tools-Drivers",
   "mirror_release": "https://github.com/The412Banner/Nightlies/releases/tag/stevenmxz-drivers",
-  "total_releases": 82,
-  "total_assets": 116,
+  "total_releases": 83,
+  "total_assets": 117,
   "releases": [
+    {
+      "tag": "v40",
+      "name": "Turnip v27.0.0-R3",
+      "published_at": "2026-11-23T13:20:22Z",
+      "assets": [
+        {
+          "name": "Turnip_v27.0.0-R3.zip",
+          "mirror_name": "v40_Turnip_v27.0.0-R3.zip",
+          "size": 2591380,
+          "original_url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/v40/Turnip_v27.0.0-R3.zip",
+          "mirror_url": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v40_Turnip_v27.0.0-R3.zip",
+          "published_at": "2026-11-23T13:18:44Z"
+        }
+      ]
+    },
     {
       "tag": "v891.14",
       "name": "Qualcomm driver v891.14",
