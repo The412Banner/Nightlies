@@ -1,14 +1,41 @@
 {
-  "triggered_at": "2026-11-23T03:36:18Z",
+  "triggered_at": "2026-11-23T13:53:38Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "1d75642",
+      "new": "e17fb60",
+      "full": "e17fb60690f8e5ff7a8bafc20cc6f013f40a22e0",
+      "msg": "[WRAPPER] Wrapped more gomp symbols (#4759)",
+      "date": "2026-11-23T09:43:22Z"
+    },
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "95d69be",
+      "new": "727948a",
+      "full": "727948a503f1d90fcfb08c4194a18fdeb3f6a6d0",
+      "msg": "Merge pull request #6154 from Sonicadvance1/328",
+      "date": "2026-11-23T04:34:07Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "cae8353",
+      "new": "02e8c2b",
+      "full": "02e8c2b221f3dea00dc7cf99c0c1c18554f6c1cc",
+      "msg": "tests: Add test for out of bounds viewport indices.",
+      "date": "2026-11-23T13:31:51Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "bb98606",
-      "new": "ccce802",
-      "full": "ccce8028776e46ec0bd4d67b6a5271d9f6c95ee7",
-      "msg": "gallivm: add avx512 16xf32 -> 16xunorm8 fast path.",
-      "date": "2026-11-23T11:08:02.000+10:00"
+      "old": "ccce802",
+      "new": "49f13b7",
+      "full": "49f13b7fd40bbd5d6659c740a79b0608ae8d28ba",
+      "msg": "pan/ci: fixup traces checksums after compiler-change",
+      "date": "2026-11-23T13:21:30.000+00:00"
     }
   ]
 }
