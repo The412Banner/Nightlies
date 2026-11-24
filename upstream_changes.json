@@ -1,41 +1,50 @@
 {
-  "triggered_at": "2026-11-23T13:53:38Z",
+  "triggered_at": "2026-11-24T01:24:47Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "1d75642",
-      "new": "e17fb60",
-      "full": "e17fb60690f8e5ff7a8bafc20cc6f013f40a22e0",
-      "msg": "[WRAPPER] Wrapped more gomp symbols (#4759)",
-      "date": "2026-11-23T09:43:22Z"
+      "old": "e17fb60",
+      "new": "5e5eb2a",
+      "full": "5e5eb2adbddb7841d37a612aafd85ac9e3220cd8",
+      "msg": "[ARM64_DYNAREC] Restore all regs from emu after a syscall opcode, just to be saf",
+      "date": "2026-11-23T17:52:47Z"
     },
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "95d69be",
-      "new": "727948a",
-      "full": "727948a503f1d90fcfb08c4194a18fdeb3f6a6d0",
-      "msg": "Merge pull request #6154 from Sonicadvance1/328",
-      "date": "2026-11-23T04:34:07Z"
+      "old": "727948a",
+      "new": "9ce01bd",
+      "full": "9ce01bd24b8746f4b575a63e320de3a91c9d3667",
+      "msg": "Merge pull request #6157 from Sonicadvance1/330",
+      "date": "2026-11-23T23:58:15Z"
     },
     {
       "repo": "HansKristian-Work/vkd3d-proton",
       "name": "VKD3D-Proton",
-      "old": "cae8353",
-      "new": "02e8c2b",
-      "full": "02e8c2b221f3dea00dc7cf99c0c1c18554f6c1cc",
-      "msg": "tests: Add test for out of bounds viewport indices.",
-      "date": "2026-11-23T13:31:51Z"
+      "old": "02e8c2b",
+      "new": "30b0eb9",
+      "full": "30b0eb9bc12dc9f40e1a33a2be8c87cf0846447b",
+      "msg": "vkd3d: Always add RTAS to mapping structs.",
+      "date": "2026-11-23T17:25:01Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "9e57fa0",
+      "new": "f6924e4",
+      "full": "f6924e4081dd0512ea12e9789633dd3b32b6da30",
+      "msg": "[meta] Update dxbc-spirv",
+      "date": "2026-11-23T22:11:09Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "ccce802",
-      "new": "49f13b7",
-      "full": "49f13b7fd40bbd5d6659c740a79b0608ae8d28ba",
-      "msg": "pan/ci: fixup traces checksums after compiler-change",
-      "date": "2026-11-23T13:21:30.000+00:00"
+      "old": "49f13b7",
+      "new": "6535a0d",
+      "full": "6535a0d094a6585d01d7492bf3f99f01c2d46a87",
+      "msg": "intel/compiler: Preseve index of the hit primitive inside the leaf",
+      "date": "2026-11-24T00:37:30.000+00:00"
     }
   ]
 }
