@@ -1201,6 +1201,18 @@
   },
   {
     "type": "GpuDriver",
+    "verName": "v891.17 \u2014 v891.17.zip",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v891.17_v891.17.zip"
+  },
+  {
+    "type": "GpuDriver",
+    "verName": "v886.6 \u2014 v886.6.zip",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v886.6_v886.6.zip"
+  },
+  {
+    "type": "GpuDriver",
     "verName": "v40 \u2014 Turnip_v27.0.0-R3.zip",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/stevenmxz-drivers/v40_Turnip_v27.0.0-R3.zip"
