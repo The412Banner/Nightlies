@@ -51,7 +51,7 @@ A single JSON index of every component published here — point any compatible W
 <!-- NIGHTLY-LATEST-START -->
 | | |
 | :--- | :--- |
-| **Release** | [🔗 nightly-20261124-194406](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261124-194406) |
+| **Release** | [🔗 nightly-20261124-215158](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261124-215158) |
 | **FEXCore** | [`63b8e0b76`](https://github.com/FEX-Emu/FEX/commit/63b8e0b76) — FEX-2611+95-Nightly-63b8e0b76 |
 | **VKD3D-Proton (Std)** | [`ec207194`](https://github.com/HansKristian-Work/vkd3d-proton/commit/ec207194) |
 | **VKD3D-Proton (ARM64EC)** | [`ec207194`](https://github.com/HansKristian-Work/vkd3d-proton/commit/ec207194) |
@@ -61,7 +61,7 @@ A single JSON index of every component published here — point any compatible W
 | **Box64** | [ptitSeb/box64](https://github.com/ptitSeb/box64/commits/main) + [Pipetto/box64](https://github.com/Pipetto-crypto/box64/commits/main) |
 | **Box64EC (ARM64EC)** | [`9d0e5b1c0`](https://github.com/ptitSeb/box64/commit/9d0e5b1c0a3a8def60e63bdbda37ac9617d17bcb) — **experimental, not an official box64 release, not proven working** |
 | **Turnip** | [v27.0.0-20261124-r2](https://github.com/The412Banner/Banners-Turnip/releases/tag/v27.0.0-20261124-r2) — Turnip v27.0.0-20261124-r2 |
-| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261124-194406) |
+| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261124-215158) |
 <!-- NIGHTLY-LATEST-END -->
 
 </details>
