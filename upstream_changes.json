@@ -1,41 +1,50 @@
 {
-  "triggered_at": "2026-11-24T11:51:15Z",
+  "triggered_at": "2026-11-24T21:45:52Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "5e5eb2a",
-      "new": "1ade324",
-      "full": "1ade32429a6674420b097b249e9f5a8a80678f26",
-      "msg": "[ARM64_DYNAREC] Set MXCSR precision flag on inexact conversions",
-      "date": "2026-11-24T10:53:00Z"
+      "old": "1ade324",
+      "new": "9d0e5b1",
+      "full": "9d0e5b1c0a3a8def60e63bdbda37ac9617d17bcb",
+      "msg": "[TEST] Allocate the 32-bit exit bridge in 32-bit address space",
+      "date": "2026-11-24T13:54:26Z"
     },
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "9ce01bd",
-      "new": "0e911b1",
-      "full": "0e911b1a712202f3c6b1b4c84cba87e943519cdb",
-      "msg": "Merge pull request #6156 from Sonicadvance1/329",
-      "date": "2026-11-24T06:34:29Z"
+      "old": "0e911b1",
+      "new": "63b8e0b",
+      "full": "63b8e0b76677d073dd278695fccc1e94f0c984f8",
+      "msg": "Merge pull request #6159 from iedame/cmake-4.5-install-code",
+      "date": "2026-11-24T17:41:46Z"
+    },
+    {
+      "repo": "HansKristian-Work/vkd3d-proton",
+      "name": "VKD3D-Proton",
+      "old": "30b0eb9",
+      "new": "ec20719",
+      "full": "ec20719452e916baa2b9e69f33f18de4561a8313",
+      "msg": "dxil-spirv: Update submodule.",
+      "date": "2026-11-24T12:02:26Z"
     },
     {
       "repo": "doitsujin/dxvk",
       "name": "DXVK",
-      "old": "f6924e4",
-      "new": "e9524e7",
-      "full": "e9524e7b45d519be8e481c0345208a31f3a08d60",
-      "msg": "[dxvk] Use VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT for HUD buffers",
-      "date": "2026-11-24T09:46:49Z"
+      "old": "e9524e7",
+      "new": "654a241",
+      "full": "654a2410e795883bca660383c95a09a0c00e471e",
+      "msg": "[dxvk] Disable compute mip gen on Nvidia",
+      "date": "2026-11-24T12:12:45Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "6535a0d",
-      "new": "afcfe21",
-      "full": "afcfe21a2b90a78192e944777e0c9d3797d0af31",
-      "msg": "pvr/ci: reduce the number of parallel job instances",
-      "date": "2026-11-24T10:08:26.000+00:00"
+      "old": "afcfe21",
+      "new": "6c10302",
+      "full": "6c1030248afd7ed6549b3f121195f2a6604ee97a",
+      "msg": "freedreno: Fix num_ccu for A623/A621",
+      "date": "2026-11-24T18:58:22.000+00:00"
     }
   ]
 }
