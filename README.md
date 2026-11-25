@@ -51,17 +51,17 @@ A single JSON index of every component published here — point any compatible W
 <!-- NIGHTLY-LATEST-START -->
 | | |
 | :--- | :--- |
-| **Release** | [🔗 nightly-20261125-151831](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261125-151831) |
-| **FEXCore** | [`8e9805987`](https://github.com/FEX-Emu/FEX/commit/8e9805987) — FEX-2611+97-Nightly-8e9805987 |
+| **Release** | [🔗 nightly-20261125-185250](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261125-185250) |
+| **FEXCore** | [`3ee253992`](https://github.com/FEX-Emu/FEX/commit/3ee253992) — FEX-2611+99-Nightly-3ee253992 |
 | **VKD3D-Proton (Std)** | [`71cae091`](https://github.com/HansKristian-Work/vkd3d-proton/commit/71cae091) |
 | **VKD3D-Proton (ARM64EC)** | [`71cae091`](https://github.com/HansKristian-Work/vkd3d-proton/commit/71cae091) |
 | **DXVK (GPLAsync)** | [`e271e398`](https://github.com/doitsujin/dxvk/commit/e271e398) |
 | **DXVK (ARM64EC)** | [`e271e398`](https://github.com/doitsujin/dxvk/commit/e271e398) |
 | **D7VK (DDraw/D3D7)** | [`9fb6a2d50`](https://github.com/WinterSnowfall/d7vk/commit/9fb6a2d50) — DDraw Wrapper slot; `.tzst` = bundled-asset refresh |
 | **Box64** | [ptitSeb/box64](https://github.com/ptitSeb/box64/commits/main) + [Pipetto/box64](https://github.com/Pipetto-crypto/box64/commits/main) |
-| **Box64EC (ARM64EC)** | [`9d0e5b1c0`](https://github.com/ptitSeb/box64/commit/9d0e5b1c0a3a8def60e63bdbda37ac9617d17bcb) — **experimental, not an official box64 release, not proven working** |
+| **Box64EC (ARM64EC)** | [`2e0bcd4bd`](https://github.com/ptitSeb/box64/commit/2e0bcd4bd227a2fe4a6176944a8c13b68551564d) — **experimental, not an official box64 release, not proven working** |
 | **Turnip** | [v27.0.0-20261125-r2](https://github.com/The412Banner/Banners-Turnip/releases/tag/v27.0.0-20261125-r2) — Turnip v27.0.0-20261125-r2 |
-| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261125-151831) |
+| **Files** | [`.wcp` and `.zip` — scroll to Assets](https://github.com/The412Banner/Nightlies/releases/tag/nightly-20261125-185250) |
 <!-- NIGHTLY-LATEST-END -->
 
 </details>
