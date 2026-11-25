@@ -1,50 +1,14 @@
 {
-  "triggered_at": "2026-11-24T21:45:52Z",
+  "triggered_at": "2026-11-25T04:42:48Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "1ade324",
-      "new": "9d0e5b1",
-      "full": "9d0e5b1c0a3a8def60e63bdbda37ac9617d17bcb",
-      "msg": "[TEST] Allocate the 32-bit exit bridge in 32-bit address space",
-      "date": "2026-11-24T13:54:26Z"
-    },
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "0e911b1",
-      "new": "63b8e0b",
-      "full": "63b8e0b76677d073dd278695fccc1e94f0c984f8",
-      "msg": "Merge pull request #6159 from iedame/cmake-4.5-install-code",
-      "date": "2026-11-24T17:41:46Z"
-    },
-    {
-      "repo": "HansKristian-Work/vkd3d-proton",
-      "name": "VKD3D-Proton",
-      "old": "30b0eb9",
-      "new": "ec20719",
-      "full": "ec20719452e916baa2b9e69f33f18de4561a8313",
-      "msg": "dxil-spirv: Update submodule.",
-      "date": "2026-11-24T12:02:26Z"
-    },
-    {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "e9524e7",
-      "new": "654a241",
-      "full": "654a2410e795883bca660383c95a09a0c00e471e",
-      "msg": "[dxvk] Disable compute mip gen on Nvidia",
-      "date": "2026-11-24T12:12:45Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "afcfe21",
-      "new": "6c10302",
-      "full": "6c1030248afd7ed6549b3f121195f2a6604ee97a",
-      "msg": "freedreno: Fix num_ccu for A623/A621",
-      "date": "2026-11-24T18:58:22.000+00:00"
+      "old": "6c10302",
+      "new": "ffb5da1",
+      "full": "ffb5da1b93551a848b0a05a1ffa7357a339347a0",
+      "msg": "bin/drm-shim.py: take the adreno targets from the device table",
+      "date": "2026-11-25T02:19:47.000+00:00"
     }
   ]
 }
