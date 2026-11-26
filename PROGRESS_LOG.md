@@ -8,6 +8,13 @@
 
 ## Session — 2026-11-26
 
+### [feat] — DXVK-Sarek 1.14.1 stock build (2026-11-26, build/sarek-1.14.1 4d88c802)
+**Why:** user asked for Sarek 1.14.1 (upstream v1.14.1, 2026-10-12) after the DXVK 3.2 stables.
+**Finding:** upstream 1.14.1 = 1.14.0 + our D3D10 fix (pythonlover02/DXVK-Sarek#83, merged as 924803b2) + version bump. So only a stock package; no `-d3d10fix` variant.
+**Changes:** `.github/workflows/dxvk-sarek-1.14.1.yml` (push on build/sarek-1.14.1 + dispatch, artifacts only): upstream tarball DLLs -> 1.14.0 layout (x64 -> system32, x32 -> syswow64 incl. ddraw), checks: DLL set == dxvk-sarek-v1.14.0.wcp, PE types, d3d10core x64/x86 6-argument D3D11CoreCreateDevice call (no 10-arg form), `v1.14.1` version string.
+**CI:** run 45899315630 (headSha 4d88c802) green. `dxvk-sarek-v1.14.1.wcp` 3,989,885 B, sha256 37dd45fb…2965; all 11 DLLs byte-identical to upstream's `dxvk-sarek-1.14.1.tar.gz`.
+**Published:** uploaded to release `DXVK-SAREK` (13 -> 14 assets, GitHub digest == artifact), notes got a 1.14.1 section; winlator-contents main 939ee38 (+1 row, 223; backup `refs/backup/20261126/main-before-sarek-1.14.1`); nightlies-components-json run 45899548501 -> 1108 entries incl. 1.14.1. Not device-tested.
+
 ### [fix] — Box64 WOW64 builds configure with a glibc cross compiler (2026-11-26, fix/box64-wow64-glibc-check 7718d069, merged main 335e940a)
 **Why:** box64 #4673/#4674 (2026-11-26) added `cmake/LibcChecks.cmake`, whose libc layout checks stop the configure ("Unknown struct obstack layout!") when the outer project is configured with the mingw compiler. Both WOW64 jobs of main run 45866977769 failed there, so that nightly did not publish. Upstream's own WOW64 job configures with `aarch64-linux-gnu-gcc` and `-DNOBOX64=1` and builds `wowbox64.dll` in the sub-build with llvm-mingw from PATH; upstream CI stayed green.
 **Changes:** AIO + `Box64all-standalone-nightly.yml`: install `gcc-aarch64-linux-gnu` for the WOW64 jobs; cmake `-DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DWOW64=1 -DARM_DYNAREC=1 -DNOBOX64=1`.
