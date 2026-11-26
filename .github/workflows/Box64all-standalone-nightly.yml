@@ -22,6 +22,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y git cmake make python3 p7zip-full wget tar file unzip xz-utils zip
+          if [ "${{ matrix.type }}" == "WOW64" ]; then
+            sudo apt-get install -y gcc-aarch64-linux-gnu
+          fi
 
       # --- CACHE BLOCKS ---
       - name: Cache Android NDK
@@ -126,9 +129,13 @@ jobs:
           
           if [ "${{ matrix.type }}" == "WOW64" ]; then
             export PATH=$PATH:${{ env.MINGW_PATH }}
+            # Same as upstream's own WOW64 CI: the outer project is configured with a glibc
+            # cross compiler (its libc layout checks, cmake/LibcChecks.cmake since box64 #4673,
+            # are FATAL with mingw) and NOBOX64=1; wowbox64.dll itself is built by the
+            # wowbox64 sub-build with the llvm-mingw compiler from PATH.
             cmake ../source \
-              -DCMAKE_C_COMPILER=aarch64-w64-mingw32-gcc \
-              -DWOW64=1 -DARM_DYNAREC=1 -DCMAKE_BUILD_TYPE=Release
+              -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
+              -DWOW64=1 -DARM_DYNAREC=1 -DNOBOX64=1 -DCMAKE_BUILD_TYPE=Release
             make -j$(nproc) wowbox64
           else
             if [ "${{ matrix.type }}" == "Bionic" ]; then
