@@ -24,6 +24,10 @@ on:
         description: 'Source releases to repack, space separated'
         required: false
         default: 'Dxvk Dxvk-arm64ec Dxvk-gplasync Vkd3d-proton'
+      patterns:
+        description: 'Optional: only repack source files matching these names/globs, space separated (e.g. "dxvk-3.2.wcp dxvk-arm64ec-3.2.wcp"). Empty = every .wcp. Other -linux files stay as they are; the notes table still lists them all.'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -42,6 +46,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASES: ${{ github.event.inputs.releases }}
+          PATTERNS: ${{ github.event.inputs.patterns }}
         run: |
           set -euo pipefail
           R="$GITHUB_REPOSITORY"
@@ -50,7 +55,13 @@ jobs:
             DEST="${SRC}-Linux"
             echo "::group::$SRC -> $DEST"
             work="$RUNNER_TEMP/$SRC"; rm -rf "$work"; mkdir -p "$work/in" "$work/out"
-            gh release download "$SRC" -R "$R" -p '*.wcp' -D "$work/in"
+            if [ -n "$PATTERNS" ]; then
+              # only the named files; a release holding none of them is an error, not a silent skip
+              pargs=(); for pat in $PATTERNS; do pargs+=(-p "$pat"); done
+              gh release download "$SRC" -R "$R" "${pargs[@]}" -D "$work/in"
+            else
+              gh release download "$SRC" -R "$R" -p '*.wcp' -D "$work/in"
+            fi
 
             for wcp in "$work/in"/*.wcp; do
               base=$(basename "$wcp" .wcp)
