@@ -18,7 +18,18 @@
 **User decision:** no BinSem for 3.2: `patches/dxvk-binary-semaphores.patch` fails 6 hunks on v3.2 after gplasync (dxvk_cmdlist.cpp 3/8, dxvk_cmdlist.h 1/2, a third file 2/4), same break as on master since October; the Turnip bug it worked around is fixed in Mesa e984ef29 (MR 44838).
 **Changes:** `dxvk-stable-publish.yml` input `include_binsem` (default true = old 6-file set; false = 4 files, table/fetch/count follow it, checked locally for both); `dxwrappers-linux-repack.yml` optional input `patterns` (repack only named files; empty = old behaviour; the notes table still lists every -linux asset); `.github/release-notes/dxvk-3.2.md`.
 **Builds:** `dxvk-stable-patched.yml` run 45867322263 (main, dxvk_version=v3.2): GPLAsync std + ARM64EC green, `git describe` v3.2, artifacts `dxvk-gplasync-3.2-1` / `dxvk-gplasync-arm64ec-3.2-1`; the two BinSem jobs stopped at the patch guard as expected. Upstream `dxvk-3.2.tar.gz` sha256 17449ed2… (== GitHub digest).
-**Open:** publish (dry run first), Linux repack, winlator-contents rows, components JSON, merge this branch. Not device-tested.
+**Vanilla check:** nightly run 45869769803 (main 335e940a, all jobs green) -> `nightly-20261126-174702` + nightly-latest (44 assets, same set as the 01:11 EST nightly). `DXVK-v3.2.wcp`: all 10 DLLs byte-identical to upstream `dxvk-3.2.tar.gz` (x64 + x32); `DXVK-v3.2-arm64ec.wcp` is our own build (D3D11 version string v3.2).
+**Published (from this branch, ce4b5e9f):** dry run 45871019592 (all 4 verified, nothing uploaded), then 45871131762: Dxvk 14->15, Dxvk-arm64ec 10->11, Dxvk-gplasync 12->13, Dxvk-gplasync-arm64ec 11->12, combined release `dxvk-3.2` ("DXVK 3.2 Stable — all flavors", not prerelease, not Latest; tag -> 581bb3c2 = main at publish; Latest stays the nightly).
+| file | bytes | sha256 |
+|---|---|---|
+| dxvk-3.2.wcp | 9,859,020 | 4c251b87…7f9cbe |
+| dxvk-arm64ec-3.2.wcp | 6,448,976 | a685c91e…ae900f |
+| dxvk-gplasync-3.2-1.wcp | 9,600,864 | 264dd386…f60de |
+| dxvk-gplasync-arm64ec-3.2-1.wcp | 6,523,738 | e709f372…cd5be |
+Live downloads re-hashed == GitHub digests.
+**Linux (DroidDeck):** dxwrappers-linux-repack.yml run 45871312755 (releases Dxvk Dxvk-arm64ec Dxvk-gplasync, patterns = the 3 files): only those 3 repacked, Dxvk-Linux 15->16 (`dxvk-3.2-linux.wcp` 64ee71ea…), Dxvk-arm64ec-Linux 11->12 (`dxvk-arm64ec-3.2-linux.wcp` 8809b4d3…), Dxvk-gplasync-Linux 12->13 (`dxvk-gplasync-3.2-1-linux.wcp` a31dda37…); older -linux files untouched, notes tables list the new files.
+**Catalogs:** winlator-contents main a3f1f068 (+4 rows, 218->222; backup `refs/backup/20261126/main-before-dxvk-3.2`); nightlies-components-json run 45871786553 -> nightlies_components.json 1103 -> 1107 (4 dxvk 3.2 entries).
+**Not device-tested.**
 
 ## Session — 2026-11-20
 
