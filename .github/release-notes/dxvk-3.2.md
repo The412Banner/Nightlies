@@ -31,7 +31,7 @@ Full list: [upstream release notes](https://github.com/doitsujin/dxvk/releases/t
 
 ## Notes on these builds
 
-- The plain builds are upstream's own release binaries, repackaged.
+- The plain build is upstream's own release binaries, repackaged: all 10 DLLs in `dxvk-3.2.wcp` are byte-for-byte identical to `dxvk-3.2.tar.gz`.
 - ARM64EC builds are compiled here from the same tag; upstream ships no ARM64EC binaries.
 - GPLAsync has no per-release patch for 3.2 yet, so Ph42oN's current patch is applied to the stable tag.
 - Every `.wcp` carries a `profile.json` whose version name matches its file name.
