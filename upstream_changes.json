@@ -1,14 +1,32 @@
 {
-  "triggered_at": "2026-11-26T06:06:09Z",
+  "triggered_at": "2026-11-26T17:27:13Z",
   "changed": [
+    {
+      "repo": "ptitSeb/box64",
+      "name": "Box64 (Official)",
+      "old": "c284358",
+      "new": "48d60d8",
+      "full": "48d60d86eb72f8e45c4d988a40588aeb4e974b5e",
+      "msg": "[RV64_DYNAREC] Reworked AVX VPALIGNR opcode (#4779)",
+      "date": "2026-11-26T17:26:35Z"
+    },
+    {
+      "repo": "doitsujin/dxvk",
+      "name": "DXVK",
+      "old": "6e25a5e",
+      "new": "1011dd9",
+      "full": "1011dd97474a1c8c2608f3466429e4df45b36b7c",
+      "msg": "[meta] Release 3.2",
+      "date": "2026-11-26T11:00:13Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "edce88a",
-      "new": "b8c965f",
-      "full": "b8c965f2d4164fa33e79539827ed2bac0a0e2851",
-      "msg": "asahi: Release saved sampler view reference as well",
-      "date": "2026-11-26T04:30:22.000+00:00"
+      "old": "b8c965f",
+      "new": "bb7494e",
+      "full": "bb7494e71c6b6e277724c83648bbf2e4309335e0",
+      "msg": "ci/freedreno: force gmem/sysmem piglit runs for ext_yuv_target tests on a750",
+      "date": "2026-11-26T16:41:56.000+00:00"
     }
   ]
 }
