@@ -331,6 +331,12 @@
   },
   {
     "type": "DXVK",
+    "verName": "dxvk-sarek-v1.14.1",
+    "verCode": "0",
+    "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/DXVK-SAREK/dxvk-sarek-v1.14.1.wcp"
+  },
+  {
+    "type": "DXVK",
     "verName": "dxvk-sarek-async-1.11.0",
     "verCode": "0",
     "remoteUrl": "https://github.com/The412Banner/Nightlies/releases/download/DXVK-SAREK-ASYNC/dxvk-sarek-async-1.11.0.wcp"
