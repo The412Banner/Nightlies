@@ -49,6 +49,11 @@ on:
         description: 'Tag for the combined all-flavors release (empty ⇒ dxvk-<version>)'
         required: false
         default: ''
+      include_binsem:
+        description: 'Include the two BinSem + GPLAsync flavours (off when the BinSem patch does not apply to this version, e.g. 3.2)'
+        type: boolean
+        required: false
+        default: true
       dry_run:
         description: 'Verify everything and publish NOTHING'
         type: boolean
@@ -71,6 +76,7 @@ jobs:
       BUILD_RUN_ID: ${{ inputs.build_run_id }}
       NIGHTLY_TAG: ${{ inputs.nightly_tag }}
       DRY_RUN: ${{ inputs.dry_run }}
+      INCLUDE_BINSEM: ${{ inputs.include_binsem }}
     steps:
       - name: Checkout (verifier + release notes)
         uses: actions/checkout@v4
@@ -93,11 +99,13 @@ jobs:
           echo "Combined release tag: $COMBINED"
           echo "Release notes file  : $NOTES"
 
-      - name: Fetch the 4 patched artifacts (server-side)
+      - name: Fetch the patched artifacts (server-side)
         run: |
           set -euo pipefail
           mkdir -p staging publish
-          for p in gplasync gplasync-arm64ec binsem-gplasync binsem-gplasync-arm64ec; do
+          FLAVOURS="gplasync gplasync-arm64ec"
+          if [ "$INCLUDE_BINSEM" = "true" ]; then FLAVOURS="$FLAVOURS binsem-gplasync binsem-gplasync-arm64ec"; fi
+          for p in $FLAVOURS; do
             NAME="dxvk-${p}-${VERSION}-${REV}"
             echo "::group::artifact $NAME"
             gh run download "$BUILD_RUN_ID" -R "$REPO" -n "$NAME" -D "staging/$NAME"
@@ -117,15 +125,17 @@ jobs:
             -D staging/vanilla --clobber
           ls -la staging/vanilla
 
-      - name: Assemble the six published filenames
+      - name: Assemble the published filenames
         run: |
           set -euo pipefail
           cp "staging/vanilla/DXVK-v${VERSION}.wcp"                                              "publish/dxvk-${VERSION}.wcp"
           cp "staging/vanilla/DXVK-v${VERSION}-arm64ec.wcp"                                      "publish/dxvk-arm64ec-${VERSION}.wcp"
           cp "staging/dxvk-gplasync-${VERSION}-${REV}/dxvk-gplasync-${VERSION}-${REV}.wcp"                               "publish/"
           cp "staging/dxvk-gplasync-arm64ec-${VERSION}-${REV}/dxvk-gplasync-arm64ec-${VERSION}-${REV}.wcp"               "publish/"
-          cp "staging/dxvk-binsem-gplasync-${VERSION}-${REV}/dxvk-binsem-gplasync-${VERSION}-${REV}.wcp"                 "publish/"
-          cp "staging/dxvk-binsem-gplasync-arm64ec-${VERSION}-${REV}/dxvk-binsem-gplasync-arm64ec-${VERSION}-${REV}.wcp" "publish/"
+          if [ "$INCLUDE_BINSEM" = "true" ]; then
+            cp "staging/dxvk-binsem-gplasync-${VERSION}-${REV}/dxvk-binsem-gplasync-${VERSION}-${REV}.wcp"                 "publish/"
+            cp "staging/dxvk-binsem-gplasync-arm64ec-${VERSION}-${REV}/dxvk-binsem-gplasync-arm64ec-${VERSION}-${REV}.wcp" "publish/"
+          fi
           ls -la publish
 
           # Prove the renamed vanilla files are bit-identical to what the nightly
@@ -134,7 +144,7 @@ jobs:
           cmp "staging/vanilla/DXVK-v${VERSION}-arm64ec.wcp" "publish/dxvk-arm64ec-${VERSION}.wcp"
           echo "vanilla assets are byte-identical after rename"
 
-      - name: Verify all six BEFORE any upload
+      - name: Verify every file BEFORE any upload
         run: |
           set -euo pipefail
           chmod +x scripts/verify-dxvk-wcp.sh
@@ -145,11 +155,20 @@ jobs:
           dxvk-arm64ec-${VERSION}.wcp|v${VERSION}-arm64ec|arm64ec|Dxvk-arm64ec
           dxvk-gplasync-${VERSION}-${REV}.wcp|v${VERSION}-gplasync|std|Dxvk-gplasync
           dxvk-gplasync-arm64ec-${VERSION}-${REV}.wcp|v${VERSION}-gplasync-arm64ec|arm64ec|Dxvk-gplasync-arm64ec
+          "
+          if [ "$INCLUDE_BINSEM" = "true" ]; then
+            TABLE="$TABLE
           dxvk-binsem-gplasync-${VERSION}-${REV}.wcp|v${VERSION}-binsem-gplasync|std|Dxvk-binsem-gplasync
           dxvk-binsem-gplasync-arm64ec-${VERSION}-${REV}.wcp|v${VERSION}-binsem-gplasync-arm64ec|arm64ec|Dxvk-binsem-gplasync-arm64ec
           "
+            EXPECT=6
+          else
+            EXPECT=4
+          fi
           echo "$TABLE" | grep -v '^\s*$' > table.txt
-          [ "$(wc -l < table.txt)" -eq 6 ] || { echo "::error::expected 6 table rows"; exit 1; }
+          [ "$(wc -l < table.txt)" -eq "$EXPECT" ] || { echo "::error::expected $EXPECT table rows"; exit 1; }
+          # nothing outside the table may reach the combined release
+          [ "$(ls publish/*.wcp | wc -l)" -eq "$EXPECT" ] || { echo "::error::publish/ holds $(ls publish/*.wcp | wc -l) files, expected $EXPECT"; exit 1; }
 
           FAILED=0
           while IFS='|' read -r file vname variant tag; do
@@ -185,7 +204,7 @@ jobs:
             echo "::error::verification failed — publishing NOTHING"
             exit 1
           fi
-          echo "all six verified"
+          echo "all $EXPECT verified"
 
       - name: Upload one file to each per-flavour release
         if: ${{ !inputs.dry_run }}
