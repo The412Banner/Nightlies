@@ -1,0 +1,140 @@
+name: DXVK-Sarek 1.14.1 — stock build
+
+# ==================================================================
+# One .wcp from pythonlover02/DXVK-Sarek v1.14.1:
+#
+#   dxvk-sarek-v1.14.1.wcp   upstream's release DLLs, as shipped
+#
+# 1.14.1 = 1.14.0 + the D3D10 fix (pythonlover02/DXVK-Sarek#83, from
+# The412Banner): d3d10core calls d3d11's 6-argument
+# D3D11CoreCreateDevice again. That is the fix the 1.14.0 "-d3d10fix"
+# package carried, so 1.14.1 needs no patched variant. CI checks the
+# fixed call is in upstream's own d3d10core (x64 + x86) and that the
+# DLL set is the same as 1.14.0's.
+#
+# Same layout as dxvk-sarek-v1.14.0.wcp: x64 -> system32, x32 ->
+# syswow64 (incl. the 32-bit ddraw.dll from D7VK), zstd tar.
+#
+# ARTIFACTS ONLY — no release, no tag, no catalog change.
+# ==================================================================
+
+on:
+  push:
+    branches: [build/sarek-1.14.1]
+    paths:
+      - '.github/workflows/dxvk-sarek-1.14.1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  SAREK_REPO: pythonlover02/DXVK-Sarek
+  SAREK_TAG: v1.14.1
+  SAREK_VER: 1.14.1
+
+jobs:
+  build:
+    name: Verify + package
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y llvm zstd jq python3-pip
+          pip3 install --user pefile
+
+      - name: Upstream release DLLs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euxo pipefail
+          COMMIT=$(gh api "repos/$SAREK_REPO/commits/$SAREK_TAG" --jq .sha)
+          gh release download "$SAREK_TAG" --repo "$SAREK_REPO" -p "dxvk-sarek-${SAREK_VER}.tar.gz" -D up
+          tar -xzf "up/dxvk-sarek-${SAREK_VER}.tar.gz" -C up
+          mkdir -p stock
+          cp -a "up/dxvk-sarek-${SAREK_VER}/build/x64" "up/dxvk-sarek-${SAREK_VER}/build/x32" stock/
+          ls -la stock/x64 stock/x32
+          echo "## Source" >> $GITHUB_STEP_SUMMARY
+          echo "- ${SAREK_REPO} \`${SAREK_TAG}\` = \`${COMMIT}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- upstream release tarball sha256 \`$(sha256sum up/dxvk-sarek-${SAREK_VER}.tar.gz | cut -d' ' -f1)\`" >> $GITHUB_STEP_SUMMARY
+
+      - name: Verify
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cat > exprange.py <<'EOF'
+          import sys, pefile
+          pe = pefile.PE(sys.argv[1], fast_load=True)
+          pe.parse_data_directories(directories=[pefile.DIRECTORY_ENTRY['IMAGE_DIRECTORY_ENTRY_EXPORT']])
+          base = pe.OPTIONAL_HEADER.ImageBase
+          rvas = sorted(e.address for e in pe.DIRECTORY_ENTRY_EXPORT.symbols)
+          start = next(e.address for e in pe.DIRECTORY_ENTRY_EXPORT.symbols if e.name == b'D3D10CoreCreateDevice')
+          stop = min([r for r in rvas if r > start] or [start + 0x200])
+          print(hex(base + start), hex(base + stop))
+          EOF
+          fn() { local r; r=$(python3 exprange.py "$1"); set -- "$1" $r; llvm-objdump -d --no-show-raw-insn --print-imm-hex --start-address=$2 --stop-address=$3 "$1"; }
+          fail=0
+          echo "## Verify" >> $GITHUB_STEP_SUMMARY
+
+          # 1) same DLL set as the published 1.14.0 package
+          gh release download DXVK-SAREK --repo "$GITHUB_REPOSITORY" -p dxvk-sarek-v1.14.0.wcp -D prev
+          mkdir -p prev/x && tar --zstd -xf prev/dxvk-sarek-v1.14.0.wcp -C prev/x
+          diff <(cd prev/x/system32 && ls) <(cd stock/x64 && ls *.dll) || { echo "::error::x64 DLL set differs from 1.14.0"; fail=1; }
+          diff <(cd prev/x/syswow64 && ls) <(cd stock/x32 && ls *.dll) || { echo "::error::x32 DLL set differs from 1.14.0"; fail=1; }
+          echo "- DLL set == dxvk-sarek-v1.14.0.wcp (system32 $(ls stock/x64 | wc -l), syswow64 $(ls stock/x32 | wc -l))" >> $GITHUB_STEP_SUMMARY
+
+          # 2) PE machine types
+          for f in stock/x64/*.dll; do file -b "$f" | grep -q 'PE32+.*x86-64' || { echo "::error::$f is not x86-64 PE32+"; fail=1; }; done
+          for f in stock/x32/*.dll; do file -b "$f" | grep -q -E 'PE32 .*Intel (80386|i386)' || { echo "::error::$f is not i386 PE32"; fail=1; }; done
+
+          # 3) the D3D10 fix is in upstream's d3d10core: 6-arg call, not the 10-arg one
+          fn stock/x64/d3d10core.dll > s64.s; fn stock/x32/d3d10core.dll > s32.s
+          if grep -q -E '\$0x7, 0x38\(%rsp\)' s64.s; then echo "::error::x64 still passes SDKVersion as arg 8 (10-arg call)"; fail=1; fi
+          grep -q -E 'movl[[:space:]]+\$0x1, 0x20\(%rsp\)' s64.s || { echo "::error::x64: FeatureLevels=1 not in arg 5"; fail=1; }
+          if grep -q -E 'subl[[:space:]]+\$0x28, %esp' s32.s; then echo "::error::x86 still expects a 40-byte pop (10-arg call)"; fail=1; fi
+          grep -q -E 'subl[[:space:]]+\$0x18, %esp' s32.s || { echo "::error::x86: no 24-byte (6-arg) stdcall pop"; fail=1; }
+          echo "- d3d10core x64 + x86: 6-argument D3D11CoreCreateDevice call (D3D10 fix present)" >> $GITHUB_STEP_SUMMARY
+
+          # 4) version string
+          grep -a -q 'v1\.14\.1' stock/x64/d3d11.dll || { echo "::error::x64 d3d11.dll has no v1.14.1 version string"; fail=1; }
+          echo "- d3d11.dll version string: $(grep -a -o -m1 'v1\.14\.1[^[:space:][:cntrl:]]*' stock/x64/d3d11.dll | head -1)" >> $GITHUB_STEP_SUMMARY
+
+          [ $fail -eq 0 ] || exit 1
+          echo "ALL CHECKS PASSED" >> $GITHUB_STEP_SUMMARY
+
+      - name: Package .wcp
+        run: |
+          set -euxo pipefail
+          mkdir -p dist
+          rm -rf pkg && mkdir -p pkg/system32 pkg/syswow64
+          install -m755 stock/x64/*.dll pkg/system32/
+          install -m755 stock/x32/*.dll pkg/syswow64/
+          NAME="dxvk-sarek-v${SAREK_VER}" python3 - <<'EOF'
+          import json, os
+          name = os.environ['NAME']
+          files = []
+          for d, ph in (('system32', '${system32}'), ('syswow64', '${syswow64}')):
+              for f in sorted(os.listdir('pkg/' + d)):
+                  files.append({'source': f'{d}/{f}', 'target': f'{ph}/{f}'})
+          desc = ("DXVK-Sarek 1.14.1 (DXVK 1.10.x, Vulkan 1.1/1.2) for old/low-power GPUs and ARM via Box64/FEX; "
+                  "D3D3-7 (32-bit ddraw), D3D8, D3D9, D3D10, D3D11. Includes the D3D10 fix (no separate d3d10fix build needed). "
+                  "Optional tuning env vars: DXVK_FRAME_RATE_PACING=sliced, "
+                  "DXVK_SHADER_COMPILATION_METHOD=dyasync|async|none. Upstream: pythonlover02")
+          p = {'type': 'DXVK', 'versionName': name, 'versionCode': 0, 'description': desc, 'files': files}
+          json.dump(p, open('pkg/profile.json', 'w'), indent=2)
+          EOF
+          cat pkg/profile.json
+          tar -C pkg --format=ustar -cf - profile.json system32 syswow64 | zstd -19 -T0 -o "dist/dxvk-sarek-v${SAREK_VER}.wcp"
+          tar --zstd -tvf "dist/dxvk-sarek-v${SAREK_VER}.wcp"
+          (cd dist && sha256sum *.wcp | tee SHA256SUMS)
+          echo "### Package" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY; cat dist/SHA256SUMS >> $GITHUB_STEP_SUMMARY; echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload .wcp
+        uses: actions/upload-artifact@v4
+        with:
+          name: dxvk-sarek-v1.14.1-wcp
+          path: dist/
+          if-no-files-found: error
