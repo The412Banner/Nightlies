@@ -6,6 +6,20 @@
 
 ---
 
+## Session — 2026-11-26
+
+### [fix] — Box64 WOW64 builds configure with a glibc cross compiler (2026-11-26, fix/box64-wow64-glibc-check 7718d069, merged main 335e940a)
+**Why:** box64 #4673/#4674 (2026-11-26) added `cmake/LibcChecks.cmake`, whose libc layout checks stop the configure ("Unknown struct obstack layout!") when the outer project is configured with the mingw compiler. Both WOW64 jobs of main run 45866977769 failed there, so that nightly did not publish. Upstream's own WOW64 job configures with `aarch64-linux-gnu-gcc` and `-DNOBOX64=1` and builds `wowbox64.dll` in the sub-build with llvm-mingw from PATH; upstream CI stayed green.
+**Changes:** AIO + `Box64all-standalone-nightly.yml`: install `gcc-aarch64-linux-gnu` for the WOW64 jobs; cmake `-DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DWOW64=1 -DARM_DYNAREC=1 -DNOBOX64=1`.
+**CI:** branch AIO run 45867787477 (headSha 7718d069) all 18 jobs green (release skipped by the branch guard). wowbox64.dll from it: ARM64 PE DLL, 4,727,296 B (Official 02a13e4ec, Hybrid 48d60d86e) vs 4,725,760 B in nightly-latest before. Merged after the user saw the result: `--no-ff` merge 335e940a on main 8eb842f6 (2 bot json commits after the branch base), workflow files == 7718d069; backup `refs/backup/20261126/main-before-box64-wow64-glibc-check`. First main nightly with it: run 45869769803.
+
+### [feat] — DXVK 3.2 stable, 4 flavours (2026-11-26, feat/dxvk-3.2-stable)
+**Why:** upstream DXVK v3.2 (tag 1011dd97) released 2026-11-26; the user asked for 3.2 stable builds like the previous stables.
+**User decision:** no BinSem for 3.2: `patches/dxvk-binary-semaphores.patch` fails 6 hunks on v3.2 after gplasync (dxvk_cmdlist.cpp 3/8, dxvk_cmdlist.h 1/2, a third file 2/4), same break as on master since October; the Turnip bug it worked around is fixed in Mesa e984ef29 (MR 44838).
+**Changes:** `dxvk-stable-publish.yml` input `include_binsem` (default true = old 6-file set; false = 4 files, table/fetch/count follow it, checked locally for both); `dxwrappers-linux-repack.yml` optional input `patterns` (repack only named files; empty = old behaviour; the notes table still lists every -linux asset); `.github/release-notes/dxvk-3.2.md`.
+**Builds:** `dxvk-stable-patched.yml` run 45867322263 (main, dxvk_version=v3.2): GPLAsync std + ARM64EC green, `git describe` v3.2, artifacts `dxvk-gplasync-3.2-1` / `dxvk-gplasync-arm64ec-3.2-1`; the two BinSem jobs stopped at the patch guard as expected. Upstream `dxvk-3.2.tar.gz` sha256 17449ed2… (== GitHub digest).
+**Open:** publish (dry run first), Linux repack, winlator-contents rows, components JSON, merge this branch. Not device-tested.
+
 ## Session — 2026-11-20
 
 ### [fix] — Nightly drops the DXVK BinSem builds (2026-11-20, fix/drop-binsem-nightly a3fdc215, merged main)
