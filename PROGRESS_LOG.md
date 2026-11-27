@@ -6,6 +6,16 @@
 
 ---
 
+## Session — 2026-11-27
+
+### [release] — DXVK 3.2-a6xx GPLAsync (release dxvk-3.2-a6xx-gplasync, tag -> abed937a)
+**Why:** user asked for the `dxvk-3.1-a6xx-gplasync` build again on DXVK 3.2, published with app list rows.
+**Checks before building:** DXVK v3.2 (1011dd97, on master) still requires storageBuffer16BitAccess + storageBuffer8BitAccess (`src/dxvk/dxvk_device_info.cpp` 907/912), so StevenMX's change is still needed; `patches/dxvk-a6xx-optional-8-16bit-storage.patch` passes strict `git apply` (offset 13); required-feature list identical to the 3.1-a6xx base d30be2ba; Vulkan request still 1.3. `dxvk-binary-semaphores.patch` does not apply to 3.2 (same as the 3.2 stable set) → no BinSem files.
+**Build:** `dxvk-stable-patched.yml` run 46024966369 (headSha abed937a, commit mode: dxvk_commit=1011dd97, version_label=3.2-a6xx, extra_patch=dxvk-a6xx-optional-8-16bit-storage.patch, asset_revision=1). GPLAsync std + arm64ec green (checked out 1011dd97, git describe v3.2, a6xx patch 4 ++--, gplasync applied, verify OK); BinSem std + arm64ec stopped at the patch step by design.
+**Release:** `dxvk-3.2-a6xx-gplasync` ("DXVK 3.2-a6xx GPLAsync", not Latest, not prerelease): `dxvk-gplasync-3.2-a6xx-1.wcp` 9,601,096 B sha256 854a724e…a5dc (xz, versionName v3.2-a6xx-gplasync), `dxvk-gplasync-arm64ec-3.2-a6xx-1.wcp` 6,523,825 B cc187912…cdd3 (zstd, v3.2-a6xx-gplasync-arm64ec). GitHub digests == built files == public downloads. All 10 DLLs per file differ from the regular `dxvk-gplasync-3.2-1` set.
+**Catalog:** winlator-contents main d61fab5e (+2 rows, 223 → 225; backup `refs/backup/20261127/main-before-dxvk-3.2-a6xx`). Not added to nightlies_components.json (static release list, same as 3.1-a6xx).
+**Proof level:** CI-green + files checked; NOT device-tested (no Adreno 6xx device here).
+
 ## Session — 2026-11-26
 
 ### [feat] — DXVK-Sarek 1.14.1 stock build (2026-11-26, build/sarek-1.14.1 4d88c802)
