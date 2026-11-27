@@ -1,32 +1,14 @@
 {
-  "triggered_at": "2026-11-27T10:20:34Z",
+  "triggered_at": "2026-11-27T19:44:44Z",
   "changed": [
-    {
-      "repo": "ptitSeb/box64",
-      "name": "Box64 (Official)",
-      "old": "97ec724",
-      "new": "21cf1b4",
-      "full": "21cf1b4f98c5f0975b191bb2dea8e0961db2d46f",
-      "msg": "[RV64_DYNAREC] Reworked VPERMILPS/D opcodes",
-      "date": "2026-11-27T09:32:04Z"
-    },
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "2498816",
-      "new": "a92baf0",
-      "full": "a92baf0738319a01fe85b82ca02f9b2d5a221d5a",
-      "msg": "Merge pull request #6178 from lioncash/mmx",
-      "date": "2026-11-27T06:51:50Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "3a7226f",
-      "new": "7866a3d",
-      "full": "7866a3d4e5b2fa7bca86d75d45a98bb826979684",
-      "msg": "docs/ci-tron: document internet access control",
-      "date": "2026-11-27T09:40:07.000+00:00"
+      "old": "7866a3d",
+      "new": "d24d184",
+      "full": "d24d184f3112eb4db3a4753f3dcd5017f5a50c1d",
+      "msg": "tu/ci: Move and document remaining CTS failures",
+      "date": "2026-11-27T18:48:08.000+00:00"
     }
   ]
 }
