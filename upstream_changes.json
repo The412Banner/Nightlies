@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-11-27T01:19:05Z",
+  "triggered_at": "2026-11-27T10:20:34Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "48d60d8",
-      "new": "97ec724",
-      "full": "97ec7246add57bc21cb0636a4b80f3f3599119cd",
-      "msg": "[LA64_DYNAREC] Fixed a regression introduced by #4721 (#4783)",
-      "date": "2026-11-26T19:56:36Z"
+      "old": "97ec724",
+      "new": "21cf1b4",
+      "full": "21cf1b4f98c5f0975b191bb2dea8e0961db2d46f",
+      "msg": "[RV64_DYNAREC] Reworked VPERMILPS/D opcodes",
+      "date": "2026-11-27T09:32:04Z"
     },
     {
       "repo": "FEX-Emu/FEX",
       "name": "FEX",
-      "old": "3ee2539",
-      "new": "2498816",
-      "full": "2498816b307ee341e3af9056e19fcdb54e1c3f3a",
-      "msg": "Merge pull request #6169 from K1r0h/shufps-same-source",
-      "date": "2026-11-26T22:22:19Z"
+      "old": "2498816",
+      "new": "a92baf0",
+      "full": "a92baf0738319a01fe85b82ca02f9b2d5a221d5a",
+      "msg": "Merge pull request #6178 from lioncash/mmx",
+      "date": "2026-11-27T06:51:50Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "bb7494e",
-      "new": "3a7226f",
-      "full": "3a7226f64c839cffb5be00d98e77687cd2aaac8a",
-      "msg": "intel/gen: Fix byte-to-word source region validation",
-      "date": "2026-11-27T00:32:03.000+00:00"
+      "old": "3a7226f",
+      "new": "7866a3d",
+      "full": "7866a3d4e5b2fa7bca86d75d45a98bb826979684",
+      "msg": "docs/ci-tron: document internet access control",
+      "date": "2026-11-27T09:40:07.000+00:00"
     }
   ]
 }
