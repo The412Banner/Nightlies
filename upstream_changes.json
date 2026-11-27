@@ -1,32 +1,32 @@
 {
-  "triggered_at": "2026-11-26T17:27:13Z",
+  "triggered_at": "2026-11-27T01:19:05Z",
   "changed": [
     {
       "repo": "ptitSeb/box64",
       "name": "Box64 (Official)",
-      "old": "c284358",
-      "new": "48d60d8",
-      "full": "48d60d86eb72f8e45c4d988a40588aeb4e974b5e",
-      "msg": "[RV64_DYNAREC] Reworked AVX VPALIGNR opcode (#4779)",
-      "date": "2026-11-26T17:26:35Z"
+      "old": "48d60d8",
+      "new": "97ec724",
+      "full": "97ec7246add57bc21cb0636a4b80f3f3599119cd",
+      "msg": "[LA64_DYNAREC] Fixed a regression introduced by #4721 (#4783)",
+      "date": "2026-11-26T19:56:36Z"
     },
     {
-      "repo": "doitsujin/dxvk",
-      "name": "DXVK",
-      "old": "6e25a5e",
-      "new": "1011dd9",
-      "full": "1011dd97474a1c8c2608f3466429e4df45b36b7c",
-      "msg": "[meta] Release 3.2",
-      "date": "2026-11-26T11:00:13Z"
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "3ee2539",
+      "new": "2498816",
+      "full": "2498816b307ee341e3af9056e19fcdb54e1c3f3a",
+      "msg": "Merge pull request #6169 from K1r0h/shufps-same-source",
+      "date": "2026-11-26T22:22:19Z"
     },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "b8c965f",
-      "new": "bb7494e",
-      "full": "bb7494e71c6b6e277724c83648bbf2e4309335e0",
-      "msg": "ci/freedreno: force gmem/sysmem piglit runs for ext_yuv_target tests on a750",
-      "date": "2026-11-26T16:41:56.000+00:00"
+      "old": "bb7494e",
+      "new": "3a7226f",
+      "full": "3a7226f64c839cffb5be00d98e77687cd2aaac8a",
+      "msg": "intel/gen: Fix byte-to-word source region validation",
+      "date": "2026-11-27T00:32:03.000+00:00"
     }
   ]
 }
