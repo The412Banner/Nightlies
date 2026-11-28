@@ -1,14 +1,23 @@
 {
-  "triggered_at": "2026-11-27T19:44:44Z",
+  "triggered_at": "2026-11-28T02:24:20Z",
   "changed": [
+    {
+      "repo": "FEX-Emu/FEX",
+      "name": "FEX",
+      "old": "a92baf0",
+      "new": "d663eb8",
+      "full": "d663eb8ed82f76b40a20d35b886f17e9f5b067a0",
+      "msg": "Merge pull request #6179 from lioncash/divr",
+      "date": "2026-11-27T20:31:50Z"
+    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "7866a3d",
-      "new": "d24d184",
-      "full": "d24d184f3112eb4db3a4753f3dcd5017f5a50c1d",
-      "msg": "tu/ci: Move and document remaining CTS failures",
-      "date": "2026-11-27T18:48:08.000+00:00"
+      "old": "d24d184",
+      "new": "ec5abcd",
+      "full": "ec5abcdd4ec9b9d5c896afe81a457f17e6ae4797",
+      "msg": "llvmpipe: don't drop 9-vertex triangle lists ending in a zero-area tri",
+      "date": "2026-11-28T01:49:08.000+00:00"
     }
   ]
 }
