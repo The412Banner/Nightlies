@@ -1,23 +1,14 @@
 {
-  "triggered_at": "2026-11-28T02:24:20Z",
+  "triggered_at": "2026-11-28T11:10:44Z",
   "changed": [
-    {
-      "repo": "FEX-Emu/FEX",
-      "name": "FEX",
-      "old": "a92baf0",
-      "new": "d663eb8",
-      "full": "d663eb8ed82f76b40a20d35b886f17e9f5b067a0",
-      "msg": "Merge pull request #6179 from lioncash/divr",
-      "date": "2026-11-27T20:31:50Z"
-    },
     {
       "repo": "mesa/mesa",
       "name": "Mesa (Turnip)",
-      "old": "d24d184",
-      "new": "ec5abcd",
-      "full": "ec5abcdd4ec9b9d5c896afe81a457f17e6ae4797",
-      "msg": "llvmpipe: don't drop 9-vertex triangle lists ending in a zero-area tri",
-      "date": "2026-11-28T01:49:08.000+00:00"
+      "old": "ec5abcd",
+      "new": "497c9e9",
+      "full": "497c9e9ef42bea19889b77930016b0c2bb3b1498",
+      "msg": "tu: Use the empty FS when linking without a fragment shader library",
+      "date": "2026-11-28T10:39:49.000+00:00"
     }
   ]
 }
